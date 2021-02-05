@@ -1,0 +1,63 @@
+
+
+<p>
+  <%= @clinician.clinic_name %><br>
+  <%= @clinician.clinic_street %><br>
+  <%= @clinician.clinic_city %>
+  <%= @clinician.clinic_state %>
+  <%= @clinician.clinic_zip %><br>
+
+  Office: 757-285-8069<br>
+  Fax: 757-285-8069<br>
+  www.testclinic.com<br>
+  Tax ID: xxxxxxxxxx<br>
+  NPI: xxxxxxxxxxxx
+</p>
+
+<br>
+
+<p>
+  Date: <%= Time.now.strftime("%m/%d/%Y") %>
+</p>
+
+<p>
+  Clients Name: <%= @member.user_id %><br>
+  Insurance: Aetna <br>
+  Insurance ID# xxxxx <br>
+  DOB: <%= @member.dob.present? ? @member.dob.strftime("%B %d, %Y ") : "not entered" %>(Age:<%= @member.age.present? ? @member.age : 0 %>)
+</p>
+
+<br>
+
+<p>
+  Procedure Code: <b>12345</b> (Family Therapy w/o patient) <br>
+  Diagnosis: 300.00 Anxiety state, unspecified
+</p>
+<br>
+<p>
+  Letter of medical necessity
+</p>
+<br>
+
+<p>
+  To Whom it May Concern:
+</p>
+
+<p>
+  <%= @member.user_id %> has been under our care during the period of Sept 17, 2014 - present.  As a necessary part of his care for the above referenced diagnosis, parent guidance sessions
+  have been held which are characterized as 90846.  Family Therapy w/o patient present.
+  Successful treatment requires these sessions along with the direct interventions with the client.
+</p>
+<br>
+<p>
+  We are available if more information is necessary.
+</p>
+
+<p>
+  Yours,
+</p>
+<p>
+  Josh Roberto <br>
+  Test Clinician
+  josh@testclinic.com
+</p>

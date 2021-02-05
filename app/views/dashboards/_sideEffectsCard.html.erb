@@ -1,0 +1,59 @@
+<div id="side-effects-card" class="col-xs-6 col-md-1" style="min-width: 385px; min-height: 425px">
+  <div class="dashboard-card" style="background-color: #95AAAB;">
+    <div class="card-header">
+      <h1 class="card-header-text">Symptoms &<br/>Side Effects</h1>
+    </div>
+    <div class="card-menu">
+      <%= image_tag('video_temp.png') %>
+      <button type="button" class="card-video-button" data-toggle="modal" data-target="#symptomsModal"><%= image_tag('help.png') %></button>
+    </div>
+    <div class="card-image">
+      <button type="button" class="card-action-button" data-toggle="modal" data-target="#sideEffectEntryModal"><%= image_tag('symptoms.png')%></button>
+    </div>
+    <div class="card-notification">
+    </div>
+    <div class="card-info">
+      <br/>
+      <!--Most Frequent Symptom:--><br/>
+      Last Update: <%= @last_side_effect_entry.present? ? @last_side_effect_entry.created_at.to_date.strftime("%m/%d/%Y") :"no updates made" %>
+    </div>
+    <div class="card-action-top">
+      <%=image_tag('spacer.png')%>
+      <div class="card-action-text">
+
+      </div>
+    </div>
+    <div class="card-action-middle">
+      <button type="button" class="card-action-button" data-toggle="modal" data-target="#sideEffectEntryModal">
+        <%=image_tag('edit.png')%>
+        <div class="card-action-text">
+          MAKE<BR/>ENTRY
+        </div>
+      </button>
+    </div>
+    <div class="card-action-bottom">
+      <button type="button" class="card-action-button" data-toggle="modal" data-target="#dashboardSideEffectsChartModal">
+        <%=image_tag('reports.png')%>
+        <div class="card-action-text">
+          <BR/>REPORTS
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="sideEffectEntryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Side Effects Entry</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+        <%= render 'entries/sideeffect_entries' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

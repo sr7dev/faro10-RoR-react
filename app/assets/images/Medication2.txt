@@ -1,0 +1,2 @@
+Medication success rate accross patients.
+Track effectiveness and side-effects

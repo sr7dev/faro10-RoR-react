@@ -1,0 +1,10 @@
+[
+  {
+  	"relation": ["delegate_permission/common.handle_all_urls"],
+	"target": {
+		"namespace": "Faro10",
+    	"package_name": "com.faro10",
+    	"sha256_cert_fingerprints": ["79:47:E2:AC:E9:20:84:5B:D3:1D:66:E5:8F:83:5C:F4:DD:30:4B:64:B7:FB:91:2D:F2:2C:42:F3:8B:BA:0A:AC"]
+        }
+    }
+]

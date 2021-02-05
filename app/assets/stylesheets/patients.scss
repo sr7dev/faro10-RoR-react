@@ -1,0 +1,50 @@
+// Place all the styles related to the patients controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+td.patient-reports {
+  overflow: visible;
+}
+
+ul.patient-navbar {
+  list-style-type: none; 
+  margin: 0; 
+  padding: 0; 
+  overflow: hidden; 
+  background-color: #f9f9f9; 
+  border-top: 0 solid #000; 
+  border-bottom: 1px solid #000;
+
+  li {
+    span.divider {
+      display: inline-block;
+      color: black; 
+      text-align: center; 
+      padding: 10px 1px; 
+      text-decoration: none; 
+      float: left;  
+    }
+
+    span.nav-link {
+
+      a {
+        display: inline-block; 
+        color: black; 
+        text-align: center; 
+        padding: 10px 16px; 
+        text-decoration: none; 
+        float: left;
+
+        &:hover {
+          color: #CC246F;
+        }
+      }
+      
+      &.active {
+        a {
+          color: #CC246F;
+        }
+      } 
+    }
+  }
+}

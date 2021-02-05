@@ -1,0 +1,47 @@
+.exercise {
+  .description {
+    font-size: 18px;
+    margin-bottom: 25px;
+  }
+}
+
+#question-list {
+  margin-bottom: 100px;
+
+  list-style: none;
+
+  li { 
+    margin-bottom: 18px;
+  }
+
+  .question {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .comment {
+    font-style: italic;
+    font-weight: normal;
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  .child {
+    margin-left: 25px;
+    font-weight: normal;
+  }
+
+  .answer {
+    margin-left: 40px;
+    font-weight: normal;
+    font-size: 20px;
+    color: #CC246F;
+    background-color: #DFF0E7;
+  }
+
+  .answer_choice {
+    font-weight: normal;
+    margin-left: 7px;
+  }
+
+}

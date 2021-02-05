@@ -1,0 +1,62 @@
+category: exercise
+longname: Session Rating
+shortname: sr
+logo: session_rating_icon.png
+description: Please rate today's session by selecting the option that best applies.
+questions:
+  - position: 1
+    style: multiple_choice
+    text: 1. Relationship.
+    answer_choices:
+    - position: 1
+      text: I did not feel heard, understood, and respected at all.
+    - position: 2
+      text: I somewhat felt heard, understood, and respected.
+    - position: 3
+      text: I moderately felt heard, understood, and respected.
+    - position: 4
+      text: For the most part, I felt heard, understood, and respected.
+    - position: 5
+      text: I felt totally heard, understood and respected.
+  - position: 2
+    style: multiple_choice
+    text: 2. Goals and Topics
+    answer_choices:
+    - position: 1
+      text: We did not work on or talk about what I wanted to work on and talk about.  
+    - position: 2
+      text: We somewhat worked on or talked about what I wanted to work on and talk about.
+    - position: 3
+      text: We moderately worked on or talked about what I wanted to work on and talk about.
+    - position: 4
+      text: For the most part, we worked on or talked about what I wanted to work on and talk about.
+    - position: 5
+      text: We worked on and talked about what I wanted to work on and talk about.  
+  - position: 3
+    style: multiple_choice
+    text: 3. Approach or Method.
+    answer_choices:
+    - position: 1
+      text: The therapist's approach is not a good fit for me.
+    - position: 2
+      text: The therapist's approach is somewhat a good fit for me.
+    - position: 3
+      text: The therapist's approach is moderately a good fit for me.
+    - position: 4
+      text: For the most part, the therapist's approach is a good fit for me.
+    - position: 5
+      text: The therapist's approach is a good fit for me.
+  - position: 4
+    style: multiple_choice
+    text: 4. Overall.
+    answer_choices:
+    - position: 1
+      text: There was something missing in the session today.
+    - position: 2
+      text: Today's session was helpful but lacking.
+    - position: 3
+      text: Today's session was ok.
+    - position: 4
+      text: Today's session was helpful.
+    - position: 5
+      text: Overall, today's session was right for me.

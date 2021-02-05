@@ -1,0 +1,44 @@
+# Note: You must restart bin/webpack-dev-server for changes to take effect
+
+default: &default
+  source_path: app/javascript
+  source_entry_path: packs
+  public_output_path: packs
+  
+  resolved_paths: ['app/assets']
+  cache_path: tmp/cache/webpacker
+
+  extensions:
+    - .coffee
+    - .erb
+    - .js
+    - .jsx
+    - .ts
+    - .vue
+    - .sass
+    - .scss
+    - .css
+    - .png
+    - .svg
+    - .gif
+    - .jpeg
+    - .jpg
+
+development:
+  <<: *default
+
+  compile: true
+
+  dev_server:
+    host: 127.0.0.1
+    port: 8080
+    https: false
+
+test:
+  <<: *default
+
+staging:
+  <<: *default
+
+production:
+  <<: *default

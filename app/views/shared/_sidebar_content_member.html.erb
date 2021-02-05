@@ -1,0 +1,84 @@
+<% if current_page?('/dashboard') %>
+    <br><br>
+    <!-- Date Picker-->
+    <h3 style="color: white">Select Date Range:</h3>
+
+    <div class="input-daterange input-group" id="datepicker" style="max-width: 100%">
+      <input type="text" class= 'input-sm form-control' name="start_date" value="<%= localize (Time.now - 2.weeks), format: :short %>" />
+      <span class="input-group-addon">to</span>
+      <input type="text" class="input-sm form-control" name="end_date" value="<%= l Time.now, format: :short %>"/>
+    </div>
+    <br>
+    <div class="col-md-offset-2 col-md-10">
+      <button type="button" class="btn btn-primary" style="background-color: #CC246F; border-radius: 0" id="apply_filters">Apply Filters</button>
+    </div>
+
+    <br><br>
+    <br>
+    <h3 style="color: white; margin-left: 5px; margin-right: 5px" >Print Reports</h3>
+    <div class="row">
+      <button type="button" class="btn btn-xs btn-danger my_summary" style="margin: 4px; margin-left: 20px" ><i class="fa fa-file-pdf-o" aria-hidden="true"  data-toggle="tooltip" data-placement="left" title="Open PDF"></i>
+      </button>
+      <span style="color: white; margin-left: 2px; margin-right: 2px"> <%= link_to "My Summary PDF", summary_path(current_user, format: :pdf), target: "_blank", style: "color: white" %></span>
+      <br>
+    </div>
+    <div class="row">
+      <button type="button" class="btn btn-xs btn-danger my_summary" style="margin: 4px; margin-left: 20px" ><i class="fa fa-file-pdf-o" aria-hidden="true"  data-toggle="tooltip" data-placement="left" title="Open PDF"></i>
+      </button>
+      <span style="color: white; margin-left: 2px; margin-right: 2px"> <%= link_to "Quick Start Guide", asset_path("Quick Start Guide for Clients.pdf"), target: "_blank", style: "color: white" %></span>
+      <br>
+    </div>
+
+    <h3 style="color: white; margin-left: 5px; margin-right: 5px" >Social Media</h3>
+    <div class="row">
+
+      <button type="button" class="btn btn-xs btn-info my_summary" style="margin: 4px; margin-left: 20px" ><i class="fa fa-<%= current_user.connected_to_facebook? ? "check-" : "" %>square-o" aria-hidden="true"  data-toggle="tooltip" data-placement="left" title="Open PDF"></i>
+      </button>
+      <span style="color: white; margin-left: 2px; margin-right: 2px"> <%= link_to "Connect to Facebook", 'auth/facebook', style: "color: white" %></span>
+    </div>
+<% else %>
+    <div class="social_icons">
+      <a href="https://www.facebook.com/Faro10App/" target="_blank">
+        <%= image_tag "facebook.png", class: "social_icon" %>
+      </a>
+      <a href="https://twitter.com/Faro10analytics" target="_blank">
+        <%= image_tag "twitter.png", class: "social_icon" %>
+      </a>
+      <a href="https://www.linkedin.com/company-beta/22311063/" target="_blank">
+        <%= image_tag "linkedin.png", class: "social_icon" %>
+      </a>
+    </div>
+    <hr>
+    <h3 style="color: white">Helpful Resources</h3>
+    <div>
+      <p><i class="fa fa-link" aria-hidden="true" style="color: white; margin-right: 4px"></i><a href="http://www.aacap.org/AACAP/Families_and_Youth/Facts_for_Families/Facts_for_Families_Pages/Talking_To_Kids_About_Mental_Illnesses_84.aspx/" style="color: white" >Talking to kids about Mental Illness</a></p>
+    </div>
+
+
+    <div>
+      <p><i class="fa fa-link" aria-hidden="true" style="color: white; margin-right: 4px"></i><a href="http://areason.org/" style="color: white">A Reason to Live or Die</a></p>
+    </div>
+
+    <div>
+      <p>
+        <i class="fa fa-link" aria-hidden="true" style="color: white; margin-right: 4px"></i>
+        <a href="http://www.helpguide.org/articles/depression/helping-a-depressed-person.htm" style="color: white">
+          Helping a Depressed Person
+        </a>
+      </p>
+    </div>
+    <div>
+      <p>
+        <i class="fa fa-link" aria-hidden="true" style="color: white; margin-right: 4px"></i>
+        <a href="http://www.aacap.org/AACAP/Families_and_Youth/Facts_for_Families/Facts_for_Families_Pages/Talking_To_Kids_About_Mental_Illnesses_84.aspx/" style="color: white">
+          Talking about Depression
+        </a>
+      </p>
+    </div>
+    <hr>
+    <div class="col-md-12" style="height: auto; margin: auto; background-color: grey; border-radius: 0; border: 1px solid #262626">
+      <h3 style="color:white">
+        "Depression is the leading cause of disability Worldwide"
+      </h3>
+    </div>
+<% end %>

@@ -1,0 +1,20 @@
+<% member = membership.member %>
+<tr class="even gradeA">
+  <td><%= link_to(member.user_id, patient_path(member.id)) %></td>
+  <td><%= membership.status %></td>
+  <td></td>
+  <td></td>
+  <!--<td></td>-->
+  <td></td>
+  <td></td>
+  <td>
+    <div class="btn-group">
+      <%= link_to membership_path(membership, membership_action: 'request'), class: "btn btn-xs btn-success", method: :put do  %>
+        <i class="fa fa-user-plus fa-fw" data-toggle="tooltip" data-placement="top" title="Request Consent"></i>
+      <% end %>
+      <button type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#messages-modal2" data-member-id="<%= member.id %>" data-member-name="<%= member.user_id %>">
+        <i class="fa fa-envelope-o fa-fw"></i>
+      </button>
+    </div>
+  </td>
+</tr>

@@ -1,0 +1,419 @@
+
+<% if @memberships.present? && @memberships.active.present? && current_user.messages.present? && ExercisesMembership.where(membership: @memberships).present?    %>
+    <div class="row" xmlns="http://www.w3.org/1999/html">
+      <% if @memberships.active.count > 1 %>
+          <div class="col-md-3">
+            <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey" data-toggle="modal" data-target="#step5Modal"  >
+              <div class="panel-body text-center">
+                <p style="font-size: 22px; text-align: center; margin: 2px  "><i class="fa fa-check-circle" aria-hidden="true" style="color:green" ></i> Step 5</p> <br>
+                <p style="font-size: 14px; text-align: center; margin: 1px  ">  Multiple Active Clients</p>
+              </div>
+            </div>
+          </div>
+      <% else %>
+          <div class="col-md-3">
+            <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey" data-toggle="modal" data-target="#step5Modal"  >
+              <div class="panel-body text-center">
+                <p style="font-size: 22px; text-align: center; margin: 2px  "> Step 5</p> <br>
+                <p style="font-size: 14px; text-align: center; margin: 1px  ">  Multiple Active Clients</p>
+              </div>
+            </div>
+          </div>
+      <% end %>
+
+      <% if current_user.members.with_appointments.present? %>
+          <div class="col-md-3">
+            <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey" data-toggle="modal" data-target="#step6Modal"  >
+              <div class="panel-body text-center">
+                <p style="font-size: 22px; text-align: center; margin: 2px  "><i class="fa fa-check-circle" aria-hidden="true" style="color:green" ></i> Step 6</p> <br>
+                <p style="font-size: 14px; text-align: center; margin: 1px  ">  Shared Calendar Entry</p>
+              </div>
+            </div>
+          </div>
+      <% else %>
+          <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey" data-toggle="modal" data-target="#step6Modal"  >
+            <div class="panel-body text-center">
+              <p style="font-size: 22px; text-align: center; margin: 2px  "> Step 6</p> <br>
+              <p style="font-size: 14px; text-align: center; margin: 1px  ">  Shared Calendar Entry</p>
+            </div>
+          </div>
+      <% end %>
+      <% if current_user.members.with_observer_journal_entries.present? %>
+          <div class="col-md-3">
+            <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey" data-toggle="modal" data-target="#step7Modal"  >
+              <div class="panel-body text-center">
+                <p style="font-size: 22px; text-align: center; margin: 2px  "><i class="fa fa-check-circle" aria-hidden="true" style="color:green" ></i>   Step 7</p> <br>
+                <p style="font-size: 14px; text-align: center; margin: 1px  ">  Client Observer Entries</p>
+              </div>
+            </div>
+          </div>
+      <% else %>
+          <div class="col-md-3">
+            <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey" data-toggle="modal" data-target="#step7Modal"  >
+              <div class="panel-body text-center">
+                <p style="font-size: 22px; text-align: center; margin: 2px  ">  Step 7</p> <br>
+                <p style="font-size: 14px; text-align: center; margin: 1px  ">  Client Observer Entries</p>
+              </div>
+            </div>
+          </div>
+      <% end %>
+      <% if current_user.clinician_entries.present? %>
+          <div class="col-md-3">
+            <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey" data-toggle="modal" data-target="#step8Modal"  >
+              <div class="panel-body text-center">
+                <p style="font-size: 22px; text-align: center; margin: 2px  "><i class="fa fa-check-circle" aria-hidden="true" style="color:green" ></i>  Step 8</p> <br>
+                <p style="font-size: 14px; text-align: center; margin: 1px  ">  Add Collaborative Entry</p>
+              </div>
+            </div>
+          </div>
+      <% else %>
+          <div class="col-md-3">
+            <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey" data-toggle="modal" data-target="#step8Modal"  >
+              <div class="panel-body text-center">
+                <p style="font-size: 22px; text-align: center; margin: 2px  "> Step 8</p> <br>
+                <p style="font-size: 14px; text-align: center; margin: 1px  ">  Add Collaborative Entry</p>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+<% else  %>
+    <div class="row" xmlns="http://www.w3.org/1999/html">
+      <div class="col-md-3">
+        <% if @memberships.present? %>
+            <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey" data-toggle="modal" data-target="#step1Modal"  >
+              <div class="panel-body text-center">
+                <p style="font-size: 22px; text-align: center; margin: 2px  "><i class="fa fa-check-circle" aria-hidden="true" style="color:green" ></i>  Step 1</p> <br>
+                <p style="font-size: 14px; text-align: center; margin: 1px  ">  Add Client</p>
+              </div>
+            </div>
+        <% else %>
+            <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey" data-toggle="modal" data-target="#step1Modal"  >
+              <div class="panel-body text-center">
+                <p style="font-size: 22px; text-align: center; margin: 2px  "> Step 1</p> <br>
+                <p style="font-size: 14px; text-align: center; margin: 1px  ">  Add Client</p>
+              </div>
+            </div>
+        <% end %>
+      </div>
+
+      <div class="col-md-3">
+        <% if @memberships.active.present? %>
+            <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey" data-toggle="modal" data-target="#step2Modal"  >
+              <div class="panel-body text-center">
+                <p style="font-size: 22px; text-align: center; margin: 2px  "><i class="fa fa-check-circle" aria-hidden="true" style="color:green"></i>   Step 2</p> <br>
+                <p style="font-size: 14px; text-align: center; margin: 1px  ">  Approved by Client</p>
+              </div>
+            </div>
+        <% else %>
+            <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey" data-toggle="modal" data-target="#step2Modal"  >
+              <div class="panel-body text-center">
+                <p style="font-size: 22px; text-align: center; margin: 2px  "> Step 2</p> <br>
+                <p style="font-size: 14px; text-align: center; margin: 1px  ">  Approved by Client</p>
+              </div>
+            </div>
+        <% end %>
+      </div>
+
+      <div class="col-md-3">
+        <% if current_user.messages.present? %>
+            <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey" data-toggle="modal" data-target="#step3Modal"  >
+              <div class="panel-body text-center">
+                <p style="font-size: 22px; text-align: center; margin: 2px  "><i class="fa fa-check-circle" aria-hidden="true" style="color:green"></i>  Step 3</p> <br>
+                <p style="font-size: 14px; text-align: center; margin: 1px  ">  Send Message</p>
+              </div>
+            </div>
+        <% else %>
+            <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey" data-toggle="modal" data-target="#step3Modal"  >
+              <div class="panel-body text-center">
+                <p style="font-size: 22px; text-align: center; margin: 2px  ">  Step 3</p> <br>
+                <p style="font-size: 14px; text-align: center; margin: 1px  ">  Send Message</p>
+              </div>
+            </div>
+        <% end %>
+      </div>
+
+      <div class="col-md-3">
+        <% if ExercisesMembership.where(membership: @memberships).present? %>
+            <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey" data-toggle="modal" data-target="#step4Modal"  >
+              <div class="panel-body text-center">
+                <p style="font-size: 22px; text-align: center; margin: 2px  "><i class="fa fa-check-circle" aria-hidden="true" style="color:green"></i>  Step 4</p> <br>
+                <p style="font-size: 14px; text-align: center; margin: 1px  ">  Assign Exercise</p>
+              </div>
+            </div>
+        <% else %>
+            <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey" data-toggle="modal" data-target="#step4Modal"  >
+              <div class="panel-body text-center">
+                <p style="font-size: 22px; text-align: center; margin: 2px  ">  Step 4</p> <br>
+                <p style="font-size: 14px; text-align: center; margin: 1px  ">  Assign Exercise</p>
+              </div>
+            </div>
+        <% end %>
+      </div>
+
+
+    </div>
+<% end %>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <p>
+      <b>Completed:</b>
+
+      <% if @memberships.present? %>
+          <i class="fa fa-check-circle" aria-hidden="true" style="color:green" data-toggle="modal" data-target="#step1Modal"></i>
+          <%= link_to "Add Client", "#step1Modal", "data-toggle" => "modal" %>,
+      <% end %>
+
+      <% if @memberships.active.present? %>
+          <i class="fa fa-check-circle" aria-hidden="true" style="color:green" data-toggle="modal" data-target="#step2Modal" ></i>
+          <%= link_to "Approved by Client", "#step2Modal", "data-toggle" => "modal" %>,
+      <% end %>
+
+      <% if current_user.messages.present? %>
+          <i class="fa fa-check-circle" aria-hidden="true" style="color:green" data-toggle="modal" data-target="#step3Modal" ></i>
+          <%= link_to "Send Message", "#step3Modal", "data-toggle" => "modal" %>,
+      <% end %>
+
+      <% if ExercisesMembership.where(membership: @memberships).present? %>
+          <i class="fa fa-check-circle" aria-hidden="true" style="color:green" data-toggle="modal" data-target="#step4Modal" ></i>
+          <%= link_to "Assign Exercise", "#step4Modal", "data-toggle" => "modal" %>,
+      <% end %>
+
+
+      <% if @memberships.active.count > 1 %>
+          <i class="fa fa-check-circle" aria-hidden="true" style="color:green" data-toggle="modal" data-target="#step5Modal" ></i>
+          <%= link_to "Multiple Active Clients", "#step5Modal", "data-toggle" => "modal" %>,
+      <% else %>
+      <% end %>
+
+      <% if current_user.members.with_appointments.present? %>
+          <i class="fa fa-check-circle" aria-hidden="true" style="color:green" data-toggle="modal" data-target="#step6Modal" ></i>
+          <%= link_to "Shared Calendar Entry", "#step6Modal", "data-toggle" => "modal" %>,
+      <% end %>
+
+      <% if current_user.members.with_observer_journal_entries.present? %>
+          <i class="fa fa-check-circle" aria-hidden="true" style="color:green" data-toggle="modal" data-target="#step7Modal" ></i>
+          <%= link_to "Client Observer Entries", "#step7Modal", "data-toggle" => "modal" %>
+      <% end %>
+
+      <% if current_user.clinician_entries.present? %>
+          <i class="fa fa-check-circle" aria-hidden="true" style="color:green" data-toggle="modal" data-target="#step8Modal" ></i>
+          <%= link_to "Add Collaborative Entry", "#step8Modal", "data-toggle" => "modal" %>,
+      <% end %>
+
+
+    </p>
+  </div>
+</div>
+
+
+<!-- Step 1 Modal -->
+<div class="modal fade" id="step1Modal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="color: #4FA59F" >  Add a Client</h4>
+        <p>Invite clients to use Faro10</p>
+      </div>
+      <div class="modal-body">
+
+        <p>Clients should be added using the same email address they use to register their account.</p>
+
+        <p style="font-size: 20px; text-align: left; margin: 4px  "><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" style="margin-right: 17px"></i>  <%= link_to "Add a Client", asset_path("add_client.pdf"), :target => "_blank" %> </p>
+        <!--<p style="font-size: 20px; text-align: left; margin: 4px  "><i class="fa fa-video-camera fa-2x" aria-hidden="true" style="margin-right: 17px"></i>  <%= link_to "Add a Client", asset_path("add_client.pdf"), :target => "_blank" %> </p>-->
+
+        <p>After a client is added, they will need to confirm access using a web browser or the Faro10 mobile app.</p>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Step 2 Modal -->
+<div class="modal fade" id="step2Modal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="color: #4FA59F" >  Approved by a Client</h4>
+        <p>Clients will appear as "pending" until they approve you as their Clinician</p>
+      </div>
+      <div class="modal-body">
+
+
+        <p>
+          Here's instructions for Clients explaining how they can approve your request.
+        </p>
+
+        <p style="font-size: 20px; text-align: left; margin: 4px  "><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" style="margin-right: 17px"></i>  <%= link_to "Approve Clinician", asset_path("approve_clinicians.pdf"), :target => "_blank" %> </p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Step 3 Modal -->
+<div class="modal fade" id="step3Modal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="color: #4FA59F" >  Send Message</h4>
+        <p>Let Clients know you are using Faro10 with them by sending a messsage</p>
+      </div>
+      <div class="modal-body">
+
+        <p>Even if a client status is "pending", you can still send them a message. </p>
+        <p>
+          ex: "Please approve my Faro10 request when you can" <br>
+          ex: "Don't forget to track your mood" <br>
+          ex: "Schedule an appointment if you need to talk"
+        </p>
+        <br>
+
+        <p style="font-size: 20px; text-align: left; margin: 4px  "><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" style="margin-right: 17px"></i>   <%= link_to "Sending a Message", asset_path("send_message.pdf"), :target => "_blank"  %></p>
+        <!--<p style="font-size: 20px; text-align: left; margin: 4px  "><i class="fa fa-video-camera fa-2x" aria-hidden="true" style="margin-right: 17px"></i>  <%= link_to "Assigning an Exercise", asset_path("Assign Exercise.pdf"), :target => "_blank"  %> </p>-->
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Step 4 Modal -->
+<div class="modal fade" id="step4Modal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="color: #4FA59F" >  Assign Exercise</h4>
+        <p>Assign a Client Satisfaction Survey</p>
+      </div>
+      <div class="modal-body">
+
+        <p></p>
+
+        <p style="font-size: 20px; text-align: left; margin: 4px  "><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" style="margin-right: 17px"></i>   <%= link_to "Assigning an Exercise", asset_path("assign_exercise.pdf"), :target => "_blank"  %></p>
+        <!--<p style="font-size: 20px; text-align: left; margin: 4px  "><i class="fa fa-video-camera fa-2x" aria-hidden="true" style="margin-right: 17px"></i>  <%= link_to "Assigning an Exercise", asset_path("Assign Exercise.pdf"), :target => "_blank"  %> </p>-->
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Step 5 Modal -->
+<div class="modal fade" id="step5Modal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="color: #4FA59F" >  Multiple Active Clients</h4>
+        <p>Most clients can benefit from some of the Faro10 tools</p>
+      </div>
+      <div class="modal-body">
+
+        <p>Having multiple active clients will allow you to increase the value you receive from Faro10 as you become more familiar with all of the tools and functionality.  </p>
+        <p>At a minimum, most clients can benefit from the easy journaling which is a component of many treatment plans. </p>
+
+        <!--<p style="font-size: 20px; text-align: left; margin: 4px  "><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" style="margin-right: 17px"></i>   <%= link_to "Assigning an Exercise", asset_path("Assign Exercise.pdf"), :target => "_blank"  %></p>-->
+        <!--<p style="font-size: 20px; text-align: left; margin: 4px  "><i class="fa fa-video-camera fa-2x" aria-hidden="true" style="margin-right: 17px"></i>  <%= link_to "Assigning an Exercise", asset_path("Assign Exercise.pdf"), :target => "_blank"  %> </p>-->
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Step 6 Modal -->
+<div class="modal fade" id="step6Modal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="color: #4FA59F" >  Shared Calendar Entry</h4>
+        <p>Add an appointment or have Clients share their appointments for improved collaboration with all Clinicians</p>
+      </div>
+      <div class="modal-body">
+
+        <p>The shared calendar allows all Clinicians involved in a clients treatment to easily see what appointments a client has been attending.  This
+          calendar can be updated by Client and/or Clinician.  </p><br>
+
+        <p style="font-size: 20px; text-align: left; margin: 4px  "><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" style="margin-right: 17px"></i>   <%= link_to "Make or View entries on Shared Calendar", asset_path("shared_calendar_entry.pdf"), :target => "_blank"  %></p>
+        <!--<p style="font-size: 20px; text-align: left; margin: 4px  "><i class="fa fa-video-camera fa-2x" aria-hidden="true" style="margin-right: 17px"></i>  <%= link_to "Assigning an Exercise", asset_path("Assign Exercise.pdf"), :target => "_blank"  %> </p>-->
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Step 7 Modal -->
+<div class="modal fade" id="step7Modal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="color: #4FA59F" >  Client Observer Entries</h4>
+        <p> Observers provide valuable feedback that clients may forget or not want to share. </p>
+      </div>
+      <div class="modal-body">
+
+        <p>Select a client and press the "Observers button to view their feedback.</p>
+
+        <p style="font-size: 20px; text-align: left; margin: 4px  "><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" style="margin-right: 17px"></i>   <%= link_to "View feedback from your Clients Observers", asset_path("client_observer_entries.pdf"), :target => "_blank"  %></p>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Step 8 Modal -->
+<div class="modal fade" id="step8Modal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="color: #4FA59F" >  Add Collaborative Entry</h4>
+        <p>Coordinated Care improves communication between all Providers </p>
+      </div>
+      <div class="modal-body">
+
+        <p>This is a great way to communicate with other treating Clinicians without playing phone tag.</p>
+
+        <p style="font-size: 20px; text-align: left; margin: 4px  "><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" style="margin-right: 17px"></i>   <%= link_to "Add Collaborative Entry", asset_path("collaborative_entry.pdf"), :target => "_blank"  %></p>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

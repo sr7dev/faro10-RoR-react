@@ -1,0 +1,229 @@
+<style>
+  .tile-vet{
+    background:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(<%= asset_path('vet_support.PNG' ) %>) no-repeat;
+    opacity: .8;
+    background-size:auto,cover;
+    /*background-position:0 0,50% 50%*/
+  }
+  .tile-substance{
+    background:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(<%= asset_path('kickball.JPG' ) %>) no-repeat;
+    opacity: .8;
+  }
+  .tile-depression {
+    background:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(<%= asset_path('depression_image.jpg' ) %>) no-repeat;
+    opacity: .8;
+    background-size:auto,cover;
+  }
+  .tile-caregiver{
+    background:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(<%= asset_path('caregiver.jpg' ) %>) no-repeat;
+    opacity: .8;
+    background-size:auto,cover;
+  }
+  .tile-eating{
+    background:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(<%= asset_path('eating.jpg' ) %>) no-repeat;
+    opacity: .8;
+    background-size:auto,cover;
+  }
+  .tile-pregnancy{
+    background:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(<%= asset_path('pregnancy_loss.jpg' ) %>) no-repeat;
+    opacity: .8;
+    background-size:auto,cover;
+  }
+  .tile-suicide-loss{
+    background:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(<%= asset_path('support_group.jpg' ) %>) no-repeat;
+    opacity: .8;
+    background-size:auto,cover;
+  }
+  .tile-other{
+    background:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(<%= asset_path('alert.png' ) %>) no-repeat;
+    opacity: .8;
+    background-size:auto,cover;
+  }
+
+</style>
+
+
+<div class="container-fluid">
+
+  <div class="row" style="background-color: #8cd2cb; margin-top: -12px ">
+    <div class="col-md-1 hidden-xs"  style="margin-left: -14px; max-height: 5px ">
+    </div>
+    <div class="col-md-7 col-xs-12" style="padding-top: 3%; padding-bottom: 3%">
+      <h1 class="hidden-xs" style="color: white; text-align: left"><b>Make new connections, share your experiences, get support</b></h1>
+      <h3 style="color: white; text-align: left">The most trusted Video and Chat platform for peer to peer conversations</h3>
+    </div>
+    <div class="col-md-3 col-md-offset-1 hidden-xs" align="center" >
+      <button type="button"
+              class="btn btn-primary"
+              style="vertical-align: bottom; margin-top: 30%; padding: 20px; background-color: #F19A20; font-size: large; border-color: orange; border-radius: 0;"
+              data-toggle="modal"
+              data-target="#scheduleMeetingModal1">
+        <b>Start a Conversation</b>
+      </button>
+    </div>
+  </div>
+  <br class="hidden-xs">
+  <div class="row" style="background-color: #DFF0E7; margin-top: -20px; height: 68px ">
+
+
+
+    <div class="col-md-4 col-md-offset-1">
+      <h3 style="color: #326867; text-align: left; margin-left: -2%  ">1. Choose Support Type</h3>
+    </div>
+    <div class="col-md-4">
+      <h3>2. Browse Meetings</h3>
+    </div>
+    <div class="col-md-3">
+      <h3>3. Join Video/Chat Conversation</h3>
+    </div>
+  </div>
+  <br><br>
+
+  <div class="row">
+    <div class="col-md-9">
+
+      <%= link_to meetings_path do %>
+        <div class="col-md-3 col-xs-12">
+          <div class="col-md-1 hidden-xs" style="background-color: #F0F0F0F0">
+          </div>
+          <div class="tile-other" style="min-height: 250px; " >
+            <div class="col-md-11 col-xs-6"  style="height: 250px; ">
+              <h3 style="text-align: center; font-weight: bold; margin-top: 150px; color: white">All</h3>
+              <p style="text-align: center; color: white">Browse All Meetings and Communities</p>
+            </div>
+          </div>
+          <div class="col-md-1 hidden-xs" style="background-color: #F0F0F0F0">
+          </div>
+        </div>
+      <% end %>
+      <%= link_to caregiver_path do %>
+        <div class="col-md-3 col-xs-12">
+          <div class="col-md-1 hidden-xs" style="background-color: #F0F0F0F0">
+          </div>
+          <div class="tile-caregiver" style="min-height: 250px;    " >
+
+            <div class="col-md-11 col-xs-6"  style="height: 250px;  ">
+              <h3 style="text-align: center; margin-top: 150px; font-weight: bold; color: white">Care Giver Support</h3>
+              <p style="text-align: center; color: white">Browse Care Giver Conversations</p>
+            </div>
+          </div>
+          <div class="col-md-1 hidden-xs" style="background-color: #F0F0F0F0">
+          </div>
+        </div>
+      <% end %>
+      <%= link_to depression_path do %>
+        <div class="col-md-3 col-xs-12">
+          <div class="tile-depression" style="min-height: 250px" >
+            <div class="col-md-11 col-xs-6" style="height: 250px; ">
+              <h3 style="text-align: center; font-weight: bold;  margin-top: 150px; color: white">Depression</h3>
+              <p style="text-align: center; color: white">Browse Depression Support Conversations</p>
+            </div>
+          </div>
+          <div class="col-md-1 hidden-xs" style="background-color: #F0F0F0F0">
+          </div>
+        </div>
+
+      <% end %>
+      <%= link_to eating_path do %>
+        <div class="col-md-3 col-xs-12">
+          <div class="col-md-1 hidden-xs" style="background-color: #F0F0F0F0">
+          </div>
+          <div class="tile-eating" style="min-height: 250px" >
+            <div class="col-md-11 col-xs-6"  style="height: 250px; ">
+              <h3 style="text-align: center; font-weight: bold; margin-top: 150px; color: white">Eating Disorder</h3>
+              <p style="text-align: center; color: white">Browse Eating Disorder Conversations</p>
+            </div>
+          </div>
+          <div class="col-md-1 hidden-xs" style="background-color: #F0F0F0F0">
+          </div>
+        </div>
+      <% end %>
+      <%= link_to pregnancy_loss_path do %>
+        <div class="col-md-3 col-xs-12">
+          <div class="col-md-1 hidden-xs" style="background-color: #F0F0F0F0">
+          </div>
+          <div class="tile-pregnancy" style="min-height: 250px; margin-top: 18px     " >
+
+            <div class="col-md-11 col-xs-6"  style="height: 250px;  ">
+              <h3 style="text-align: center; margin-top: 150px; font-weight: bold; color: white">Pregnancy Loss</h3>
+              <p style="text-align: center; color: white">Browse Pregnancy Loss Conversations</p>
+            </div>
+          </div>
+          <div class="col-md-1 hidden-xs" style="background-color: #F0F0F0F0">
+          </div>
+        </div>
+      <% end %>
+      <%= link_to substance_meetings_path do %>
+        <div class="col-md-3 col-xs-12">
+          <div class="tile-substance" style="min-height: 250px; margin-top: 18px " >
+          <div class="col-md-11 col-xs-6" style="height: 250px; ">
+            <h3 style="text-align: center; font-weight: bold;  margin-top: 150px; color: white">Substance Abuse</h3>
+             <p style="text-align: center; color: white">Browse Substance Abuse Conversations</p>
+          </div>
+          </div>
+          <div class="col-md-1 hidden-xs" style="background-color: #F0F0F0F0">
+          </div>
+        </div>
+
+      <% end %>
+      <%= link_to suicide_loss_path do %>
+
+        <div class="col-md-3 col-xs-12" >
+          <div class="tile-suicide-loss" style="min-height: 250px; margin-top: 18px " >
+            <div class="col-md-11 col-xs-6" style=" height: 250px;  ">
+              <h3 style="text-align: center; margin-top: 150px; font-weight: bold; color: white">Suicide Loss</h3>
+              <p style="text-align: center; color: white">Browse Suicide Loss Conversations</p>
+            </div>
+            <div class="col-md-1 hidden-xs" style="background-color: #F0F0F0F0">
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to vet_meetings_path do %>
+        <div class="col-md-3 col-xs-12" >
+          <div class="tile-vet" style="min-height: 250px; margin-top: 18px " >
+            <div class="col-md-11 col-xs-6" style=" height: 250px;  ">
+              <h3 style="text-align: center; margin-top: 150px; font-weight: bold; color: white">Veteran Support</h3>
+              <p style="text-align: center; color: white">Browse Veteran Support Conversations</p>
+            </div>
+            <div class="col-md-1 hidden-xs" style="background-color: #F0F0F0F0">
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+    <div class="col-md-3">
+      <div class="typeform-widget" data-url="https://joshroberto.typeform.com/to/yBSywU" style="width: 100%; height: 500px;"></div> <script> (function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm", b="https://embed.typeform.com/"; if(!gi.call(d,id)) { js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })() </script> <div style="font-family: Sans-Serif;font-size: 12px;color: #999;opacity: 0.5; padding-top: 5px;"> powered by <a href="https://admin.typeform.com/signup?utm_campaign=yBSywU&utm_source=typeform.com-12905438-Basic&utm_medium=typeform&utm_content=typeform-embedded-poweredbytypeform&utm_term=EN" style="color: #999" target="_blank">Typeform</a> </div>
+    </div>
+  </div>
+
+</div>
+
+<br><br>
+
+<!--Modals--------------------------------------------------------------------------------------->
+<div class="modal fade" id="scheduleMeetingModal1" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content" style="border-radius: 0">
+      <div class="modal-body">
+        <div class="row" style="margin-left: -20px">
+          <div class="col-md-12">
+            <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey; background-color: #326867 ">
+              <div class="panel-body text-center">
+                <h1 style="margin: 4px; margin-bottom: 10px; margin-top: 10px; color: white ">
+                  Schedule a Conversation
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <%= render 'form' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,167 @@
+category: schizophrenia
+longname: Schizophrenia Screening Test
+shortname: sct
+logo: schizophrenia_screaning_test_icon.png
+description: This schizophrenia screening test can help determine whether you might have the symptoms of schizophrenia or a related psychotic mental illness.  Remember, this is NOT a diagnosis.  Only a doctor or qualified mental health professional can make a diagnosis of schizophrenia and recommend treatments.
+sub_description: Although there is no cure for schizophrenia, treatment is available to help with the symptoms of schizophrenia.  In addition, if you have concerns about your mental health, please discuss them with your doctor.  This schizophrenia test is based upon Diagnostic and Statistical Manual of Mental Disorders (American Psychiatric Association, 4th Ed.) criteria for schizophrenia. 2004. All rights reserved.
+questions:
+  - position: 1
+    style: multiple_choice
+    text: 1. I see and hear things that others cannot see or hear.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: All the time
+  - position: 2
+    style: multiple_choice
+    text: 2. I believe others control what I think or feel.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: All the time
+  - position: 3
+    style: multiple_choice
+    text: 3. I have little or no interest in doing things.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: All the time
+  - position: 4
+    style: multiple_choice
+    text: 4. I think I have special or magical powers that no one else has.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: All the time
+  - position: 5
+    style: multiple_choice
+    text: 5. My thinking feels cloudy and confused.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: All the time
+  - position: 6
+    style: multiple_choice
+    text: 6. There are voices or people inside my head that talk to me and that no one else can hear.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: All the time
+  - position: 7
+    style: multiple_choice
+    text: 7. I know others are out to get me or plotting against me.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: All the time
+  - position: 8
+    style: multiple_choice
+    text: 8. I prefer to be alone.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: All the time
+  - position: 9
+    style: multiple_choice
+    text: 9. I, or others, believe that my behavior is really abnormal. Sometimes I appear catatonic or manic.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: All the time
+  - position: 10
+    style: multiple_choice
+    text: 10. Sometimes I'm talking to the people or voices in my head, but others think I'm talking to myself.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: All the time

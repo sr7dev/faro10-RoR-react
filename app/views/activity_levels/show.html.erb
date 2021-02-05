@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @activity_level.user_id %>
+</p>
+
+<p>
+  <strong>Activity level:</strong>
+  <%= @activity_level.activity_level %>
+</p>
+
+<%= link_to 'Edit', edit_activity_level_path(@activity_level) %> |
+<%= link_to 'Back', activity_levels_path %>

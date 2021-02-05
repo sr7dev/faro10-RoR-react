@@ -1,0 +1,139 @@
+<% provide(:title, 'Register Clinician') %>
+<h1>Register as Clinician</h1>
+<p></p>
+
+<% if @plan.present? %>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            Your Subscription</a>
+          </h4>
+        </div>
+        
+        <div class="panel-body">
+          <table class="table table-striped">
+            <tr>
+              <td colspan="3">
+                <%= link_to "X", pricing_plans_path, class: "btn btn-danger btn-sm pull-right" %>
+                <strong style="line-height: 2;"><%= @plan.name %></strong>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <ul>
+                  <% @plan.features.each do |feature| %>
+                    <li><%= feature %></li>
+                  <% end %>
+                </ul>
+              </td>
+              <td class="text-right">
+                <strong>
+                  <% if @plan.amount %>
+                    $<%= @plan.amount %> <span class="subscript">/ <%= @plan.interval %></span>
+                    <% if @plan.name == "Clinician Group" %>
+                      <br>
+                      <small>per user</small>
+                    <% end %>
+                  <% else %>
+                   Contact Us for Pricing
+                  <% end %>
+                </strong>
+              </td>
+            </tr>
+          </table>
+        </div>                       
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <%= f.hidden_field :subscription_plan, value: params[:plan] || @plan.id %>
+
+  <div class="row">
+    <div class="col-md-3 col-md-offset-3">
+
+      <div class="form-group">
+        <%= f.label :user_id, "Username" %>
+        <%= f.text_field :user_id, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email, "Email Address" %>
+        <%= f.email_field :email, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+        <p class="help-block"><small>Min 8 characters long and contain 3 of the 4 character categories: lowercase, uppercase, numeric, special.</small></p>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :clinician_type, "Clinician Type"  %>
+        <%= f.text_field :clinician_type, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+
+      <div class="form-group">
+        <%= f.label :clinic_name, "Clinic Name"  %>
+        <%= f.text_field :clinic_name, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :clinic_phone, "Clinic Phone"  %>
+        <%= f.text_field :clinic_phone, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :clinic_street, "Street Address"  %>
+        <%= f.text_field :clinic_street, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :clinic_city, "City"  %>
+        <%= f.text_field :clinic_city, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :clinic_state, "State"  %>
+        <%= f.text_field :clinic_state, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :clinic_zip, "Zip"  %>
+        <%= f.number_field :clinic_zip, class: 'form-control', required: true %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :country %>
+        <%= f.country_select :country, { priority_countries: ["US"] }, { class: "form-control" }  %>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <br/>
+      <br/>
+      <div class="form-group">
+        <%= f.check_box :is_clinician, class: "control-label"  %>
+        &nbsp;
+        <%= f.label :is_clinician, "Confirm you are legally authorized to operate as a Clinician and have read our" %>
+        <%= link_to "Terms and Conditions", asset_path("terms_and_conditions.pdf") %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.submit "Create my account", class: "btn btn-primary", id: "clinician_submit", style: "background-color: #326867; border-radius: 0" %>
+      </div>
+    </div>
+  </div>
+<% end %>

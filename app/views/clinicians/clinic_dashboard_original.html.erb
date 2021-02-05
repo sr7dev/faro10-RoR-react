@@ -1,0 +1,96 @@
+<br>
+<!-- KPI Bar-->
+  <div class="row">
+    <div class="col-xs-6 col-md-3">
+      <div class="panel status panel-danger" data-toggle="modal" data-target="#kPIPatientCountModal">
+        <div class="panel-new-heading">
+          <h1 class="panel-title text-center" id="members_count">
+          </h1>
+        </div>
+        <div class="panel-body text-center">
+          <strong># of Faro10 Patients</strong><i class="fa fa-external-link" style="margin-left: 7px"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-md-3">
+      <div class="panel status panel-danger">
+        <div class="panel-new-heading">
+          <h1 class="panel-title text-center">
+            <tr>
+              <td><%= '0' %></td>
+            </tr>
+          </h1>
+        </div>
+        <div class="panel-body text-center">
+          <strong>Avg Mood of Patients</strong>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-md-3">
+      <div class="panel status panel-danger">
+        <div class="panel-new-heading">
+          <h1 class="panel-title text-center">
+            <tr>
+              <td><%=  "0" %></td>
+            </tr>
+          </h1>
+        </div>
+        <div class="panel-body text-center">
+          <strong>Avg Medication Consistency</strong>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-md-3">
+      <div class="panel status panel-danger">
+        <div class="panel-new-heading">
+          <h1 class="panel-title text-center">
+            <tr>
+              <td><%= "0" %></td>
+            </tr>
+          </h1>
+        </div>
+        <div class="panel-body text-center">
+          <strong># of Hospitalizations
+          </strong>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- END KPI Bar-->
+
+<h3>Patient Demographics</h3><br>
+
+<div class="row">
+  <div class="col-md-6">
+    <div id="clinicDiagnosisPie" style="min-width: 410px;  height: 400px; max-width: 600px; margin: 0 auto"></div>
+  </div>
+  <div class="col-md-6">
+    <div id="clinicPiebyAgeChart" style="min-width: 410px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+  </div>
+  </div>
+
+<br><br>
+<div class="row">
+    <div class="col-md-6">
+    <div id="clinicbyMedsColumn" style="min-width: 500px;   height: 400px;  margin: 0 auto"></div>
+  </div>
+  <div class="col-md-6">
+    <div id="clinicHospitalizationsBarChart" style="min-width: 500px;   height: 400px; margin: 0 auto"></div>
+  </div>
+</div>
+
+
+<br><br><br>
+<div class="row">
+  <p style="color: white">Test</p>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="kPIPatientCountModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+
+    <div class="row">
+      <div id="patientCountChart" style="min-width: 50%; height: 50%; "></div>
+    </div>
+  </div>
+</div>

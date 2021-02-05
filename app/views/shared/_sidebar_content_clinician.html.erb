@@ -1,0 +1,96 @@
+<div class="sidebar-inner sidebar-header">
+  <h3>Select Date Range:</h3>
+  <div class="input-daterange input-group" id="datepicker" style="max-width: 100%">
+    <input type="text" class= 'input-sm form-control' name="start_date" value="<%= localize (Time.now - 2.weeks), format: :short %>" />
+    <span class="input-group-addon">to</span>
+    <input type="text" class="input-sm form-control" name="end_date" value="<%= l Time.now, format: :short %>"/>
+  </div>
+</div>
+
+<% if current_user.subscriptions.active.any? %>
+<div class="sidebar-inner sidebar-header">
+  <h3>Select Filters:</h3>
+</div>
+<div class="side-menu">
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="side-menu-container">
+      <ul class="nav navbar-nav">
+        <li class="panel panel-default" id="dropdown">
+          <a data-toggle="collapse" href="#dropdown-lvl1">
+            <span class="fa fa-users"></span> Race <span class="caret"></span>
+          </a>
+          <div id="dropdown-lvl1" class="panel-collapse collapse">
+            <div class="panel-body">
+              <ul class="nav navbar-nav">
+                <li name="race"><a href="#" >Caucasian</a></li>
+                <li name="race"><a href="#" >African American</a></li>
+                <li name="race"><a href="#" >Hispanic</a></li>
+                <li name="race"><a href="#" >Asian</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <li class="panel panel-default" id="dropdown">
+          <a data-toggle="collapse" href="#dropdown-lvl2">
+            <span class="fa fa-male"></span><span class="fa fa-female"></span> Gender <span class="caret"></span>
+          </a>
+          <div id="dropdown-lvl2" class="panel-collapse collapse">
+            <div class="panel-body">
+              <ul class="nav navbar-nav">
+                <li name="gender"><a href="#">Male</a></li>
+                <li name="gender"><a href="#">Female</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <li class="panel panel-default" id="dropdown">
+          <a data-toggle="collapse" href="#dropdown-lvl3">
+            <span class="fa fa-calendar"></span> Age Group <span class="caret"></span>
+          </a>
+          <div id="dropdown-lvl3" class="panel-collapse collapse">
+            <div class="panel-body">
+              <ul class="nav navbar-nav">
+                <li name="age_group" ><a href="#" data-start="0" data-end="12">0 - 12</a></li>
+                <li name="age_group" ><a href="#" data-start="13" data-end="17">13 - 17</a></li>
+                <li name="age_group" ><a href="#" data-start="18" data-end="24">18 - 24</a></li>
+                <li name="age_group" ><a href="#" data-start="25" data-end="34">25 - 34</a></li>
+                <li name="age_group" ><a href="#" data-start="35" data-end="44">35 - 44</a></li>
+                <li name="age_group" ><a href="#" data-start="45" data-end="64">45 - 64</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <li class="panel panel-default" id="dropdown">
+          <a data-toggle="collapse" href="#dropdown-lvl5">
+            <span class="fa fa-stethoscope"></span> Diagnosis <span class="caret"></span>
+          </a>
+          <div id="dropdown-lvl5" class="panel-collapse collapse">
+            <div class="panel-body">
+              <ul class="nav navbar-nav">
+                <li name="diagnosis"><a href="#">Bipolar Mania</a></li>
+                <li name="diagnosis"><a href="#">Bipolar Depression</a></li>
+                <li name="diagnosis"><a href="#">Borderline</a></li>
+                <li name="diagnosis"><a href="#">MDD</a></li>
+                <li name="diagnosis"><a href="#">Schizophrenia</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<div class="sidebar-inner">
+    <%= label_tag :prescription, "Prescription" %>
+    <%= select_tag :prescription, options_for_select(current_user.members.joins(:prescriptions => :drug).pluck(:friendly_name).uniq.sort), multiple: true, class: "form-control", id: "sel2" %>
+</div>
+
+<div class="sidebar-footer sidebar-inner">
+  <button type="button" class="btn btn-primary btn-block" style="background-color: #CC246F; border-radius: 0" id="apply_filters">Apply Filters</button>
+  <a href="javascript:void(0)" id="remove-filters" class="btn btn-block btn-link">Remove Filters</a>
+</div>
+<% end %>

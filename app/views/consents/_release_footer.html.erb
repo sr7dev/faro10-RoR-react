@@ -1,0 +1,32 @@
+<% if consent.created_at %>
+  <div class="row">
+    <div class="col-md-12">
+      <p>
+        <b>Signature:</b> <%= consent.signature ? image_tag(consent.signature, class: "signature-image") : "Digitally signed on " + consent.created_at.strftime('%m/%d/%Y') %>
+      </p>
+      <br />
+      <p>
+        Date: <b><%= consent.created_at ? consent.created_at.strftime("%m/%d/%Y") : Time.now.strftime("%m/%d/%Y") %></b>
+      </p>
+    </div>
+  </div>
+  <br />
+<% else %>
+  <div class="row">
+    <div class="col-md-12">
+      <p>
+        Date: <b><%= Time.now.strftime("%m/%d/%Y") %></b>
+      </p>
+    </div>
+  </div>
+  <br />
+<% end %>
+
+<hr>
+<div class="row">
+  <div class="col-md-12">
+    <p>
+      <i>The privacy of information is strictly protected and only available with user consent. Additionally, Faro10 does not collect or store Personally Identifiable Information (PII) other than email address.</i>
+    </p>
+  </div>
+</div>

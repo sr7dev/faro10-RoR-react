@@ -1,0 +1,84 @@
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for(@channel) do |f| %>
+        <% if @channel.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@channel.errors.count, "error") %> prohibited this community from being saved:</h2>
+              <ul>
+                <% @channel.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <%= f.hidden_field :user_id, value: current_user.id %>
+
+        <div class="col-md-5 col-md-offset-4" style="padding-top: 10px">
+          <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey; background-color: #326867 ">
+            <div class="panel-body text-center">
+              <p style="font-size: 20px; text-align: left; margin: 4px; margin-bottom: 6px; margin-top: 6px; color: white ">
+                Community Info:
+              </p>
+            </div>
+          </div>
+          <br>
+          <div class="field">
+            <%= f.label :community_focus %><br>
+            <%= f.select :channel_focus, options_for_select(["Veteran Support","Substance Abuse", "Easting Disorder", "Suicide Loss", "Depression", "Care Giver Support", "Pregnancy Loss", "Other"], @channel.channel_focus), {}, class: "form-control" %><br>
+          </div>
+          <br>
+          <div class="field">
+            <%= f.label :community_name %><br>
+            <%= f.text_field :channel_name, placeholder: "Name your Community", class: "form-control"   %>
+          </div>
+
+          <br><br>
+          <div class="actions" style="padding-bottom: 30px;">
+            <%= f.submit "Create Community", class: "button" %>
+          </div>
+        </div>
+        <br>
+
+    <% end %>
+
+  </div>
+</div>
+
+
+<style>
+  .button {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    border-radius: 0;
+    border: 0;
+    border-color: #F19A20;
+    background-color: #F19A20;
+    color: white;
+    padding: 12px;
+    padding-left: 16px;
+    padding-right: 16px;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.24), 0 2px 6px 0 rgba(0,0,0,0.19);
+    height: 52px;
+    width: 150px;
+
+  }
+
+  .button:hover {
+    background-color: #d17f0d;
+    color: white;
+    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.24), 0 6px 12px 0 rgba(0,0,0,0.19);
+
+  }
+
+  .button:active {
+    background-color: #d17f0d;
+    color: white;
+    box-shadow: 0 4px #666;
+    transform: translateY(4px);
+    /*box-shadow: 0 3px 8px 0 rgba(0,0,0,0.24), 0 6px 12px 0 rgba(0,0,0,0.19);*/
+
+  }
+
+
+</style>

@@ -1,0 +1,38 @@
+<div class="col-xs-12" id="LifeScaleBookmark">
+  <H1>Life Scale</H1>
+  <h2>The Life Scale Rating is intended to assess how your symptoms are impacting work/school, social and family life</h2>
+  <div class="box">
+    <div class="icon">
+      <div class="image"><span class="glyphicon glyphicon-leaf btn-custom-lg white"></span></div>
+      <div class="info">
+
+        <%= form_for(@entry) do |f| %>
+            <% if @entry.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+                  <ul>
+                    <% @entry.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+            <% end %>
+            <br>
+            <div class="form-group">
+              <%= f.datetime_select :updated_at, {:discard_minute => true, :discard_year => true, ampm: true, default: Time.now} %>
+            </div>
+
+        <% attrs = { social_life: 'Social Life', work_life: 'Work/School Life', family_life: 'Family Life' } %>
+        <% attrs.each do |attr, title| %>
+          <%= render 'sheehan_slider', f: f, attr: attr, title: title %>
+        <% end %>
+        <br>
+        <div class="actions">
+          <%= f.submit "Add New Status", class: "btn btn-primary", style: "background-color: #326867; border-radius: 0" %>
+        </div>
+      </div>
+    </div>
+  <%end%>
+  <div class="space"></div>
+  </div>
+</div>

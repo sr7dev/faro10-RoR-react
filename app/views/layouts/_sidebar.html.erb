@@ -1,0 +1,13 @@
+<% if current_user.type == 'Clinician' %>
+  <div class="col-md-2 col-sm-3 sidebar">
+    <%= render partial: 'shared/sidebar_content_clinician' %>
+  </div>
+<% elsif current_user.type == 'Group' %>
+  <div class="col-md-2 col-sm-3 sidebar">
+    <%= render partial: 'shared/sidebar_content_group' %>
+  </div>
+<% else %>
+  <div class="col-md-2 col-sm-3 sidebar" style="background-color: #4FA59F; width: 0px">
+    <%= render partial: 'shared/sidebar_content_member' %>
+  </div>
+<% end%>

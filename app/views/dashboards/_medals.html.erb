@@ -1,0 +1,24 @@
+<div class="text-center text-uppercase">
+  <h3 style="color: #556870;"  align="right"><b>Medals</b></h3>
+</div>
+
+<div class="row">
+  <div class="goal_medal">
+  <img class="goal_medal" src="<%= @gc.entries_medal %>" alt="">
+  </div>
+</div>
+<div class="row">
+  <div class="goal_medal">
+    <img class="goal_medal" src="<%= @gc.exercise_medal %>" alt="">
+  </div>
+</div>
+<div class="row">
+  <div class="goal_medal">
+    <img class="goal_medal" src='https://<%= ENV.fetch("AWS_S3_BUCKET") %>/badge.png' alt="">
+  </div>
+</div>
+<div class="row">
+  <div class="goal_medal">
+    <img class="goal_medal" src='https://<%= ENV.fetch("AWS_S3_BUCKET") %>/badge_sponsored.png' alt="">
+  </div>
+</div>

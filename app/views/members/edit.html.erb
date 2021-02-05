@@ -1,0 +1,141 @@
+<% provide(:title, "Edit user") %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey; background-color: #326867; margin-top: -10px ">
+      <div class="panel-body text-center">
+        <p style="font-size: 28px; text-align: left; margin: 4px; margin-bottom: 10px; margin-top: 10px; color: white ">
+          Update your Profile
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for(@member) do |f| %>
+        <%= render 'shared/member_error_messages' %>
+
+        <!--<= f.label :primary_role %>-->
+        <!--<= f.select :primary_role, options_for_select(["Self","Observer"], @member.primary_role), {}, class: "form-control" %><br>-->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 col-md-offset-3">
+
+      <%= f.label :user_id %>
+      <%= f.text_field :user_id, class: 'form-control' %><br>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %><br>
+
+      <span style="max-width: 100%">
+      <%= f.label :race %>
+      <%= f.select :race, options_for_select(["Caucasian","African American","Hispanic", "Asian", "Other"], @member.race), {}, class: "form-control"  %><br>
+
+
+      <%= f.label :gender %>
+      <%= f.select :gender, options_for_select(["Male","Female"], @member.gender), {}, class: "form-control" %><br>
+      </span>
+      <!--<= f.label :diagnosis %>-->
+      <!--<= f.select :diagnosis, options_for_select(["No Disorder",-->
+                                                   <!--"ADHD", "Anorexia", "Anxiety", "Binge Eating","Bipolar Depression","Bipolar Mania",-->
+                                                   <!--"Borderline", "Bulimia", "Disruptive Mood Dysregulation", "Major Depressive Disorder (MDD)",-->
+                                                   <!--"Obsessive Compulsive", "Oppositional Defiant",  "PTSD",  "Schizophrenia", "Selective Mutism", "Seasonal Affective",-->
+                                                   <!--"Substance Abuse", "Unknown",], @member.diagnosis), {}, class: "form-control" %>  <br>-->
+
+      <span style="max-width: 100%">
+      <%= f.label :peer_support_interest %>
+      <%= f.select :diagnosis, options_for_select(["General",
+                                                   "Veteran Support", "Substance Abuse", "Suicide Loss", "Eating Disorder", "Depression", "Care Giver Support", "Pregnancy Loss", "Other"], @member.diagnosis), {}, class: "form-control" %>  <br>
+      </span>
+
+
+      <%= f.label :password, "New Password" %>
+      <%= f.password_field :password, class: 'form-control' %><br>
+
+      <%= f.label :password_confirmation, "New Password Confirmation" %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %><br>
+
+
+      </div>
+      <div class="row">
+      <div class="col-md-3">
+        <%= f.label :country %>
+        <%= f.country_select :country, { priority_countries: ["US"] }, { class: "form-control" }  %><br>
+
+
+        <%= f.label :zip_code %>
+        <%= f.number_field :zip_code, class: 'form-control' %><br>
+
+
+        <%= f.label :occupation %>
+        <%= f.text_field :occupation, class: 'form-control' %><br>
+
+
+        <%= f.label :nationality %>
+        <%= f.text_field :nationality, class: 'form-control' %><br>
+
+
+
+        <div class="form-group">
+        <%= f.label :time_zone %><br>
+        <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, { class: 'form-control'} %><br>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :dob %><br>
+          <%= f.date_select :dob, {:start_year => 1940, :end_year => Date.today.year}, {:class => 'date-select'}  %><br>
+        </div>
+
+        <br>
+
+      </div>
+      </div>
+        <!--f.label :emergency_contact_name %>-->
+        <!--f.text_field :emergency_contact_name, class: 'form-control' %><br>-->
+
+        <!--f.label :emergency_contact_num %>-->
+        <!--f.text_field :emergency_contact_num, :placeholder => "111-111-1111",  class: 'form-control' %><br>-->
+
+        <div class="row" style="padding-bottom: 25px">
+
+
+          <div class="col-md-6 col-md-offset-3">
+
+            <h3>Host Information:</h3>
+            <p>This information is displayed for others so they can decide if they'd like to join your meetings.</p>
+
+            <div class="form-group">
+              <%= f.label :about_me %><br>
+              <%= f.text_area :about, class: 'form-control'  %><br>
+            </div>
+
+            <div class="col-md-4">
+              <span style="max-width: 100%">
+                <%= f.label :qualification %>
+                <%= f.select :qualification, options_for_select(["", "Licensed", "Certified", "Trained",  "Listener"], @member.qualification), {}, class: "form-control" %>  <br>
+              </span>
+            </div>
+            <div class="col-md-8">
+              <p> L.   Licensed . (e.g. Therapist) </p>
+              <p> C.   Certified (e.g. State) </p>
+              <p> T.   Trained (Completed Peer Support Training by Independent Organization -- e.g. University, Non Profit)  </p>
+              <p> O.   Observer or Listener (No training) </p>
+            </div>
+
+            <!--<div class="form-group">-->
+              <!--<= f.check_box :trial_interested, class: "col-md-1 control-label"  %>-->
+              <!--<= f.label :trial_interested, "Interested in being contacted about participation in paid trials?  " %> &lt;!&ndash; <= link_to "Learn More", asset_path("terms_and_conditions.pdf") %> &ndash;&gt;-->
+            <!--</div>-->
+
+            <br>
+
+            <div class="form-actions">
+              <%= f.submit "Save changes", class: "btn btn-primary", style: "border-radius: 0; border-color: #F19A20; background-color: #F19A20; color: white  " %><br>
+            </div>
+          </div>
+        </div>
+
+      <% end %>
+
+  </div>
+</div>

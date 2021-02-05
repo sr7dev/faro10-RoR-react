@@ -1,0 +1,109 @@
+<% provide(:title, "Log in") %>
+
+<!--<body  style="background-color: #4FA59F ">-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        background-color: #F0F0F0F0;
+      }
+    </style>
+    <!-- Facebook Pixel Code -->
+    <script>
+
+        !function(f,b,e,v,n,t,s)
+
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+
+            n.queue=[];t=b.createElement(e);t.async=!0;
+
+            t.src=v;s=b.getElementsByTagName(e)[0];
+
+            s.parentNode.insertBefore(t,s)}(window,document,'script',
+
+            'https://connect.facebook.net/en_US/fbevents.js');
+
+
+        fbq('init', '1994953770803705');
+
+        fbq('track', 'PageView');
+
+    </script>
+
+    <noscript>
+
+      <img height="1" width="1"
+
+           src="https://www.facebook.com/tr?id=1994953770803705&ev=PageView
+
+        &noscript=1"/>
+
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+  </head>
+</html>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 hidden-xs"  style="margin-left: -14px">
+    <%= image_tag('smoke.png' ) %>
+    </div>
+    <div class="col-md-3 hidden-xs"><br>
+      <%= image_tag('registration_image.png', class: "img-responsive", style: "max-height: 500px" ) %>
+    </div>
+    <div class="col-md-4 col-xs-12">
+      <div class="well" style="margin-top: 16%; border-radius: 0; background-color: white ">
+
+      <h3 style="text-align: center; font-weight: bold">Log in</h3>
+        <h2 style="font-size: small">Welcome back! Please login to your account.</h2>
+
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <div class="form-group">
+              <%= f.email_field :email, placeholder: "Email Address", autofocus: true, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= link_to "(forgot password)", new_password_path(resource_name), tabindex: -1 %>
+              <%= f.password_field :password, placeholder: "Password",  class: "form-control" %>
+            </div>
+            <% if devise_mapping.rememberable? %>
+              <div class="form-group">
+                <%= f.check_box :remember_me, tabindex: -1 %>
+                <%= f.label :remember_me, class: "checkbox inline" do %>
+                  <span style="margin-left:12px; font-size: small">Remember me on this computer</span>
+                <% end %>
+              </div>
+            <% end %>
+
+            <div class="actions text-center ">
+              <%= f.submit "Log in", class: "btn btn-primary", style: "border-radius: 14; border-color: #4FA59F; background-color: #4FA59F; color: white;
+                                                                                        width: 130px; padding: 10px; font-weight: bold;  margin-top: 5px; margin-left: 15px;  "%>
+
+              <%= link_to "Register", new_member_registration_path, class: "btn btn-primary", style: "border-radius: 14; border-color: #4FA59F; background-color: white; color: #4FA59F; font-weight: bold;
+                                                                                        width: 125px; padding: 10px;  margin-top: 5px; margin-left: 2% "%>
+
+
+            </div>
+
+
+
+
+            <br>
+            <p style="text-align: center">New user? <%= link_to "Sign up now!", new_member_registration_path %></p>
+            <br>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    </div>
+  </div>
+</div>

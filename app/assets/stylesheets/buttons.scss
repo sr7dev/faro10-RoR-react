@@ -1,0 +1,13 @@
+$main-branding: #326867;
+
+.btn {
+  &.btn-faro10 {
+    background-color: $main-branding;
+    color: white;
+    border-radius: 0;
+
+    &:hover {
+      color: white;
+    }
+  }
+}

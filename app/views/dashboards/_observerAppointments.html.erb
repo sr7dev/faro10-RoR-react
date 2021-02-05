@@ -1,0 +1,43 @@
+<div id="appointments-card" class="col-xs-6  col-md-1" style="min-width: 385px; min-height: 425px">
+  <div class="dashboard-card" style="background-color: #8017a3">
+    <div class="card-header">
+      <h1 class="card-header-text">Observee Appointments</h1>
+    </div>
+    <div class="card-menu">
+      <%= image_tag('video_temp.png') %>
+      <button type="button" class="card-video-button" data-toggle="modal" data-target="#sheehanInfoModal"><%= image_tag('help.png') %></button>
+    </div>
+    <div class="card-image">
+      <a href="/schedules/"><%= image_tag('appointments.png')%></a>
+    </div>
+    <div class="card-notification">
+    </div>
+    <div class="card-info">
+      <br />
+      <br/>
+      Upcoming Appointments: <%=@upcoming_appointments_count%>
+    </div>
+    <div class="card-action-top">
+      <%=image_tag('spacer.png')%>
+      <div class="card-action-text">
+
+      </div>
+    </div>
+    <div class="card-action-middle">
+      <% if current_user.connected_to_facebook? %>
+          <a href="/socials"><%=image_tag('view social.png')%>
+            <div class="card-action-text">
+              SOCIAL<BR/>CALENDAR
+            </div>
+          </a>
+      <%end%>
+    </div>
+    <div class="card-action-bottom">
+      <a id="make_appointment_link" href="/schedules"><%=image_tag('edit.png')%>
+        <div class="card-action-text">
+          MAKE<BR/>APPOINTMENT
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

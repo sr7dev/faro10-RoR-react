@@ -1,0 +1,18 @@
+<h3 style="color: #4FA59F">Interpersonal</h3>
+<p><i>The interpersonal category refers to aspects
+  of the patient in relationship to others, both in individual
+  social interactions and in performance of social roles
+</i></p>
+<ul>
+
+
+
+  <li>
+    Observer Reported: <%= render 'delta_words', value: @scorecard.outcome(:obs, :social_interaction), label: 'Observed Social Interaction' %>
+  </li>
+
+  <li>
+    Member Reported: <%= render 'delta_words', value: @scorecard.outcome(:mem, :social_life), label: 'Social Interaction' %>
+  </li>
+
+</ul>

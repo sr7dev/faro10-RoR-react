@@ -1,0 +1,71 @@
+<div class="col-md-12">
+  <h3>Message Center</h3>
+  <br>
+  <div class="col-md-12">
+    <table id= "messageCenter" cellpadding="0" cellspacing="0" border="0" class="dataTable table-striped table-hover table-highlight table-bordered">
+      <thead>
+        <tr>
+          <th style="width: 15%">From</th>
+          <th>Message</th>
+          <th style="width: 15%;">Received</th>
+          <th style="width: 15%">Actions</th>
+        </tr>
+      </thead>
+
+      <% if @messages.present? %>
+        <% @messages.each do |message| %>
+          <% clinician = message.clinician %>
+
+          <tr>
+            <% if message.read? %>
+              <td><i class="fa fa-user-md" style="margin-right: 7px"></i>  <%= clinician.user_id %>
+            <% else %>
+              <td><b><i class="fa fa-user-md" style="margin-right: 7px"></i>  <%= clinician.user_id %></b>
+              <% end %>
+              </td>
+
+              <% if message.read? %>
+                <td><%= message.body %></td>
+              <% else %>
+                <td><b><%= message.body %></b></td>
+              <% end %>
+
+              <td><%= message.created_at.strftime("%A, %B %d, %Y") %></td>
+
+
+              <td>
+                <div class="btn-group pull-right"  style="background-color: #326867; border-radius: 0">
+                  <button type="button" class="btn btn-success"  style="background-color: #326867; border-radius: 0">Action</button>
+                  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"  style="background-color: #326867; border-radius: 0">
+                    <span class="caret" style="background-color: #326867 "></span>
+                    <span class="sr-only"  style="background-color: #326867 ">Toggle Dropdown</span>
+                  </button>
+
+                  <ul class="dropdown-menu" role="menu">
+                    <li>
+                      <% if message.read == false %>
+                        <%= link_to mark_as_read_message_path(message), method: :post do %>
+                          Mark as Read
+                        <% end %>
+                      <% else %>
+                        <%= link_to mark_as_unread_message_path(message), method: :post do %>
+                          Mark as Unread
+                        <% end %>
+                      <% end %>
+                    </li>
+                    <li>
+                      <%= link_to "Delete", message_path(message), method: :delete, data: { confirm: "Are you sure you want to delete this message?" }  %>
+                    </li>
+                  <!--<li class="divider"></li>-->
+                  <!--<li><a href="#">Separated link</a></li>-->
+                  </ul>
+                </div>
+              </td>
+
+          </tr>
+
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+</div>

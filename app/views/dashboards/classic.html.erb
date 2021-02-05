@@ -1,0 +1,431 @@
+<script xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    white_feelings = <%= @white_feelings.to_json.html_safe %>;
+    black_feelings = <%= @black_feelings.to_json.html_safe %>;
+    hispanic_feelings = <%= @hispanic_feelings.to_json.html_safe %>;
+    asian_feelings = <%= @asian_feelings.to_json.html_safe %>;
+</script>
+<br><br>
+<div class="row">
+  <div class="col-md-6">
+    <p><%= render 'dashboards/stats' %></p>
+  </div>
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey">
+          <div class="panel-update-heading">
+            <h1 id="user_feeling" style="color: #B4D336"></h1>
+          </div>
+          <div class="panel-body text-center">
+            <strong> My Average Mood (0-6) </strong>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey">
+          <div class="panel-update-heading">
+            <h1 id="user_panic_attack" style="color: #B4D336"></h1>
+          </div>
+          <div class="panel-body text-center">
+            <strong> My Panic Attacks </strong>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5">
+        <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey">
+          <div class="panel-update-heading">
+            <h1 id="user_activity" style="color: #F19A20; "></h1>
+          </div>
+          <div class="panel-body text-center">
+            <strong> Exercise (min) </strong>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey">
+          <div class="panel-update-heading">
+            <h1 id="user_energy" style="color: #4FA59F"></h1>
+          </div>
+          <div class="panel-body text-center">
+            <strong> My Avg Energy (0-6)</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% if !@last_entry.present? || !@current_user.observers.exists? || !@my_journal.present? || !@current_user.prescriptions.present? || !ExercisesMembership.by_member(@current_user).present? || !@current_user.appointments.present? || !@current_user.memberships.active.any? %>
+    <div class="row">
+      <div class="col-md-12">
+        <table width="100%">
+          <tr width="100%">
+            <td colspan="7"><h3 style="color: #556870;" align="center"><b>Steps to Success</b></h3></td>
+          </tr>
+          <tr width="100%">
+            <td width="14%">
+              <div class="center image">
+                <% if @last_entry.present? %>
+                    <a href="/entries/new"><%= image_tag('Step 1 Success.png', style: 'height:100%;width:auto;') %></a>
+                <% else %>
+                    <a href="/entries/new"><%= image_tag('Step 1.png', style: 'height:100%;width:auto;') %></a>
+                <% end %>
+              </div>
+            </td>
+            <td width="14%">
+              <div class="center image">
+                <% if @current_user.observers.exists? %>
+                    <a href="/users/team"><%= image_tag('Step 2 Success.png', style: 'height:100%;width:auto;') %></a>
+                <% else %>
+                    <a href="/users/team"><%= image_tag('Step 2.png', style: 'height:100%;width:auto;') %></a>
+                <% end %>
+              </div>
+            </td>
+            <td width="14%">
+              <div class="center image">
+                <% if @my_journal.present? %>
+                    <a href="/entries/new"><%= image_tag('Step 3 Success.png', style: 'height:100%;width:auto;') %></a>
+                <% else %>
+                    <a href="/entries/new"><%= image_tag('Step 3.png', style: 'height:100%;width:auto;') %></a>
+                <% end %>
+              </div>
+            </td>
+            <td width="14%">
+              <div class="center image">
+                <% if @current_user.prescriptions.present? %>
+                    <a href="/prescriptions"><%= image_tag('Step 4 Success.png', style: 'height:100%;width:auto;') %></a>
+                <% else %>
+                    <a href="/prescriptions"><%= image_tag('Step 4.png', style: 'height:100%;width:auto;') %></a>
+                <% end %>
+              </div>
+            </td>
+            <td width="14%">
+              <div class="center image">
+                <% if ExercisesMembership.by_member(@current_user).present? %>
+                    <%= link_to assigned_exercises_path(@current_user) do %><%= image_tag('Step 5 Success.png', style: 'height:100%;width:auto;') %><% end %>
+                <% else %>
+                    <%= link_to assigned_exercises_path(@current_user) do %><%= image_tag('Step 5.png', style: 'height:100%;width:auto;') %><% end %>
+                <% end %>
+              </div>
+            </td>
+            <td width="14%">
+              <div class="center image">
+                <% if @current_user.appointments.present? %>
+                    <a href="<%= schedule_path(current_user) %>"><%= image_tag('Step 6 Success.png', style: 'height:100%;width:auto;') %></a>
+                <% else %>
+                    <a href="<%= schedule_path(current_user) %>"><%= image_tag('Step 6.png', style: 'height:100%;width:auto;') %></a>
+                <% end %>
+              </div>
+            </td>
+            <td width="14%">
+              <div class="center image">
+                <% if @current_user.memberships.active.any? %>
+                    <a href="/users/team"><%= image_tag('Step 7 Success.png', style: 'height:100%;width:auto;') %></a>
+                <% else %>
+                    <a href="/users/team"><%= image_tag('Step 7.png', style: 'height:100%;width:auto;') %></a>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <br /><br /><br />
+    </div>
+<% end %>
+<div class="row">
+  <div class="col-md-1">
+    <%= render 'dashboards/medals' %>
+  </div>
+  <div class="col-md-5">
+    <%= render 'dashboards/goal_center' %>
+  </div>
+  <div class="col-md-6">
+    <%= render 'dashboards/sheehan' %>
+  </div>
+</div>
+<div class="row"></div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default" style="border-color: lightgrey; border-radius: 0">
+      <div class="panel-heading" style="background-color: #fff">
+        <h3 style="color: #556870;" align="center"><b>Mood Chart</b>
+          <span style="margin: 3%">
+            <button type="button" class="btn btn-xs btn-danger audioButton2">
+              <%= audio_tag 'member_mood.m4a', class: 'audio-play' %>
+              <span class="glyphicon glyphicon-play" data-toggle="tooltip" data-placement="left" title="Audio Description"></span>&nbsp;
+            </button>
+            <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#dashboardMoodChartModal">
+               <span class="glyphicon glyphicon-zoom-in" data-toggle="tooltip" data-placement="left" title="Zoom"></span>
+            </button>
+            <button type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#moodInfoModal">
+               <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="left" title="Info"></span>
+            </button>
+          </span>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-12">
+          <div id="moodChart" style="height: 400px; margin: 0 auto"></div>
+        </div>
+        <!-- <div class="col-md-3" style="height: 325px; margin: 0 auto; background-color: #8CD2CB; border-radius: 0; border: 0 solid #262626; overflow:auto;">
+          <span style="font-size: 12pt; font-family: 'Calibri'; color:#193130;text-align:justify;">
+            <br>
+            Monitoring your mood is useful in recognizing positive or negative changes in your well-being.
+            <br>
+            <br>
+          </span>
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <!--Commenting out weight chart until user configurable setting is created -->
+  <!--<div class="col-md-6">-->
+  <!--<div class="panel panel-default" style="border-color: lightgrey; border-radius: 0">-->
+  <!--<div class="panel-heading" style="background-color: #fff">-->
+  <!--<h3 style="color: #556870;" align="center"><b>Weight (lbs)</b>-->
+  <!--<span style="margin: 3%">-->
+  <!--&lt;!&ndash;<button type="button" class="btn btn-xs btn-danger audioButton2">&ndash;&gt;-->
+  <!--&lt;!&ndash;<%= audio_tag 'member_mood.m4a', class: 'audio-play' %>&ndash;&gt;-->
+  <!--&lt;!&ndash;<span class="glyphicon glyphicon-play" data-toggle="tooltip" data-placement="left" title="MADRS Audio Description"></span>&nbsp;&ndash;&gt;-->
+  <!--&lt;!&ndash;</button>&ndash;&gt;-->
+  <!--&lt;!&ndash;<button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#">&ndash;&gt;-->
+  <!--&lt;!&ndash;<span class="glyphicon glyphicon-zoom-in" data-toggle="tooltip" data-placement="left" title="MADRS Zoom"></span>&ndash;&gt;-->
+  <!--&lt;!&ndash;</button>&ndash;&gt;-->
+  <!--<button type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#weightModal">-->
+  <!--<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="left" title="MADRS Info"></span>-->
+  <!--</button>-->
+  <!--</span>-->
+  <!--</h3>-->
+  <!--</div>-->
+  <!--<div class="panel-body">-->
+  <!--<div class="col-md-12">-->
+  <!--<div id="weightChart" style="height: 400px; margin: 0 auto"></div>-->
+  <!--</div>-->
+  <!--&lt;!&ndash;<div class="col-md-3" style="height: 325px; margin: 0 auto; background-color: grey; border-radius: 5px; border: 2px solid #262626">&ndash;&gt;-->
+  <!--&lt;!&ndash;<span style="font-size: 12pt; font-family: 'Calibri'; color:white;text-align:left">&ndash;&gt;-->
+  <!--&lt;!&ndash;<br>The <span style="font-size: 15pt"><b>(MADRS)</b></span> is used by clinicians to assess the severity of depression.<br><br>&ndash;&gt;-->
+  <!--&lt;!&ndash;<b>Scoring:</b><br>&ndash;&gt;-->
+  <!--&lt;!&ndash;&lt;!&ndash;0 to 6 - symptoms absent<br>&ndash;&gt;&ndash;&gt;-->
+  <!--&lt;!&ndash;&lt;!&ndash;7 to 19 - mild depression<br>&ndash;&gt;&ndash;&gt;-->
+  <!--&lt;!&ndash;&lt;!&ndash;20 to 34 - moderate depression<br>&ndash;&gt;&ndash;&gt;-->
+  <!--&lt;!&ndash;&lt;!&ndash;+34 - severe depression&ndash;&gt;&ndash;&gt;-->
+  <!--&lt;!&ndash;<span style="font-size: 10pt">&ndash;&gt;-->
+  <!--&lt;!&ndash;<li>0-6: Normal</li>&ndash;&gt;-->
+  <!--&lt;!&ndash;<li>7-19: Mild Depression</li>&ndash;&gt;-->
+  <!--&lt;!&ndash;<li>20-34: Moderate Depression</li>&ndash;&gt;-->
+  <!--&lt;!&ndash;<li>+34: Severe Depression</li>&ndash;&gt;-->
+  <!--&lt;!&ndash;</span>&ndash;&gt;-->
+  <!--&lt;!&ndash;</span>&ndash;&gt;-->
+  <!--&lt;!&ndash;</div>&ndash;&gt;-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default" style="border-color: lightgrey; border-radius: 0">
+      <div class="panel-heading" style="background-color: #fff">
+        <h3 style="color: #556870;" align="center"><b>Symptoms</b></h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-12">
+          <div id="madrsdimChart" style="height: 400px; margin: 0 auto"></div>
+        </div>
+        <!--<div class="col-md-3" style="height: 325px; margin: 0 auto; background-color: grey; border-radius: 5px; border: 2px solid #262626">-->
+        <!--<span style="font-size: 12pt; font-family: 'Calibri'; color:white;text-align:justify">-->
+        <!--<br>Tracking activities such as appetite, initiative, pessimism and zest can help you see how much of an impact these things have on your moods.-->
+        <!--<br><br>They are also used to calculate your MADRS score.<br>-->
+        <!--</span>-->
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="panel panel-default" style="border-color: lightgrey; border-radius: 0">
+      <div class="panel-heading" style="background-color: #fff">
+        <h3 style="color: #556870;" align="center"><b>Symptoms</b>
+          <span style="margin: 3%">
+            <button type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#symptomsModal">
+              <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="left" title="MADRS Info"></span>
+            </button>
+          </span>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-12">
+          <div id="addmadrsdimChart" style="height: 400px; margin: 0 auto"></div>
+        </div>
+        <!--<div class="col-md-3" style="height: 325px; margin: 0 auto; background-color: grey; border-radius: 5px; border: 2px solid #262626">-->
+        <!--<span style="font-size: 12pt; font-family: 'Calibri'; color:white;text-align:justify">-->
+        <!--<br>Tracking activities such as appetite, initiative, pessimism and zest can help you see how much of an impact these things have on your moods.-->
+        <!--<br><br> They are also used to calculate your MADRS score.<br>-->
+        <!--</span>-->
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Column Chart -->
+<div class="row">
+  <div class="col-md-10">
+    <div class="panel panel-default" style="border-color: lightgrey; border-radius: 0">
+      <div class="panel-heading" style="background-color: #fff">
+        <h3 style="color: #556870;" align="center"><b>Tracking Side Effects</b></H3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-12">
+          <div id="symptomChart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        </div>
+        <!--<div class="col-md-3" style="height: 325px; margin: 0 auto; background-color: #8CD2CB; border-radius: 0; border: 0 solid #262626">-->
+        <!--<span style="font-size: 12pt; font-family: 'Calibri'; color:#193130;text-align:justify">-->
+        <!--<br>Tracking activities such as appetite, initiative, pessimism and zest can help you see how much of an impact these things have on your moods, and these Charts can help you recognize patterns.-->
+        <!--They are also used to calculate your MADRS score.<br>-->
+        <!--</span>-->
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="row">
+      <div class="col-xs-12 col-md-12">
+        <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey; background-color: #8CD2CB">
+          <div class="panel-body text-center">
+            <strong>Dry Mouth</strong>
+          </div>
+          <h1 id="user_dry_mouth" style="color: white"></h1>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-12">
+        <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey; background-color: #8CD2CB">
+          <div class="panel-body text-center">
+            <strong>Restlessness</strong>
+          </div>
+          <h1 id="user_restlessness" style="color: white"></h1>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-12">
+        <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey; background-color: #8CD2CB">
+          <div class="panel-body text-center">
+            <strong>Nausea</strong>
+          </div>
+          <h1 id="user_nausea" style="color: white"></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="dashboardMoodChartModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="row">
+      <div id= "moodChartModal" style="min-width: 70%; height: 80%"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="moodInfoModal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Mood</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          Monitoring your mood is useful in recognizing positive or negative changes in your well-being.<br>
+          Look for patterns and relationships with other charts.<br>
+          The red line represents your mood trend, and the blue line is the "average" of all other Faro10 members.<br>
+
+          <!--As you achieve goals within your goal center, you will unlock the ability to filter the "everyone else" trend-->
+          <!--by segmentation.  This will allow you to compare yourself against others of the same race, gender, age and diagnosis.-->
+        </p>
+
+        <p>You are encouraged to use the journal daily to record external triggers that may be impacting to your mood.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="weightModal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Weight</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          Significant weight gain is a common side-effect of psychotropic medications.
+          It is important for you and your clinician to closely monitor your weight.
+        </p>
+        <br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="symptomsModal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Symptoms</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          Look for trends and spikes in health conditions.<br>
+          Look for relationships between Mood and other health measures.
+        </p>
+        <br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="emailSummaryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_tag(pdf_emails_path, method: :post) do |f| %>
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel"><i class="fa fa-user-md fa-lg" style="margin: 5pt"></i> Email "My Summary" Report to Clinician</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-6 col-md-offset-3">
+                <%= label_tag "Clinician Email Address" %>
+                <%= text_field :pdf_email, :address, class: 'form-control' %>
+                <%= hidden_field_tag 'pdf_email[type]', "member_summary", class: "btn btn-danger" %>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <%= submit_tag "Send Report", class: "btn btn-danger" %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,431 @@
+<!--<p id="notice"><= notice %></p>-->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'channel_show' %>
+    </div>
+
+    <div class="col-md-6">
+      <% if @channel.meeting.inprogress? %>
+          <%= image_tag("LIVE.png" , size: "40x25") %>
+      <% else %>
+          <%= image_tag("not_live.png" , size: "40x25" )  %>
+      <% end %>
+      <b><%= link_to 'Start or Join a Channel Meeting', @meeting %></b><br>
+      <i>
+        <%= @meeting.meeting_users.in_meeting.count  %> current attendees
+      </i>
+
+      <div class="panel with-nav-tabs" style="background-color: #fdfcfc; border-color: #fdfcfc">
+        <div class="panel-heading">
+          <ul class="nav nav-tabs nav-justified">
+            <li style="font-size: x-large"><a href="#videoTab" data-toggle="tab"> Videos </a></li>
+<!--            <li style="font-size: x-large"><a href="#photoTab" data-toggle="tab"> Photo </a></li>-->
+            <% if @channel.user_id == current_user.id %>
+              <li style="font-size: x-large"><a href="#channelAdmintab" data-toggle="tab"> Manage </a></li>
+            <% else %>
+            <% end %>
+          </ul>
+        </div>
+        <div class="panel-body">
+          <div class="tab-content">
+            <div class="tab-pane fade in active" id="videoTab">
+
+              <!--TAB 1  -->
+              <!-- (1) video wrapper -->
+              <div class="youtube" data-embed="<%= @first_video.present? ? Rack::Utils.parse_query(URI(@first_video.source).query)["v"] : "uPgDT_3Bl7w" %>">
+                <div class="play-button">
+                </div>
+              </div>
+              <br><br>
+              <table id= "channelMeetings" cellpadding="0" cellspacing="0" border="0" class="table table-hover table-highlight "  >
+                <tbody>
+                <% if @channel_assets.is_video?.any? %>
+                    <% @channel_assets.is_video?.reverse.each do |channel_asset| %>
+                        <tr>
+                          <td width="30%">
+                            <b><%= channel_asset.asset_name %></b><br>
+                            <%= channel_asset.description %>
+                            <br>
+                          </td>
+
+                          <td width="70%">
+
+                              <div class="youtube" data-embed="<%= Rack::Utils.parse_query(URI(channel_asset.source).query)["v"] %>">
+
+                              <div class="play-button">
+                              </div>
+                            </div>
+
+                          </td>
+                        </tr>
+                    <% end %>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane fade" id="photoTab">
+
+                <!--Tab 2 Content-->
+
+              <% if @channel.user_id == current_user.id %>
+                  <p style="text-align: left">+ Add Photo</p>
+              <% else %>
+              <% end %>
+
+              <% if @channel.meeting.inprogress? %>
+                    <%= image_tag("LIVE.png" , size: "40x25") %>
+              <% else %>
+                  <%= image_tag("not_live.png" , size: "40x25" )  %>
+              <% end %>
+
+            </div>
+
+
+            <div class="tab-pane fade" id="channelAdmintab">
+
+              <!--Tab 3 Content-->
+              <div class="row">
+                <div class="col-md-3 col-md-offset-2">
+                  <button type="button" class="btn btn-primary" style="background-color: #F19A20; padding: 20px; font-size: large; border-color: orange; vertical-align: middle; border-radius: 0; margin: 15px   "
+                          data-toggle="modal" data-target="#startLiveChannelModal">
+                    <b>Start Video Meeting</b>
+                  </button>
+                </div>
+                <div class="col-md-3" style="margin-left: 25px">
+                  <button type="button" class="btn btn-primary" style="background-color: #F19A20; padding: 20px; font-size: large; border-color: orange; vertical-align: middle; border-radius: 0; margin: 15px   "
+                          data-toggle="modal" data-target="#endLiveChannelModal">
+                    <b>End Video Meeting</b>
+                  </button>
+                </div>
+              </div>
+              <div class="row">
+                <%= form_for(@channel) do |f| %>
+                    <% if @channel.errors.any? %>
+                        <div id="error_explanation">
+                          <h2><%= pluralize(@channel.errors.count, "error") %> prohibited this Community from being saved:</h2>
+                          <ul>
+                            <% @channel.errors.full_messages.each do |message| %>
+                                <li><%= message %></li>
+                            <% end %>
+                          </ul>
+                        </div>
+                    <% end %>
+
+                    <%= f.hidden_field :user_id, value: current_user.id %>
+                    <%= f.hidden_field :date, value: @meeting.start_time.strftime("%A, %B %d") %>
+                    <%= f.hidden_field :time, value: @meeting.start_time.strftime("%I:%M %p") %>
+                    <%= f.hidden_field :start_time, value: @meeting.start_time %>
+
+                <div class="col-md-12">
+                  <div>
+                    <div class="row" style="margin-left: -20px">
+                      <br><br>
+                      <div class="col-md-11">
+                        <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey; background-color: #326867 ">
+                          <div class="panel-body text-center">
+                            <p style="font-size: 28px; text-align: left; margin: 4px; margin-bottom: 10px; margin-top: 10px; color: white ">
+                              Community Content:
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="channel_assets">
+                      <%= f.fields_for :channel_assets do |ca| %>
+                          <%= render 'channel_asset_fields', f: ca %>
+                      <% end %>
+                      <div class="links">
+                        <%= link_to_add_association 'add community content', f, :channel_assets, style: "color: #F19A20; font-size: large " %>
+                        <!--<= link_to_add_association "Add Community Asset", f, :channel_assets, class: "btn btn-primary", style: "border-radius: 0; border-color: #F19A20; background-color: #F19A20; color: white; margin-top: 4px  "%>-->
+                        <p>Press "Update Community" once you've entered details about the new asset. </p>
+                        <br>
+                        <div class="actions">
+                          <%= f.submit "Update Community", class:"btn btn-primary", style: "border-radius: 0; border-color: #F19A20; background-color: #F19A20; color: white  "  %>
+                        </div>
+                      </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal fade" id="startLiveChannelModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      <h1 class="modal-title" id="myModalLabel" >
+                        Start a Meeting
+                      </h1>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <%= render 'meetings/start_live_channel_meeting' %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="endLiveChannelModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      <h4 class="modal-title" id="myModalLabel" >
+                        End Live Channel
+                      </h4>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <%= render 'meetings/end_live_channel_meeting' %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3"   >
+      <h3>Message Feed</h3>
+      <div class="" id="message-scroll-container" style="max-height: 600px; overflow-y: scroll;">
+        
+        <table id= "channelMeetingMessages" cellpadding="0" cellspacing="0" border="0" class="table table-hover table-highlight "  >
+          <tbody>
+          <% if @channel_messages.any? %>
+              <% @channel_messages.order("created_at asc").each do |message| %>
+                  <p class="blog-post-meta">
+                    <strong><%= message.attendee_name %></strong>  <i><%= "#{time_zone_offset(message.created_at, current_user.time_zone, "%l:%M %P, %A  %B %d")}" %></i><br>
+                            <%= message.body %>
+                  </p>
+                  <hr>
+              <% end %>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+
+
+      <div class="" style="margin-left: 1px">
+        <%= form_for([@meeting, @channel_message]) do |f| %>
+            <%= f.text_area :body, class: "form-control" %>
+
+            <%= f.hidden_field :attendee_id, value: current_user.id %>
+            <%= f.hidden_field :attendee_name, value: current_user.user_id %>
+            <%= f.hidden_field :meeting_id, value: @channel.meeting_id %>
+
+            <%= f.submit "Post Comment", class: "btn btn-primary", style: "border-radius: 0; border-color: #F19A20; background-color: #F19A20; color: white; margin-top: 5px  "%>
+
+            <br>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- About Community INFO Modal -->
+<div class="modal fade" id="aboutCommunityModal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content" style="border-radius: 0">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">About this Community</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          <%= @channel.about  %>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $( document ).ready(function() {
+    // var d = $('#message-scroll-container');
+    // d.scrollTop(d.prop("scrollHeight"));
+
+    $("#message-scroll-container").animate({ scrollTop: $('#message-scroll-container').prop("scrollHeight")}, 1000);
+  });
+</script>
+<!--Youtube styling and JS-->
+<script>
+    ( function() {
+
+        var youtube = document.querySelectorAll( ".youtube" );
+
+        for (var i = 0; i < youtube.length; i++) {
+
+            var source = "https://img.youtube.com/vi/"+ youtube[i].dataset.embed +"/sddefault.jpg";
+
+            var image = new Image();
+            image.src = source;
+            image.addEventListener( "load", function() {
+                youtube[ i ].appendChild( image );
+            }( i ) );
+
+            youtube[i].addEventListener( "click", function() {
+
+                var iframe = document.createElement( "iframe" );
+
+                iframe.setAttribute( "frameborder", "0" );
+                iframe.setAttribute( "allowfullscreen", "" );
+                iframe.setAttribute( "src", "https://www.youtube.com/embed/"+ this.dataset.embed +"?rel=0&showinfo=0&autoplay=1" );
+
+                this.innerHTML = "";
+                this.appendChild( iframe );
+            } );
+        };
+
+    } )();
+</script>
+<style>
+  .youtube {
+    background-color: #000;
+    margin-bottom: 30px;
+    position: relative;
+    padding-top: 56.25%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .youtube img {
+    width: 100%;
+    top: -16.84%;
+    left: 0;
+    opacity: 0.7;
+  }
+  .youtube .play-button {
+    width: 90px;
+    height: 60px;
+    background-color: #333;
+    box-shadow: 0 0 30px rgba( 0,0,0,0.6 );
+    z-index: 1;
+    opacity: 0.8;
+    border-radius: 6px;
+  }
+  .youtube .play-button:before {
+    content: "";
+    border-style: solid;
+    border-width: 15px 0 15px 26.0px;
+    border-color: transparent transparent transparent #fff;
+  }
+  .youtube img,
+  .youtube .play-button {
+    cursor: pointer;
+  }
+  .youtube img,
+  .youtube iframe,
+  .youtube .play-button,
+  .youtube .play-button:before {
+    position: absolute;
+  }
+  .youtube .play-button,
+  .youtube .play-button:before {
+    top: 50%;
+    left: 50%;
+    transform: translate3d( -50%, -50%, 0 );
+  }
+  .youtube iframe {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+  div#controls div#preview div#local-media div#local-media{
+    width: 640px;
+    height: 480px;
+    margin-left: 10px;
+  }
+
+  div#controls div#preview div#local-media video{
+    border-radius: 5px;
+    width: 640px;
+    height: 480px;
+    max-width: 640px;
+    max-height: 480px;
+    min-width:640px;
+  }
+
+
+  div#local-media-video{
+    border-radius: 5px;
+    width: 640px;
+    height: 480px;
+  //box-sizing: border-box;
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjgwcHgiIGhlaWdodD0iODBweCIgdmlld0JveD0iMCAwIDgwIDgwIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggMy4zLjEgKDEyMDAyKSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5GaWxsIDUxICsgRmlsbCA1MjwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJQYWdlLTEiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHNrZXRjaDp0eXBlPSJNU1BhZ2UiPgogICAgICAgIDxnIGlkPSJjdW1tYWNrIiBza2V0Y2g6dHlwZT0iTVNMYXllckdyb3VwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTU5LjAwMDAwMCwgLTE3NDYuMDAwMDAwKSIgZmlsbD0iI0ZGRkZGRiI+CiAgICAgICAgICAgIDxnIGlkPSJGaWxsLTUxLSstRmlsbC01MiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTU5LjAwMDAwMCwgMTc0Ni4wMDAwMDApIiBza2V0Y2g6dHlwZT0iTVNTaGFwZUdyb3VwIj4KICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0zOS42ODYsMC43MyBDMTcuODUsMC43MyAwLjA4NSwxOC41IDAuMDg1LDQwLjMzIEMwLjA4NSw2Mi4xNyAxNy44NSw3OS45MyAzOS42ODYsNzkuOTMgQzYxLjUyMiw3OS45MyA3OS4yODcsNjIuMTcgNzkuMjg3LDQwLjMzIEM3OS4yODcsMTguNSA2MS41MjIsMC43MyAzOS42ODYsMC43MyBMMzkuNjg2LDAuNzMgWiBNMzkuNjg2LDEuNzMgQzYxLjAwNSwxLjczIDc4LjI4NywxOS4wMiA3OC4yODcsNDAuMzMgQzc4LjI4Nyw2MS42NSA2MS4wMDUsNzguOTMgMzkuNjg2LDc4LjkzIEMxOC4zNjcsNzguOTMgMS4wODUsNjEuNjUgMS4wODUsNDAuMzMgQzEuMDg1LDE5LjAyIDE4LjM2NywxLjczIDM5LjY4NiwxLjczIEwzOS42ODYsMS43MyBaIiBpZD0iRmlsbC01MSI+PC9wYXRoPgogICAgICAgICAgICAgICAgPHBhdGggZD0iTTQ3Ljk2LDUzLjMzNSBMNDcuOTYsNTIuODM1IEwyMC4wOTMsNTIuODM1IEwyMC4wOTMsMjcuODI1IEw0Ny40NiwyNy44MjUgTDQ3LjQ2LDM4LjI1NSBMNTkuMjc5LDMwLjgwNSBMNTkuMjc5LDQ5Ljg1NSBMNDcuNDYsNDIuNDA1IEw0Ny40Niw1My4zMzUgTDQ3Ljk2LDUzLjMzNSBMNDcuOTYsNTIuODM1IEw0Ny45Niw1My4zMzUgTDQ4LjQ2LDUzLjMzNSBMNDguNDYsNDQuMjE1IEw2MC4yNzksNTEuNjY1IEw2MC4yNzksMjguOTk1IEw0OC40NiwzNi40NDUgTDQ4LjQ2LDI2LjgyNSBMMTkuMDkzLDI2LjgyNSBMMTkuMDkzLDUzLjgzNSBMNDguNDYsNTMuODM1IEw0OC40Niw1My4zMzUgTDQ3Ljk2LDUzLjMzNSIgaWQ9IkZpbGwtNTIiPjwvcGF0aD4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid darkgray;
+    margin: 30px;
+    display: inline-block;
+    background-color: darkgray;
+  }
+
+  div#local-media-text {
+    width: 640px;
+    height: 25px;
+    text-align: center;
+    max-width: 640px;
+    border: 0px solid #cececc;
+    overflow: hidden;
+    background-color: transparent;
+    color: #B4D336;
+    font-weight: bold;
+    font-size: x-large;
+    margin-top:450px;
+    position: absolute;
+  }
+  /*button {*/
+    /*background-color: #326867;*/
+    /*border: none;*/
+    /*border-radius: 2px;*/
+    /*-webkit-box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, .5);*/
+    /*-moz-box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, .5);*/
+    /*box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, .5);*/
+    /*color: white;*/
+    /*font-size: 0.8em;*/
+    /*height: 2.75em;*/
+    /*margin: 10px 5px 10px 5px;*/
+    /*padding: 0.5em 0.5em 0.5em 0.7em;*/
+    /*width: 6em;*/
+  /*}*/
+
+  /*button:active {*/
+    /*background-color: #3367D6;*/
+  /*}*/
+
+  /*button:hover {*/
+    /*background-color: #326867;*/
+  /*}*/
+
+  /*button:focus {*/
+    /*-webkit-box-shadow: 0 10px 15px 0 rgba(0, 0, 0, .5);*/
+    /*-moz-box-shadow: 0 10px 15px 0 rgba(0, 0, 0, .5);*/
+    /*box-shadow: 0 10px 15px 0 rgba(0, 0, 0, .5);*/
+    /*outline: none;*/
+  /*}*/
+  /*button:disabled,*/
+  /*button[disabled]{*/
+    /*background-color: #cccccc;*/
+    /*color: #666666;*/
+  /*}*/
+</style>
+

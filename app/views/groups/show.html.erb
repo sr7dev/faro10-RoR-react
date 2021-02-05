@@ -1,0 +1,62 @@
+<% provide(:title, @group.name) %>
+<h1><%= @group.name %></h1>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="pull-right">
+      <div class="btn-group">
+        <%= link_to "Edit", edit_group_path(@group), class: "btn btn-default" %>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <table class="table table-striped">
+      <thead>
+        <th>Clinician Name</th>
+        <th># of Patients</th>
+        <th>Case Complexity</th>
+        <th>Quality</th>
+        <th>Referrals</th>
+        <th>Last Login</th>
+      </thead>
+      <tbody>
+        <% @group.clinicians.each do |clinician| %>
+          <tr>
+            <td><%= clinician.user_id %></td>
+            <td><%= clinician.members.count %></td>
+            <td>Very</td>
+            <td>Low</td>
+            <td>12</td>
+            <td><%= clinician.last_sign_in_at.to_formatted_s(:long) || 'Never' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h2>Clinicians In Network</h2>
+    <table class="table table-striped">
+      <thead>
+        <th>Name</th>
+        <th># of Patients</th>
+        <th class="text-right">Action</th>
+      </thead>
+      <tbody>
+        <% @clinicians.each do |clinician| %>
+          <tr>
+            <td><%= clinician.user_id %></td>
+            <td><%= clinician.members.count %></td>
+            <td class="text-right"><%= link_to "Add to Group", add_clinician_group_path(clinician_id: clinician.id), class: "btn btn-default" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    
+  </div>
+</div>

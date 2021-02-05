@@ -1,0 +1,63 @@
+<%= form_for(@meeting) do |f| %>
+    <% if @meeting.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
+          <ul>
+            <% @meeting.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="row">
+      <div class="col-md-12">
+        <p style="font-size: 20px; text-align: left; margin: 4px">
+          "Starting" your Community Video Meeting adds it to the list of Meetings in-progress for others to see.
+        </p>
+        <br><br>
+
+        <div class="checkbox" id="meeting_privacy_group">
+          <label>
+            <br />
+            <%= f.check_box :privacy %>
+            <b> Private</b>
+          </label>
+        </div>
+        <br>
+        <div class="form group" id="meeting_password_group">
+          <%= f.label :password %><br>
+          <%= f.text_field :password, class: 'form-control' %>
+        </div>
+        <br>
+
+      </div>
+    </div>
+
+    <div class="hidden">
+      <%= f.number_field :user_id, value: current_user.id %>
+      <%= f.text_field :status, value: 'in-progress' %>
+      <%= f.text_field :host, value: current_user.user_id %>
+      <%= f.datetime_select :start_time, value: Time.now %>
+
+      <%= f.number_field :duration, value: 60 %>
+      <%= f.text_field :name, value: @channel.channel_name%>
+      <%= f.text_field :topic, value: 'Live Channel' %>
+      <%= f.text_field :room_name, value: SecureRandom.hex(n=10) %>
+
+
+
+
+    </div>
+
+    <br>
+    <hr>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="actions" style="float: right">
+          <%= f.submit 'Start Meeting', class:"btn btn-primary", style: "border-radius: 0; border-color: #F19A20; background-color: #F19A20; color: white  " %>
+        </div>
+<% end %>
+</div>
+</div>
+

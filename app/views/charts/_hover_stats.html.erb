@@ -1,0 +1,151 @@
+
+<!-- Hover Stats - START -->
+
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="form_hover " style="background-color: #ebf1cb; ">
+        <p style="text-align: center; margin-top: 20px;">
+          <i class="fa fa-check-square-o" style="font-size: 147px;"></i><br /><br>
+          <span style="font-size: 47px;">Sheehan Quality of Life</span>
+        </p>
+        <div class="header" >
+          <div class="blur"></div>
+          <div class="header-text">
+            <div class="panel panel-success" style="height: 370px; border-bottom:solid 12px #df592d;">
+              <div class="panel-heading text-center">
+                <i class="fa fa-plus" style="font-size: 47px;"></i>
+              </div>
+              <div class="panel-body">
+                <div id="genderWorkLifeChart" style="height: 260px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="form_hover " style="background-color: #ebf1cb;">
+        <p style="text-align: center; margin-top: 20px;">
+          <i class="fa fa-exclamation-triangle" style="font-size: 147px;"></i><br /><br>
+          <span style="font-size: 47px;">Hospitalizations</span>
+        </p>
+        <div class="header" >
+          <div class="blur"></div>
+          <div class="header-text">
+            <div class="panel panel-success" style="height: 370px; border-bottom:solid 12px #df592d;">
+              <div class="panel-heading text-center">
+                <i class="fa fa-plus" style="font-size: 47px;"></i>
+              </div>
+              <div class="panel-body">
+                <div id="genderHospitalizationChart" style="height: 260px;"></div>
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="form_hover " style="background-color: #ebf1cb;">
+        <p style="text-align: center; margin-top: 20px;">
+          <i class="fa fa-users" style="font-size: 147px;"></i><br /><br>
+          <span style="font-size: 47px;">Users</span>
+        </p>
+        <div class="header" >
+          <div class="blur"></div>
+          <div class="header-text">
+            <div class="panel panel-success" style="height: 370px; border-bottom:solid 12px #df592d;">
+              <div class="panel-heading text-center">
+                <i class="fa fa-plus" style="font-size: 47px;"></i>
+              </div>
+              <div class="panel-body">
+
+                <div style="height: 260px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--<div class="col-lg-3">-->
+      <!--<div class="form_hover " style="background-color: #ebf1cb;">-->
+        <!--<p style="text-align: center; margin-top: 20px;">-->
+          <!--<i class="fa fa-user-md" style="font-size: 147px;"></i><br /><br>-->
+          <!--<span style="font-size: 47px;">Clinicians</span>-->
+        <!--</p>-->
+        <!--<div class="header" >-->
+          <!--<div class="blur"></div>-->
+          <!--<div class="header-text">-->
+            <!--<div class="panel panel-success" style="height: 370px; border-bottom:solid 12px #df592d;">-->
+              <!--<div class="panel-heading text-center">-->
+                <!--<i class="fa fa-plus" style="font-size: 47px;"></i>-->
+              <!--</div>-->
+              <!--<div class="panel-body">-->
+
+                <!--<div style="height: 260px;"></div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+
+  </div>
+
+<style>
+    .form_hover {
+        padding: 0px;
+        position: relative;
+        overflow: hidden;
+        height: 360px;
+    }
+
+    .form_hover:hover .header {
+        opacity: 1;
+        transform: translateY(-297px);
+        -webkit-transform: translateY(-297px);
+        -moz-transform: translateY(-297px);
+        -ms-transform: translateY(-297px);
+        -o-transform: translateY(-297px);
+    }
+
+    .form_hover img {
+        z-index: 4;
+    }
+
+    .form_hover .header {
+        position: absolute;
+        top: 290px;
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+
+    .form_hover .blur {
+        height: 240px;
+        z-index: 5;
+        position: absolute;
+        width: 100%;
+    }
+
+    .form_hover .caption-text {
+        z-index: 10;
+        color: #fff;
+        position: absolute;
+        height: 360px;
+        text-align: center;
+        top: -20px;
+        width: 100%;
+    }
+</style>
+
+<!-- Hover Stats - END -->

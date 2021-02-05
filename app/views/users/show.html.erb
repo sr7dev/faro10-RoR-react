@@ -1,0 +1,173 @@
+<p id="notice"><%= notice %></p>
+<% provide(:title, @user.user_id) %>
+
+<script src="application.js"></script>
+
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.user_id %>
+      </h1>
+    </section>
+  </aside>
+</div>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-5 col-md-5 col-sm-8 col-xs-9 bhoechie-tab-container">
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
+        <div class="list-group">
+          <a href="#" class="list-group-item active text-center">
+            <h4 class="glyphicon glyphicon-cog"></h4><br/>Account Info
+          </a>
+          <a href="#" class="list-group-item text-center">
+            <h4 class="glyphicon glyphicon-user"></h4><br/>Personal
+          </a>
+          <a href="#" class="list-group-item text-center">
+            <h4 class="glyphicon glyphicon-home"></h4><br/>Address
+          </a>
+          <a href="#" class="list-group-item text-center">
+            <h4 class="glyphicon glyphicon-briefcase"></h4><br/>Clinician
+          </a>
+          <a href="#" class="list-group-item text-center">
+            <h4 class="glyphicon glyphicon-leaf"></h4><br/>Medication
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
+        <!-- flight section -->
+        <div class="bhoechie-tab-content active">
+          <center>
+            <h1 class="glyphicon glyphicon-cog" style="font-size:7em;color:#3399ff"></h1>
+
+            <p>
+              <strong>User:</strong>
+              <%= @user.user_id %>
+            </p>
+
+            <p>
+              <strong>Email:</strong>
+              <%= @user.email %>
+            </p>
+
+            <strong>Current User:</strong>
+            <%= current_user %>
+            </p>
+
+          </center>
+        </div>
+        <!-- train section -->
+        <div class="bhoechie-tab-content">
+          <center>
+            <h1 class="glyphicon glyphicon-user" style="font-size:7em;color:#3399ff"></h1>
+
+
+            <p>
+              <strong>Race:</strong>
+              <%= @user.race %>
+            </p>
+
+            <p>
+              <strong>Gender:</strong>
+              <%= @user.gender %>
+            </p>
+
+            <p>
+              <strong>Nationality:</strong>
+              <%= @user.nationality %>
+            </p>
+
+
+            <p>
+              <strong>Dob:</strong>
+              <%= @user.dob %>
+            </p>
+
+            <p>
+              <strong>Weight:</strong>
+              <%= @user.weight %>
+            </p>
+
+
+            <p>
+              <strong>Occupation:</strong>
+              <%= @user.occupation %>
+            </p>
+
+
+            <p>
+              <strong>Emergency contact name:</strong>
+              <%= @user.emergency_contact_name %>
+            </p>
+
+            <p>
+              <strong>Emergency contact num:</strong>
+              <%= @user.emergency_contact_num %>
+            </p>
+
+          </center>
+        </div>
+
+        <!-- hotel search -->
+        <div class="bhoechie-tab-content">
+          <center>
+            <h1 class="glyphicon glyphicon-home" style="font-size:7em;color:#3399ff"></h1>
+
+            <p>
+              <strong>Zip code:</strong>
+              <%= @user.zip_code %>
+            </p>
+
+            <p>
+              <strong>Country:</strong>
+              <%= @user.country %>
+            </p>
+
+
+          </center>
+        </div>
+        <div class="bhoechie-tab-content">
+          <center>
+            <h1 class="glyphicon glyphicon-briefcase" style="font-size:7em;color:#3399ff"></h1>
+
+            <p>
+              <strong>Clinician:</strong>
+              <%= @user.clinician_id %>
+            </p>
+
+            <p>
+              <strong>Observer:</strong>
+              <%= @user.observer_id %>
+            </p>
+
+          </center>
+        </div>
+        <div class="bhoechie-tab-content">
+          <center>
+            <h1 class="glyphicon glyphicon-leaf" style="font-size:7em;color:#3399ff"></h1>
+            <p>
+              <strong>Clinician:</strong>
+              <%= @user.clinician_id %>
+            </p>
+
+            <p>
+              <strong>Diagnosis:</strong>
+              <%= @user.diagnosis %>
+            </p>
+
+
+          </center>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

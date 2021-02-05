@@ -1,0 +1,57 @@
+<table id="clinician_entry_table"  class="dataTable table-condensed table-striped table-bordered">
+  <thead>
+    <tr>
+      <th style="width: 15%">
+        Clinician
+      </th>
+      <th style="width: 9%">
+        Apparent Mood
+      </th>
+      <th style="width: 9%">
+        Social Interaction
+      </th>
+      <th style="width: 9%">
+        Danger to Others
+      </th>
+      <th style="width: 9%">
+        Suicidal Behavior
+      </th>
+      <th style="width: 30%">
+        Clinician Comments
+      </th>
+      <th style="width: 9%">
+        Reported Date
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% clinician_entries.each do |ce| %>
+      <tr>
+        <td>
+          <%= ce.clinician.user_id %>
+        </td>
+        <td>
+
+          <!--scales defined in Scorecard Helper-->
+
+          <%= impairment_scale(ce.feeling)  %>
+        </td>
+        <td>
+          <%= impairment_scale(ce.social_interaction) %>
+        </td>
+        <td>
+          <%= suicide_scale(ce.dangerous) %>
+        </td>
+        <td>
+          <%= suicide_scale(ce.suicide_behavior) %>
+        </td>
+        <td>
+          <%= ce.journal %>
+        </td>
+        <td>
+          <%= ce.observed_at.strftime("%A, %B %d, %Y") %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

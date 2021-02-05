@@ -1,0 +1,109 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/vaporware/faro10
+    docker:
+      - image: circleci/ruby:2.3.7-node
+        environment:
+          PGHOST: localhost
+          PGUSER: faro10
+          RAILS_ENV: test
+      - image: postgres:10.5
+        environment:
+          POSTGRES_USER: faro10
+          POSTGRES_DB: faro10_test
+          POSTGRES_PASSWORD: ""
+    steps:
+      - checkout
+
+      - run:
+          name: Install system dependencies
+          command: sudo apt-get install qt5-default libqt5webkit5-dev gstreamer1.0-plugins-base gstreamer1.0-tools gstreamer1.0-x
+
+      - run:
+          name: Which bundler?
+          command: bundle -v
+
+      - restore_cache:
+          keys:
+            - faro10-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - faro10-
+
+      - run:
+          name: Bundle install
+          command: |
+            bundle install --deployment \
+                           --retry=3 \
+                           --jobs=3
+
+      - save_cache:
+          key: faro10-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run: 
+          name: Wait for database
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - run: cp .sample.env .env
+
+      - run:
+          name: Database setup
+          command: bundle exec rake db:setup
+
+      # precompile webpacker scripts for test env
+      - run: yarn install
+      - run: NODE_ENV=test bundle exec rake webpacker:compile
+
+      - run:
+          name: Run tests
+          command: COVERAGE=true bundle exec rake
+
+      - store_artifacts:
+          path: coverage
+
+  deploy:
+    working_directory: ~/vaporware/faro10
+    docker:
+      - image: circleci/ruby:2.3.7-node
+        environment:
+          PGHOST: localhost
+          PGUSER: faro10
+          RAILS_ENV: test
+      - image: postgres:10.5
+        environment:
+          POSTGRES_USER: faro10
+          POSTGRES_DB: faro10_test
+          POSTGRES_PASSWORD: ""
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "97:8f:00:2e:c5:3d:40:f1:0a:74:bb:d5:aa:4e:cd:2b"
+
+      - run:
+          name: Add Heroku to know hosts
+          command: ssh-keyscan -H heroku.com >> ~/.ssh/known_hosts
+
+      - run:
+          name: Run setup script
+          command: bash .circleci/setup-heroku.sh
+
+      - run:
+          name: Deploy Master to Heroku
+          command: |
+            heroku git:remote -a $HEROKU_APP_NAME
+            git push --force git@heroku.com:$HEROKU_APP_NAME.git HEAD:refs/heads/master
+            heroku run rails db:migrate
+            heroku restart
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy: 
+          requires:
+            - build
+          filters:
+            branches:
+              only: master 

@@ -1,0 +1,98 @@
+
+<h2>
+  Alert Details
+</h2>
+<hr>
+<div class="row">
+  <div class="col-md-6">
+    <p>
+      <strong>Alert Type:</strong>
+      <span style="color: #4FA59F; margin-left: 8px"><%= @alert.alert_type %></span>
+    </p>
+  <p>
+    <strong>Member Name:</strong>
+    <span style="color: #4FA59F; margin-left: 8px"><%= @alert.member %></span>
+  </p>
+
+  <p>
+    <strong>Occurred:</strong>
+    <span style="color: #4FA59F; margin-left: 8px"><%= @alert.created_at.in_time_zone(current_user.time_zone).strftime("%A %l:%M %P, %B %d, %Y ") %></span>
+  </p>
+
+  <p>
+    <strong>Total Alerts for this member:</strong>
+    <span style="color: #4FA59F; margin-left: 8px"><%= @alerts.where(member_id: @patients).count %></span>
+  </p>
+
+  <p>
+    <strong>Total Self-Harm entries:</strong>
+    <span style="color: #4FA59F; margin-left: 8px"><%= @self_harm_total %></span>
+  </p>
+
+  <p>
+    <strong>Total Suicidal Thought entries:</strong>
+    <span style="color: #4FA59F; margin-left: 8px"><%= @suicidal_thoughts_count %></span>
+  </p>
+
+    <!--<p>-->
+      <!--<strong>Most extreme Mood condition:</strong>-->
+      <!--<span style="color: #4FA59F; margin-left: 8px"><= @mood_sum %></span>-->
+    <!--</p>-->
+
+
+
+  </div>
+  <div class="col-md-6">
+ Entry of Concern
+    <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey" data-toggle="modal" data-target="#PatientMoodMathModal" >
+
+      <div class="panel-body text-left">
+
+        <%= @alert.alert_body %> <br><br>
+        <span class="badge"><%= "Posted #{@alert.created_at.in_time_zone(current_user.time_zone).strftime("%A %l:%M %P, %B %d, %Y ")}" %></span>
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<br>
+<br>
+
+
+<h4><b>
+  Suggested Action
+</b></h4>
+<p>
+  You have received this alert because you have been added and approved by <%= @alert.member %> as an emergency contact.<br>
+  Please reach out to <%= @alert.member %> and confirm they are ok.
+
+</p>
+<br>
+<h4><b>
+  Other Information
+</b></h4>
+
+  <ul>
+    <li>  <%= @alert.member %> has expressed Suicidal Thoughts<span style="color: #4FA59F; margin-left: 8px"><%= @suicidal_thoughts_count %></span> times
+      since .</li>
+
+
+    <li>  <%= @alert.member %> has reported a severe mood condition <span style="color: #4FA59F; margin-left: 8px"><%= @bad_mood_sum %></span> times
+      since .</li>
+
+
+    <li>  <%= @alert.member %> has recorded that they have physically harmed themselves <span style="color: #4FA59F; margin-left: 8px"><%= @self_harm_total %></span> times
+      since .</li>
+
+  </ul>
+
+
+
+
+<span style="display: inline-block; color: black; text-align: center; padding: 10px 16px; text-decoration: none; float: left;  ">
+        <%= link_to "Back", alerts_path %>
+
+    </span>

@@ -1,0 +1,81 @@
+
+<div class="row">
+
+</div>
+<h3>Videos</h3>
+
+<div class="row">
+  <div class="col-md-8">
+    <div class="panel with-nav-tabs">
+      <div class="panel-heading">
+        <ul class="nav nav-tabs">
+          <li><a href="#memberVideos" data-toggle="tab">Members <span class="badge">4</span></a></li>
+          <li><a href="#caregiverVideos" data-toggle="tab">Care Giver <span class="badge">1</span></a></li>
+          <li class="Complete"><a href="#clinicianVideos" data-toggle="tab">Clinicians <span class="badge">3</span></a></li>
+        </ul>
+      </div>
+
+      <div class="panel-body">
+        <div class="tab-content">
+          <div class="tab-pane fade in active" id="memberVideos">
+            <h3> <i class="fa fa-file-video-o fa-1x" aria-hidden="true"></i><span style="margin-left: 3px"> <%= link_to "Create your account", src='https://www.youtube.com/watch?v=841bPaQg9EU', :target => "_blank" %> </span></h3><br>
+            <h3> <i class="fa fa-file-video-o fa-1x" aria-hidden="true"></i><span style="margin-left: 3px"> <%= link_to "Add an Observer", src='https://www.youtube.com/watch?v=bwU2P_vWwV4', :target => "_blank" %> </span></h3><br>
+            <h3> <i class="fa fa-file-video-o fa-1x" aria-hidden="true"></i><span style="margin-left: 3px"> <%= link_to "Approve Clinician", src='https://www.youtube.com/watch?v=__nKMLWOb_o', :target => "_blank" %> </span></h3><br>
+            <h3> <i class="fa fa-file-video-o fa-1x" aria-hidden="true"></i><span style="margin-left: 3px"> <%= link_to "Create a reminder in the mobile app", src='https://www.youtube.com/watch?v=BU0NWRHCi0k', :target => "_blank" %> </span></h3><br>
+          </div>
+
+          <div class="tab-pane fade" id="caregiverVideos">
+            <h3> <i class="fa fa-file-video-o fa-1x" aria-hidden="true"></i><span style="margin-left: 3px"> <%= link_to "Care Giver Observations", src='https://youtu.be/s9rM8TYN2Fk', :target => "_blank" %> </span></h3><br>
+          </div>
+
+
+          <div class="tab-pane fade" id="clinicianVideos">
+            <h3> <i class="fa fa-file-video-o fa-1x" aria-hidden="true"></i><span style="margin-left: 3px"> <%= link_to "Add Client", src='https://www.faro10.com/assets/add_client-05803e2ec24389a0e8d01f6725af973a7456a4bbdc9d695ff3e673c5d59caa6a.pdf', :target => "_blank" %> </span></h3><br>
+            <h3> <i class="fa fa-file-video-o fa-1x" aria-hidden="true"></i><span style="margin-left: 3px"> <%= link_to "Assign Exercise", src='https://www.faro10.com/assets/assign_exercise-6317e75af86d2e4cba0c0dc33e0140b3274f17c63003e34dcf059a84c4ce845d.pdf', :target => "_blank" %> </span></h3><br>
+            <h3> <i class="fa fa-file-video-o fa-1x" aria-hidden="true"></i><span style="margin-left: 3px"> <%= link_to "Client request Approval", src='https://www.youtube.com/watch?v=__nKMLWOb_o', :target => "_blank" %> </span></h3><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="well well-sm">
+      <%= form_tag contact_messages_path do %>
+          <div class="row">
+            <div class="col-md-12">
+              <h3 style="text-align: center">Contact Us</h3><br>
+              <div class="form-group">
+                <%= label_tag 'name' %>
+                <%= text_field_tag 'name', nil, placeholder: 'Enter name', id: 'name', class: 'form-control', required: true %>
+              </div>
+              <div class="form-group">
+
+                <label for="email">Email Address</label>
+                <%= text_field_tag 'email', nil, placeholder: 'Enter email', id: 'email', class: 'form-control', required: true %>
+
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <select id="subject" name="subject" class="form-control" required="required">
+                  <option value="na" selected="">Choose One:</option>
+                  <option value="schedule demo">Schedule Demo</option>
+                  <option value="general customer service">General Customer Service</option>
+                  <option value="suggestions">Suggestions</option>
+                  <option value="product support">Product Support</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="name">Message</label>
+                <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required" placeholder="Message"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary pull-right" style="background-color: #326867; border-radius: 0" id="btnContactUs">
+                Send Message
+              </button>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

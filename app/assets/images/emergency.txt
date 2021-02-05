@@ -1,0 +1,3 @@
+Automated alerts sent to
+emergency contact person
+when necessary

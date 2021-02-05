@@ -1,0 +1,18 @@
+<header id="standard-header" class="navbar navbar-default navbar-fixed-top" >
+  <div class="container-fluid">
+    <%= link_to root_path, id: "logo" do %>
+       <span style="font-size: 1.7em; margin-left: 15px">TelaPeer</span>  by  <span class="ha">Faro</span><span class="ha" id="ten">10</span>
+    <% end %>
+
+    <nav class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Register", new_member_registration_path %></li>
+        <li>
+          <%= link_to "Log In", new_user_session_path, class: "btn btn-primary", style: "border-radius: 14; border-color: #4FA59F; background-color: #4FA59F; color: white; font-weight: bold;
+                                                                                        width: 88px; padding: 6px; margin-top: 5px; margin-left: 13px" %>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+

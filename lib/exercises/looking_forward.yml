@@ -1,0 +1,30 @@
+category: exercise
+longname: Looking Forward
+shortname: lf
+logo: right.gif
+description: There's evidence that imagining our "best possible self" can help to improve optimism, and motivation for change. In this exercise, you'll be asked to look forward, and imagine an ideal future for yourself
+
+questions:
+  - position: 1
+    style: free_response
+    text: Choose a timeframe to think about. For example, use a time period (e.g. "next month"), or a life event (e.g. "during college").
+
+  - position: 2
+    style: free_response
+    text: "List your accomplishments from this timeframe"
+
+  - position: 3
+    style: free_response
+    text: "Describe a great day from this timeframe"
+
+  - position: 4
+    style: free_response
+    text: How have you grown during this timeframe?
+
+  - position: 5
+    style: free_response
+    text: What are you grateful for from this timeframe?
+
+  - position: 6
+    style: free_response
+    text: What was a challenge that you overcame during this timeframe?

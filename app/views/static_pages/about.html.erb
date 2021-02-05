@@ -1,0 +1,149 @@
+<% provide(:title, 'Faro10 - We are defining how to effectively measure behavior health') %>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        background-color: #F0F0F0F0;
+      }
+    </style>
+
+    <!-- Facebook Pixel Code -->
+    <script>
+
+        !function(f,b,e,v,n,t,s)
+
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+
+            n.queue=[];t=b.createElement(e);t.async=!0;
+
+            t.src=v;s=b.getElementsByTagName(e)[0];
+
+            s.parentNode.insertBefore(t,s)}(window,document,'script',
+
+            'https://connect.facebook.net/en_US/fbevents.js');
+
+
+        fbq('init', '1994953770803705');
+
+        fbq('track', 'PageView');
+
+    </script>
+
+    <noscript>
+
+      <img height="1" width="1"
+
+           src="https://www.facebook.com/tr?id=1994953770803705&ev=PageView
+
+    &noscript=1"/>
+
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+
+  </head>
+</html>
+<br>
+<br>
+
+<style>
+  .main-bg-back-1{
+    background:url(<%= asset_path('pexels_photo_home.jpg' ) %>) no-repeat;
+    background-size:cover;
+    opacity: .9;
+  }
+
+</style>
+
+
+<div class="row">
+  <div class="main-bg-back-1" style="min-height: 320px">
+    <br>
+    <div class="col-md-12" style="margin-left: 2%; vertical-align: bottom  ">
+      <h1 style="color: white; vertical-align: middle"><b>We are on a mission to make Peer Support Simple, Comfortable and Familiar </b>
+      </h1>
+    </div>
+  </div>
+</div>
+<br><br>
+<div class="row">
+<!--  <div class="col-md-3 text-center">-->
+<!--    <div class="thumbnail" style="border-radius: 0;" >-->
+<!--      <img class="img-responsive" src='https://<%#= ENV.fetch("AWS_S3_BUCKET") %>/josh.jpg' alt="">-->
+<!--    </div>-->
+<!--  </div>-->
+  <div class="col-md-6">
+    <p><b>We are a growing veteran-owned company in North Carolina </b> </p>
+    <p>
+      Our company was founded in 2014 when our founder had a close family member hospitalized for mental health reasons.
+      It was during this experience that he realized how challenging our behavioral health system can be.
+      Navigating clinicians, specialists, insurance, medications, and appointments is confusing and costly.
+      While we know we can't fix everything, if we can make even a small improvement, then we've done something to be proud of.
+    </p>
+  </div>
+  <div class="col-md-6">
+    <p><b> We want to be part of something that matters </b> </p>
+    <p>
+      Behavioral Health impacts millions of people.  We believe in what we're doing and know we can make a difference.
+      Our Peer Support technology and Behavioral Health Management software is simple to use, freely available, and improves how support is delivered and measured.
+    </p>
+  </div>
+</div>
+<br><br><br>
+<div class="row">
+  <div class="col-md-6">
+    <p><b>Peer Support is a proven but underutilized wellness approach</b></p>
+    <p style="margin-left: 20px">Research shows significant benefits:</p>
+    <ul>
+      <li style="margin-bottom: 10px">
+        Improves quality of life, including reduction of social isolation and anxiety/stress
+      </li>
+      <li style="margin-bottom: 10px">
+        Decreases hospitalization admissions, inpatient days, and overall cost
+      </li>
+      <li style="margin-bottom: 10px">
+        Improves engagement experience and satisfaction with services and support
+      </li>
+      <li style="margin-bottom: 10px">
+        Applicable for behavioral health, addiction, and physical health/chronic disease treatment and recovery programs
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-6" style="opacity: .6">
+    <%= image_tag('support_group.jpg', class: "img-responsive", style: "max-height: 240px"   ) %>
+  </div>
+</div>
+<br><br><br>
+<div class="row">
+  <div class="col-md-6" style="opacity: .6">
+    <%= image_tag('depression_inline_image.jpg', class: "img-responsive", style: "max-height: 340px"   ) %>
+  </div>
+  <div class="col-md-6">
+    <br><br>
+    <p><b>Remove barriers to Peer Support</b></p>
+    <p></p>
+    <ul>
+      <li style="margin-bottom: 10px">
+        The first virtual, on-demand, and dedicated peer-to-peer support app
+      </li>
+      <li style="margin-bottom: 10px">
+        Enables existing peer support groups to expand access to those that are not able to attend sessions at a fixed location (replaces or complements in-location sessions)
+      </li>
+      <li style="margin-bottom: 10px">
+        A safe, no-barrier opportunity for people to receive help regardless of their geographical or financial situation
+      </li>
+      <li style="margin-bottom: 10px">
+        Measures outcomes, attendee experience, and service quality
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+<%= render "layouts/footer" %>

@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Moods</h1>
+
+<table>
+  <thead>
+    <tr>
+
+      <th>USER ID </th>
+      <th>Mood</th>
+      <th>Created At:</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @moods.each do |mood| %>
+      <tr>
+
+
+        <td><%= mood.user_id %></td>
+        <td><%= mood.mood %></td>
+        <td><%= mood.created_at %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mood', new_mood_path %>

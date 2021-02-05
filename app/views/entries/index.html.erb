@@ -1,0 +1,205 @@
+<p id="notice"><%= notice %></p>
+
+<h1>My Dashboard</h1>
+
+<script type="text/javascript" charset="UTF-8"></script>
+<script src="highcharts.js"></script>
+<script src="exporting.js"></script>
+<script src="application.js"></script>
+
+<%= content_tag :div, "", id: "mood_chart", data: {entries: @entries} %>
+
+<!-- KPI Bar-->
+<div class="container">
+
+  <div class="row">
+    <div class="col-xs-6 col-md-3">
+
+      <div class="panel status panel-danger">
+        <div class="panel-heading">
+          <h1 class="panel-title text-center">3.5</h1>
+        </div>
+        <div class="panel-body text-center">
+          <strong>Avg Mood (1-7)</strong>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-xs-6 col-md-3">
+
+      <div class="panel status panel-warning">
+        <div class="panel-heading">
+          <h1 class="panel-title text-center">2.1</h1>
+        </div>
+        <div class="panel-body text-center">
+          <strong>Avg Energy (1-4)</strong>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-xs-6 col-md-3">
+
+      <div class="panel status panel-success">
+        <div class="panel-heading">
+          <h1 class="panel-title text-center">23</h1>
+        </div>
+        <div class="panel-body text-center">
+          <strong>Avg Exercise (min)</strong>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="col-xs-6 col-md-3">
+
+      <div class="panel status panel-info">
+        <div class="panel-heading">
+          <h1 class="panel-title text-center">8</h1>
+        </div>
+        <div class="panel-body text-center">
+          <strong>Anxiety Attacks this week</strong>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>
+
+<!-- END KPI Bar-->
+<br>
+
+<div id="container" style="height: 300px"></div>
+
+<script>
+    $(function () {
+        var h=new Highcharts.Chart({
+            chart: {
+                //alignTicks: false,
+                type: 'line',
+                renderTo: "container"
+            },
+            xAxis: {
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            },
+            title: {
+                text: 'AVG Mood vs Exercise'
+            },
+            yAxis: [{
+                title: {
+                    text: 'Mood'
+                },
+                gridLineWidth: 0
+            }, {
+                title: {
+                    text: 'Exercise'
+                },
+                opposite: true
+            }],
+            legend: {
+                layout: 'vertical',
+                backgroundColor: '#FFFFFF',
+                floating: true,
+                align: 'left',
+                x: 100,
+                verticalAlign: 'top',
+                y: 70
+            },
+            tooltip: {
+                formatter: function() {
+                    return '<b>'+ this.series.name +'</b><br/>'+
+                            this.x +': '+ this.y;
+                }
+            },
+            plotOptions: {
+            },
+            series: [{
+                data: [2.9, 5, 6.4, 2, 4.0, 6.0, 5.6, 8.5, 6.4, 4.1, 5.6, 4.4]
+
+            }, {
+                data: [30, 60, 45, 45, 60, 60, 50, 0, 0, 30, 35.6, 54.4],
+                yAxis: 1
+
+            }]
+        });
+    });
+
+</script>
+
+<br/>
+<br/>
+
+<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+<script>
+
+    $(function () {
+        var h=new Highcharts.Chart({
+            chart: {
+                type: 'area',
+                renderTo: "container2",
+                spacingBottom: 30
+            },
+            title: {
+                text: 'User Compared to AVG *'
+            },
+            subtitle: {
+                text: '* Jane\'s mood is unknown',
+                floating: true,
+                align: 'right',
+                verticalAlign: 'bottom',
+                y: 15
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 150,
+                y: 100,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+            },
+            xAxis: {
+                categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+            },
+            yAxis: {
+                title: {
+                    text: 'Y-Axis'
+                },
+                labels: {
+                    formatter: function () {
+                        return this.value;
+                    }
+                }
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.series.name + '</b><br/>' +
+                            this.x + ': ' + this.y;
+                }
+            },
+            plotOptions: {
+                area: {
+                    fillOpacity: 0.5
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'AVG of all USERS',
+                data: [0, 1, 4, 4, 5, 2, 3, 5]
+            }, {
+                name: 'Jane',
+                data: [2, 3, 5, null, 6, 7, 5, 4]
+            }]
+        });
+    });
+
+</script>
+
+
+<br/>
+<br/>

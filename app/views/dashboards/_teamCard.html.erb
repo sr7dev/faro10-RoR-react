@@ -1,0 +1,48 @@
+<div id="team-card" class="col-xs-6  col-md-1" style="min-width: 385px; min-height: 425px">
+  <div class="dashboard-card" style="background-color: #326867">
+    <div class="card-header">
+      <h1 class="card-header-text">My Team</h1>
+    </div>
+    <div class="card-menu">
+      <%= image_tag('video_temp.png') %>
+      <button type="button" class="card-video-button" data-toggle="modal" data-target="#myTeamInfoModal"><%= image_tag('help.png') %></button>
+    </div>
+    <div class="card-image">
+      <a href="/users/team"><%= image_tag('myteam.png')%></a>
+    </div>
+    <div class="card-notification">
+      <a href="#teamAlert" data-toggle="collapse">
+        <%if !@teamMessage.nil?%>
+            <%=image_tag('alert.png', :title => @teamMessage)%>
+        <%end%>
+      </a>
+    </div>
+    <div id="teamAlert" class="collapse card-message">
+      <%=@teamMessage%>
+    </div>
+    <div class="card-info">
+      Active Clinicians: <%=@my_active_clinician_count%><br/>
+      Pending Clinicians: <%=@my_pending_clinician_count%><br/>
+      Observers: <%=@my_observers_count%>
+    </div>
+    <div class="card-action-top">
+      <%=image_tag('spacer.png')%>
+      <div class="card-action-text">
+
+      </div>
+    </div>
+    <div class="card-action-middle">
+      <%=image_tag('spacer.png')%>
+      <div class="card-action-text">
+
+      </div>
+    </div>
+    <div class="card-action-bottom">
+      <a href="/users/team"><%=image_tag('manage.png')%>
+        <div class="card-action-text">
+          MANAGE<BR/>TEAM
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

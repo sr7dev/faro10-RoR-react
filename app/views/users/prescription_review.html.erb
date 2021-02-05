@@ -1,0 +1,72 @@
+<!--<div class="row">-->
+<!--<a href="/entries/new"><h2 style="display: inline; color: red"> My Entries </h2>  |   <a href="/users/observations"><h2 style="display: inline; color: red"><b> Observer Entries </b></h2></a></a>-->
+<!--</div>-->
+<!--<hr>-->
+
+<div class="container" style="width: 100%">
+
+
+  <div class="row">
+
+    <% if @observations.meds_visible.any? %>
+        <div class="col-md-12">
+          <h3> Observee Medications</h3>
+          <table id= "observees" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover table-highlight table-bordered"  >
+            <thead>
+            <tr>
+              <th>Observee</th>
+              <th>Drug</th>
+              <th>Dosage (MG)</th>
+              <th>Started</th>
+              <th>Time between doses (Hrs)</th>
+              <th>Duration</th>
+              <th>Times Taken</th>
+              <th>Med Consistency</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @observations.meds_visible.each do |observation| %>
+                <% observation.observee.prescriptions.unexpired.each do |prescription| %>
+                    <tr>
+                      <td><%= observation.observee.user_id %></td>
+                      <td><i class="fa fa-medkit"></i> <%= prescription.drug.friendly_name %></td>
+                      <td><%= prescription.dosage %></td>
+                      <td><i class="fa fa-calendar"></i> <%= prescription.started.strftime("%A, %B %d, %Y") %></td>
+                      <td><i class="fa fa-clock-o"></i> <%= prescription.reminder %></td>
+                      <td><i class=""></i> <%= distance_of_time_in_words(prescription.started, Time.now)  %></td>
+                      <td><%= prescription.total_times_taken %></td>
+                      <td><%= prescription.consistency.to_s + "%" %></td>
+                    </tr>
+                <% end %>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+
+        <!--MEDICATION CONSISTENCY COLUMN CHART-->
+        <div class="col-md-12">
+          <div class="panel panel-default" style="border-radius: 0" >
+            <div class="panel-heading" style="background-color: #fff">
+              <h3 style="color: #556870;"  align="center"><b>Prescription Consistency</b></h3>
+            </div>
+            <div class="panel-body">
+              <div class="col-md-12">
+                <div id="observeeConsistencyChart" style="min-width: 310px; height: 300px; margin: 0 auto"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--< end %>-->
+
+        <br>
+        <br>
+    <% end %>
+
+    <br>
+    <br>
+    <div class="row">
+      <p style="color: white">Test</p>
+    </div>
+  </div>
+</div>

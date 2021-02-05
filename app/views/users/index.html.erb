@@ -1,0 +1,44 @@
+<% provide(:title, 'All users') %>
+
+<h1>All Users</h1>
+
+<table>
+  <thead>
+  <tr>
+
+    <th>User</th>
+    <th>Email</th>
+    <th>Activated</th>
+    <th>Type</th>
+    <!--<th>Clinician</th>-->
+    <!--<th>Observer</th>-->
+    <!--<th>Race</th>-->
+    <!--<th>Gender</th>-->
+    <!--<th>Dob</th>-->
+    <!--<th>Zip code</th>-->
+    <!--<th colspan="3"></th>-->
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @users.each do |user| %>
+      <tr>
+
+        <td><%= user.user_id %></td>
+        <td><%= user.email %></td>
+        <td><%=user.confirmed_at.present? %></td>
+        <td><%=user.type %></td>
+
+        <!--<td><%= user.clinician_id %></td>-->
+        <!--<td><%= user.observer_id %></td>-->
+        <!--<td><%= user.race %></td>-->
+        <!--<td><%= user.gender %></td>-->
+        <!--<td><%= user.dob %></td>-->
+        <!--<td><%= user.zip_code %></td>-->
+        <!--<td><%= link_to 'Show', user %></td>-->
+        <!--<td><%= link_to 'Edit', edit_user_path(user) %></td>-->
+        <!--<td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+      </tr>
+  <% end %>
+  </tbody>
+</table>

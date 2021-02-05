@@ -1,0 +1,54 @@
+<h1>Meetings Test Page</h1>
+
+<div class="col-md-4">
+  <span></span>
+  <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey">
+    <div class="panel-body text-center">
+      <p style="font-size: 28px; text-align: left; margin: 4px  "><i class="fa fa-calendar fa-1x" aria-hidden="true" style="margin-right: 17px"></i>
+        <%= link_to 'Schedule Meeting', new_meeting_path %>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="margin-left: 20px; margin-right: 20px">
+  <div class="col-md-12">
+    <table id= "meetingsTable" cellpadding="0" cellspacing="0" border="0" class="dataTable table-striped table-hover table-highlight table-bordered"  >
+      <thead>
+      <tr>
+        <th>Join</th>
+        <th>Meeting Type</th>
+        <th>Meeting Name</th>
+        <th>Topic</th>
+        <th>Special Focus</th>
+        <th>Start time</th>
+        <th>Duration</th>
+        <th>Status</th>
+        <th>Private</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @meetings.each do |meeting| %>
+          <tr>
+            <td><%= link_to 'Join', meeting %></td>
+            <td><%= meeting.meeting_type %></td>
+            <td><%= meeting.name %></td>
+            <td><%= meeting.topic %></td>
+            <td><%= meeting.special_focus %></td>
+            <td><%= meeting.start_time %></td>
+            <td><%= meeting.duration %></td>
+            <td><%= meeting.status %></td>
+            <td><%= meeting.privacy %></td>
+            <td>
+
+              <%= link_to 'Edit', edit_meeting_path(meeting) %> |
+              <%= link_to 'Cancel', meeting, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <br>
+  </div>
+</div>

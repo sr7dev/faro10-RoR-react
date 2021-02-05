@@ -1,0 +1,26 @@
+<table id="observer_entries_td" cellpadding="0" cellspacing="0" border="0" class="dataTable table-striped table-hover table-highlight table-bordered">
+  <thead>
+  <tr>
+    <th>Observee</th>
+    <th>Feedback to Clinician</th>
+    <th>Clinician Response</th>
+    <th>Recorded At</th>
+
+  </tr>
+  </thead>
+  <tbody>
+     <% if observer_entries.present? %>
+      <% observer_entries.each do |oe| %>
+         <% if oe.journal.present? %>
+          <tr>
+            <td><%= oe.observee %></td>
+            <td><%= oe.journal %></td>
+            <td><%= oe.clinician_response %></td>
+            <td><%= oe.observed_at.strftime("%A, %B %d, %Y") %></td>
+          </tr>
+          <% end %>
+      <% end %>
+     <% end %>
+  </tbody>
+</table>
+

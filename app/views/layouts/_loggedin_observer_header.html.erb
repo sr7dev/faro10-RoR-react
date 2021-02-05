@@ -1,0 +1,43 @@
+<header class="navbar navbar-fixed-top navbar-default" id="logged-in-header">
+  <div class="container-fluid">
+    <%= link_to "Faro10 Portal", dashboard_path, id: "logo" %>
+    <nav>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "My Dashboard",   '/dashboard' %></li>
+
+        <li class="no-border">
+          <%= link_to "TelaPeer", '/meetings' %>
+        </li>
+
+        <!--<li class="no-border">-->
+          <!--<%= link_to "Appointments", schedule_path(current_user) %>-->
+        <!--</li>-->
+
+        <!--<li class="no-border">-->
+          <!--<%= link_to "Prescriptions",   '/users/prescription_review' %>-->
+        <!--</li>-->
+
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-cogs"></i>
+            Account <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="no-border">
+              <%= link_to "Settings", edit_member_path(current_user) %>
+            </li>
+            <li class="no-border">
+              <%= link_to "My Activities", my_activities_path(current_user) %>
+            </li>
+            <li class="divider"></li>
+            <li class="no-border">
+              <%= link_to "Log out", destroy_user_session_path, method: "delete" %>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

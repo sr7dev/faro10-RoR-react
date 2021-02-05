@@ -1,0 +1,28 @@
+
+
+<table id= "observer_entries_summary" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover table-highlight table-bordered">
+  <thead>
+  <tr>
+    <th style="width: 80%">
+      Observer Comments
+    </th>
+    <th style="width: 20%">
+      Observed At
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <% if @observer_journal_entries.present? %>
+    <% observer_entries.each do |oe| %>
+        <tr>
+          <td>
+            <%= oe.journal %>
+          </td>
+          <td>
+            <%= oe.observed_at.strftime("%m/%d/%Y") %>
+          </td>
+        </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,66 @@
+/*Responsive Tables*/
+
+th {
+    font-weight: bold;
+}
+
+td,
+th {
+    padding: 6px;
+    text-align: left;
+}
+
+.responsive-header {
+    display: none;
+}
+
+
+/*Mobile*/
+
+.responsive-table.mobile,
+.mobile thead,
+.mobile tbody,
+.mobile th,
+.mobile td,
+.mobile tr {
+    display: block;
+}
+
+.mobile thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}
+
+.mobile tr {
+    border: 1px solid #ccc;
+}
+
+.mobile td {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    text-align: right;
+    word-wrap: break-word;
+}
+
+.mobile .responsive-header {
+    font-size: 18px !important;
+    color: #444444 !important;
+    font-weight: bold;
+    display: inline;
+    float: left;
+    padding: 0px !important;
+    padding-left: 5px!important;
+    border:none;
+;
+}
+
+.mobile td:before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+}

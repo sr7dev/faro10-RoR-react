@@ -1,0 +1,37 @@
+<p>Hello,</p>
+
+<p>
+  You have been invited by a clinician to be a member of Faro10.  As a member,
+  you will have access to many capabilities including:
+</p>
+
+<ul>
+  <li>Digitally track mental health and wellness</li>
+  <li>Measure success of treatment with Charts, Trends and Graphs</li>
+  <li>Mobile app for easy tracking</li>
+  <li>Shared Calendar with Clinicians</li>
+  <li>Add Observers to your profile to provide Clinicians a holistic view of your well-being</li>
+  <li>Configure reminders for tracking medications and health</li>
+  <li>Message Center for quick messages from your Clinicians</li>
+</ul>
+
+<p>Find us in the AppStore</p>
+<%= link_to "AppStore", 'https://itunes.apple.com/us/app/faro10/id1080204499?mt=8' %>
+
+<p>Find us in Google Play </p>
+<%= link_to "Google Play", 'https://play.google.com/store/apps/details?id=com.faro10' %>
+
+
+<p> The attached guide provides instructions on how to get started </p>
+<p>
+  <%= link_to "Quick Start Guide", asset_path("client_quick_start_guide.pdf"), :target => "_blank" %>
+</p>
+
+
+
+
+<p>Or follow this link to accept the invitation, and register in your browser.</p>
+<%= link_to "Acccept MeetingInvitation", @invitation_url %>
+
+<p>Thank you,</p>
+<h1>Faro10</h1>

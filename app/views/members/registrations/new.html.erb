@@ -1,0 +1,116 @@
+<% provide(:title, 'Sign up') %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        background-color: #F0F0F0F0;
+      }
+    </style>
+    <!-- Facebook Pixel Code -->
+    <script>
+
+        !function(f,b,e,v,n,t,s)
+
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+
+            n.queue=[];t=b.createElement(e);t.async=!0;
+
+            t.src=v;s=b.getElementsByTagName(e)[0];
+
+            s.parentNode.insertBefore(t,s)}(window,document,'script',
+
+            'https://connect.facebook.net/en_US/fbevents.js');
+
+
+        fbq('init', '1994953770803705');
+
+        fbq('track', 'PageView');
+
+    </script>
+
+    <noscript>
+
+      <img height="1" width="1"
+
+           src="https://www.facebook.com/tr?id=1994953770803705&ev=PageView
+
+        &noscript=1"/>
+
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+  </head>
+</html>
+<!--<body  style="background-color: #4FA59F ">-->
+
+<br>
+<div class="container-fluid">
+ <div class="row" style="vertical-align: middle">
+   <div class="col-md-3 hidden-xs"  style="margin-left: -14px">
+     <%= image_tag('smoke.png' ) %>
+   </div>
+   <div class="col-md-3 hidden-xs"><br>
+      <%= image_tag('registration_image.png', class: "img-responsive", style: "max-height: 600px" ) %>
+   </div>
+  <div class="col-md-4">
+    <div class="well" style="margin-top: 3%; border-radius: 0; background-color: white ">
+
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h3 style="text-align: center; font-weight: bold">Create Account</h3>
+          <h2 style="font-size: small"> Please complete to create your account.</h2>
+
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
+
+
+              <div class="form-group">
+                <%= f.text_field :user_id, placeholder: "Username", class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= f.email_field :email, placeholder: "Email Address", class: 'form-control' %>
+              </div>
+              <div class="form-group">
+                <%= f.password_field :password, placeholder: "Password", class: 'form-control' %>
+              </div>
+              <p style="font-size: small; color: #777777">
+                <b>Password must: </b><br>
+                <ul>
+                  <li style="font-size: small; color: #777777">be at least 8-15 characters </li>
+                  <li style="font-size: small; color: #777777">have at least 1 uppercase letter </li>
+                  <li style="font-size: small; color: #777777">have at least 1 number </li>
+                  <li style="font-size: small; color: #777777">have at least 1 special symbol</li>
+                </ul>
+              </p>
+              <br>
+              <div class="form-group">
+                <span style="max-width: 100%">
+                <%= f.label :peer_support_interest %>
+                <%= f.select :diagnosis, options_for_select(["General",
+                                                             "Veteran Support", "Substance Abuse", "Suicide Loss", "Eating Disorder", "Depression", "Care Giver Support", "Other"], @member.diagnosis), {}, class: "form-control" %>
+                  </span>
+              </div>
+              <br>
+
+              <div class="form-group">
+                <%= f.check_box :is_clinician, class: "col-md-1 control-label"  %>
+                <span style="margin-left: 5px; font-size: small">
+                  <%= f.label :is_clinician, "I have read " %>  <%= link_to "Terms and Conditions", asset_path("576277_2_End_User_Terms.pdf") %>
+                </span>
+              </div>
+              <div class="form-actions text-center">
+                <%= f.submit "Create my account", class: "btn btn-primary", id: "member_submit", style: "border-radius: 14; border-color: #4FA59F; background-color: #4FA59F; color: white;
+                                                                                        width: 150px; padding: 10px; font-weight: bold;  margin-top: 5px; margin-left: 15px;  " %>
+              </div>
+              <% end %>
+        </div>
+        <br>
+      </div>
+    </div>
+    </div>
+ </div>
+</div>

@@ -1,0 +1,119 @@
+<table id= "meetingsCompletedTable" cellpadding="0" cellspacing="0" border="0" class="dataTable table-responsive table-striped table-hover table-highlight table-bordered"  >
+  <thead>
+  <tr>
+    <th class="hidden"></th>
+    <th class="hidden"></th>
+    <th class="hidden"></th>
+    <th class="hidden"></th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <% @meetings.complete.order("start_time DESC").each do |meeting| %>
+      <tr>
+        <td><span style="font-size: large"> <%= meeting.start_time.strftime("%A, %B %d") %></span><br>
+          <%= meeting.start_time.strftime("%I:%M %p") %></td>
+        <td>
+          <%= meeting.host %> |
+          <%= meeting.room_name %>
+
+
+        </td>
+        <td><%= meeting.meeting_type %><br>
+          <span style="font-size: large"><b><%= meeting.name %></b></span> <br>
+          <%= meeting.topic %>
+          <span style="font-size: small"> <%= meeting.special_focus %></span>
+            <span style="float: right">
+              <button type="button"
+                      class="btn btn-primary"
+                      style="vertical-align: bottom; margin-left: 2%; padding: 4px; background-color: #F19A20; font-size: x-small; border-color: orange; border-radius: 0;"
+                      data-toggle="modal"
+                      data-target="#meetingCompletedDetails1Modal<%=meeting.id %>">
+                <b>Details</b>
+              </button>
+             </span>
+
+
+          <div class="modal fade" id="meetingCompletedDetails1Modal<%= meeting.id %>" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content" style="border-radius: 0">
+                <div class="modal-body">
+                  <div class="row" style="margin-left: -20px">
+                    <div class="col-md-12">
+                      <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey; background-color: #326867 ">
+                        <div class="panel-body text-center">
+                          <h1 style="margin: 4px; margin-bottom: 10px; margin-top: 10px; color: white ">
+                            Meeting Details
+                          </h1>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <b  style="font-size: large"><%= meeting.meeting_type %></b><br>
+                          <%= time_zone_offset(meeting.start_time, current_user.time_zone,  "%A, %B %d, %I:%M %p") %><br><br>
+                          <p><b>Host:</b><br>
+                            <%= meeting.host %>
+                          </p>
+                          <p><b>Conversation Name: </b><br>
+                            <%= meeting.name %>
+                          </p>
+                          <p><b>Topic:</b> <br>
+                            <%= meeting.topic %>
+                          </p>
+                          <p ><b>Focus:</b><br>
+                            <%= meeting.special_focus %>
+                          </p>
+                        </div>
+                        <div class="col-md-12">
+                          <% if current_user.id == 1 %>
+                            <p><b>Meeting Users:</b></p>
+                            <table id="mu_details">
+                              <thead>
+                              <tr id="">
+                                <th>User ID</th>
+                                <th>Display Name</th>
+                                <th>Joined At</th>
+                                <th>Left At</th>
+                                <th>User Left?</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <% meeting.meeting_users.each do |mu| %>
+                                <td><%= mu.user_id  %></td>
+                                <td><%= mu.display_name  %></td>
+                                <td><%= mu.created_at.strftime(" %B %d, %I:%M %p")   %></td>
+                                <td><%= mu.updated_at.strftime(" %B %d, %I:%M %p")   %></td>
+                                <td><%= mu.departed  %></td>
+                                </tbody>
+                              <% end %>
+                              </table>
+                          <% else %>
+                          <% end %>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_meeting_path(meeting) %> |
+          <%= link_to 'Cancel', meeting, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+

@@ -1,0 +1,66 @@
+category: national_guard
+longname: Survey Assist
+shortname: surveyassist
+logo: ng_logo.png
+description: This Survey Assist is a self-reported measurement to evaluate the existence and severity of suicidal thoughts and ideation.
+sub_description: Rate the following on a scale from 1-5 with 1 being the worst and 5 being the best.
+questions:         
+  - position: 1
+    style: multiple_choice
+    text: 1. Rate your trainer.
+    answer_choices:
+    - position: 1
+      text: Not at all Satisfied
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Moderately
+    - position: 4
+      text: Satisfied
+    - position: 5
+      text: Very Satisfied
+  - position: 2
+    style: multiple_choice
+    text: 2. Effectiveness of the training.
+    answer_choices:
+    - position: 1
+      text: Not at all Satisfied
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Moderately
+    - position: 4
+      text: Satisfied
+    - position: 5
+      text: Very Satisfied
+  - position: 3
+    style: multiple_choice
+    text: 3. Trainings ability to prevent suicide.
+    answer_choices:
+    - position: 1
+      text: Not at all Satisfied
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Moderately
+    - position: 4
+      text: Satisfied
+    - position: 5
+      text: Very Satisfied
+  - position: 4
+    style: multiple_choice
+    text: 4. Trainings ability to keep your attention.
+    answer_choices:
+    - position: 1
+      text: Not at all Satisfied
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Moderately
+    - position: 4
+      text: Satisfied
+    - position: 5
+      text: Very Satisfied      
+  - position: 5
+    style: free_response
+    text: 5. Provide provide any helpful feedback on this training below.

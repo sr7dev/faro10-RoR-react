@@ -1,0 +1,83 @@
+
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey; background-color: #326867 ">
+        <div class="panel-body text-center">
+          <p style="font-size: 28px; text-align: left; margin: 4px; margin-bottom: 10px; margin-top: 10px; color: white ">
+            My Meetings
+          </p>
+        </div>
+      </div>
+      <div class="panel with-nav-tabs" style="background-color: #fdfcfc; border-color: #fdfcfc">
+        <div class="panel-heading">
+          <ul class="nav nav-tabs">
+            <% if @meetings.inprogress.any? %>
+              <li><a href="#myinprogressMeetings" data-toggle="tab"><strong>In-Progress <span class="badge progress-bar-danger"><%= @meetings.inprogress.count %></span></strong></a></li>
+            <% else %>
+              <li><a href="#myinprogressMeetings" data-toggle="tab">In-progress <span class="badge"><%= @meetings.inprogress.count %></span></a></li>
+            <% end %>
+            <!--<li class="Waiting"><a href="#waitingMeetings" data-toggle="tab">Waiting <span class="badge"><%= @meetings.waiting.count %></span></a></li>-->
+            <li class="Scheduled"><a href="#myscheduledMeetings" data-toggle="tab">Scheduled <span class="badge"><%= @meetings.scheduled.count %></span></a></li>
+            <li class="Completed"><a href="#completedMeetings" data-toggle="tab">Completed <span class="badge"><%= @meetings.complete.count %></span></a></li>
+          </ul>
+        </div>
+        <div class="panel-body">
+          <div class="tab-content">
+
+            <div class="tab-pane fade in active" id="myinprogressMeetings">
+              <%= render 'my_inprogress_meetings' %>
+            </div>
+            <div class="tab-pane fade" id="mywaitingMeetings">
+              <!--<= render 'waiting_meetings' %>-->
+            </div>
+            <div class="tab-pane fade" id="myscheduledMeetings">
+              <%= render 'my_scheduled_meetings'  %>
+            </div>
+            <div class="tab-pane fade" id="completedMeetings">
+            <%= render 'my_completed_meetings' %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 hidden-xs">
+        <button type="button"
+                class="btn btn-primary"
+                style="vertical-align: bottom; margin: 2px; padding: 10px; background-color: #F19A20; border-color: orange; border-radius: 0;"
+                data-toggle="modal"
+                data-target="#scheduleMeetingModal">
+          <b>Start a Peer Conversation Now!</b>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!--Modals-->
+
+
+  <div class="modal fade" id="scheduleMeetingModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content" style="border-radius: 0">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h1 class="modal-title" id="myModalLabel">
+            Schedule a Meeting
+          </h1>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <%= render 'meetings/form' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,651 @@
+<script xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    white_feelings = <%= @white_feelings.to_json.html_safe %>;
+    black_feelings = <%= @black_feelings.to_json.html_safe %>;
+    hispanic_feelings = <%= @hispanic_feelings.to_json.html_safe %>;
+    asian_feelings = <%= @asian_feelings.to_json.html_safe %>;
+</script>
+
+
+<%
+  @entry=Entry.new
+  current_user.prescriptions.unexpired.includes(:drug).each do |p|
+    @entry.entries_prescriptions.build(prescription: p)
+  end
+  @entry.entries_symptoms.build.build_symptom
+%>
+
+<div class="container-fluid">
+<div class="row" style="background-color: #8cd2cb; margin-top: -12px ">
+  <br><br>
+  <!--<div class="col-md-2">-->
+    <!--<h5 style="color: black">Select Date Range:</h5>-->
+    <!--<div class="input-daterange input-group" id="datepicker" style="max-width: 100%">-->
+      <!--<input type="text" class= 'input-sm form-control' name="start_date" value="<%= localize (Time.now - 2.weeks), format: :short %>" />-->
+      <!--<span class="input-group-addon">to</span>-->
+      <!--<input type="text" class="input-sm form-control" name="end_date" value="<%= l Time.now, format: :short %>"/>-->
+    <!--</div>-->
+    <!--<br>-->
+    <!--<div class="col-md-offset-2 col-md-10">-->
+      <!--<button type="button" class="btn btn-primary" style="background-color: #CC246F; border-radius: 0" id="apply_filters">Apply</button>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="col-md-1" style="margin-left: 1px">-->
+      <!--<= form_for(@user) do |f| %>-->
+          <!--<= f.label :primary_role %>-->
+          <!--<= f.select :primary_role, options_for_select(["Self","Observer"], @user.primary_role), {}, class: "form-control" %><br>-->
+          <!--<= f.submit "Save changes", class: "btn btn-primary", style: "border-radius: 0; background-color: #F19A20; border-color:  #F19A20" %><br>-->
+      <!--< end %>-->
+  <!--</div>-->
+
+  <div class="col-md-9 col-md-offset-1">
+    <% if current_user.primary_role == "Observer" %>
+        <div class="col-md-10">
+          <h1 style="color: white; text-align: left; font-size: 45px; margin-top: 75px  "><b>A tool built for families and friends</b></h1>
+          <h2 style="color: white; font-size: x-large; text-align: left">
+            We believe that families, their loved ones, and all the mental health professionals involved with providing care should be connected with each other,
+            and have real-time input and access to important patient information.
+            Treatment decisions rely almost exclusively on periodic patient sessions with their care providers which only provides
+            lagging and limited data when the need is for timely and informed treatment decisions.
+          </h2>
+        </div>
+        <div class="col-md-2  hidden-xs">
+          <h4 style="color: white"><b>Reports</b></h4>
+
+          <button type="button" class="btn btn-xs btn-danger my_summary" style="margin: 4px" ><i class="fa fa-file-pdf-o" aria-hidden="true"  data-toggle="tooltip" data-placement="left" title="Open PDF"></i>
+          </button>
+          <span style="color: white; margin-right: 2px"> <%= link_to "Care Giver Guide", asset_path("quick_start_guide_for_guardians.pdf"), target: "_blank", style: "color: black" %></span>
+          <br>
+          <button type="button" class="btn btn-xs btn-danger my_summary" style="margin: 4px" ><i class="fa fa-file-pdf-o" aria-hidden="true"  data-toggle="tooltip" data-placement="left" title="Open PDF"></i>
+          </button>
+          <span style="color: white; margin-right: 2px"> <%= link_to "User Guide", asset_path("Faro10_StarterKit_Patient.pdf"), target: "_blank", style: "color: black" %></span>
+          <br>
+        </div>
+    <% else %>
+        <div class="col-md-10">
+          <h1 style="color: white; text-align: left; font-size: 45px "><b>Take Control of your Wellness</b></h1>
+          <h2 style="color: white; font-size: x-large; text-align: left; margin-bottom: 75px ">
+            The Faro10 application allows you to easily enter and track information in realtime no matter where you are.
+            Open the graphs anytime to see areas of progress and areas that may need additional attention.
+          </h2>
+        </div>
+        <div class="col-md-2 hidden-xs">
+          <h4 style="color: white"><b>Reports</b></h4>
+
+<!--          <button type="button" class="btn btn-xs btn-danger my_summary" style="margin: 4px" ><i class="fa fa-file-pdf-o" aria-hidden="true"  data-toggle="tooltip" data-placement="left" title="Open PDF"></i>-->
+<!--          </button>-->
+<!--          <span style="color: white; margin-right: 2px"> <%#= link_to "Quick Start Guide", asset_path("Quick Start Guide for Clients.pdf"), target: "_blank", style: "color: black" %></span>-->
+
+          <br>
+          <button type="button" class="btn btn-xs btn-danger my_summary" style="margin: 4px" ><i class="fa fa-file-pdf-o" aria-hidden="true"  data-toggle="tooltip" data-placement="left" title="Open PDF"></i>
+          </button>
+          <span style="color: black; margin-right: 2px"> <%= link_to "My Journal PDF", summary_path(current_user, format: :pdf), target: "_blank", style: "color: black" %></span>
+          <br>
+
+          <button type="button" class="btn btn-xs btn-info" style="margin: 4px" data-toggle="modal" data-target="#emailSummaryModal"><i class="fa fa-envelope-o fa-fw" data-toggle="tooltip" data-placement="top" title="Email Report"></i>
+            <!--this modal body is on the dashboard show page-->
+          </button> <span style="color: black">Email My Journal</span>
+          <br>
+
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+    <% if current_user.primary_role == "Observer" %>
+          <%= render 'users/observee_list' %>
+          <hr>
+          <%= render 'observerstepsToSuccess' %>
+    <% else %>
+          <div style="width: 100%; text-align: center">
+            <div style="align-content: center; display: inline-block; margin-left: -35px">
+              <%= render 'stepsToSuccess' %>
+            </div>
+          </div>
+    <% end %>
+
+
+  <div style="width: 100%; text-align: center">
+      <% if current_user.primary_role == "Observer" %>
+
+        <div style="align-content: center; display: inline-block; max-width: 1200px">
+          <%= render 'observerMakeObservation' %>
+          <%= render 'observerSideEffects' %>
+          <%= render 'observerJournal' %>
+          <%= render 'observerPrescriptionReview' %>
+          <%= render 'observerAppointments' %>
+          <!--<= render 'observerCareTeam' %>-->
+        </div>
+
+      <% else %>
+
+        <div style="align-content: center; display: inline-block; max-width: 1200px">
+          <%= render 'moodCard' %>
+          <%= render 'sideEffectsCard' %>
+          <!--<= render 'symptomsCard' %>-->
+          <%= render 'journalCard' %>
+          <!--<= render 'prescriptionCard' %>-->
+          <!--<= render 'exerciseCard' %>-->
+          <!--<= render 'appointmentCard' %>-->
+          <!--<= render 'teamCard' %>-->
+          <!--<= render 'settingsCard' %>-->
+        </div>
+      <% end %>
+    <div class="col-xs-6 col-md-12">&nbsp;<br/>&nbsp;</div>
+  </div>
+
+
+<!--modals-->
+
+<div class="row">
+  <div class="modal fade" id="dashboardMoodChartModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-lg modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="panel-group" id="accordion-cat-1">
+            <div class="panel panel-default panel-faq">
+              <a data-toggle="collapse" data-parent="#accordion-mood-1" href="#mood-chart-1" style="text-decoration: none; color:black;">
+                <div class="panel-heading" style="background-color: #eee">
+                  <h4 class="panel-title">
+                    Mood Chart
+                    <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                  </h4>
+                </div>
+              </a>
+              <div id="mood-chart-1" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <div id="moodChartModal" style="margin-left: -10px; width: 860px; "></div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default panel-faq">
+              <a data-toggle="collapse" data-parent="#accordion-mood-1" href="#mood-chart-2" style="text-decoration: none; color:black;">
+                <div class="panel-heading" style="background-color: #eee">
+                  <h4 class="panel-title">
+                    Life Scale Chart
+                    <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                  </h4>
+                </div>
+              </a>
+              <div id="mood-chart-2" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <div id="memberSheehanZoomChart" style="margin-left: -10px; width: 860px; "></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="dashboardObserverMoodChartModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-lg modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="panel-group" id="accordion-cat-1">
+            <div class="panel panel-default panel-faq">
+              <a data-toggle="collapse" data-parent="#accordion-mood-1" href="#mood-chart-1" style="text-decoration: none; color:black;">
+                <div class="panel-heading" style="background-color: #eee">
+                  <h4 class="panel-title">
+                    Mood Chart
+                    <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                  </h4>
+                </div>
+              </a>
+              <div id="mood-chart-1" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <div id="observerChartModal" style="margin-left: -10px; width: 860px; "></div>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default panel-faq">
+              <a data-toggle="collapse" data-parent="#accordion-mood-1" href="#mood-chart-2" style="text-decoration: none; color:black;">
+                <div class="panel-heading" style="background-color: #eee">
+                  <h4 class="panel-title">
+                    Life Scale Chart
+                    <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                  </h4>
+                </div>
+              </a>
+              <div id="mood-chart-2" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <div id="observerSheehanZoomChart" style="margin-left: -10px; width: 860px; "></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="dashboardMedChartModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-lg modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h1>Prescription Consistency</h1>
+        </div>
+        <div class="modal-body">
+          <div id="prescriptionConsistencyChart" style="margin-left: -10px; width: 890px; "></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="dashboardSideEffectsChartModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-lg modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="panel-group" id="accordion-cat-2">
+            <div class="panel panel-default panel-faq">
+              <a data-toggle="collapse" data-parent="#accordion-sideeffects-1" href="#sideeffects-chart-1" style="text-decoration: none; color:black;">
+                <div class="panel-heading" style="background-color: #eee">
+                  <h4 class="panel-title">
+                    Symptoms Chart
+                    <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                  </h4>
+                </div>
+              </a>
+              <div id="sideeffects-chart-1" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <div id="madrsdimChart" style="margin-left: -10px; width: 860px;"></div>
+                </div>
+              </div>
+            </div>
+            <!--<div class="panel panel-default panel-faq">-->
+              <!--<a data-toggle="collapse" data-parent="#accordion-sideeffects-1" href="#sideeffects-chart-2" style="text-decoration: none; color:black;">-->
+                <!--<div class="panel-heading" style="background-color: #eee">-->
+                  <!--<h4 class="panel-title">-->
+                    <!--Symptoms Chart-->
+                    <!--<span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>-->
+                  <!--</h4>-->
+                <!--</div>-->
+              <!--</a>-->
+              <!--<div id="sideeffects-chart-2" class="panel-collapse collapse">-->
+                <!--<div class="panel-body">-->
+                  <!--<div id="addmadrsdimChart" style="margin-left: -10px; width: 860px; "></div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <div class="panel panel-default panel-faq">
+              <a data-toggle="collapse" data-parent="#accordion-sideeffects-1" href="#sideeffects-chart-3" style="text-decoration: none; color:black;">
+                <div class="panel-heading" style="background-color: #eee">
+                  <h4 class="panel-title">
+                    Side Effects
+                    <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                  </h4>
+                </div>
+              </a>
+              <div id="sideeffects-chart-3" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <div id="symptomChart" style="margin-left: -10px; width: 860px; "></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="moodInfoModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Mood</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            Monitoring your mood is useful in recognizing positive or negative changes in your well-being.<br>
+            Look for patterns and relationships with other charts.<br>
+            The red line represents your mood trend, and the blue line is the "average" of all other Faro10 members.<br>
+
+            <!--As you achieve goals within your goal center, you will unlock the ability to filter the "everyone else" trend-->
+            <!--by segmentation.  This will allow you to compare yourself against others of the same race, gender, age and diagnosis.-->
+          </p>
+
+          <p>You are encouraged to use the journal daily to record external triggers that may be impacting to your
+            mood.</p>
+        </div>
+        <br/>
+        <br/>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Life Scale Rating</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            The Life Scale Rating is designed to evaluate the impact of psychiatric symptoms in three areas.
+          </p>
+          <br>
+          <ul>
+            <li>Work Life / School Life</li>
+            <li>Social Life</li>
+            <li>Family Life</li>
+          </ul>
+          <br>
+          <p>
+            This rating is simple and quick to respond to, and is used by Clinicians to evaluate severity of symptoms,
+            effectiveness of treatment, and changes to your health over time.<br>
+            You are encouraged to use the journal to record external triggers that may be impacting to these conditions.
+            <br>
+          </p>
+          <hr>
+          <ul>
+            <li>1 - No issues in this area</li>
+            <li>2-3 - Mildly impacting</li>
+            <li>4-6 - Moderately impacting</li>
+            <li>7-9 - Highly impacting</li>
+            <li>10 - Extremely impacting</li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="prescriptionsModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Prescriptions</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            Tracking your prescriptions allows you to evaluate effectiveness over time; even at different dosages.
+            A medication may be slightly effective at a low dosage, and more effective at a higher dosage.
+          </p>
+          <br>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="weightModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Weight</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            Significant weight gain is a common side-effect of psychotropic medications.
+            It is important for you and your clinician to closely monitor your weight.
+          </p>
+          <br>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="symptomsModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Symptoms</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            Look for trends and spikes in health conditions.<br>
+            Look for relationships between Mood and other health measures.
+          </p>
+          <br>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="emailSummaryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <%= form_tag(pdf_emails_path, method: :post) do |f| %>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel"><i class="fa fa-user-md fa-lg" style="margin: 5pt"></i> Email "My
+                Journal" to Clinician</h4>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                  <%= label_tag "Clinician Email Address" %>
+                  <%= text_field :pdf_email, :address, class: 'form-control' %>
+                  <%= hidden_field_tag 'pdf_email[type]', "member_summary", class: "btn btn-danger" %>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <%= submit_tag "Send Report", class: "btn btn-danger" %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="myJournalModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h2 class="modal-title" id="myModalLabel"><i class="fa fa-user fa-lg"></i>  <%= current_user.user_id %> Journal
+          </h2>
+        </div>
+        <div class="modal-body">
+          <% if @my_journal.present? %>
+              <% @my_journal.each do |entry| %>
+                  <% if entry.journal.present? %>
+                      <p class="blog-post-meta"><i><strong><%= "Posted #{time_zone_offset(entry.created_at, current_user.time_zone, "%A %l:%M %P, %B %d, %Y ")}" %></strong></i>
+                      <br/><%= entry.journal %></p>
+                      <hr>
+                  <% end %>
+              <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="observerInfoModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Observer</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            A tool for parents and loved ones to provide real-time feedback for clinicians. It helps clinicians know
+            what occurs between sessions that patients may not remember or be willing to discuss.
+            It also provides an opportunity for parents, spouses and loved ones to directly contribute to treatment.
+          </p><br/>
+          <p>
+            Additionally, it can also be a useful tool to assist with diagnosis of conditions such as bipolar depression.
+            Studies show that about half of those experiencing mania don't realize they're manic; they either don't
+            remember it, or they deny it.
+            Psychiatrists often require the assistance of family members to share details about suspected mania,
+            and the Observer functionality is a simple way to provide an abundance of feedback to Clinicians.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="journalInfoModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Journal</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            Every person's journal is different. Here are a few of the things people keep track of in their journals:<br/>
+          <ul>
+            <li>Thoughts</li>
+            <li>Feelings</li>
+            <li>Ideas</li>
+            <li>Concerns</li>
+            <li>Accomplishments</li>
+            <li>Disappointments</li>
+            <li>Accounts of interactions with others</li>
+          </ul>
+          <br/>
+          Journaling can be a helpful way to get something off of your mind.<br/>
+          If you're working with a Clinician, it can be a great tool to improve session productivity and focus.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="myTeamInfoModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">My Team</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            When you add someone as an "Observer", they can provide entries regarding how you "appear" to be doing. Often
+            times, we don't realize how our mood is perceived by others. Sometimes we can be feeling terrible on the
+            inside, but not show that to others.
+            <br/><br/>
+            This Observer feedback is extremely useful to your Clinician when evaluating the effectiveness of medication
+            and overall treatment.
+            <br/><br/>
+            NOTE: Observers also need to have the Faro10 app and a registered account
+            <br/><br/>
+            NOTE: Your first Observer should be a parent or spouse (These people cannot see anything you enter. They can
+            only provide feedback to your clinician)
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exercisesInfoModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Exercises</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            Numerous behavioral therapy exercises are available for different presenting concerns, from anxiety, depression, self-help, and Clinician feedback.<br/><br/>
+            These exercises can be assigned by a clinician or self-assigned, but you must make them available for a Clinician to view.<br/><br/>
+            Once an exercise is completed, your Clinician will have access to the submission.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="newFriendInvitationModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <%= form_tag("/users/invite_member", method: :get) do |f| %>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="myModalLabel">
+                <i class="fa fa-user fa-lg"></i>
+                Invite a Family Member or Friend
+              </h4>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                  <%= label_tag "Invite by Email Address" %>
+                  <%= text_field :invitation, :email, class: 'form-control' %>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <%= submit_tag "Send MeetingInvitation", class: "btn btn-danger" %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="downloadAppModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <%= form_tag("/users/invite_member", method: :get) do |f| %>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="myModalLabel">
+                <i class="fa fa-user fa-lg"></i>
+                Download the Mobile App
+              </h4>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+
+                  <p>Find us in the AppStore</p>
+                  <%= link_to "AppStore", 'https://itunes.apple.com/us/app/faro10/id1080204499?mt=8', :target => "_blank" %>
+
+                  <br><br>
+                  <p>Find us in Google Play </p>
+                  <%= link_to "Google Play", 'https://play.google.com/store/apps/details?id=com.faro10', :target => "_blank" %> <br><br>
+
+                  <p> The attached guide provides instructions on how to get started </p>
+                  <p>
+                    <%= link_to "Quick Start Guide", 'https://www.faro10.com/assets/client_quick_start_guide-64b1d609ec68497a7885504249f7a91ff4a358c2d0015ae0d6c1f5f03c94e06d.pdf', :target => "_blank" %>
+                  </p>
+
+
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div>

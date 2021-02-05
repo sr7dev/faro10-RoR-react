@@ -1,0 +1,131 @@
+<p id="notice"><%= notice %></p>
+<% provide(:title, @member.user_id) %>
+
+<script src="application.js"></script>
+
+
+<div class="row">
+  <aside class="col-md-2">
+    <h1>
+      <%=  @member.user_id %>
+    </h1>
+  </aside>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 col-md-5 col-sm-8 col-xs-9 bhoechie-tab-container">
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
+        <div class="list-group">
+          <a href="#" class="list-group-item active text-center">
+            <h4 class="glyphicon glyphicon-cog"></h4><br/>Account Info
+          </a>
+          <a href="#" class="list-group-item text-center">
+            <h4 class="glyphicon glyphicon-user"></h4><br/>Personal
+          </a>
+          <a href="#" class="list-group-item text-center">
+            <h4 class="glyphicon glyphicon-home"></h4><br/>Address
+          </a>
+          <a href="#" class="list-group-item text-center">
+            <h4 class="glyphicon glyphicon-briefcase"></h4><br/>Clinician
+          </a>
+          <a href="#" class="list-group-item text-center">
+            <h4 class="glyphicon glyphicon-leaf"></h4><br/>Medication
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
+        <!-- flight section -->
+        <div class="bhoechie-tab-content active">
+          <br>
+            <p>
+              <strong>User:</strong>
+              <%= @member.user_id %>
+            </p>
+
+            <p>
+              <strong>Email:</strong>
+              <%= @member.email %>
+            </p>
+
+        </div>
+        <!-- train section -->
+        <div class="bhoechie-tab-content">
+
+            <br>
+            <p>
+              <strong>Race:</strong>
+              <%= @member.race %>
+            </p>
+            <p>
+              <strong>Gender:</strong>
+              <%= @member.gender %>
+            </p>
+            <p>
+              <strong>Nationality:</strong>
+              <%= @member.nationality %>
+            </p>
+            <p>
+              <strong>Dob:</strong>
+              <%= @member.dob %>
+            </p>
+
+            <p>
+              <strong>Occupation:</strong>
+              <%= @member.occupation %>
+            </p>
+            <p>
+              <strong>Emergency contact name:</strong>
+              <%= @member.emergency_contact_name %>
+            </p>
+            <p>
+              <strong>Emergency contact num:</strong>
+              <%= @member.emergency_contact_num %>
+            </p>
+        </div>
+
+        <!-- hotel search -->
+        <div class="bhoechie-tab-content">
+          <br>
+            <p>
+              <strong>Zip code:</strong>
+              <%= @member.zip_code %>
+            </p>
+            <p>
+              <strong>Country:</strong>
+              <%= @member.country %>
+            </p>
+        </div>
+        <div class="bhoechie-tab-content">
+          <br>
+            <p>
+              <strong>Clinician:</strong>
+              <%= @member.clinician_id %>
+            </p>
+            <p>
+              <strong>Observer:</strong>
+              <%= @member.observer_id %>
+            </p>
+        </div>
+        <div class="bhoechie-tab-content">
+          <br>
+            <p>
+              <strong>Clinician:</strong>
+              <%= @member.clinician_id %>
+            </p>
+
+            <p>
+              <strong>Diagnosis:</strong>
+              <%= @member.diagnosis %>
+            </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

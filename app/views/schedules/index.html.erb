@@ -1,0 +1,43 @@
+<h1><%= @observee.user_id %>'s Calendar</h1>
+
+<div class="row" style="margin-left: 20px; margin-right: 20px">
+  <div class="col-md-12">
+
+    <% if current_user.is_a? Clinician %>
+      <%= render partial: "patients/patient_navbar", locals: {active: "schedule"} %>
+    <% end %>
+
+
+    <p><b>Change Observee:</b></p>
+    <%= select_tag "observee_appointment_select", options_from_collection_for_select(@observees, "id", "user_id", @observee.id)%>
+
+    <button type="button" class="btn btn-faro10 pull-right" data-toggle="modal" data-target="#newAppointmentModal"> 
+      <i class="fa fa-plus"></i>
+      New Appointment
+    </button>
+  </div>
+</div>
+<br />
+
+<div class="row" style="margin-left: 20px; margin-right: 20px">
+  <div class="col-md-12">
+    <%= react_component("Appointments", @appointments_props) %>
+  </div>
+</div>
+
+<div class="modal fade" id="newAppointmentModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">
+          <i class="fa fa-plus"></i> 
+          New Appointment
+        </h4>
+      </div>
+      <div class="modal-body">
+        <%= render "appointments/form" %>
+      </div>
+    </div>
+  </div>
+</div>

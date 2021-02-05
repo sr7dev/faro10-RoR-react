@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <% if current_user.connected_to_facebook? %>
+    <%= react_component("Socials", @socials_props) %>
+  <% else %>
+    <div class="row">
+      <div class="col-md-offset-3 col-md-6">
+        <div class="social-explanation">
+          <div class="screenshot">
+            <%= image_tag "social_calendar.png" %>
+          </div>
+          <p>View a calendar of your Facebook posts and automatically alert your team if your habits change.</p>
+
+          <%= link_to "/auth/facebook" do %>
+            <button class="loginBtn loginBtn--facebook">
+              Connect with Facebook
+            </button>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

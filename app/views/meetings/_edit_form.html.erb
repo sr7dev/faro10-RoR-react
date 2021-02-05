@@ -1,0 +1,177 @@
+<% provide(:title, "Edit Meeting") %>
+
+
+<div class="container-fluid">
+  <%= form_for(@meeting) do |f| %>
+      <% if @meeting.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
+            <ul>
+              <% @meeting.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+  <div class="row">
+    <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey; background-color: #326867; margin-top: -10px ">
+      <div class="panel-body text-center">
+        <p style="font-size: 28px; text-align: left; margin: 4px; margin-bottom: 10px; margin-top: 10px; color: white ">
+          Update my Meeting
+        </p>
+      </div>
+    </div>
+  </div>
+    <br>
+  <div class="row">
+    <!--<div class="row">-->
+      <!--<div class="col-md-6 col-md-offset-4">-->
+        <!--<div class="col-md-2" style="min-width: 200px;  max-width: 500px">-->
+          <!--<= f.label :start_time, "Date" %><br>-->
+             <!--<= f.text_field :date, 'data-behaviour' => 'datepicker', value: (f.object.start_time.present? ? f.object.start_time.strftime("%A, %B %d")  : nil), class: "form-control" %>-->
+        <!--</div>-->
+        <!--<div class="col-md-2" style="max-width: 150px; margin-left: -20px  ">-->
+          <!--<= f.label :start_time, "Time" %><br>-->
+          <!--<= f.select :time, options_for_select([["12:00 AM", "00:00:00.000000"], ["12:30 AM"], ["1:00 AM"], ["1:30 AM"], ["2:00 AM"], ["2:30 AM"], ["3:00 AM"], ["3:30 AM"], ["4:30 AM"], ["5:00 AM"], ["5:30 AM"],-->
+                                                  <!--["6:00 AM", "06:00:00"], ["6:30 AM", "06:30:00"], ["7:00 AM", "07:00:00"], ["7:30 AM"], ["8:00 AM"], ["8:30 AM"], ["9:00 AM"], ["9:30 AM"], ["10:00 AM"], ["10:30 AM"], ["11:00 AM"], ["11:30 AM"],-->
+                                                  <!--["12:00 PM"], ["12:30 PM"], ["1:00 PM"], ["1:30 PM"], ["2:00 PM"], ["2:30 PM"], ["3:00 PM"], ["3:30 PM"], ["4:30 PM"], ["5:00 PM"], ["5:30 PM"],-->
+                                                  <!--["6:00 PM"], ["6:30 PM"], ["7:00 PM"], ["7:30 PM"], ["8:00 PM"], ["8:30 PM"], ["9:00 PM"], ["9:30 PM"], ["10:00 PM"], ["10:30 PM"], ["11:00 PM"], ["11:30 PM"]], value: @meeting.time), {}, class: "form-control" %>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+
+
+    <div class="row">
+      <div class="col-md-2 col-md-offset-4">
+        <div class="field" style="margin-left: 15px">
+          <%= f.label :status, "Meeting Status" %><br>
+          <%= f.select :status, options_for_select(["in-progress", "scheduled", "complete"], @meeting.status), {}, class: "form-control" %><br>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-6 col-md-offset-4" >
+        <div class="field" style="margin-left: 15px">
+          <%= f.label :start_time %><br>
+          <%= Time.use_zone(current_user.time_zone) do f.datetime_select(:start_time, :minute_step => 15, ampm: true) end %>
+
+        </div>
+        <br>
+      </div>
+    </div>
+
+
+
+      <br>
+    <div class="row">
+      <div class="col-md-7 col-md-offset-4">
+        <div class="col-md-3">
+          <div class="field">
+            <%= f.label :meeting_type, "Meeting Type" %><br>
+            <%= f.select :meeting_type, options_for_select(["Veteran Support","Substance Abuse", "Easting Disorder", "Suicide Loss", "Depression", "Care Giver Support", "Pregnancy Loss", "Other"], @meeting.meeting_type), {}, class: "form-control" %><br>
+          </div>
+
+          <div class="field">
+            <%= f.label :meeting_name, "Meeting Name" %><br>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+          <br>
+          <div class="field">
+            <%= f.label :meeting_topic, "Meeting Topic" %><br>
+            <%= f.text_field :topic, class: 'form-control' %>
+          </div>
+          <br>
+          <div class="field">
+            <%= f.label :special_focus, "Special Focus" %><br>
+            <%= f.text_field :special_focus, class: 'form-control' %>
+          </div>
+          <br>
+          </div>
+        <div class="col-md-3 ">
+          <div class="field">
+            <%= f.label :duration %><br>
+            <%= f.number_field :duration, class: 'form-control' %>
+          </div>
+          <br>
+          <div class="field">
+            <%= f.label :hosted_by, "Host Name" %><br>
+            <%= f.text_field :host, value: @meeting.host, class: 'form-control' %>
+          </div>
+          <br><br>
+
+          <div class="checkbox" id="meeting_privacy_group">
+            <label>
+              <br />
+              <%= f.check_box :privacy %>
+              <b> Private</b>
+            </label>
+          </div>
+          <br><br>
+          <div class="form group" id="meeting_password_group">
+            <%= f.label :password %><br>
+            <%= f.text_field :password, class: 'form-control' %>
+          </div>
+          <br>
+
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" align="center" style="margin-top: 15px; margin-bottom: 15px">
+      <div class="form-actions" id="save-form">
+        <%= f.submit "Save changes", class: "button"%><br>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  .button {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    border-radius: 0;
+    border: 0;
+    border-color: #F19A20;
+    background-color: #F19A20;
+    color: white;
+    padding: 12px;
+    padding-left: 16px;
+    padding-right: 16px;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.24), 0 2px 6px 0 rgba(0,0,0,0.19);
+    height: 52px;
+    width: 150px;
+
+  }
+
+  .button:hover {
+    background-color: #d17f0d;
+    color: white;
+    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.24), 0 6px 12px 0 rgba(0,0,0,0.19);
+
+  }
+
+  .button:active {
+    background-color: #d17f0d;
+    color: white;
+    box-shadow: 0 4px #666;
+    transform: translateY(4px);
+    /*box-shadow: 0 3px 8px 0 rgba(0,0,0,0.24), 0 6px 12px 0 rgba(0,0,0,0.19);*/
+
+  }
+
+
+</style>
+
+<script>
+    $(document).on("focus", "[data-behaviour~='datepicker']", function(e){
+        $(this).datepicker({"format": "yyyy-mm-dd", "weekStart": 1, "autoclose": true})
+    });
+
+//    document.onload = togglePassword();
+</script>

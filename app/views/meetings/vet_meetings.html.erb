@@ -1,0 +1,378 @@
+<!--<p id="notice"><= notice %></p>-->
+<div class="container-fluid">
+  <div class="row" style="background-color: #8cd2cb; margin-top: -12px ">
+    <div class="col-md-1 hidden-xs"  style="margin-left: -14px; max-height: 5px ">
+    </div>
+    <div class="col-md-7 col-xs-12" style="padding-top: 3%; padding-bottom: 3%">
+      <h1 class="hidden-xs" style="color: white; text-align: left"><b>Anyone can start a Video/chat Conversation with others</b></h1>
+      <h2 style="color: white; text-align: left">Join a Meeting    or    Schedule a Meeting</h2>
+    </div>
+    <div class="col-md-3 col-md-offset-1 hidden-xs" align="center" >
+      <button type="button"
+              class="btn btn-primary"
+              style="vertical-align: bottom; margin-top: 30%; padding: 20px; background-color: #F19A20; font-size: large; border-color: orange; border-radius: 0;"
+              data-toggle="modal"
+              data-target="#scheduleMeetingModal">
+        <b>Start a Conversation</b>
+      </button>
+    </div>
+  </div>
+  <br class="hidden-xs">
+  <div class="row" style="background-color: #DFF0E7; margin-top: -20px ">
+    <div class="col-md-8 col-md-offset-1">
+      <h2 style="color: #326867; text-align: left; margin-left: -2%  ">Veteran Support  </h2>
+    </div>
+    <div class="col-md-3">
+      <h2><%= link_to "Search Communities", channels_path, style: "color: #326867;" %></h2>
+    </div>
+  </div>
+  <br>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-9 col-xs-12">
+        <div class="panel with-nav-tabs" style="background-color: #fdfcfc; border-color: #fdfcfc">
+          <div class="panel-heading">
+            <ul class="nav nav-tabs nav-justified">
+              <% if @meetings.inprogress.any? %>
+                <li style="font-size: large"><a href="#inprogressMeetings" data-toggle="tab"><strong>Happening Now <span class="badge progress-bar-danger"><%= @meetings.inprogress.count %></span></strong></a></li>
+              <% else %>
+                <li  style="font-size: large"><a href="#inprogressMeetings" data-toggle="tab">Happening Now <span class="badge"><%= @meetings.inprogress.count %></span></a></li>
+              <% end %>
+              <li class="Scheduled" style="font-size: large"><a href="#scheduledMeetings" data-toggle="tab">Scheduled <span class="badge"><%= @meetings.scheduled.count %></span></a></li>
+
+              <% if current_user.id == 1 %>
+                <li class="Completed" style="font-size: large"><a href="#completedMeetings" data-toggle="tab">Completed </a></li>
+              <% else %>
+              <% end %>
+
+
+            </ul>
+
+          </div>
+          <div class="panel-body">
+            <div class="tab-content">
+              <div class="tab-pane fade in active" id="inprogressMeetings">
+                <%= render 'inprogress_meetings' %>
+              </div>
+              <div class="tab-pane fade" id="waitingMeetings">
+                <!--<= render 'waiting_meetings' %>-->
+              </div>
+              <div class="tab-pane fade" id="scheduledMeetings">
+                <%= render 'scheduled_meetings'  %>
+              </div>
+
+              <% if current_user.id == 1 %>
+
+                <div class="tab-pane fade" id="completedMeetings">
+                  <%= render 'completed_meetings' %>
+                </div>
+
+              <% else %>
+              <% end %>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <h3>Learn more about Peer Support </h3>
+          <div class="col-md-4">
+            <div class="youtube" data-embed="bd797eF62k8">
+              <div class="play-button">
+              </div>
+            </div>
+            <p style="margin-top: -20px">Hearing Our Voices: Peer Support and Mental Illness | Stefanie Kaufman | TEDxBrownU</p>
+          </div>
+          <div class="col-md-4">
+            <div class="youtube" data-embed="xcLpcwMR8rU">
+              <div class="play-button">
+              </div>
+            </div>
+            <p style="margin-top: -20px"> Peer Support </p>
+          </div>
+          <div class="col-md-4">
+            <div class="youtube" data-embed="iUS4CYM_V2A">
+              <div class="play-button">
+              </div>
+            </div>
+            <p style="margin-top: -20px"> What is Peer Support?</p>
+          </div>
+        </div>
+        <div class="row">
+          <h3>Recommended For Veterans</h3>
+          <div class="col-md-4">
+            <div class="youtube" data-embed="FVxm0KKlMj4">
+              <div class="play-button">
+              </div>
+            </div>
+            <p style="margin-top: -20px"> TalkTherapyTV | Veterans Peer Support </p>
+          </div>
+          <div class="col-md-4">
+            <div class="youtube" data-embed="zG6kZlJNETI">
+              <div class="play-button">
+              </div>
+            </div>
+            <p style="margin-top: -20px"> #CureStigma </p>
+          </div>
+          <div class="col-md-4">
+            <div class="youtube" data-embed="sL8YY4dJf04">
+              <div class="play-button">
+              </div>
+            </div>
+            <p style="margin-top: -20px"> Maryland VA turning vets into Peer Support Specialists </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-xs-12">
+        <%= render 'channels/all_channels' %>
+      </div>
+    </div>
+  </div>
+  <br><br>
+</div>
+
+<!--Modals--------------------------------------------------------------------------------------->
+<div class="modal fade" id="scheduleMeetingModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content" style="border-radius: 0">
+      <div class="modal-body">
+        <div class="row" style="margin-left: -20px">
+          <div class="col-md-12">
+            <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey; background-color: #326867 ">
+              <div class="panel-body text-center">
+                <h1 style="margin: 4px; margin-bottom: 10px; margin-top: 10px; color: white ">
+                  Schedule a Conversation
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <%= render 'form' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<style>
+  /*
+Extra small devices (portrait phones, less than 544px)
+No media query since this is the default in Bootstrap because it is "mobile first"
+*/
+  h1 {font-size:1.8rem;} /*1rem = 16px*/
+  /*
+  ####################################################
+  M E D I A  Q U E R I E S
+  ####################################################
+  */
+
+  /*
+  ::::::::::::::::::::::::::::::::::::::::::::::::::::
+  Bootstrap 4 breakpoints
+  */
+  /* Small devices (landscape phones, 544px and up) */
+  @media (min-width: 544px) {
+    h1 {font-size:2rem;} /*1rem = 16px*/
+    h2 {font-size:1.5rem;} /*1rem = 16px*/
+    .hide {
+      display: none;}
+  }
+
+
+  /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+  @media (min-width: 768px) {
+    h1 {font-size:3rem;} /*1rem = 16px*/
+    h2 {font-size:2.2rem;} /*1rem = 16px*/
+  }
+
+  /* Large devices (desktops, 992px and up) */
+  @media (min-width: 992px) {
+    h1 {font-size:3rem;} /*1rem = 16px*/
+    h2 {font-size:2rem;} /*1rem = 16px*/
+    td {font-size:1rem;} /*1rem = 16px*/
+    li {font-size:1rem;} /*1rem = 16px*/
+    th {font-size:1rem;} /*1rem = 16px*/
+
+  }
+
+  /* Extra large devices (large desktops, 1200px and up) */
+  @media (min-width: 1200px) {
+    h1 {font-size:4rem;} /*1rem = 16px*/
+    h2 {font-size:3rem;} /*1rem = 16px*/
+    td {font-size:1.4rem;} /*1rem = 16px*/
+    li {font-size:1.4rem;} /*1rem = 16px*/
+    th {font-size:1.4rem;} /*1rem = 16px*/
+
+
+  }
+
+
+</style>
+<!--Youtube styling and JS-->
+<script>
+    ( function() {
+
+        var youtube = document.querySelectorAll( ".youtube" );
+
+        for (var i = 0; i < youtube.length; i++) {
+
+            var source = "https://img.youtube.com/vi/"+ youtube[i].dataset.embed +"/sddefault.jpg";
+
+            var image = new Image();
+            image.src = source;
+            image.addEventListener( "load", function() {
+                youtube[ i ].appendChild( image );
+            }( i ) );
+
+            youtube[i].addEventListener( "click", function() {
+
+                var iframe = document.createElement( "iframe" );
+
+                iframe.setAttribute( "frameborder", "0" );
+                iframe.setAttribute( "allowfullscreen", "" );
+                iframe.setAttribute( "src", "https://www.youtube.com/embed/"+ this.dataset.embed +"?rel=0&showinfo=0&autoplay=1" );
+
+                this.innerHTML = "";
+                this.appendChild( iframe );
+            } );
+        };
+
+    } )();
+</script>
+<style>
+  .youtube {
+    background-color: #000;
+    margin-bottom: 30px;
+    position: relative;
+    padding-top: 56.25%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .youtube img {
+    width: 100%;
+    top: -16.84%;
+    left: 0;
+    opacity: 0.7;
+  }
+  .youtube .play-button {
+    width: 90px;
+    height: 60px;
+    background-color: #333;
+    box-shadow: 0 0 30px rgba( 0,0,0,0.6 );
+    z-index: 1;
+    opacity: 0.8;
+    border-radius: 6px;
+  }
+  .youtube .play-button:before {
+    content: "";
+    border-style: solid;
+    border-width: 15px 0 15px 26.0px;
+    border-color: transparent transparent transparent #fff;
+  }
+  .youtube img,
+  .youtube .play-button {
+    cursor: pointer;
+  }
+  .youtube img,
+  .youtube iframe,
+  .youtube .play-button,
+  .youtube .play-button:before {
+    position: absolute;
+  }
+  .youtube .play-button,
+  .youtube .play-button:before {
+    top: 50%;
+    left: 50%;
+    transform: translate3d( -50%, -50%, 0 );
+  }
+  .youtube iframe {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+  div#controls div#preview div#local-media div#local-media{
+    width: 640px;
+    height: 480px;
+    margin-left: 10px;
+  }
+
+  div#controls div#preview div#local-media video{
+    border-radius: 5px;
+    width: 640px;
+    height: 480px;
+    max-width: 640px;
+    max-height: 480px;
+    min-width:640px;
+  }
+
+
+  div#local-media-video{
+    border-radius: 5px;
+    width: 640px;
+    height: 480px;
+  //box-sizing: border-box;
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjgwcHgiIGhlaWdodD0iODBweCIgdmlld0JveD0iMCAwIDgwIDgwIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggMy4zLjEgKDEyMDAyKSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5GaWxsIDUxICsgRmlsbCA1MjwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJQYWdlLTEiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHNrZXRjaDp0eXBlPSJNU1BhZ2UiPgogICAgICAgIDxnIGlkPSJjdW1tYWNrIiBza2V0Y2g6dHlwZT0iTVNMYXllckdyb3VwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTU5LjAwMDAwMCwgLTE3NDYuMDAwMDAwKSIgZmlsbD0iI0ZGRkZGRiI+CiAgICAgICAgICAgIDxnIGlkPSJGaWxsLTUxLSstRmlsbC01MiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTU5LjAwMDAwMCwgMTc0Ni4wMDAwMDApIiBza2V0Y2g6dHlwZT0iTVNTaGFwZUdyb3VwIj4KICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0zOS42ODYsMC43MyBDMTcuODUsMC43MyAwLjA4NSwxOC41IDAuMDg1LDQwLjMzIEMwLjA4NSw2Mi4xNyAxNy44NSw3OS45MyAzOS42ODYsNzkuOTMgQzYxLjUyMiw3OS45MyA3OS4yODcsNjIuMTcgNzkuMjg3LDQwLjMzIEM3OS4yODcsMTguNSA2MS41MjIsMC43MyAzOS42ODYsMC43MyBMMzkuNjg2LDAuNzMgWiBNMzkuNjg2LDEuNzMgQzYxLjAwNSwxLjczIDc4LjI4NywxOS4wMiA3OC4yODcsNDAuMzMgQzc4LjI4Nyw2MS42NSA2MS4wMDUsNzguOTMgMzkuNjg2LDc4LjkzIEMxOC4zNjcsNzguOTMgMS4wODUsNjEuNjUgMS4wODUsNDAuMzMgQzEuMDg1LDE5LjAyIDE4LjM2NywxLjczIDM5LjY4NiwxLjczIEwzOS42ODYsMS43MyBaIiBpZD0iRmlsbC01MSI+PC9wYXRoPgogICAgICAgICAgICAgICAgPHBhdGggZD0iTTQ3Ljk2LDUzLjMzNSBMNDcuOTYsNTIuODM1IEwyMC4wOTMsNTIuODM1IEwyMC4wOTMsMjcuODI1IEw0Ny40NiwyNy44MjUgTDQ3LjQ2LDM4LjI1NSBMNTkuMjc5LDMwLjgwNSBMNTkuMjc5LDQ5Ljg1NSBMNDcuNDYsNDIuNDA1IEw0Ny40Niw1My4zMzUgTDQ3Ljk2LDUzLjMzNSBMNDcuOTYsNTIuODM1IEw0Ny45Niw1My4zMzUgTDQ4LjQ2LDUzLjMzNSBMNDguNDYsNDQuMjE1IEw2MC4yNzksNTEuNjY1IEw2MC4yNzksMjguOTk1IEw0OC40NiwzNi40NDUgTDQ4LjQ2LDI2LjgyNSBMMTkuMDkzLDI2LjgyNSBMMTkuMDkzLDUzLjgzNSBMNDguNDYsNTMuODM1IEw0OC40Niw1My4zMzUgTDQ3Ljk2LDUzLjMzNSIgaWQ9IkZpbGwtNTIiPjwvcGF0aD4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid darkgray;
+    margin: 30px;
+    display: inline-block;
+    background-color: darkgray;
+  }
+
+  div#local-media-text {
+    width: 640px;
+    height: 25px;
+    text-align: center;
+    max-width: 640px;
+    border: 0px solid #cececc;
+    overflow: hidden;
+    background-color: transparent;
+    color: #B4D336;
+    font-weight: bold;
+    font-size: x-large;
+    margin-top:450px;
+    position: absolute;
+  }
+  /*button {*/
+  /*background-color: #326867;*/
+  /*border: none;*/
+  /*border-radius: 2px;*/
+  /*-webkit-box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, .5);*/
+  /*-moz-box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, .5);*/
+  /*box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, .5);*/
+  /*color: white;*/
+  /*font-size: 0.8em;*/
+  /*height: 2.75em;*/
+  /*margin: 10px 5px 10px 5px;*/
+  /*padding: 0.5em 0.5em 0.5em 0.7em;*/
+  /*width: 6em;*/
+  /*}*/
+
+  /*button:active {*/
+  /*background-color: #3367D6;*/
+  /*}*/
+
+  /*button:hover {*/
+  /*background-color: #326867;*/
+  /*}*/
+
+  /*button:focus {*/
+  /*-webkit-box-shadow: 0 10px 15px 0 rgba(0, 0, 0, .5);*/
+  /*-moz-box-shadow: 0 10px 15px 0 rgba(0, 0, 0, .5);*/
+  /*box-shadow: 0 10px 15px 0 rgba(0, 0, 0, .5);*/
+  /*outline: none;*/
+  /*}*/
+  /*button:disabled,*/
+  /*button[disabled]{*/
+  /*background-color: #cccccc;*/
+  /*color: #666666;*/
+  /*}*/
+</style>
+

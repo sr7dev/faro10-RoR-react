@@ -1,0 +1,81 @@
+<h1>Subscriptions</h1>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel with-nav-tabs">
+      <div class="panel-heading">
+        <p class="text-right">
+          <%= link_to pricing_plans_path, class: "btn btn-faro10" do %>
+            <i class="fa fa-cogs"></i>&nbsp;
+            Change Plans
+          <% end %>
+        </p>
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#activeSubscriptions" data-toggle="tab">Active</a></li>
+          <% if @subscriptions.canceled.any? %>
+            <li><a href="#previousSubscriptions" data-toggle="tab">Previous</a></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="panel-body">
+        <div class="tab-content">
+          <div class="tab-pane fade in active" id="activeSubscriptions">
+            <% if @subscriptions.active.any? %>
+              <% active_subscription = @subscriptions.active.first %>
+              <h3 class="text-center">You are currently subscribed to the:</h3>
+
+              <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">
+                        <%= active_subscription.name %> Plan
+                      </h3>
+                    </div>
+
+                    <div class="panel-body">
+                      <div class="price">
+                        <p>
+                          $<%= active_subscription.amount %> <span class="subscript">/ <%= active_subscription.interval %></span>
+                        </p>
+                      </div>
+                      <table class="table">
+                        <tr>
+                          <td>
+                              Feature 1
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                              Feature 2
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                              Feature 3
+                          </td>
+                        </tr>
+                      </table>
+                      <p>Active since: <%= active_subscription.start.strftime("%A, %B %d, %Y") %></p>
+                    </div>
+                    <div class="panel-footer">
+                      <%= link_to subscription_path(active_subscription, subscription: {action: "cancel"}), class: "btn btn-danger", method: :put do %>
+                        <i class="fa fa-times"></i>
+                        Cancel
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            <% end %>
+          </div>
+          <div class="tab-pane fade" id="previousSubscriptions">
+            <%= render "table", subscriptions: @subscriptions.canceled, tab: "previous" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

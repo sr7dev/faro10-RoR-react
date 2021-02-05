@@ -1,0 +1,43 @@
+<table id="observer_entries_td" cellpadding="0" cellspacing="0" border="0" class="dataTable table-striped table-hover table-highlight table-bordered">
+  <thead>
+  <tr>
+    <th>Observer</th>
+    <th>Journal</th>
+    <th>Clinician Response</th>
+    <th>Observed At</th>
+    <th>Feedback</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% if @observer_journal_entries.present? %>
+    <% observer_entries.each do |oe| %>
+      <% if oe.journal.present? %>
+        <tr id="<%= oe.id %>">
+            <td><%= oe.observer %></td>
+            <td><%= oe.journal %></td>
+            <td><%= oe.clinician_response %></td>
+            <td><%= oe.observed_at.strftime("%A, %B %d, %Y") %></td>
+            <td>
+              <button 
+                type="button" 
+                class="btn btn-xs btn-info" 
+                data-toggle="collapse"
+                data-target="#observerEntryForm<%= oe.id %>">
+                <i class="fa fa-pencil fa-fw"></i>
+              </button>
+            </td>
+        </tr>
+        <tr id="observerEntryForm<%= oe.id %>" class="collapse">
+          <td colspan="100%">
+            <%= form_for(oe) do |f| %>
+              <%= f.label :clinician_response, "Clinician Response"  %>
+              <%= f.text_area :clinician_response, class: 'form-control' %><br>
+              <%= f.submit "Save changes", class: "btn btn-primary", style: "border-radius: 0; background-color: #4FA59F" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>

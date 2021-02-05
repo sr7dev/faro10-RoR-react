@@ -1,0 +1,222 @@
+<ul style="list-style-type: none; margin: 0; padding: 0; overflow: hidden; background-color: #f9f9f9; border-top: 0 solid #000; border-bottom: 1px solid #000;" >
+  <li>
+    <span style="display: inline-block; color: #CC246F; text-align: center; padding: 10px 16px; text-decoration: none; float: left;  ">
+        <%= link_to "Group Overview",   groups_path %>
+    </span>
+  </li>
+  <li>
+    <span style="display: inline-block; color: black; text-align: center; padding: 10px 1px; text-decoration: none; float: left;  ">
+      |
+    </span>
+  </li>
+  <li>
+  <span style="display: inline-block; color: #CC246F; text-align: center; padding: 10px 16px; text-decoration: none; float: left;  ">
+        Research
+    </span>
+  </li>
+</ul>
+<br>
+
+<br>
+<div class="row">
+  <div class="col-md-6">
+    <p>
+      <strong>Total Clinicians in Group:</strong>
+      <span style="font-size: 16pt; color: #4FA59F; margin-left: 8px">23</span>
+    </p>
+
+    <p>
+      <strong>Total Patients Overseen:</strong>
+      <span style="font-size: 16pt; color: #4FA59F; margin-left: 8px">480</span>
+    </p>
+    <p>
+      <strong>My Entries:</strong>
+      <span style="font-size: 16pt; color: #4FA59F; margin-left: 8px">567</span>
+    </p>
+    <p>
+      <strong>Patient Participation:</strong>
+      <span style="font-size: 16pt; color: #4FA59F; margin-left: 8px">73%</span>
+    </p>
+  </div>
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey">
+          <div class="panel-update-heading">
+            <h1 id="avg_mood" style="color: #B4D336"></h1>
+          </div>
+          <div class="panel-body text-center">
+            <strong> Average Mood (0-6) </strong>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey">
+          <div class="panel-update-heading">
+            <h1 id="avg_energy" style="color: #B4D336"></h1>
+          </div>
+          <div class="panel-body text-center">
+            <strong> Average Energy </strong>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-5">
+        <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey">
+          <div class="panel-update-heading">
+            <h1 id="avg_activity" style="color: #F19A20; "></h1>
+          </div>
+          <div class="panel-body text-center">
+            <strong> Average Exercise (min) </strong>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey">
+          <div class="panel-update-heading">
+            <h1 id="avg_panic_attack" style="color: #4FA59F"></h1>
+          </div>
+          <div class="panel-body text-center">
+            <strong> Hospitalizations this Quarter</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--&lt;!&ndash; KPI Bar&ndash;&gt;-->
+  <!--<div class="row">-->
+    <!--<div class="col-xs-6 col-md-3">-->
+      <!--<div class="panel status panel-danger">-->
+        <!--<div class="panel-new-heading">-->
+          <!--<h1 class="panel-title text-center" id="avg_mood">-->
+          <!--</h1>-->
+        <!--</div>-->
+        <!--<div class="panel-body text-center">-->
+          <!--<strong>Avg Mood (0-6)</strong>-->
+        <!--</div>-->
+      <!--</div>-->
+
+    <!--</div>-->
+    <!--<div class="col-xs-6 col-md-3">-->
+
+      <!--<div class="panel status panel-danger">-->
+        <!--<div class="panel-new-heading">-->
+          <!--<h1 class="panel-title text-center" id="avg_energy">-->
+          <!--</h1>-->
+        <!--</div>-->
+        <!--<div class="panel-body text-center">-->
+          <!--<strong>Avg Energy (0-6)</strong>-->
+        <!--</div>-->
+      <!--</div>-->
+
+    <!--</div>-->
+    <!--<div class="col-xs-6 col-md-3">-->
+
+      <!--<div class="panel status panel-danger">-->
+        <!--<div class="panel-new-heading">-->
+          <!--<h1 class="panel-title text-center" id="avg_activity">-->
+          <!--</h1>-->
+        <!--</div>-->
+        <!--<div class="panel-body text-center">-->
+          <!--<strong>Avg Exercise (minutes)</strong>-->
+        <!--</div>-->
+      <!--</div>-->
+
+
+    <!--</div>-->
+    <!--<div class="col-xs-6 col-md-3">-->
+
+      <!--<div class="panel status panel-danger">-->
+        <!--<div class="panel-new-heading">-->
+          <!--<h1 class="panel-title text-center" id="avg_panic_attack">-->
+          <!--</h1>-->
+        <!--</div>-->
+        <!--<div class="panel-body text-center">-->
+          <!--<strong>Avg Panic Attacks / User</strong>-->
+        <!--</div>-->
+      <!--</div>-->
+
+
+    <!--</div>-->
+  <!--</div>-->
+
+<!-- END KPI Bar-->
+
+<br>
+
+<div class="row">
+  <div class="col-md-6">
+        <div class="panel panel-default" style="border-color: lightgrey; border-radius: 0">
+          <div class="panel-heading" style="background-color: #fff">
+            <h3 style="color: #556870;" align="center"><b>Avg Mood by Gender</b></h3>
+          </div>
+          <div class="panel-body">
+            <div class="col-md-12">
+            <div id="genderChart" style="height: 400px; margin: 0 auto"></div>
+          </div>
+
+        </div>
+      </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="panel panel-default" style="border-color: lightgrey; border-radius: 0">
+      <div class="panel-heading" style="background-color: #fff">
+        <h3 style="color: #556870;" align="center"><b>Avg Mood by Race</b></h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-12">
+        <div id="raceChart" style="height: 400px; margin: 0 auto"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default" style="border-color: lightgrey; border-radius: 0">
+      <div class="panel-heading" style="background-color: #fff">
+        <h3 style="color: #556870;" align="center"><b>Sheehan Quality of Life</b></h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-12">
+          <div id="genderWorkLifeChart" style="height: 400px; margin: 0 auto"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="panel panel-default" style="border-color: lightgrey; border-radius: 0">
+      <div class="panel-heading" style="background-color: #fff">
+        <h3 style="color: #556870;" align="center"><b>Hospitalizations by Gender</b></h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-9">
+          <div id="genderHospitalizationChart" style="height: 400px; margin: 0 auto"></div>
+        </div>
+        <div class="col-md-3" style="height: 325px; margin: 0 auto; background-color: grey; border-radius: 0px; border: 1px solid #262626">
+                    <span style="font-size: 12pt; font-family: 'Calibri'; color:white;text-align:justify">
+                      <br>Depression reportedly <span style="font-size: 15pt">
+                      <b>affects 1 in 10 Americans</b></span> and varies by demographic indicators.
+                       becoming a significant health concern worldwide.
+                    </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<!--<= render 'charts/hover_stats' %>-->
+
+<div class="row">
+  <br>
+  behavioral health outcome management mental health analytics
+</div>

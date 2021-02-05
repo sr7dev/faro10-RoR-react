@@ -1,0 +1,87 @@
+<% provide(:title, "Accept MeetingInvitation") %>
+<h1>Sign Up</h1>
+
+    <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
+      <%= devise_error_messages! %>
+      <%= f.hidden_field :invitation_token %>
+
+      <div class="row">
+        <div class="col-md-3 col-md-offset-3">
+
+          <div class="form-group">
+            <%= f.label :user_id, "Nickname" %>
+            <%= f.text_field :user_id, class: 'form-control' %>
+          </div>
+
+           <div class="form-group">
+            <% if f.object.class.require_password_on_accepting %>
+            <p><%= f.label :password %><br />
+            <%= f.password_field :password, class: 'form-control' %></p>
+          </div>
+
+          <div class="form-group">
+            <p><%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, class: 'form-control' %></p>
+            <% end %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :race %>
+            <%= f.select :race, options_for_select(["Caucasian","African American","Hispanic", "Asian", "Other"]), {}, class: "form-control"  %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :gender, "Gender" %><br />
+            <%= f.radio_button :gender, "Male", class: "col-md-1 control-label"  %> Male <br/>
+            <%= f.radio_button :gender, "Female", class: "col-md-1 control-label"  %> Female
+          </div>
+        </div>
+
+        <div class="col-md-3">
+
+          <div class="form-group">
+            <%= f.label :clinic_street, "Street Address"  %>
+            <%= f.text_field :clinic_street, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :clinic_city, "City"  %>
+            <%= f.text_field :clinic_city, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :clinic_state, "State"  %>
+            <%= f.text_field :clinic_state, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :clinic_zip, "Zip"  %>
+            <%= f.number_field :clinic_zip, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :country %>
+            <%= f.country_select :country, { priority_countries: ["US"] }, { class: "form-control" }  %>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="form-group">
+            <%= f.check_box :is_clinician, class: "col-md-1 control-label"  %>
+            <%= f.label :is_clinician, "Please acknowledge that you have read our " %>  <%= link_to "Terms and Conditions", asset_path("terms_and_conditions.pdf") %>
+          </div>
+
+          <div class="form-actions">
+            <%= f.submit "Create my account", class: "btn btn-faro10", id: "user_invitation_submit" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+

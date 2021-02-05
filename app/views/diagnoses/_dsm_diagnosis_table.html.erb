@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-12">
+    <table id="dsm" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover table-highlight table-bordered">
+      <thead>
+      <tr>
+        <!--<th style="width:10%">ID</th>-->
+        <!--<th style="width:10%">Member ID</th>-->
+        <!--<th style="width:10%">DSM5 ID</th>-->
+        <th style="width:10%">Code</th>
+        <th style="width:50%">DSM5 Description</th>
+        <th style="width:20%">Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% if @dsm_diagnoses.present?  %>
+          <% @dsm_diagnoses.each do |dsm_diagnosis| %>
+              <tr>
+                <!--<td><= dsm_diagnosis.id %></td>-->
+                <!--<td><= dsm_diagnosis.member_id %></td>-->
+                <!--<td><= dsm_diagnosis.dsm5_id %></td>-->
+                <td><%= dsm_diagnosis.medical_condition.dsm_code %></td>
+                <td><%= dsm_diagnosis.medical_condition.short_description %></td>
+                <td>
+                  <%= link_to 'Remove', dsm_diagnosis, method: :delete, data: { confirm: 'Are you sure?' } %>
+                </td>
+              </tr>
+          <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!--<= link_to 'New Dsm diagnosis', new_dsm_diagnosis_path %>-->

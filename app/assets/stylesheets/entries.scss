@@ -1,0 +1,136 @@
+.slider-group {
+  width: 75%;
+  margin: 0 auto 15px auto;
+}
+div.slider-image{
+  position:absolute;
+  margin-left: 10px;
+  min-height: 50px;
+  border: none;
+  border-color: black;
+  border-width: medium;
+}
+div.slider-content{
+  position:absolute;
+  margin-left: 110px;
+  min-height: 50px;
+  border: none;
+  border-color: black;
+  border-width: medium;
+}
+div.slider-header{
+  position: absolute;
+  text-align: center;
+  border: none;
+  border-color: black;
+  border-width: medium;
+  font-weight: normal;
+  font-size: 18px;
+}
+div.slider-custom{
+  position: absolute;
+  text-align: right;
+  margin-top: 35px;
+  width: 100%;
+  min-height: 30px;
+  border: none;
+  border-color: black;
+  border-width: medium;
+}
+div.slider-text{
+  position: absolute;
+  text-align: left;
+  border: none;
+  border-color: black;
+  border-width: medium;
+  font-weight: normal;
+  font-size: 18px;
+  margin-top: 55px;
+  width: 100%;
+  font-size: small;
+}
+
+
+
+
+$input-c: #aaaaaa;
+
+$track-w: 350px;
+$track-h: 1.25em;
+
+$thumb-d: 1.5em;
+
+@mixin track() {
+  width: $track-w; height: $track-h;
+  border-radius: .5em;
+  box-shadow: inset 0 0 0 .25em $input-c;
+  background: linear-gradient(45deg, #B4D336, #B4D336, #F19A20, #CC246F);
+}
+
+@mixin thumb() {
+  border: none;
+  width: $thumb-d; height: $thumb-d;
+  border-radius: .5em;
+  box-shadow: inset 0 0 0 .25em $input-c,
+  0 0 .5em #000, 0 0 1em #333;
+  background: linear-gradient(#fcfcfc, #d6d6d6);
+  cursor: ew-resize;
+}
+
+input.faces[type=range] {
+  &,
+  &::-webkit-slider-runnable-track,
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+  }
+  position: absolute;
+  top: 50%; left: 40%;
+  margin: -$track-h (-$track-w/2);
+  //width: $track-w; height: 2*$track-h;
+  width: 100%;
+  background: none;
+  font: 1em;
+  cursor: pointer;
+  &::-webkit-slider-runnable-track {
+    @include track();
+  }
+  &::-webkit-slider-thumb {
+    margin-top: ($track-h - $thumb-d)/2;
+    @include thumb();
+  }
+  &::-moz-range-track {
+    @include track();
+  }
+  &::-moz-range-thumb {
+    @include thumb();
+  }
+  &::-ms-fill-lower {
+    background: #326867;
+  }
+  &::-ms-fill-upper {
+    background: #B4D336;
+  }
+
+  &::-ms-thumb {
+    background: #CC246F;
+  }
+
+  &::-ms-track {
+    color: #F19A20;
+  }
+}
+
+
+input[type=checkbox]
+{
+  padding: 10px;
+  text-align: left;
+}
+
+/* Might want to wrap a span around your checkbox text */
+.checkboxtext
+{
+  /* Checkbox text */
+  font-size: 110%;
+  display: inline;
+}

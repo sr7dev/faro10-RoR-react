@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Disabled for Webpacker refactor
+# if [ "$RACK_ENV" == "development" ]; then
+#   bin/webpack-dev-server
+# else
+#   bin/webpack #TODO: non-dev webpack
+# fi

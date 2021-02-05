@@ -1,0 +1,87 @@
+<header class="navbar navbar-fixed-top navbar-default" id="logged-in-header">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    <%= link_to "TelaPeer by Faro10", dashboard_path, id: "logo" %>
+    </div>
+
+
+    <div class="navbar-collapse collapse">
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+
+        <li><%= link_to "Tips & Training",   '/tips' %></li>
+        <li><%= link_to "My Wellness",   '/dashboard' %></li>
+
+        <li class="no-border">
+          <%= link_to "TelaPeer", '/categories' %>
+        </li>
+
+        <!--<li class="dropdown">-->
+          <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
+            <!--<i class="fa fa-file-text-o"></i>-->
+            <!--Entries <b class="caret"></b>-->
+          <!--</a>-->
+          <!--<ul class="dropdown-menu">-->
+            <!--<li class="no-border">-->
+              <!--<%= link_to "New Entry", '/entries/new' %>-->
+            <!--</li>-->
+            <!--<li class="divider"></li>-->
+            <!--<li class="no-border">-->
+              <!--<%= link_to "Observe", '/users/observations' %>-->
+            <!--</li>-->
+            <!--<li class="divider"></li>-->
+            <!--<li class="no-border">-->
+              <!--<%= link_to "Prescriptions",   '/prescriptions' %>-->
+            <!--</li>-->
+          <!--</ul>-->
+        <!--</li>-->
+        <!--<li class="dropdown">-->
+          <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
+            <!--<i class="fa fa-calendar"></i>-->
+            <!--Calendars <b class="caret"></b>-->
+          <!--</a>-->
+          <!--<ul class="dropdown-menu">-->
+            <!--<% if current_user.connected_to_facebook? %>-->
+              <!--<li class="no-border">-->
+                <!--<%= link_to "Social Calendar", socials_path  %>-->
+              <!--</li>-->
+              <!--<li class="divider"></li>-->
+            <!--<% end %>-->
+            <!--<li class="no-border">-->
+              <!--<%= link_to "Appointments", schedule_path(current_user) %>-->
+            <!--</li>-->
+          <!--</ul>-->
+        <!--</li>-->
+        <!--<li><%= link_to "My Team", '/users/team' %></li>-->
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-cogs"></i>
+            Account <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="no-border">
+              <%= link_to "Settings", edit_member_path(current_user) %>
+            </li>
+            <li class="no-border">
+              <%= link_to "My Communities", my_activities_path(current_user) %>
+            </li>
+            <li class="no-border">
+              <%= link_to "My Meetings", my_meetings_path(current_user) %>
+            </li>
+            <li class="divider"></li>
+            <li class="no-border">
+              <%= link_to "Log out", destroy_user_session_path, method: "delete" %>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  </div>
+</header>

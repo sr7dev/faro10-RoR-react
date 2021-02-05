@@ -1,0 +1,57 @@
+<% mem_bank = @scorecard.mem_bank %>
+
+
+<% type_check = :feeling %>  <!--change this symptom to test others....  zest, feeling, anxiety, hrs_slept, appetite, concentration, initiative, energy, pessimism, social_interaction, work_life, family_life, : -->
+
+
+<% ciw = Scorecard::ChangeInWords.new(type_check, mem_bank.entries) %>
+
+
+
+<h4 style="color: #4FA59F"> Type = <%= type_check %></h4>
+<p>Gets the average of entries in the first period and divides that by the average of entries in the last period</p>
+
+<div class="row">
+
+  <div class="col-md-6">
+    <p><b>Beginning Range</b> - Number of entries in the beg range</p>
+    <%= ciw.beginning_range.count(&type_check) %> <br>
+    <%= ciw.member_creation.strftime("%B %d, %Y") %> + <%= ciw.day_range %>days
+    <hr>
+    <p><b>Beginning Range Sum</b> - Sum of entries in the beg range</p>
+    <%= ciw.beginning_range.map(&type_check).sum.to_f %>
+    <br>
+    <hr>
+    <p><b>Type Start (Average/entry)</b> - Takes the sum of the entries in beginning range and divides by the number of entries to get the average for beginning range.</p>
+    <%= ciw.type_start(&type_check).round(3) %>
+  </div>
+  <div class="col-md-6">
+    <p><b>End Range</b> - Number of entries in the end range</p>
+    <%= ciw.end_range.count(&type_check) %> <br>
+    <%= ciw.time_now.strftime("%B %d, %Y") %> - <%= ciw.day_range %>days
+    <br>
+    <hr>
+    <p><b>End Range Sum</b>  - Sum of entries in the end range</p>
+    <%= ciw.end_range.map(&type_check).sum.to_f %>
+    <hr>
+    <p><b>Type End (Average/entry)</b> - Takes the sum of the entries in ending range and divides by the number of entries to get the average for ending range.</p>
+    <%= ciw.type_end(&type_check).round(3) %>
+  </div>
+</div>
+    <hr>
+
+<div class="row">
+  <div class="col-md-offset-3">
+    <p><b>Type Progress:</b>  ((Type End - Type Start) / Type End) * 100</p>
+    <br> (<%= render 'delta_words', value: @scorecard.mem_change_sentence(type_check), label: type_check %>)
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-offset-1">
+        <p>Day Range: </p>
+        <%= ciw.day_range %>
+    </div>
+</div>
+
+

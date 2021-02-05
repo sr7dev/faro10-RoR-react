@@ -1,0 +1,12 @@
+<% clinicians.each do |c| %>
+  <li>
+    <div class="clinician">
+      <div class="header">
+        <i class="fa fa-medkit"></i><%= c.clinic_name %>
+      </div>
+      <div class="address">
+        <%= "#{c.clinic_street}, #{c.clinic_city}, #{c.clinic_state}, #{c.clinic_zip}" %>
+      </div>
+    </div>
+  </li>
+<% end %>

@@ -1,0 +1,50 @@
+<% if defined?(current_user) %> 
+  <%= link_to "Print PDF", pdf_patient_assigned_exercise_path(id: @assigned, patient_id: params[:patient_id] || current_user.id), class: "btn btn-large", style: 'background-color: #326867; border-radius: 0; color: white' %>
+<% end %>
+
+<h1><%= @assigned.longname %></h1>
+<h3><%= @patient %></h3>
+
+
+
+<!--Exercise: Not Completed, Not Assigned  (exercises)   exercises/show-->
+<!--Exercise: Completed, Assigned  (assigned_exercises)    patients/exercises_memberships/show-->
+<!--Exercise: Not Completed, Assigned  (assigned_exercises)    users/exercises_memberships/show-->
+
+
+
+<div class='description'>  <!--    This puts the description on the COMPLETED exercises only  -->
+  <p style="font-size: 18px; margin-bottom: 25px">  <%= @assigned.description %> </p>
+  <p style="font-size: 16px; margin-bottom: 20px; font-style: italic ">  <%= @assigned.sub_description %> </p>
+
+</div>
+
+
+
+<ul id='question-list'>
+  <% @assigned.questions.each do |q| %>
+    <% classes = "question #{'child' if q.child?}" %>
+
+    <% if q.answerable? %>
+      <% ans = @assigned.answers.find_by(question: q) %>
+
+      <li class="<%= classes %>">
+        <%= q.text %>
+      </li>
+
+
+      <li class="answer <%= 'child' if classes.include?('child') %>" >
+
+        <% if ans.nil? %>
+            <!-- This keeps page from crashing over nil values.  i left it blank so that it doesnt print anything to the screen -->
+        <% else %>
+            <%= ans.text %>
+        <% end %>
+      </li>
+
+    <% else %>
+      <li class="<%= classes %>"><%= q.text %></li>
+    <% end %>
+
+  <% end %>
+</ul>

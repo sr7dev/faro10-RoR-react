@@ -1,0 +1,45 @@
+<div id="team-card" class="col-xs-6  col-md-1" style="min-width: 385px; min-height: 425px">
+  <div class="dashboard-card" style="background-color: #CC246F">
+    <div class="card-header">
+      <h1 class="card-header-text">Settings</h1>
+    </div>
+    <div class="card-menu">
+      <%= image_tag('video_temp.png') %>
+      <button type="button" class="card-video-button" data-toggle="modal" data-target="#"><%= image_tag('help.png') %></button>
+    </div>
+    <div class="card-image">
+      <a href="/members/<%=@current_user.id%>/edit"><%= image_tag('settings.png')%></a>
+    </div>
+    <div class="card-notification">
+      <a href="#teamAlert" data-toggle="collapse">
+
+      </a>
+    </div>
+    <div id="teamAlert" class="collapse card-message">
+
+    </div>
+    <div class="card-info">
+
+    </div>
+    <div class="card-action-top">
+      <%=image_tag('spacer.png')%>
+      <div class="card-action-text">
+
+      </div>
+    </div>
+    <div class="card-action-middle">
+      <%=image_tag('spacer.png')%>
+      <div class="card-action-text">
+
+      </div>
+    </div>
+    <div class="card-action-bottom">
+      <a href="/members/<%=@current_user.id%>/edit">
+      <%=image_tag('manage.png')%>
+        <div class="card-action-text">
+          EDIT<br/>SETTINGS
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

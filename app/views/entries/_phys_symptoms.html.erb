@@ -1,0 +1,99 @@
+<div class="row" style="overflow:auto; height:500px; width:100%">
+  <div class="box">
+    <div class="icon">
+      <div class="info" style="margin-left: 25px; background-color: white; border: none">
+        <br/>&nbsp;
+
+        <%= form_for @entry, url: entries_path do |f| %>
+            <% if @entry.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@entry.errors.count, "error") %> prohibited this symptom from being saved:</h2>
+                  <ul>
+                    <% @entry.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+            <% end %>
+
+            <div class="form-group">
+              <%= Time.use_zone(current_user.time_zone) do f.datetime_select(:created_at, :discard_year => true, ampm: true ) end %>
+            </div>
+            <br>
+
+            <div class="form-group" style="text-align: left; margin-left:180px">
+              <!--<= f.label :entries_symptoms_attributes, "Tracked Symptoms" %><br />-->
+              <% if current_user.tracked_symptoms.empty? %>
+                  <p>Please add a symptom to track above.</p>
+              <% end %>
+              <% current_user.tracked_symptom_symptoms.each_with_index do |symptom, index| %>
+
+
+                  <%= check_box_tag "entry[entries_symptoms_attributes][#{index}][symptom_id]", symptom.id, @entry.entries_symptoms.include?(symptom), symptom_id: symptom.id %>&nbsp;
+             <span style="margin-left: 10px">    <%= symptom.name %> </span>
+
+                  <br /><br/>
+              <% end %>
+            </div>
+
+            <br />
+            <hr>
+
+            <div class="form-actions">
+              <%= f.submit "Save", class: "btn btn-primary", style: "background-color: #326867; border-radius: 0" %>
+            </div>
+
+        <% end %>
+
+        <br>
+        <!--------------------------------------------------------------------->
+
+
+        <div class="modal fade" id="addcustomsymptomModal" role="dialog">
+          <div class="modal-dialog" >
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Customize Symptom Tracking List</h4>
+              </div>
+
+
+              <div class="modal-body" style="padding-left: 15px; padding-right: 15px">
+                <div class="row" style="text-align: center; margin-left: 30px;">
+                  <div class="row" style="width:90%">
+                    <%= form_for :tracked_symptom, url: tracked_symptoms_path do |f| %>
+                        <div class="form-group">
+                          <%= f.label :symptom_id, "Select which symptoms you'd like to track" %>
+                          <br />
+                          <%= f.collection_select :symptom_id, Symptom.available_to_patient(current_user), :id, :name,  {prompt: true}, {class: "form-control"} %>
+                        </div>
+
+                        <div class="form-actions">
+                          <%= f.submit "Track Symptom", class: "btn btn-primary", style: "background-color: #326867; border-radius: 0" %>
+                        </div>
+                    <% end %>
+                  </div>
+                  <div class="row" style="width:90%">
+                    <%= form_for :symptom, url: symptoms_path do |f| %>
+                        <div class="form-group">
+                          <%= f.label :name, "Add a custom symptom" %>
+                          <%= f.text_field :name, class: "form-control" %>
+                          <%= f.hidden_field :patient_id, value: current_user.id %>
+                        </div>
+                        <div class="form-actions">
+                          <%= f.submit "Add Custom Symptom", class: "btn btn-primary", style: "background-color: #326867; border-radius: 0" %>
+                        </div>
+                    <%  end %>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

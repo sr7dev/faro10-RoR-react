@@ -1,0 +1,47 @@
+<div class="modal fade" id="messages-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">
+          <i class="fa fa-user fa-lg"></i>
+          Send Message to Member
+        </h4>
+        <br>
+        <p>Messaging is a way to quickly communicate with a Patient.  This is a one-way message ability, and Patients cannot respond through this system.  You can choose from a few standard messages or create your own.</p>
+      </div>
+      <div class="modal-body">
+        <%= form_for(:message, url: messages_path) do |f| %>
+          <div class="field">
+            <%= f.label :body, "Message" %><br>
+            <%= f.text_area :body, size: "47x15" %>
+          </div>
+          <%= f.hidden_field :member_id %>
+          <%= f.submit "Send Message", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <br>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#messages-modal').on('show.bs.modal', function(event) {
+    var button = $(event.relatedTarget);
+    var id = button.data('member-id');
+    var name = button.data('member-name');
+    var modal = $(this);
+    modal.find('.modal-title').html('<i class="fa fa-user fa-lg"></i> Send Message to ' + name);
+    modal.find('#message_member_id').val(id);
+  });
+  $('#messages-modal').on('hidden.bs.modal', function(event) {
+    var modal = $(this);
+    modal.find('.modal-title').html('<i class="fa fa-user fa-lg"></i> Send Message to Member');
+    modal.find('#message_member_id').val(undefined);
+  });
+</script>

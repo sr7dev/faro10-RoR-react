@@ -1,0 +1,30 @@
+@import 'https://fonts.googleapis.com/css?family=Raleway:400,700';
+@import '_variables';
+
+body {
+  background: #fdfcfc;
+  color: $text;
+  font-family: 'Raleway', sans-serif;
+  padding-top: 80px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+
+.valign {
+  display: flex;
+  align-items: center;
+}

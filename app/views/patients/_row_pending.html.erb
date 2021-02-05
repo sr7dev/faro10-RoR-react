@@ -1,0 +1,24 @@
+<% member = membership.member %>
+<tr class="even gradeA">
+  <td>
+    <%=
+      if !membership.consents.any?
+        member.user_id || member.email
+      else
+        link_to(member.user_id || member.email, patient_path(member.id))
+      end
+    %>
+  </td>
+  <td><%= membership.status%></td>
+  <td></td>
+  <td></td>
+  <!--<td></td>-->
+  <td></td>
+  <td></td>
+  <td>
+    <button type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#messages-modal" data-member-id="<%= member.id %>" data-member-name="<%= member.user_id %>">
+      <i class="fa fa-envelope-o fa-fw"></i>
+    </button>
+  </td>
+</tr>
+

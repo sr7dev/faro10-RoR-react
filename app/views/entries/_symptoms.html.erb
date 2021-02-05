@@ -1,0 +1,90 @@
+<!-- old/previous symptoms form -->
+
+<div class="col-xs-12">
+  <h1>Symptoms</h1>
+  <h2>This is not a complete list of all possible symptoms you may be experiencing.  If you experience symptoms other than these few, please note them in your journal.</h2>
+  <div class="box">
+    <div class="icon">
+      <div class="image"><span class="glyphicon glyphicon-warning-sign btn-custom-lg white"></span></div>
+      <div class="info">
+
+        <%= form_for(@entry) do |f| %>
+            <% if @entry.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+                  <ul>
+                    <% @entry.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+            <% end %>
+            <br>
+
+            <div class="form-group">
+              <%= Time.use_zone(current_user.time_zone) do f.datetime_select(:created_at, :discard_year => true, ampm: true ) end %>
+            </div>
+
+            <div class="field form-group">
+              <%= f.check_box :suicide_thought, class: "control-label" %>
+              <%= f.label :suicide_thought %><br>
+            </div>
+
+            <div class="field form-group">
+              <%= f.check_box :panic_attack, class: "control-label" %>
+              <%= f.label :panic_attack %><br>
+            </div>
+
+            <div class="field form-group">
+              <%= f.check_box :hospitalization, class: "checkbox" %>
+              <%= f.label :hospitalization %><br>
+            </div>
+
+
+            <div class="field">
+              <!--<i class="fa fa-info-circle" data-toggle="modal" data-target="#zestModal" style="color:green"></i>  -->
+              <%= f.label :hallucination, 'Hallucinations' %><br>
+              <div class="slider-group">
+                <span id="hallucination-val">0</span>
+                <input type="range" id="hallucination-slider" name="entry[hallucination]" min="0" max="6" value="0" step="1" onChange="updateSliderVal('hallucination', this.value)" />
+              </div>
+            </div>
+
+            <div class="field">
+              <!--<i class="fa fa-info-circle" data-toggle="modal" data-target="#zestModal" style="color:green"></i>  -->
+              <%= f.label :pain, 'Pain' %><br>
+              <div class="slider-group">
+                <span id="pain-val">0</span>
+                <input type="range" id="pain-slider" name="entry[pain]" min="0" max="6" value="0" step="1" onChange="updateSliderVal('pain', this.value)" />
+              </div>
+            </div>
+
+            <br>
+            <div class="field">
+              <%= f.label :attended_session, class: "checkbox" %>
+              <%= f.select :attended_session, options_for_select(["","Support Group","Professional Consultant","Counselling", "Cognitive Behavior Therapy (CBT)",
+                                                                  "Computerized CBT", "Psychotherapy", "Dialectical Behavior Therapy (DBT)"]) %><br>
+            </div>
+            <br/>
+
+            <div class="field">
+            <%= f.label :self_harm %>
+            <%= f.select :self_harm, options_for_select(["","Cutting","Scratching","Burning", "Banging Head", "Banging Other", "Hair Pulling", "Skin Picking", "Self-Poisoning", "Other"]) %><br>
+            </div>
+            <br/>
+
+
+            <div class="field" style="margin: 7px">
+              <%= f.label :journal %><br>
+              <%= f.text_area :journal, size: "6x6", class: "form-control" %>
+            </div>
+            <br>
+            <div class="actions">
+              <%= f.submit "Add New Status", class: "btn btn-primary", style: "background-color: #326867; border-radius: 0" %>
+            </div>
+            </div>
+            </div>
+        <%end%>
+        <div class="space"></div>
+    </div>
+</div>

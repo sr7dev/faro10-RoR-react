@@ -1,0 +1,114 @@
+<div class="clinicians-table table-wrapper">
+  <table id="clinicians" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover table-highlight table-bordered">
+    <thead>
+      <tr>
+        <th>Clinician</th>
+        <th>Clinic Name</th>
+        <% if tab == "active" %>
+          <th>Type</th>
+          <th>Address</th>
+          <th>Phone</th>
+        <% else %>
+          <th>Status</th>
+        <% end %>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if memberships.present? %>
+        <% memberships.each_with_index do |membership, index| %>
+          <% clinician = membership.clinician %>
+          <tr class="even gradeA clickable" data-toggle="collapse" data-target="#row_<%= index %>_<%= membership.status %>">
+            <td><i class="fa fa-user-md" style="margin: 7px"></i><%= clinician.user_id %></td>
+            <td><%= clinician.clinic_name %></td>
+            <% if membership.status == "active" %>
+              <td><%= clinician.clinician_type %></td>
+              <td><%= clinician.clinic_street %>, <%= clinician.clinic_city %>, <%= clinician.clinic_state %></td>
+              <td><%= clinician.clinic_phone %></td>
+            <% else %>
+              <td class="<%= clinician_status_tag(membership.status) %>"><%= membership.status %></td>
+            <% end %>
+            <td>
+              <div class="btn-group">
+                <% case membership.status %>
+                  <% when "pending" %>
+                    <button type="button" class="btn btn-xs btn-faro10 accept-consent" data-toggle="modal" data-target="#newConsent<%= membership.id %>" data-membership-id="<%= membership.id %>">
+                      <i class="fa fa-check fa-fw" data-toggle="tooltip" data-placement="top" title="Approve Clinician"></i>
+                    </button>
+                    <%= link_to membership_path(membership, membership_action: 'deny'), class: "btn btn-xs btn-danger", method: :put do  %>
+                      <i class="fa fa-times fa-fw" data-toggle="tooltip" data-placement="top" title="Deny Clinician"></i>
+                    <% end %>
+                  <% when "inactive" %>
+                    <button type="button" class="btn btn-xs btn-info renew-consent" data-toggle="modal" data-target="#renewConsent<%= membership.id %>" data-membership-id="<%= membership.id %>">
+                      <i class="fa fa-repeat fa-fw" data-toggle="tooltip" data-placement="top" title="Renew Membership"></i>
+                    </button>
+                  <% when "active" %>
+                    <% if membership.journal_visible? %>
+                      <%= link_to remove_journal_visible_patient_path(membership), class: "btn btn-xs btn-info", method: :post do %>
+                        <i class="fa fa-eye-slash" data-toggle="tooltip" data-placement="top" title="Remove ability to see Journal"></i>
+                      <% end %>
+                    <% else %>
+                      <%= link_to add_journal_visible_patient_path(membership), class: "btn btn-xs btn-info", method: :post do %>
+                        <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="Add ability to see Journal"></i>
+                      <% end %>
+                    <% end %>
+                    <%= link_to membership_path(membership, membership_action: 'renew'), class: "btn btn-xs btn-success", method: :put do  %>
+                      <i class="fa fa-repeat fa-fw" data-toggle="tooltip" data-placement="top" title="Renew Membership"></i>
+                    <% end %>
+                    <%= link_to membership_path(membership, membership_action: 'cancel'), class: "btn btn-xs btn-danger", method: :put do  %>
+                      <i class="fa fa-times fa-fw" data-toggle="tooltip" data-placement="top" title="Cancel Membership"></i>
+                    <% end %>
+                  <% else %>
+                    <%= link_to membership_path(membership, membership_action: 'renew'), class: "btn btn-xs btn-info", method: :put do  %>
+                      <i class="fa fa-repeat fa-fw" data-toggle="tooltip" data-placement="top" title="Renew Membership"></i>
+                    <% end %>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+          <tr class="collapse" id="row_<%= index %>_<%= membership.status %>">
+            <td colspan="<%= membership.status == 'active' ? 6 : 4 %>">
+              <% if membership.consents.any? %>
+                <h4>Consent History for <%= membership.clinician.user_id %></h4>
+                <table cellpadding="0" cellspacing="0" border="0" class="dataTable table-striped table-hover table-highlight table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Start</th>
+                      <th>End</th>
+                      <th>Canceled</th>
+                      <th>Form</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% membership.consents.order(created_at: :desc).each do |consent| %>
+                      <tr>
+                        <td><%= consent.created_at.strftime("%A, %B %d, %Y") %></td>
+                        <td><%= consent.ended_at.strftime("%A, %B %d, %Y") %></td>
+                        <td>
+                          <%= consent.canceled_at ? consent.canceled_at.strftime("%A, %B %d, %Y") : "N/A" %>
+                        </td>
+                        <td>
+                          <i class="fa fa-file-text"></i> <%= link_to "Show Consent", consent_path(consent.id,  format: :pdf), target: "_blank" %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              <% else %>
+                <p>No consents for clinician.</p>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <% if memberships.empty? %>
+    <% if tab == "active" %>
+      <p>Talk to your Clinician about sharing your feedback with them.  Once they log in and add you as a Patient, you will see them appear on your list of Clinicians.</p>
+      <p>Before they will see any of your information, you will have to approve the connection in the "Actions" column.</p>
+    <% elsif tab == "inactive" %>
+      <p>No Inactive Clinicians</p>
+    <% end %>
+  <% end %>
+</div>

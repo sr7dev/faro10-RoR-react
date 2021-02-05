@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+
+<h1>Listing Channel Assets</h1>
+
+<div class="row">
+  <div class="col-md-5 col-md-offset-5">
+
+
+    <table>
+      <thead>
+        <tr>
+          <th>Asset Type</th>
+          <th>Asset Name</th>
+          <th>Asset Source</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @channel_assets.each do |channel_asset| %>
+          <tr>
+            <td><%= channel_asset.asset_name %></td>
+            <td><%= channel_asset.asset_type %></td>
+            <td><%= channel_asset.source %></td>
+            <td><%= link_to 'Show', channel_asset %> |
+                <%= link_to 'Edit', edit_channel_channel_asset_path(channel_asset) %> |
+                <%= link_to 'Destroy', channel_asset, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+    <%= link_to 'New Channel asset', new_channel_channel_asset_path %>
+
+</div>
+</div>

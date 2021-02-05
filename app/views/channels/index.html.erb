@@ -1,0 +1,82 @@
+<p id="notice"><%= notice %></p>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<div class="container-fluid">
+  <div class="row" style="background-color: #8cd2cb; margin-top: -20px ">
+    <div class="col-md-1 hidden-xs"  style="margin-left: -14px; max-height: 5px ">
+      <!--<= image_tag('smoke.png' ) %>-->
+    </div>
+    <div class="col-md-8 col-xs-12" style="padding-top: 5%; padding-bottom: 4%">
+      <h1 class="hidden-xs" style="color: white; text-align: left"><b>Old and New Friends Learning and Sharing in a Secure Place.  Find Communities of others who've been there and done that.</b></h1>
+      <h2 style="color: white; text-align: left"></h2>
+    </div>
+    <div class="col-md-3 hidden-xs" align="center" >
+      <button type="button"
+              class="btn btn-primary"
+              style="vertical-align: bottom; margin-top: 25%; padding: 20px; background-color: #F19A20; font-size: large; border-color: orange; border-radius: 0;"
+              data-toggle="modal"
+              data-target="#scheduleMeetingModal">
+        <b>Start a Community</b>
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1   col-xs-12">
+      <h3>Recommended Communities</h3>
+    </div>
+  </div>
+  <div class="row" style="margin-bottom: 10px">
+    <div class="col-md-10 col-md-offset-1   col-xs-12">
+      <% @all_channels.each do |pr| %>
+        <% if pr.is_partner? %>
+          <div class="col-md-2">
+            <table id= "partnerCommunitiesTable" cellpadding="0" cellspacing="0" border="0" class="dataTable table-responsive table-striped table-hover table-highlight table-bordered" >
+              <thead>
+              <tr>
+                <th><%= pr.channel_focus %></th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><%= pr.channel_name %><br>
+                    <!--<b><= pr.channel_focus %></b><br>-->
+                    <%= link_to pr.avatar.present? ? image_tag(pr.avatar, class: "img-responsive") : image_tag("https://s3-us-west-2.amazonaws.com/mendalytics/YourLogoHere.jpg", class: "img-responsive"), pr %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        <% else %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1   col-xs-12">
+      <h3>All Communities</h3>
+    </div>
+  </div>
+  <div class="row" style="margin-bottom: 20px">
+    <div class="col-md-10 col-md-offset-1  col-xs-12">
+        <% @all_channels.each do |pr| %>
+            <div class="col-md-2">
+              <table class="table-responsive table-striped table-hover table-highlight table-bordered display: inline-block; ">
+                <thead>
+                  <tr>
+                    <th><%= pr.channel_focus %></th><br>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><%= pr.channel_name %><br>
+                      <!--<b><= pr.channel_focus %></b>-->
+                      <%= link_to pr.avatar.present? ? image_tag(pr.avatar, class: "img-responsive") : image_tag("https://s3-us-west-2.amazonaws.com/mendalytics/YourLogoHere.jpg", class: "img-responsive"), pr %>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        <% end %>
+    </div>
+  </div>
+</div>

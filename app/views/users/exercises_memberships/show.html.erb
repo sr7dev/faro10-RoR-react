@@ -1,0 +1,40 @@
+<h1><%= @assigned.longname %></h1>
+
+<!--Exercise: Not Completed, Not Assigned  (exercises)   exercises/show-->
+<!--Exercise: Completed, Assigned  (assigned_exercises)    patients/exercises_memberships/show-->
+<!--Exercise: Not Completed, Assigned  (assigned_exercises)    users/exercises_memberships/show-->
+
+<div class='description'>  <!--    This puts the description on the ASSIGNED BUT NOT COMPLETED exercises only  -->
+  <p style="font-size: 18px; margin-bottom: 25px">  <%= @assigned.description %> </p>
+  <p style="font-size: 16px; margin-bottom: 20px; font-style: italic ">  <%= @assigned.sub_description %> </p>
+</div>
+
+<%= form_tag assigned_exercise_answers_path(@assigned) do %>
+  <ul id='question-list'>
+    <% @assigned.questions.each do |q| %>
+      <% classes = "question #{'child' if q.child?}" %>
+
+      <li class="<%= classes %>">
+        <% if q.has_comment? %>
+          <div class="comment"><%= q.comment %></div>
+        <% end %>
+
+        <div class='form-group'>
+          <%= q.text %><br/>
+        </div>
+
+        <% unless q.style == 'none' %>
+          <%= render "users/exercises_memberships/question_partials/#{q.style}", question: q %>
+        <% end %>
+      </li>
+    <% end %>
+
+    <%= submit_tag 'Submit Exercise', class: 'btn btn-large', style: 'background-color: #326867; border-radius: 0; color: white' %>
+  <% end %>
+
+  <%= link_to assigned_exercises_path(@current_user) do %>
+    <button type="button" class="btn btn-large btn-primary" style="background-color: #326867; width: 130px; border-radius: 0"> <i class="fa fa-file-image-o fa-lg" style="margin-right: 5px;" ></i>
+      Exit
+    </button>
+  <% end %>
+  </ul>

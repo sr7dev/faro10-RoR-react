@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Start</th>
+      <th>End</th>
+      <th>Plan</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for subscription in subscriptions.order(start: :desc) %>
+      <tr>
+        <td><%= subscription.start.strftime("%A, %B %d, %Y") %></td>
+        <td><%= subscription.ended_at.strftime("%A, %B %d, %Y") %></td>
+        <td><%= subscription.name %></td>
+        <td><%= subscription.amount %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,55 @@
+<ul class="patient-navbar" >
+  <li>
+    <span class="nav-link <%='active' if active == 'overview'%>">
+        <%= link_to "Overview", patient_path(@member || @patient) %>
+    </span>
+  </li>
+
+<% if current_user.subscriptions.active.any? %>
+  <li>
+    <span class="divider">
+      |
+    </span>
+  </li>
+
+
+  <li>
+    <span class="nav-link <%='active' if active == 'scorecard'%>">
+      <%= link_to "Scorecard", patient_scorecard_path(@member || @patient) %>
+    </span>
+  </li>
+<% end %>
+
+  <li>
+    <span class="divider">
+      |
+    </span>
+  </li>
+  <li>
+    <span class="nav-link <%='active' if active == 'exercises'%>">
+      <%= link_to "Exercises", patient_assigned_exercises_path(@member || @patient) %>
+    </span>
+  </li>
+  <li>
+    <span class="divider">
+      |
+    </span>
+  </li>
+<% if current_user.subscriptions.active.any? %>
+  <li>
+      <span class="nav-link <%='active' if active == 'collaboration'%>">
+        <%= link_to "Collaboration", collaboration_patient_path(@member || @patient) %>
+      </span>
+    </li>
+    <li>
+      <span class="divider">
+        |
+      </span>
+    </li>
+    <li>
+      <span class="nav-link <%='active' if active == 'schedule'%>">
+        <%= link_to "Schedule", schedule_path(@member || @patient) %>
+      </span>
+    </li>
+<% end %>
+</ul>

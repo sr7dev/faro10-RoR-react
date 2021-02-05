@@ -1,0 +1,56 @@
+<!--This page checks the math for entries that are summed together, and not on a scale.  -->
+<!--For example, adding the number of headaches a person has in a period.  To determine if a person is getting better, -->
+<!--they should be having fewer headaches in the ending period than the beginning period.  -->
+
+<!--:headache, :suicide_thought, :hrs_slept, :suicide_thought, :panic_attack, :initiative, -->
+<!--:restlessness, :dry_mouth, :nausea, :nightmare, :hospitalization, :hallucination, :attended_session,-->
+
+
+
+<% mem_bank = @scorecard.mem_bank %>
+
+
+<% type_check = :headache %>
+
+
+<% ciw = Scorecard::ChangeInWords.new(type_check, mem_bank.entries) %>
+
+
+
+<h4 style="color: #4FA59F"> Type = <%= type_check %></h4>
+<p>Gets the total number of entries in each period, and divides by the number of days in each period to determine the avg per day</p>
+
+<div class="row">
+
+  <div class="col-md-6">
+    <p><b>Beginning Range Sum</b> - Sum of entries in the beg range</p>
+    <%= ciw.beginning_range.map(&type_check).sum.to_f %> <br>
+    <%= ciw.member_creation.strftime("%B %d, %Y") %> + <%= ciw.day_range %>days
+    <br>
+    <hr>
+    <p><b>Days in Range</b>  - Number of days in the beg range</p>
+    <%= ciw.day_range %>
+    <hr>
+    <p><b>Type Start (Average/day)</b> - Takes the number of occurrences in beginning range, and divides by the number of days in the range, to get the average per day.</p>
+    <%= ciw.type_start(&type_check).round(3) %>
+  </div>
+  <div class="col-md-6">
+    <p><b>End Range Sum</b>  - Sum of entries in the end range</p>
+    <%= ciw.end_range.map(&type_check).sum.to_f %> <br>
+    <%= ciw.time_now.strftime("%B %d, %Y") %> - <%= ciw.day_range %>days
+    <hr>
+    <p><b>Days in Range</b>  - Number of days in the end range</p>
+    <%= ciw.day_range %>
+    <hr>
+    <p><b>Type End (Average/day)</b> - Takes the number of occurrences in ending range, and divides by the number of days in the range, to get the average per day.</p>
+    <%= ciw.type_end(&type_check).round(3) %>
+  </div>
+</div>
+<hr>
+
+<div class="row">
+  <div class="col-md-offset-3">
+    <p><b>Type Progress:</b>  ((Type End - Type Start) / Type End) * 100</p>
+    <br> (<%= render 'delta_words', value: @scorecard.mem_change_sentence(type_check), label: type_check %>)
+  </div>
+</div>

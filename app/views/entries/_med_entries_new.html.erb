@@ -1,0 +1,56 @@
+<div class="row" style="overflow:auto; height:500px; width:100%">
+  <div class="box">
+    <div class="icon">
+      <div class="info" style="margin-left: 25px; background-color: white; border: none">
+
+        <%= form_for(@entry) do |f| %>
+            <% if @entry.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+                  <ul>
+                    <% @entry.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+            <% end %>
+
+            <div class="field form-group">
+              <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover table-highlight table-bordered" >
+
+
+                <%= f.fields_for :entries_prescriptions do |ep| %>
+                    <thead>
+                    <tr>
+                      <th>Medication Name</th>
+                      <th>Times Taken</th>
+                      <th>Day / Month</th>
+                    </tr>
+                    </thead>
+                    <tr class="fields">
+                      <td>
+                        <%= ep.label :times_taken, "#{ep.object.prescription.drug.friendly_name}", class: "form-control"  %>
+                      </td>
+                      <td>
+                        <%= ep.select :times_taken, (0.."#{ep.object.prescription.daily_doses}".to_i).to_a, {}, class: "form-control" %>
+                      </td>
+                      <%= ep.hidden_field :prescription_id, value: ep.object.prescription.id %>
+                      <td>
+                        <%= ep.date_select :day_taken, ampm: true, :order => [:day, :month], :discard_minute => true, id: "new-takenvalue"  %>
+                      </td>
+                    </tr>
+
+                <% end %>
+              </table>
+            </div>
+            <br>
+            <div class="actions">
+              <%= f.submit "Save", class: "btn btn-primary", style: "background-color: #326867; border-radius: 0" %>
+            </div>
+        <%end%>
+      </div>
+      <div class="space"></div>
+    </div>
+  </div>
+</div>
+

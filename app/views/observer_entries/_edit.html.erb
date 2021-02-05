@@ -1,0 +1,16 @@
+<% provide(:title, "Edit Entry") %>
+<h1>Update Entry</h1>
+<div class="row">
+  <div class="col-md-3 col-md-offset-3">
+    <%= form_for(@observer_entry) do |f| %>
+        <%= f.label :clinician_response, "Clinician Response"  %>
+        <%= f.text_field :clinician_response, class: 'form-control' %><br>
+        <%= f.label @observer_entry %>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3 col-md-offset-3">
+            <%= f.submit "Save changes", class: "btn btn-primary", style: "border-radius: 0; background-color: #4FA59F" %>
+    <% end %>
+  </div>
+</div>

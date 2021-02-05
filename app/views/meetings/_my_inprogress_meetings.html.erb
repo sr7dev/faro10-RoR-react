@@ -1,0 +1,39 @@
+<table id= "meetingsInprogressTable" cellpadding="0" cellspacing="0" border="0" class="dataTable table-responsive table-striped table-hover table-highlight table-bordered"  >
+  <thead>
+  <tr id="">
+    <th style="border-bottom-color: transparent; border: none; width: 15% ">
+
+    </th>
+    <th style="border-bottom-color: transparent; border: none; width: 20% "></th>
+    <th class="hidden-xs" style="border-bottom-color: transparent; border: none; width: 60% ">
+    </th>
+    <th style="border-bottom-color: transparent; border: none; width: 5% ">
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @meetings.inprogress.order("start_time desc").each do |meeting| %>
+      <tr>
+        <td><%= link_to 'Join', meeting %></td>
+        <td> In-Progress  <br>
+          <i><%= meeting.meeting_users.in_meeting.count %> attendees </i><br>
+          <%=  meeting.privacy.present?  ? "Private" : "" %>
+
+        </td>
+
+        <td><%= meeting.meeting_type %><br>
+          <span style="font-size: large"><b><%= meeting.name %></b></span> <br>
+          <%= meeting.topic %>
+          <span style="font-size: small"> <%= meeting.special_focus %></span></td>
+        <!--<td><= meeting.status %></td>-->
+        <!--<td><= meeting.privacy %></td>-->
+        <td>
+          <span style="float: right">
+          <%= link_to 'Edit', edit_meeting_path(meeting) %>
+            <!--<= link_to 'Cancel', meeting, method: :delete, data: { confirm: 'Are you sure?' } %>-->
+          </span>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

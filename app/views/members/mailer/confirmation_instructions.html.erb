@@ -1,0 +1,30 @@
+<h1>Faro10</h1>
+
+<p>Hi <%= @resource.user_id %>,</p>
+
+<p>
+  Welcome to Faro10! Click on the link below to activate your account.
+  Then log into the mobile app to get started!
+</p>
+
+<%= link_to "Activate Now", confirmation_url(@resource, confirmation_token: @token), :target => "_blank" %>
+
+<br>
+
+<p> The attached guide provides instructions on how to get started </p>
+<p>
+  <%= link_to "Quick Start Guide", 'https://www.faro10.com/assets/client_quick_start_guide-64b1d609ec68497a7885504249f7a91ff4a358c2d0015ae0d6c1f5f03c94e06d.pdf', :target => "_blank" %>
+</p>
+
+
+
+
+
+
+<br>
+<p>Find us in the AppStore</p>
+<%= link_to "AppStore", 'https://itunes.apple.com/us/app/faro10/id1080204499?mt=8', :target => "_blank" %>
+
+<br>
+<p>Find us in Google Play </p>
+<%= link_to "Google Play", 'https://play.google.com/store/apps/details?id=com.faro10', :target => "_blank" %>

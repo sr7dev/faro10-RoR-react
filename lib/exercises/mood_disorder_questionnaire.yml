@@ -1,0 +1,135 @@
+category: bipolar
+longname: Mood Disorder Questionnaire
+shortname: mdq
+logo: mood_disorder_quest_icon.png
+description: The Mood Disorder Questionnaire (MDQ) is a tool designed to help you recognize the signs and symptoms of bipolar disorder, including mania.  Take this bipolar test to see if you might have bipolar disorder symptoms.  Remember, this is NOT a diagnosis or take the place of professional consultation.  Only a qualified mental health clinician can make a diagnosis and provide treatment.
+sub_description: Has there ever been a period of time when you were not your usual self and (while not on drugs or alcohol). (answer yes/no to following)
+questions:
+  - position: 1
+    style: multiple_choice
+    text: 1. You felt so good or so hyper that other people thought you were not your normal self or you were so hyper that you got into trouble?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 2
+    style: multiple_choice
+    text: 2. You were so irritable that you shouted at people or started fights or arguments?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 3
+    style: multiple_choice
+    text: 3. You felt much more self-confident than usual?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 4
+    style: multiple_choice
+    text: 4. You got much less sleep than usual and found you didn't really miss it?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 5
+    style: multiple_choice
+    text: 5. You were much more talkative or spoke much faster than usual?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 6
+    style: multiple_choice
+    text: 6. Thoughts raced through your head or you couldn't slow your mind down?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 7
+    style: multiple_choice
+    text: 7. You were so easily distracted by things around you that you had trouble concentrating or staying on track?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 8
+    style: multiple_choice
+    text: 8. You had much more energy than usual?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 9
+    style: multiple_choice
+    text: 9. You were much more active or did many more things than usual?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 10
+    style: multiple_choice
+    text: 10. You were much more social or outgoing than usual, for example, you telephoned friends in the middle of the night?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 11
+    style: multiple_choice
+    text: 11. You were much more interested in sex than usual?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 12
+    style: multiple_choice
+    text: 12. You did things that were unusual for you or that other people might have thought were excessive, foolish, or risky?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 13
+    style: multiple_choice
+    text: 13. Spending money got you or your family into trouble?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 14
+    style: multiple_choice
+    text: 14. If you checked YES to more than one of the above, have several of these ever happened during the same period of time?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 15
+    style: multiple_choice
+    text: 15. How much of a problem did any of these cause you - like being unable to work; having family, money or legal troubles; getting into arguments or fights? Please select one response only.
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 16
+    style: multiple_choice
+    text: 16. Have any of your blood relatives (children, siblings, parents, grand parents, aunts, uncles) had manic-depressive illness or bipolar disorder?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.

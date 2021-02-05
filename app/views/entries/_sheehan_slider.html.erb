@@ -1,0 +1,8 @@
+<div class="field">
+  <div class="slider-group">
+    <%# <%= tag('span', {id: "#{attr}-val"}, false, false) %1> %>
+    <%= f.label attr, title %><br>
+    <div id="<%= attr %>-val">0</div>
+    <%= tag('input', type: 'range', id: "#{attr}-slider", name: "entry[#{attr}]", min: 0, max: 10, value: 0, step: 1, onChange: "updateSliderVal('#{attr}', this.value)") %>
+  </div>
+</div>

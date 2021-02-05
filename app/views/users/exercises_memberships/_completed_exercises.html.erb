@@ -1,0 +1,22 @@
+<h3>Completed Exercises</h3>
+
+<div class="table-wrapper">
+  <table id= "user_completed_exercises" cellpadding="0" cellspacing="0" border="0" class="dataTable table-striped table-hover table-highlight table-bordered"  >
+    <thead>
+      <tr>
+        <th>Exercise Name</th>
+        <th>Date Assigned</th>
+        <th>Date Completed</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% completed.each do |ex| %>
+        <tr>
+          <td><%= link_to "#{ex.longname}", assigned_exercise_path(ex) %></td>
+          <td><%= ex.assigned %></td>
+          <td><%= ex.completed %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

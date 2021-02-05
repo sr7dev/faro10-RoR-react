@@ -1,0 +1,83 @@
+<% provide(:title, @clinician.user_id) %>
+
+<div class="row">
+  <aside class="col-md-2">
+    <h1><%= @clinician.user_id%></h1>
+  </aside>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 col-md-5 col-sm-8 col-xs-9 bhoechie-tab-container">
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
+        <div class="list-group">
+          <a href="#" class="list-group-item active text-center">
+            <h4 class="glyphicon glyphicon-cog"></h4><br/>Account Info
+          </a>
+          <a href="#" class="list-group-item text-center">
+            <h4 class="glyphicon glyphicon-home"></h4><br/>Address
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
+        <!-- Account Info section -->
+        <div class="bhoechie-tab-content active">
+          <br>
+          <p>
+            <strong>User:</strong>
+            <%= @clinician.user_id %>
+          </p>
+          <p>
+            <strong>Email:</strong>
+            <%= @clinician.email %>
+          </p>
+          <p>
+            <strong>Phone:</strong>
+            <%= @clinician.clinic_phone %>
+          </p>
+        </div>
+
+        <!-- ADDRESS search -->
+        <div class="bhoechie-tab-content">
+          <div class="row">
+            <div class="col-md-6">
+              <p>
+                <strong>Clinic Name:</strong>
+                <%= @clinician.clinic_name %>
+              </p>
+              <p>
+                <strong>Street Address:</strong>
+                <%= @clinician.clinic_street %>
+              </p>
+              <p>
+                <strong>City:</strong>
+                <%= @clinician.clinic_city %>
+              </p>
+            </div>
+
+            <div class="col-md-6">
+              <p>
+                <strong>State:</strong>
+                <%= @clinician.clinic_state %>
+              </p>
+              <p>
+                <strong>Zip code:</strong>
+                <%= @clinician.clinic_zip %>
+              </p>
+              <p>
+                <strong>Country:</strong>
+                <%= @clinician.country %>
+              </p>
+            <div class="bhoechie-tab-content">
+              <br>
+              <p>
+                <strong>Clinician:</strong>
+                <%= @clinician.clinician_id %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

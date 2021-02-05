@@ -1,0 +1,34 @@
+
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="well">
+
+      <%= form_for(@user) do |f| %>
+          <%= render 'shared/error_messages' %>
+
+          <%= f.label :user_id, "Users Register Folder - old route" %>
+          <%= f.text_field :user_id, class: 'form-control' %>
+
+          <%= f.label :email %>
+          <%= f.email_field :email, class: 'form-control' %>
+
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control' %>
+
+          <%= f.label :password_confirmation, "Confirmation" %>
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+          <%= f.label :gender, "Gender" %><br/>
+          <%= f.radio_button :gender, "Male", class: "col-md-1 control-label"  %> Male <br/>
+          <%= f.radio_button :gender, "Female", class: "col-md-1 control-label"  %> Female
+
+
+          <br/>
+          <br/>
+          <%= f.submit "Create my account", class: "btn btn-primary", style: "background-color: #326867; border-radius: 0" %>
+
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,231 @@
+<!--<h3>Patient Scorecard</h3><br>-->
+
+<style>
+    #menu li,
+    a:link {
+        color: #326867;
+        text-decoration: none;
+    }
+    a:visited {
+        color: #326867;
+        text-decoration: none;
+    }
+    a:hover {
+        color: #CC246F;
+        text-decoration: none;
+    }
+    a:active {
+        color: #CC246F;
+        text-decoration: none;
+    }
+</style>
+
+<%= render partial: "patients/patient_navbar", locals: {active: "scorecard"} %>
+<br>
+
+
+<div class="row">
+  <div class="col-md-12">
+  <h3>Symptoms and Functional Impairment</h3>
+  <p>
+    This Scorecard data is created based on feedback from Patient and Observers, who have provided  <span style="color: red"> <%= @scorecard.entries_count %> </span> separate treatment entries.<br><br>
+    <!--Patient continues to present with a number of behavioral and emotional symptoms, including <span style="color: red"> difficulty managing emotions, frequent defiance, and persistent low telapeer-image </span>-->
+    <!--that are impacting their functioning at <span style="color: red"> home, work/school, and social interactions </span>.-->
+    <!--There is <span style="color: red"> noticeable symptom reduction </span> in several areas since beginning treatment with  <span style="color: red"> <%= current_user.user_id %> </span> and monitoring with Faro10.-->
+
+    <!--<br>Specific symptom measurements included below.<br>-->
+  </p>
+  </div>
+  <div class="col-md-6">
+    <p><b>Patient Reported</b></p>
+
+    <div class="row">
+      <%= render 'reported', value: impairment_scale(@scorecard.avg(:mem, :feeling)), title: 'Depressed Mood' %>
+      <%= render 'reported', value: sheehan_scale(@scorecard.avg(:mem, :social_life)), title: 'Social Life' %>
+    </div>
+
+
+    <div class="row">
+      <!--<= render 'reported', value: @scorecard.self_harm_total, title: 'Self-harm' %>-->
+      <%= render 'reported', value: sheehan_scale(@scorecard.avg(:mem, :work_life)), title: 'Work/School' %>
+      <%= render 'reported', value: impairment_scale(@scorecard.avg(:mem, :zest)), title: 'Hopelessness' %>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+
+        <!--If there is no issue, then these do not need to be present-->
+        <p><b>Anxiety:</b>                       <%= impairment_scale(@scorecard.avg(:mem, :anxiety)) %></p>
+        <p><b>Decreased Energy:</b>              <%= impairment_scale(@scorecard.avg(:mem, :energy)) %></p>
+        <p><b>Depressed Mood:</b>                <%= impairment_scale(@scorecard.avg(:mem, :feeling)) %></p>
+        <p><b>Hallucinations:</b>                <%= impairment_scale(@scorecard.avg(:mem, :hallucination)) %></p>
+        <p><b>Substance Abuse:</b>               TBD</p>
+        <p><b>Significant Weight Change:</b>     TBD</p>
+
+      </div>
+      <div class="col-md-6">
+        <p><b>Hopelessness:</b>                  <%= impairment_scale(@scorecard.avg(:mem, :zest)) %></p>
+        <p><b>Family Life:</b>                   <%= sheehan_scale(@scorecard.avg(:mem, :family_life)) %></p>
+        <p><b>Inattention:</b>                   <%= impairment_scale(@scorecard.avg(:mem, :concentration)) %></p>
+        <p><b>Panic Attacks:</b>                 <%= impairment_scale(@scorecard.avg(:mem, :panic_attack)) %></p>
+        <p><b>Mood Instability:</b>              TBD</p>
+        <p><b>Work/School:</b>                   <%= sheehan_scale(@scorecard.avg(:mem, :work_life)) %></p>
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <div class="col-md-6">
+    <p><b>Observer Reported</b></p>
+
+    <div class="row">
+      <%= render 'reported', value: impairment_scale(@scorecard.avg(:obs, :feeling)), title: 'Observed Depressed Mood' %>
+      <%= render 'reported', value: sheehan_scale(@scorecard.avg(:obs, :social_interaction)), title: 'Observed Social Life' %>
+    </div>
+
+    <div class="row">
+      <%= render 'reported', value: impairment_scale(@scorecard.avg(:obs, :zest)), title: 'Observed Hopelessness' %>
+      <%= render 'reported', value: sheehan_scale(@scorecard.avg(:obs, :family_life)), title: 'Observed Family Life' %>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+
+        <!--If there is no issue, then these do not need to be present-->
+
+        <p><b>Decreased Energy:</b>       <%= impairment_scale(@scorecard.avg(:obs, :energy)) %></p>
+        <p><b>Delusions:</b>              <%= impairment_scale(@scorecard.avg(:obs, :delusional)) %></p>
+        <p><b>Depressed Mood:</b>         <%= impairment_scale(@scorecard.avg(:obs, :feeling)) %></p>
+        <p><b>Hallucinations:</b>         <%= impairment_scale(@scorecard.avg(:obs, :hallucination)) %></p>
+        <p><b>Hyperactivity:</b>          <%= impairment_scale(@scorecard.avg(:obs, :hyperactive)) %></p>
+        <p><b>Substance Abuse:</b>        <%= impairment_scale(@scorecard.avg(:obs, :substance_abuse)) %></p>
+
+      </div>
+      <div class="col-md-6">
+        <p><b>Hopelessness:</b>             <%= impairment_scale(@scorecard.avg(:obs, :zest)) %></p>
+        <p><b>Family Life:</b>              <%= impairment_scale(@scorecard.avg(:obs, :family_life)) %></p>
+        <p><b>Work/School:</b>              <%= impairment_scale(@scorecard.avg(:obs, :work_life)) %></p>
+        <p><b>Dangerous Behavior:</b>       <%= impairment_scale(@scorecard.avg(:obs, :dangerous_behavior)) %></p>
+        <p><b>Mood Instability:</b>              TBD</p>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<br>
+<div class="row">
+  <h3>Treatment Progress</h3>
+
+  <h5>Measured outcomes based on changes in patient symptoms.</h5>
+  <div class="col-md-6">
+    <%= render 'well_being' %>
+  </div>
+  <div class="col-md-6">
+    <%= render 'cognition' %>
+  </div>
+</div>
+
+<div class="row">
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= render 'behavior' %>
+  </div>
+  <div class="col-md-6">
+    <%= render 'physical_health' %>
+  </div>
+</div>
+
+<div class="row">
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= render 'interpersonal' %>
+  </div>
+  <div class="col-md-6">
+    <%= render 'society' %>
+  </div>
+</div>
+
+
+<br>
+<!--<= link_to "Math by Entry", "#MyMathEntriesModal", :class => "btn", "data-toggle" => "modal" %>-->
+<!--<= link_to "Math by Days", "#MyMathDaysModal", :class => "btn", "data-toggle" => "modal" %>-->
+<!--<= link_to "Math by Days", "#MyMathObserverModal", :class => "btn", "data-toggle" => "modal" %>-->
+
+
+
+<div style="color: white">test</div><br>
+<div style="color: white">test</div><br>
+
+
+
+<!--Math by Entry  modal body-->
+        <div class="modal fade" id="MyMathEntriesModal" role="dialog">
+          <div class="modal-dialog modal-lg" >
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title" style="color: #4FA59F"> Math Check </h3>
+              </div>
+              <div class="modal-body">
+
+               <!-- <= render 'math_check_entries'  %> -->
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<!--Math by Day modal body-->
+<div class="modal fade" id="MyMathDaysModal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title" style="color: #4FA59F"> Math Check </h3>
+      </div>
+      <div class="modal-body">
+
+        <!--<= render 'math_check_days' %>-->
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Math by Day modal body-->
+<div class="modal fade" id="MyMathObserverModal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title" style="color: #4FA59F"> Observer Math Check </h3>
+      </div>
+      <div class="modal-body">
+
+        <!--<= render 'math_check_observed' %>-->
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+

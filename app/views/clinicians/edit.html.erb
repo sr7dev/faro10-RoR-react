@@ -1,0 +1,64 @@
+<% provide(:title, "Edit user") %>
+<h1>Update your Clinician Profile</h1>
+<div class="row">
+  <div class="col-md-3 col-md-offset-3">
+    <%= form_for(@clinician) do |f| %>
+    <%= render 'shared/clinician_error_messages' %>
+
+    <%= f.label :user_id, "Username"  %>
+    <%= f.text_field :user_id, class: 'form-control' %><br>
+
+    <%= f.label :email, "Email Address"  %>
+    <%= f.email_field :email, class: 'form-control' %><br>
+
+    <%= f.label :password, "New Password" %>
+    <%= f.password_field :password, class: 'form-control' %><br>
+
+    <%= f.label :password_confirmation, "New Password Confirmation" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %><br />
+
+    <%= f.label :current_password %><br />
+    <%= f.password_field :current_password, autocomplete: "off", class: 'form-control' %><br />
+
+    <%= f.label :clinician_type, "Clinician Type"  %>
+    <%= f.text_field :clinician_type, class: 'form-control' %><br>
+
+    <%= f.label :allow_sms_notifications, "Allow text notifications" %> <br />
+    <%= f.label :allow_sms_notifications, "Yes", value: true %>
+    <%= f.radio_button :allow_sms_notifications, true %>
+    <%= f.label :allow_sms_notifications, "No", value: false %>
+    <%= f.radio_button :allow_sms_notifications, false %>
+  </div>
+
+  <div class="col-md-3">
+    <%= f.label :clinic_name, "Clinic Name"  %>
+    <%= f.text_field :clinic_name, class: 'form-control' %><br>
+
+    <%= f.label :clinic_phone, "Clinic Phone"  %>
+    <%= f.text_field :clinic_phone, class: 'form-control' %><br>
+
+    <%= f.label :clinic_street, "Street Address"  %>
+    <%= f.text_field :clinic_street, class: 'form-control' %><br>
+
+    <%= f.label :clinic_city, "Clinic City"  %>
+    <%= f.text_field :clinic_city, class: 'form-control' %><br>
+
+    <%= f.label :clinic_state, "State"  %>
+    <%= f.text_field :clinic_state, class: 'form-control' %><br>
+
+    <%= f.label :clinic_zip, "Clinic Zip"  %>
+    <%= f.number_field :clinic_zip, class: 'form-control' %><br>
+
+    <%= f.label :country %>
+    <%= f.country_select :country, { priority_countries: ["US"] }, { class: "form-control" }  %><br>
+
+    <%= f.label :time_zone, "Time Zone" %>
+    <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, class: 'form-control' %><br>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3 col-md-offset-3">
+    <%= f.submit "Save changes", class: "btn btn-primary", style: "border-radius: 0; background-color: #4FA59F" %>
+    <% end %>
+  </div>
+</div>

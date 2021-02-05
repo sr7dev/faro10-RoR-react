@@ -1,0 +1,45 @@
+<% if defined?(current_user) %> 
+  <% if current_user.is_a?(Member) %>
+    <p>
+      If you would like to take this exercise.<br>
+      Choose one of your Clinicians from the list and press the "Take Exercise" button.
+    </p>
+    <div class="exercise">
+      <%= form_for ExercisesMembership.new, url: assigned_exercises_path do |f| %>
+        <%= f.hidden_field :exercise_id, value: @exercise.id %>
+        <%= f.select :membership_id, options_for_select(current_user.memberships.map {|m| [m.clinician.full_name, m.id] }) %> <br><br>
+        <%= f.submit 'Take Exercise', class: 'btn btn-large', style: 'background-color: #326867; border-radius: 0; color: white'  %>
+      <% end %>
+    </div>
+    <br>
+    <hr>
+  <% end %>
+  <%= link_to "Print PDF", pdf_exercise_path(id: @exercise), class: "btn btn-large", style: 'background-color: #326867; border-radius: 0; color: white' %>
+<% end %>
+
+
+<h1><%= @exercise.longname %></h1>
+
+<div class='description'>
+  <p style="font-size: 18px; margin-bottom: 25px;">
+    <%= @exercise.description %>
+  </p>
+
+  <% if @exercise.sub_description? %>
+    <p style="font-size: 16px; margin-bottom: 20px; font-style: italic;">
+      <%= @exercise.sub_description %>
+    </p>
+  <% end %>
+</div>
+<br>
+<ul id='question-list'>
+  <% @exercise.questions.each do |q| %>
+    <% classes = "question #{'child' if q.child?}" %>
+    <% if q.has_comment? %>
+      <span class="comment"><%= q.comment %></span>
+      <br>
+      <br>
+    <% end %>
+    <li class="<%= classes %>"><%= q.text %></li>
+  <% end %>
+</ul>

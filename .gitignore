@@ -1,0 +1,24 @@
+!.keep
+!/log/.keep
+*.DS_Store
+*.swo
+*.swp
+.byebug_history
+.env
+.env.*
+.idea/*
+.idea/workspace.xml
+.idea
+/.bundle
+/app/assets/stylesheets/scaffolds.scss
+/coverage/*
+/db/*.sqlite3
+/log/*
+/node_modules
+/public/system
+/public/assets
+/public/packs
+/rsa keys/*
+/tags
+/tmp/*
+coverage

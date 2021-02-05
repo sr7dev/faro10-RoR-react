@@ -1,0 +1,385 @@
+<% provide(:title, "Edit Team") %>
+
+<div class="row" style="margin-left: 20px; margin-right: 20px">
+  <div class="col-md-8">
+    <h3>Your Observers</h3>
+    <table id= "observers" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover table-highlight table-bordered"  >
+      <thead>
+        <tr>
+          <th>My Observers</th>
+          <th>Relationship</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @observations.present? %>
+          <% @observations.each do |observation| %>
+            <tr class="even gradeA">
+              <td style="color: #CC246F">
+                <% if observation.guardian %>
+                  <i class="fa fa-user" style="margin-right: 7px; color: black"></i>
+                  <i class="fa fa-plus" style="margin-right: 7px; color: black"></i>
+                <% else %>
+                  <i class="fa fa-user" style="color: black" ></i>
+                <% end %>
+                <%= observation.observer %>
+              </td>
+              <td><%= observation.relationship %></td>
+              <td><%= observation.guardian ? "Guardian" : "Standard" %></td>
+              <td>
+                <div class="btn-group">
+                  <span style="margin: 5%">
+                    <%= link_to "/members/observers/#{observation.id}", class: "sweet_delete btn btn-xs btn-danger", method: :delete do %>
+                      <i class="fa fa-times fa-fw" data-toggle="tooltip" data-placement="top" title="Remove Observer"></i>
+                    <% end %>
+                    <% if observation.guardian %>
+                      <%= link_to remove_meds_visibility_observer_path(observation), class: "btn btn-xs btn-info", method: :post do %>
+                        <i class="fa fa-medkit" data-toggle="tooltip" data-placement="top" title="Remove ability to see Medication"></i>
+                      <% end %>
+                    <% else %>
+                      <%= link_to add_meds_visibility_observer_path(observation), class: "btn btn-xs btn-info", method: :post do %>
+                        <i class="fa fa-medkit" data-toggle="tooltip" data-placement="top" title="Add ability to see Medication"></i>
+                      <% end %>
+                    <% end %>
+                  </span>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+
+    <% if @observations.empty? %>
+      <p>When you add someone as an "Observer", they can provide entries regarding how you "appear" to be doing. Often times, we don't realize how our mood is perceived by others.  Sometimes we can be feeling terrible on the inside, but not show that to others.</p>
+      <p>This Observer feedback is extremely useful to your Clinician when evaluating the effectiveness of medication and overall treatment.</p>
+        <p>“NOTE: Observers also need to have the Faro10 app and a registered account”</p>
+        <p>“NOTE: Your first Observer should be a parent or spouse (These people cannot see anything you enter.  They can only provide feedback to your clinician)”</p>
+    <% end %>
+    <button type="button" class="btn btn-primary" style="background-color: #326867; border-radius: 0" data-toggle="modal" data-target="#newObserverModal">
+      <i class="fa fa-user fa-lg" style="margin-right: 7px"></i>
+      Add Observer
+    </button>
+  </div>
+
+  <div class="col-md-4">
+    <blockquote class="left-custom-pull">
+      <h1 style="color: #fdfcfc;">
+        Observers can provide feedback and valuable input to your clinicians
+      </h1>
+    </blockquote>
+  </div>
+</div>
+
+<div class="row" style="margin-left: 20px; margin-right: 20px">
+  <div class="col-md-12">
+    <h3>Your Clinicians</h3>
+    <h2 style="text-align: left">Add Clinicians to monitor and assist in your health</h2>
+    <div class="panel with-nav-tabs">
+      <div class="panel-heading">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#activeClinicians" data-toggle="tab">Active <span class="badge"><%= @memberships.active.count %></span></a></li>
+          <% if @memberships.pending_or_inactive.any?{ |membership| membership.pending? }  %>
+            <li>
+              <a href="#inactiveClinicians" data-toggle="tab">
+                <strong>Inactive <span class="badge progress-bar-danger"><%= @memberships.pending_or_inactive.count %></span></strong>
+              </a>
+            </li>
+          <% else %>
+            <li><a href="#inactiveClinicians" data-toggle="tab">Inactive <span class="badge"><%= @memberships.pending_or_inactive.count %></span></a></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="panel-body">
+        <div class="tab-content">
+          <div class="tab-pane fade in active" id="activeClinicians">
+            <%= render 'clinicians_table', memberships: @memberships.active, tab: "active" %>
+          </div>
+          <div class="tab-pane fade" id="inactiveClinicians">
+            <%= render 'clinicians_table', memberships: @memberships.pending_or_inactive, tab: "inactive" %>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary" style="background-color: #326867; border-radius: 0"  data-toggle="modal" data-target="#newClinicianInvitationModal" >
+          <i class="fa fa-user-md fa-lg" style="margin-right: 7px"></i>
+          Send Invitation
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MESSAGE CENTER -->
+<div class="row" id="message-center-row"  style="margin-left: 20px; margin-right: 20px">
+  <div class="col-md-12">
+    <div class="table-wrapper">
+      <%= render partial: 'team_messages' %>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="margin-left: 20px; margin-right: 20px">
+  <div class="col-md-3">
+    <blockquote class="left-custom-pull">
+      <h2 style="color: white;">
+        Send Invitation to an <b>Observer</b> who is not yet registered with Faro10
+      </h2>
+      <button type="button" class="btn btn-primary" style="background-color: #4FA59F; border-radius: 0" data-toggle="modal" data-target="#newObserverInvitationModal" >
+        <i class="fa fa-user fa-lg"></i>
+        Send Invitation
+      </button>
+    </blockquote>
+  </div>
+
+  <div class="col-md-3">
+    <blockquote class="left-custom-pull">
+      <h2 style="color: #fdfcfc;">
+        Send Invitation to a <b>friend</b> who you think should use Faro10
+      </h2>
+      <button type="button" class="btn btn-primary" style="background-color: #4FA59F; border-radius: 0" data-toggle="modal" data-target="#newFriendInvitationModal" >
+        <i class="fa fa-user fa-lg"></i>
+        Send Invitation
+      </button>
+    </blockquote>
+  </div>
+</div>
+
+<div class="modal fade" id="newObserverModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_for(Observation.new, url: '/members/observers', method: :post) do |f| %>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">
+            <i class="fa fa-user fa-lg"></i>
+            Add new Observer
+          </h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+              <%= f.label :observer_id, "Member Email" %>
+              <%= f.text_field :observer_id, class: 'form-control' %><br>
+              <%= f.label :relationship, "Relationship" %>
+              <%= f.text_field :relationship, class: 'form-control' %><br><br>
+            </div>
+            <div class="col-md-10 col-md-offset-1">
+              <p>NOTE: Observers also need to have the Faro10 app and a registered account</p><br />
+              <b>Guardian Account</b>
+              <p>By default, none of your observers will be able to see ANYTHING you enter into Faro10. However, it can be helpful to allow parents or spouses see certain information.
+              </p>
+              <p>Guardian Permissions</p>
+              <ul>
+                <li>View Prescriptions & Medication consistency</li>
+                <li>View number of entries made (but cannot see the entries)</li>
+              </ul>
+              <p>By checking this box, you are granting this observer Guardian privilege.</p>
+              <i>This is optional, and can be added or removed in the future.</i>
+              <br><br>
+              <div class="field form-group">
+                <div class="checkbox-inline">
+                  <%= f.check_box :guardian, class: "checkbox" %>
+                  <%= f.label :guardian, 'Enable Guardian Access' %><br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= f.submit "Add Observer", class: "btn btn-danger" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="newClinicianModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_for(Member.new, url: "/clinicians/members", method: :post) do |f| %>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">
+            <i class="fa fa-user-md fa-lg"></i>
+            Add Clinician
+          </h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+              <%= f.label :email, "Clinician Email" %>
+              <%= f.text_field :email, class: 'form-control' %>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= f.submit "Add Clinician", class: "btn btn-danger" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="newClinicianInvitationModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_tag("/users/invite_clinician", method: :get) do |f| %>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">
+            <i class="fa fa-user-md fa-lg"></i>
+            Invite Clinician
+          </h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+              <%= label_tag "Invite by Email Address" %>
+              <%= text_field :invitation, :email, class: 'form-control' %>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= submit_tag "Send MeetingInvitation", class: "btn btn-danger" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="newObserverInvitationModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_tag("/users/invite_observer", method: :get) do |f| %>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">
+            <i class="fa fa-user fa-lg"></i>
+            Invite Observer
+          </h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+              <%= label_tag "Invite by Email Address" %>
+              <%= text_field :invitation, :email, class: 'form-control' %>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= submit_tag "Send MeetingInvitation", class: "btn btn-danger" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="newFriendInvitationModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_tag("/users/invite_member", method: :get) do |f| %>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">
+            <i class="fa fa-user fa-lg"></i>
+            Invite a Friend
+          </h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+              <%= label_tag "Invite by Email Address" %>
+              <%= text_field :invitation, :email, class: 'form-control' %>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= submit_tag "Send MeetingInvitation", class: "btn btn-danger" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% for membership in @memberships.pending %>
+  <div class="modal fade" id="newConsent<%= membership.id %>" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <%= form_for membership do |f| %>
+          <%= hidden_field_tag :membership_action, "accept" %>
+          <%= hidden_field_tag :consent_signature %>
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+              Release Past Data
+            </h4>
+          </div>
+          <div class="modal-body">
+            <%= render partial: "consents/release", locals: {consent: membership.consents.build} %>
+            <p><b>Sign here:</b></p>
+            <canvas class="js-signature-pad signature-pad" id="signatureCanvas<%= membership.id %>"></canvas>
+            <br />
+            <%= render partial: "consents/release_footer", locals: {consent: membership.consents.build} %>
+          </div>
+          <br>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <%= submit_tag "Accept Clinician Request", class: "btn btn-success", id: "accept_consent" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% for membership in @memberships.inactive %>
+  <div class="modal fade" id="renewConsent<%= membership.id %>" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <%= form_for membership do |f| %>
+          <%= hidden_field_tag :membership_action, "renew" %>
+          <%= hidden_field_tag :consent_signature %>
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+              Release Past Data
+            </h4>
+          </div>
+          <div class="modal-body">
+            <%= render partial: "consents/release", locals: {consent: membership.consents.build} %>
+            <p><b>Sign here:</b></p>
+            <canvas class="js-signature-pad signature-pad" id="signatureCanvas<%= membership.id %>"></canvas>
+            <br />
+            <%= render partial: "consents/release_footer", locals: {consent: membership.consents.build} %>
+          </div>
+          <br>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <%= submit_tag "Renew Clinician Membership", class: "btn btn-success", id: "renew_consent" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

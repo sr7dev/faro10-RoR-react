@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <style>
+      tr {
+        page-break-inside: avoid;
+      }
+
+      #line_items {
+        page-break-before: always;
+      }
+
+      #pdf_link {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!--<div class="row">-->
+  <!--<a href="/entries/new"><h2 style="display: inline; color: red"> My Entries </h2>  |   <a href="/users/observations"><h2 style="display: inline; color: red"><b> Observer Entries </b></h2></a></a>-->
+<!--</div>-->
+<!--<hr>-->
+
+<%= render 'observee_list' %>
+  <br>
+
+<div class="container" style="width: 100%">
+    <div class="col-md-12">
+      <div class="row" style="margin-left: 20px; margin-right: 20px">
+        <% unless @observations.empty? %>
+        <div class="col-md-12">
+         <h3>Make an Observation</h3>
+          <%= render 'observer_entries/form', observer_entry: @observer_entry, observations: @observations %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+</div>
+
+
+<div class="container" style="width: 100%">
+    <div class="row" style="margin-left: 20px; margin-right: 20px">
+      <div class="col-md-12">
+        <h3>Observation History</h3>
+        <%= render 'observer_entries/table', observer_entries: @observer_entries.sort_by(&:created_at).reverse %>
+      </div>
+    </div>
+</div>
+
+  <br>
+  <br>
+  <div class="row">
+    <p style="color: white">Test</p>
+  </div>
+

@@ -1,0 +1,9 @@
+<div class='form-group'>
+  <% question.answer_choices.order(:position).each_with_index do |ac, i| %>
+    <span style="margin-left: 25pt">
+      <%= radio_button_tag "answers[#{question.id}]", ac.text, false, name: "answers[#{question.id}]" %>
+      <%= label_tag "answers[#{question.id}]", ac.text, class: 'answer_choice' %>
+    </span>
+    <br />
+  <% end %>
+</div>

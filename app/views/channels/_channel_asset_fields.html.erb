@@ -1,0 +1,34 @@
+<div class="nested-fields">
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
+  <div class="field">
+    <%= f.label :asset_type %><br>
+    <%= f.select :asset_type, options_for_select(["Video", "Document", "Image", "Other"], f.object.asset_type) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :source %><br>
+    <%= f.text_field :source, placeholder: "Paste Youtube Video Link", class: "form-control"  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :asset_name %><br>
+    <%= f.text_field :asset_name, class: "form-control"  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description, class: "form-control"  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :_destroy, "Delete? &nbsp;".html_safe %>
+    <%= f.check_box :_destroy %>
+  </div>
+
+
+  <% if f.object.new_record? %>
+    <%= link_to_remove_association "remove channel asset", f, style: "color: red; font-size: large " %>
+  <% end %>
+</div>
+<hr />

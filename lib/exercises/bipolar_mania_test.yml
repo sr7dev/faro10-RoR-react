@@ -1,0 +1,295 @@
+category: bipolar
+longname: Bipolar Mania Test
+shortname: bmt
+logo: bipolar_mania_test_icon.png
+description: This bipolar disorder mania screening test can help determine whether you might have the symptoms of mania. This mania quiz can be used on a weekly basis to track your moods. Changes of five or more points are significant.
+sub_description: The items below refer to how you have felt during the past week. For each item, indicate the extent to which it is true, by selecting the appropriate option next to the item.
+questions:
+  - position: 1
+    style: multiple_choice
+    text: 1. My mind has never been sharper.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 2
+    style: multiple_choice
+    text: 2. I need less sleep than usual.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 3
+    style: multiple_choice
+    text: 3. I have so many plans and new ideas that it is hard for me to work.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 4
+    style: multiple_choice
+    text: 4. I feel a pressure to talk and talk.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 5
+    style: multiple_choice
+    text: 5. I have been particularly happy.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 6
+    style: multiple_choice
+    text: 6. I have been more active than usual.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 7
+    style: multiple_choice
+    text: 7. I talk so fast that people have a hard time keeping up with me.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 8
+    style: multiple_choice
+    text: 8. I have more new ideas than I can handle.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 9
+    style: multiple_choice
+    text: 9. I have been irritable.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 10
+    style: multiple_choice
+    text: 10. It's easy for me to think of jokes and funny stories.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 11
+    style: multiple_choice
+    text: 11. I have been feeling like "the life of the party".
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 12
+    style: multiple_choice
+    text: 12. I have been full of energy.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 13
+    style: multiple_choice
+    text: 13. I have been thinking about sex.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 14
+    style: multiple_choice
+    text: 14. I have been feeling particularly playful.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 15
+    style: multiple_choice
+    text: 15. I have special plans for the world.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 16
+    style: multiple_choice
+    text: 16. I have been spending too much money.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 17
+    style: multiple_choice
+    text: 17. My attention keeps jumping from one idea to another.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 18
+    style: multiple_choice
+    text: 18. I find it hard to slow down and stay in one place.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much

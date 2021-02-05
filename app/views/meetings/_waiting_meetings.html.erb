@@ -1,0 +1,30 @@
+<table id= "meetingsWaitingTable" cellpadding="0" cellspacing="0" border="0" class="dataTable table-responsive table-striped table-hover table-highlight table-bordered" >
+  <thead>
+  <tr>
+    <th colspan="4" style="border-bottom-color: transparent">Start or Join a Peer Support Meeting Now!</th>
+    <!--<th>Status</th>-->
+    <th  style="border-bottom-color: transparent"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @meetings.waiting.each do |meeting| %>
+      <tr>
+        <td><%= link_to 'Join', meeting %></td>
+        <td><span style="font-size: large"> <%= meeting.start_time.strftime("%A, %B %d") %></span><br>
+          <%= meeting.start_time.strftime("%I:%M %p") %></td>
+
+        <td><%= meeting.meeting_type %><br><br>
+          <span style="font-size: large"><b><%= meeting.name %></b></span> <br>
+          <%= meeting.topic %>
+          <span style="font-size: small"> <%= meeting.special_focus %></span></td>
+        <!--<td><= meeting.status %></td>-->
+        <td><%= meeting.privacy %></td>
+        <td>
+
+          <%= link_to 'Edit', edit_meeting_path(meeting) %> |
+          <%= link_to 'Cancel', meeting, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

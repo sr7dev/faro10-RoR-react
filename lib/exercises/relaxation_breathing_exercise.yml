@@ -1,0 +1,46 @@
+category: exercise
+longname: Relaxation Breathing Exercise
+shortname: rbe
+logo: our_vision.png
+description: Do not forget that proper breathing is important. It has the ability to help calm you down and keep your stress under control. It can also help prevent extreme anxiety and panic sensations. A simple breathing technique can have profound effects on your body and your ability to relax.
+
+questions:
+  - position: 1
+    style: none
+    text: 1. Take time each day to practice relaxation breathing.
+    answerable: false
+
+  - position: 2
+    style: none
+    text: 2. Plan a daily event you can do that will help you face your challenging situation. Remember, you get to pick how little or how much work you want to put into this. You are in full control over yourself and your comings and goings. Do something even if it's small and then slowly increase your activities as you see fit. Just be sure you are challenging yourself and when you are done, you quickly affirm yourself and your efforts!
+    answerable: false
+
+  - position: 3
+    style: none
+    text: 3. Keep working on changing your diet to include foods that will support your body during this time.
+    answerable: false
+
+  - position: 4
+    style: none
+    text: 4. Spend approx. 10-20 minutes each day on your choice of isometric or progressive muscle relaxation exercises. (check with your physician before undertaking any form of exercise)
+    answerable: false
+
+  - position: 5
+    style: none
+    text: 5. Spend 20 minutes each day on aerobic or strength and toning exercises. These exercise the heart as well as the muscles in your body. They also help burn up the excess adrenaline and negative stress hormones that are there. (check with your physician before undertaking any form of exercise)
+    answerable: false
+
+  - position: 6
+    style: none
+    text: 6. Write in the journal each day (preferably before bedtime). Don't pressure yourself, just write whatever comes to mind. Use the Faro10 journal for ease of use and accessibility.
+    answerable: false
+
+  - position: 7
+    style: none
+    text: 7. Do the Positive Thought Replacement worksheet at least once a day. If your thoughts are running rampant and you are going through a particularly hard time, it helps to do this worksheet as many times as possible throughout the day. As silly as this feels, it's a very important activity that will make a big difference in your recovery.
+    answerable: false
+
+  - position: 8
+    style: none
+    text: 8. If you are struggling with obsessive thinking, take the time each day to practice visualization exercises and thought stopping exercises.
+    answerable: false

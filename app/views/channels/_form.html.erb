@@ -1,0 +1,136 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+        <%= form_for(@channel) do |f| %>
+          <% if @channel.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@channel.errors.count, "error") %> prohibited this Community from being saved:</h2>
+              <ul>
+              <% @channel.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <%= f.hidden_field :user_id, value: current_user.id %>
+
+          <div class="col-md-3 col-md-offset-1">
+            <div class="row" style="margin-left: -20px">
+              <br><br>
+              <div class="col-md-11">
+                <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey; background-color: #326867 ">
+                  <div class="panel-body text-center">
+                    <p style="font-size: 28px; text-align: left; margin: 4px; margin-bottom: 10px; margin-top: 10px; color: white ">
+                      Community Profile:
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <%= f.label :focus %><br>
+              <%= f.select :channel_focus, options_for_select(["Veteran Support","Substance Abuse", "Eating Disorder", "Suicide Loss", "Depression", "Care Giver Support", "Pregnancy Loss", "Other"], @channel.channel_focus), class: "form-control" %><br>
+            </div>
+            <div class="field">
+              <%= f.label :community_name %><br>
+              <%= f.text_field :channel_name %>
+            </div>
+            <div class="field">
+              <%= f.label :admin_display_name %><br>
+              <%= f.text_field :owner_detail %>
+            </div>
+            <div class="field">
+              <%= f.label :about_this_community %><br>
+              <%= f.text_area :about %>
+            </div>
+            <div class="field">
+              <%= f.label :is_partner %><br>
+              <%= f.check_box :is_partner %>
+            </div>
+            <div class="field">
+              <%= f.label :logo %><br>
+              <%= f.text_field :avatar, placeholder: "Paste Image Link 1024x1024" %>
+            </div>
+            <div class="col-md-3" >
+              <br>
+              <%= @channel.avatar.present? ? image_tag(@channel.avatar, class: "img-responsive") : image_tag("https://s3-us-west-2.amazonaws.com/mendalytics/YourLogoHere.jpg", class: "img-responsive") %>
+            </div>
+            <br><br><br><br><br><br>
+            <div class="actions">
+              <%= f.submit "Update Community", class:"btn btn-primary", style: "border-radius: 0; border-color: #F19A20; background-color: #F19A20; color: white  "  %>
+            </div>
+            <%= link_to 'Show', @channel %> |
+            <%= link_to 'Back', channels_path %>
+          </div>
+
+          <div class="col-md-4">
+            <div>
+              <div class="row" style="margin-left: -20px">
+                <br><br>
+                <div class="col-md-11">
+                  <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey; background-color: #326867 ">
+                    <div class="panel-body text-center">
+                      <p style="font-size: 28px; text-align: left; margin: 4px; margin-bottom: 10px; margin-top: 10px; color: white ">
+                        Community Content:
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+               <div id="channel_assets">
+                <%= f.fields_for :channel_assets do |ca| %>
+                  <%= render 'channel_asset_fields', f: ca %>
+                <% end %>
+
+                <div class="links">
+                  <%= link_to_add_association 'add community content', f, :channel_assets, style: "color: #F19A20; font-size: large " %>
+
+                  <!--<= link_to_add_association "Add Community Asset", f, :channel_assets, class: "btn btn-primary", style: "border-radius: 0; border-color: #F19A20; background-color: #F19A20; color: white; margin-top: 5px  "%>-->
+                  <br><br>
+                  <div class="actions">
+                    <%= f.submit "Update Community", class:"btn btn-primary", style: "border-radius: 0; border-color: #F19A20; background-color: #F19A20; color: white  "  %>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+        <% end %>
+      <div class="col-md-4" style="background-color: #8cd2cb; margin-top: -20px; color: black  ">
+        <h3>Tips on how to Promote your Community:</h3>
+        <br>
+        <p style="font-size: large"><b>Staying active in your Community  </b> </p>
+        <p style="font-size: large">Having interesting and useful content is a great start, the next step is to engage the community
+          by facilitating regularly scheduled Support Meetings, staying active in the message feed, and Live Streaming in your Community.
+        </p>
+        <br>
+        <p style="font-size: large"><b>Live Stream </b> </p>
+        <p style="font-size: large">
+          A Live Stream Meeting is similar to other Support Meetings, except that you are the only participant sharing video or audio.
+          This allows you to conduct training, share your story with others, or discuss whatever matters you think others would be interested in.
+        </p>
+        <br>
+        <p style="font-size: large"><b>Create Great Titles</b></p>
+        <p style="font-size: large">This is the first thing that someone will notice when they see your video.
+          Make sure the title is informative and eye catching.
+        </p>
+        <br>
+        <p style="font-size: large"><b>Interesting thumbnails   </b> </p>
+        <p style="font-size: large">These tiny preview images should be attention-grabbing and compelling.
+        </p>
+        <br>
+        <br>
+        <p style="font-size: large"><i>Don't be discouraged if it takes time to grow your followers.
+            This is a growing community, and if you follow these steps, you're followers will grow with it.
+        </i></p>
+        <br>
+        <p></p>
+      </div>
+
+
+    </div>
+  </div>
+</div>

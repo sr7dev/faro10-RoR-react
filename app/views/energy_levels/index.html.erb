@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Energy Levels</h1>
+
+<table>
+  <thead>
+    <tr>
+
+      <th>USER ID</th>
+      <th>Energy level</th>
+      <th>Created At:</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @energy_levels.each do |energy_level| %>
+      <tr>
+
+        <td><%= energy_level.user_id %></td>
+        <td><%= energy_level.energy_level %></td>
+        <td><%= energy_level.created_at %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Energy level', new_energy_level_path %>

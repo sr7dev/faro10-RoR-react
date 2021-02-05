@@ -1,0 +1,119 @@
+<% provide(:title, 'Faro10 - Tools to clinicians, parents and patients') %>
+<div class="col-md-10 col-md-offset-1" style="margin-top: -20px">
+  <%= render 'provider_banner' %>
+</div>
+<br>
+<br>
+<br>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1 style="color: #4FA59F">BEHAVIORAL HEALTH MANAGEMENT TOOLS PROVIDE RICH DATA FOR MANY SETTINGS </h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h2 style="color: #326867">
+      A MODERN APPROACH TO A COMPLEX ISSUE--APPROACHING THE CHALLENGE FROM ALL SIDES WITH TOOLS FOR CLINICIANS, PARENTS AND PATIENTS.
+    </h2>
+  </div>
+</div>
+
+<br><br>
+
+<div class="row">
+  <div class="col-md-2 col-md-offset-2">
+    <div class="image" style="text-align: center">
+       <%= image_tag('substance_abuse.png', size: "70x70" ) %>
+    </div>
+    <h3 style="color: #4FA59F">SUBSTANCE <br> ABUSE </h3>
+    <p>Meet the new Care, Treatment, Services standards (CTS) CTS.03.01.09 issued by the Joint Commission</p>
+    <b><%= link_to "LEARN MORE  >", '/substance_abuse' %> </b>
+  </div>
+
+
+  <div class="col-md-2 col-md-offset-1">
+    <div class="image" style="text-align: center">
+      <%= image_tag('counseling.png', size: "70x70" ) %>
+    </div>
+    <h3 style="color: #4FA59F">COLLEGE COUNSELING </h3>
+    <p>Support students and their mental health needs with insight, collaboration and early warnings </p>
+    <b><%= link_to "LEARN MORE  >", '/college_counseling' %> </b>
+  </div>
+
+  <div class="col-md-2 col-md-offset-1">
+    <div class="image" style="text-align: center">
+      <%= image_tag('employee_assistance.png', size: "70x70" ) %>
+    </div>
+    <h3 style="color: #4FA59F">EMPLOYEE ASSISTANCE </h3>
+    <p> Connect employee providers for better collaboration, insight and actionable data </p>
+    <b><%= link_to "LEARN MORE  >", '/employee_assistance' %> </b>
+  </div>
+</div>
+
+<br><br>
+
+<div class="row">
+  <div class="col-md-2 col-md-offset-2">
+    <div class="image" style="text-align: center">
+      <%= image_tag('highschool.png', size: "70x70" ) %>
+    </div>
+    <h3 style="color: #4FA59F">Middle & High School </h3>
+    <p> Be advised of students in danger and take proactive measures to intervene </p>
+    <b><%= link_to "LEARN MORE  >", '/schools' %> </b>
+  </div>
+
+
+  <div class="col-md-2 col-md-offset-1">
+    <div class="image" style="text-align: center">
+      <%= image_tag('integrativecare.png', size: "70x70" ) %>
+    </div>
+    <h3 style="color: #4FA59F"> Integrative Care</h3>
+    <p>Automated tools to collaborate, document and report outcomes using measurement-based care data</p>
+    <b><%= link_to "LEARN MORE  >", '/integrative_care' %> </b>
+  </div>
+
+  <div class="col-md-2 col-md-offset-1">
+    <div class="image" style="text-align: center">
+      <%= image_tag('managedcare.png', size: "70x70" ) %>
+    </div>
+    <h3 style="color: #4FA59F">Managed Care Networks </h3>
+    <p>Define important quality outcome measures, and provide the tools and reporting to easily measure them</p>
+    <b><%= link_to "LEARN MORE  >", '/managed_care' %> </b>
+  </div>
+</div>
+
+<footer class="footer row valign" id="footer">
+  <div class="col-md-2" id="logo">
+    <h1>Faro10</h1>
+  </div>
+
+  <div class="col-md-10">
+    <div class="row">
+      <ul>
+        <li class="bordered"><%= link_to "About",   about_path %></li>
+        <li class="bordered"><%= link_to "FAQ",   '/faq' %></li>
+        <li class="bordered"><%= link_to "Contact", contact_path %></li>
+        <li class="bordered"><%= link_to "Privacy Policy", privacy_path %></li>
+        <li><a href="http://www.suicidepreventionlifeline.org/">Suicide Hotline</a></li>
+      </ul>
+    </div>
+
+    <div class="row">
+      <ul id="social">
+        <li><a href="https://www.facebook.com/Faro10App/" target="_blank"><%= image_tag('facebook_icon_white.png') %></a></li>
+        <li><a href="https://twitter.com/Faro10analytics" target="_blank"><%= image_tag('twitter_icon_white.png') %></a></li>
+        <!--<li><%= image_tag('rss_icon.png') %></li>-->
+        <li><a href="https://www.linkedin.com/company-beta/22311063/" target="_blank"><%= image_tag('linkedin_icon_white.png') %></a></li>
+
+      </ul>
+    </div>
+
+    <div class="row" id="fine-print">
+      &copy;Copyright 2018 |
+
+        Cloud-based Behavioral Health Management Platform
+
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,8 @@
+<p>Hello,</p>
+
+<p>A clinician (<%= @clinician.email %>) has registered for Faro10.  They have selected the <%= @clinician.subscriptions.active.first.try :name %> plan. </p>
+
+<%= link_to "Visit the admin dashboard", admin_root_url %> to manage this user.
+
+<p>Thank you,</p>
+<h1>Faro10</h1>

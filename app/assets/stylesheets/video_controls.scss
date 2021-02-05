@@ -1,0 +1,46 @@
+.control-button {
+	display: inline-block;
+	width: 46px;
+	height: 46px;
+	border-radius: 23px;
+	margin-left: 10px;
+	margin-right: 10px;
+	border: none;
+}
+
+.control-button.minimized {
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 20px;
+}
+
+.hang-up-button {
+	background-color: red;
+}
+
+.on-button {
+	background-color: #2098d1;
+}
+
+.off-button {
+	background-color: #2098d1;
+	padding-top: 5px;	
+	margin-left: 10px;
+	margin-right: 10px;
+	opacity: 0.2;
+	border: none;
+}
+
+.unread-message-indicator {
+	width: 16px;
+	height: 16px;
+	border-radius: 8px;
+	background-color: red;
+	position: absolute;
+	top: 0px;
+	right: 2px;
+}
+
+.relative {
+	position: relative !important;
+}

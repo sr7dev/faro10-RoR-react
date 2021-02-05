@@ -1,0 +1,178 @@
+<%= form_for(@meeting) do |f| %>
+  <% if @meeting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
+      <ul>
+      <% @meeting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <!--This form is used when scheduling meetings in the future.  The Meet Now form is used when launching a meeting immediately.  -->
+
+<div class="row">
+  <div class="row" style="margin-left: 20px; margin-right: 20px">
+<!--    <div class="col-md-12">-->
+<!--      <span></span>-->
+<!--      <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey">-->
+<!--        <div class="panel-body text-center">-->
+<!--          <p style="font-size: 20px; text-align: center; margin: 4px  "><i class="fa fa-play fa-1x" aria-hidden="true" style="margin-right: 17px"></i>-->
+            <%#= link_to 'or Start a Conversation Now', meet_now_path %>
+<!--          </p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+  </div>
+  <br>
+  <div class="col-md-10 col-md-offset-1">
+    <div class="field">
+      <%= f.label :start_time %><br>
+      <%= Time.use_zone(current_user.time_zone) do f.datetime_select(:start_time, :minute_step => 15, ampm: true) end %>
+    </div>
+    <br>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-5 col-md-offset-1">
+    <div class="field">
+      <%= f.label :support_type %><br>
+      <%= f.select :meeting_type, options_for_select(["Veteran Support","Substance Abuse", "Eating Disorder", "Suicide Loss", "Depression", "Care Giver Support", "Pregnancy Loss", "Other"], @meeting.meeting_type), {}, class: "form-control" %>
+    </div>
+    <br>
+    <div class="field">
+      <%= f.label :support_topic %><br>
+      <%= f.text_field :topic, placeholder: "Enter a Topic", autofocus: true,  class: 'form-control' %>
+    </div>
+    <br>
+  </div>
+  <div class="col-md-5">
+      <div class="field">
+        <%= f.label "Conversation Name" %><br>
+        <%= f.text_field :name, placeholder: "Enter a Conversation Name", autofocus: true,  class: 'form-control' %>
+      </div>
+      <br>
+      <div class="field">
+        <%= f.label :special_focus %><br>
+        <%= f.text_field :special_focus, placeholder: "Optional",  class: 'form-control' %>
+      </div>
+      <br>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-5 col-md-offset-1">
+    <div class="field">
+      <%= f.label :hosted_by %><br>
+      <%= f.text_field :host, value: current_user.user_id, class: 'form-control'  %>
+    </div>
+  </div>
+  <br>
+  <div class="col-md-5">
+    <div class="checkbox" id="meeting_privacy_group">
+      <label>
+        <br />
+        <%= f.check_box :privacy %>
+        <b> Private</b>
+      </label>
+    </div>
+  </div>
+  <br>
+
+  <div class="col-md-5 col-md-offset-6">
+    <div class="form group" id="meeting_password_group">
+    <!--<= f.label :password %><br>-->
+    <%= f.text_field :password, placeholder: "Enter a Password", autofocus: true,  class: 'form-control'  %>
+    <br>
+    </div>
+  </div>
+
+  <br>
+</div>
+
+
+    <div class="hidden">
+      <%= f.number_field :user_id, value: current_user.id %>
+      <%= f.text_field :status, value: 'scheduled' %>
+    </div>
+    <br>
+    <div class="hidden">
+      <%= f.number_field :user_id, value: current_user.id %>
+      <%= f.text_field :status, value: 'scheduled' %>
+      <%= f.text_field :room_name, value: SecureRandom.hex(n=10) %>
+      <%= f.number_field :duration, value: 60 %>
+    </div>
+    <br>
+
+<div class="row">
+  <div class="col-md-11">
+    <div class="actions" style="float: right">
+      <%= f.submit "Submit", class: "button", :disable_with => "Saving..."%><br>
+    </div>
+
+  </div>
+</div>
+
+<div class="col-md-8 col-md-offset-1">
+  <tbody>
+  <% if @observations.present? %>
+    <h3>Invite Contacts</h3>
+    <% @observations.each do |observation| %>
+      <tr>
+        <td>
+          <div class="col-md-10" style="margin-top: 13px">
+            <!--<i class="fa fa-user" style="margin-right: 7px; color: black"></i>-->
+            <span style="margin-right: 8px"><%= check_box_tag "user_invitations[]", observation.observer_id %></span>
+            <span style="color: #CC246F; vertical-align: top"><%= observation.observer %></span><br>
+            <span style="margin-left: 23px"><%= observation.relationship %></span>
+          </div>
+        </td>
+      </tr><br>
+    <% end %>
+  <% end %>
+  </tbody>
+</div>
+
+<% end %>
+
+    <!--<= link_to 'Show', @meeting %> |-->
+    <!--<= link_to 'Back', meetings_path %>-->
+
+<style>
+  .button {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    border-radius: 0;
+    border: 0;
+    border-color: #F19A20;
+    background-color: #F19A20;
+    color: white;
+    padding: 12px;
+    padding-left: 16px;
+    padding-right: 16px;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.24), 0 2px 6px 0 rgba(0,0,0,0.19);
+    height: 52px;
+    width: 150px;
+
+  }
+
+  .button:hover {
+    background-color: #d17f0d;
+    color: white;
+    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.24), 0 6px 12px 0 rgba(0,0,0,0.19);
+
+  }
+
+  .button:active {
+    background-color: #d17f0d;
+    color: white;
+    box-shadow: 0 4px #666;
+    transform: translateY(4px);
+    /*box-shadow: 0 3px 8px 0 rgba(0,0,0,0.24), 0 6px 12px 0 rgba(0,0,0,0.19);*/
+
+  }
+
+
+</style>

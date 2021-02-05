@@ -1,0 +1,94 @@
+
+<% provide(:title, 'All Alerts') %>
+
+<h1>All Alerts</h1>
+
+<h4>
+  This page highlights occurrences of dangerous or alarming behavior that may require immediate attention.
+  These alerts can be triggered by a patients journal or other entries.
+</h4>
+<br>
+
+<table id= "patientAlertTable" cellpadding="0" cellspacing="0" border="0" class="dataTable table-striped table-hover table-highlight table-bordered">
+  <thead>
+  <tr>
+    <th>Member</th>
+    <th>Alert Body</th>
+    <th>Alert Triggered by</th>
+    <th>Alert Date</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <% if @patient_alerts.present? %>
+      <% @patient_alerts.each do |alert| %>
+          <tr>
+            <td><%= alert.member %></td>
+            <td><%= alert.alert_body %></td>
+            <td> <%= alert.alert_type %> </td>
+            <td> <%= alert.created_at.in_time_zone(current_user.time_zone).strftime("%B %d, %Y, %A %l:%M %P ") %> </td>
+            <td><%= link_to 'Show Details', alert %> |
+              <%= link_to 'Delete', alert, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+
+      <% end %>
+  <% end %>
+</table>
+
+<br><br>
+<!--<span style="display: inline-block; color: black; text-align: center; padding: 10px 16px; text-decoration: none; float: left;  ">-->
+        <!--<= link_to new_alert_path(@member) do %>Create a New Alert-->
+        <!--< end %>-->
+<!--</span>-->
+<br>
+<br>
+
+<!--<h3>List of members WITH ALERTS via @membership variable (membership table connects Clinicians to Patients) </h3>-->
+<!--<p>-->
+  <!--current_user = <%= current_user.id %> <br>-->
+
+<!--</p>-->
+<!--<table id= "patientAlertTable" cellpadding="0" cellspacing="0" border="0" class="dataTable table-striped table-hover table-highlight table-bordered">-->
+  <!--<thead>-->
+  <!--<tr>-->
+    <!--<th>Membership row # of clinician/patient relationship</th>-->
+    <!--<th>Member_id</th>-->
+    <!--<th>Clinician id (Current User)</th>-->
+  <!--</tr>-->
+  <!--</thead>-->
+  <!--<% if @memberships.present? %>-->
+      <!--<% @memberships.each do |membership| %>-->
+          <!--<tr>-->
+            <!--<td><%= membership.id %></td>-->
+            <!--<td><%= membership.member_id %></td>-->
+            <!--<td><%= membership.clinician_id %></td>-->
+          <!--</tr>-->
+      <!--<% end %>-->
+  <!--<% end %>-->
+<!--</table>-->
+
+<!--<h3>Patients List @patient variable (all patients, not just those with alerts)</h3><br>-->
+
+<!--<table id= "patientAlertTable" cellpadding="0" cellspacing="0" border="0" class="dataTable table-striped table-hover table-highlight table-bordered">-->
+  <!--<thead>-->
+  <!--<tr>-->
+    <!--<th>Member id</th>-->
+    <!--<th>Member</th>-->
+  <!--</tr>-->
+  <!--</thead>-->
+  <!--<% if @patients.present? %>-->
+      <!--<% @patients.each do |patient| %>-->
+          <!--<tr>-->
+            <!--<td><%= patient.id %></td>-->
+            <!--<td><%= patient.user_id %></td>-->
+          <!--</tr>-->
+
+      <!--<% end %>-->
+  <!--<% end %>-->
+<!--</table>-->
+<hr>
+<h3>End of Alerts</h3><br>
+
+
+
+
+

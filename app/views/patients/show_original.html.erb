@@ -1,0 +1,642 @@
+<br>
+<!-- KPI Bar-->
+<div class="row">
+  <div class="col-xs-6 col-md-3">
+    <div class="panel status panel-danger">
+      <div class="panel-new-heading">
+        <h1 id="patient_feeling" class="panel-title text-center"></h1>
+      </div>
+      <div class="panel-body text-center">
+        <strong>Avg Mood (0-6)</strong>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-6 col-md-3">
+    <div class="panel status panel-danger">
+      <div class="panel-new-heading">
+        <h1 id="patient_social_life" class="panel-title text-center"></h1>
+      </div>
+      <div class="panel-body text-center">
+        <strong>Avg Social Life (0-10)</strong>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-6 col-md-3">
+    <div class="panel status panel-danger" data-toggle="modal" data-target="#kPIPatientHospitalizationCountModal">
+      <div class="panel-new-heading">
+        <h1 id="patient_hospitalization" class="panel-title text-center"></h1>
+      </div>
+      <div class="panel-body text-center">
+        <strong>Hospitalizations</strong><i class="fa fa-external-link" style="margin-left: 7px"></i>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-6 col-md-3">
+    <div class="panel status panel-danger">
+      <div class="panel-new-heading">
+        <h1 id="patient_panic_attack" class="panel-title text-center"></h1>
+      </div>
+      <div class="panel-body text-center">
+        <strong># of Panic Attacks
+        </strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- END KPI Bar-->
+
+<div class="row">
+  <div class="col-md-3">
+    <p>
+      <strong>Patient:</strong>
+      <%= @member.user_id %>
+    </p>
+    <p>
+      <strong>Diagnosis:</strong>
+      <%= @member.diagnosis %>
+    </p>
+    <p>
+      <strong>Birthday:</strong>
+      <%= @member.dob.present? ? @member.dob.strftime("%B %d, %Y ") : "not entered" %>(Age:<%= @member.age.present? ? @member.age : 0 %>)
+    </p>
+
+    <p>
+      <strong>Self-harm Entries:</strong>
+      <%= @patient_self_harm_total %>
+    </p>
+
+    <p>
+      <strong>Observer Notes:</strong>
+      <%= @patient_observer_entries %>
+    </p>
+
+    <p>
+      <strong>Counseling Sessions:</strong>
+      <%= @patient_attended_sessions_total %>
+    </p>
+
+    <p>
+      <strong>Last Entry:</strong>
+      <%= @last_entry.present? ? @last_entry.created_at.to_date.strftime("%A, %B %d ") :"no updates made" %>
+    </p>
+    <p>
+      <strong>Total Entries:</strong>
+      <%= @patient_entry_total %>
+    </p>
+
+
+    <!--<p style="text-align: center"><b>Journals:</b></p>-->
+
+    <!-- Journal Modal Button ------------->
+    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#viewJournalModal" ><i class="fa fa-user fa-lg"></i>
+      Patient
+    </button>
+    <!-- Observer Notes Modal Button ------------->
+    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#observerNotesModal" ><i class="fa fa-users fa-lg"></i>
+      Observers
+    </button>
+    <!-- END Observer Notes Modal Button ------------->
+    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#clinicianEntriesTableModal" ><i class="fa fa-user-md fa-lg"></i>
+      Clinicians
+    </button>
+
+
+  </div>
+  <div class="col-md-3" align="center">
+
+    <p><b>Clinician Entries:</b></p>
+    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#clinicianEntriesModal" ><i class="fa fa-plus fa-lg"></i>
+      Add Status
+    </button>
+    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#patientPrescriptionHistoryModal" ><i class="fa fa-medkit fa-lg"></i>
+      Prescription History
+    </button>
+    <br><br>
+    <%= render 'shared/message_patient' %>
+
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default" style="border-color: #080808;">
+      <div class="panel-heading" style="background-color: #fff">
+        <h3 style="color: #556870;" align="center"><b>Life Scale Rating</b>
+          <%= audio_tag 'Sheehan.m4a', class: 'audio-play' %>
+          <span style="margin: 3%">
+                  <button type="button" class="btn btn-xs btn-danger audioButton1">
+                    <span class="glyphicon glyphicon-play" data-toggle="tooltip" data-placement="left" title="Sheehan Audio Description"></span>&nbsp;
+                  </button>
+
+                  <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#patientSheehanZoomModal">
+                    <span class="glyphicon glyphicon-zoom-in" data-toggle="tooltip" data-placement="left" title="Zoom in on this chart"></span>
+                  </button>
+
+                  <button type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#patientSheehanInfoModal">
+                    <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="left" title="Sheehan Info"></span>
+                  </button>
+                </span>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-9">
+          <div id="patientSheehanChart" style="height: 200px; margin: 0 auto"></div>
+        </div>
+        <div class="col-md-3" style="height: 200px; margin: 0 auto; background-color: grey; border-radius: 5px; border: 2px solid #262626"><br>
+                    <span style="font-size: 16pt; font-family: 'Calibri'; color:white;text-align:justify">
+                      Average Score:
+                    </span><br>
+                    <span style="font-size: 45pt; font-family: 'Calibri'; color:white;text-align:center">
+                      <b>14</b>
+                    </span><br>
+                    <span style="font-size: 10pt; font-family: 'Calibri'; color:white;text-align:justify">
+                      Average over Date Range
+                    </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Patient Mood compared to AVG of all USERS -->
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default" style="border-color: #080808;">
+      <div class="panel-heading" style="background-color: #fff">
+
+        <h3 style="color: #556870;" align="center"><b>Patient Mood</b>
+
+          <span style="margin: 3%">
+                  <button type="button" class="btn btn-xs btn-danger audioButton2">
+                    <%= audio_tag 'member_mood.m4a', class: 'audio-play' %>
+                    <span class="glyphicon glyphicon-play" data-toggle="tooltip" data-placement="left" title="Mood Audio Description"></span>&nbsp;
+                  </button>
+
+                  <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#patientMoodZoomModal">
+                    <span class="glyphicon glyphicon-zoom-in" data-toggle="tooltip" data-placement="left" title="Zoom in on this chart"></span>
+                  </button>
+
+                  <button type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#patientMoodInfoModal">
+                    <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="left" title="Sheehan Info"></span>
+                  </button>
+                </span>
+        </h3>
+
+      </div>
+      <div class="panel-body">
+        <div class="col-md-9">
+          <div id="patientMoodChart" style="height: 400px; margin: 0 auto"></div>
+        </div>
+        <div class="col-md-3" style="height: 325px; margin: 0 auto; background-color: grey; border-radius: 5px; border: 2px solid #262626">
+                    <span style="font-size: 12pt; font-family: 'Calibri'; color:white;text-align:justify">
+                      <br>This chart trends the <b>"Reported Mood"</b> entered by Patient, <b>"Apparent Mood"</b> entered by Observers, and the <b>"Average Mood"</b> of ALL users.<br><br>
+                          The <b>"Average Mood"</b> can be filtered to compare the Patient against others in their demographic.
+                    </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END Patient Mood compared to AVG of all USERS -->
+  <!-- Weight Chart -->
+  <div class="col-md-6">
+    <div class="panel panel-default" style="border-color: #080808">
+      <div class="panel-heading" style="background-color: #fff">
+        <h3 style="color: #556870;"  align="center"><b>Weight (lbs)</b>
+
+                <span style="margin: 3%">
+                  <button type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#patientWeightModal">
+                    <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="left" title="MADRS Info"></span>
+                  </button>
+                </span>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-12">
+          <div id="patientWeightChart" style="height: 400px; margin: 0 auto"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END Weight Chart -->
+
+  <!--<div class="col-md-6">-->
+    <!--<div class="panel panel-default" style="border-color: #080808;">-->
+      <!--<div class="panel-heading" style="background-color: #fff">-->
+        <!--<h3 style="color: #556870;" align="center"><b>MADRS SCORE</b>-->
+                <!--<span style="margin: 3%">-->
+                  <!--&lt;!&ndash;<button type="button" class="btn btn-xs btn-danger audioButton2">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<%= audio_tag 'member_mood.m4a', class: 'audio-play' %>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span class="glyphicon glyphicon-play" data-toggle="tooltip" data-placement="left" title="MADRS Audio Description"></span>&nbsp;&ndash;&gt;-->
+                  <!--&lt;!&ndash;</button>&ndash;&gt;-->
+
+                  <!--&lt;!&ndash;<button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span class="glyphicon glyphicon-zoom-in" data-toggle="tooltip" data-placement="left" title="MADRS Zoom"></span>&ndash;&gt;-->
+                  <!--&lt;!&ndash;</button>&ndash;&gt;-->
+
+                  <!--<button type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#madrsModal">-->
+                    <!--<span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="left" title="MADRS Info"></span>-->
+                  <!--</button>-->
+                <!--</span>-->
+        <!--</h3>-->
+      <!--</div>-->
+      <!--<div class="panel-body">-->
+        <!--<div class="col-md-9">-->
+          <!--<div id="PatientMADRSScoreChart" style="height: 400px; margin: 0 auto"></div>-->
+        <!--</div>-->
+        <!--<div class="col-md-3" style="height: 325px; margin: 0 auto; background-color: grey; border-radius: 5px; border: 2px solid #262626">-->
+                <!--<span style="font-size: 12pt; font-family: 'Calibri'; color:white;text-align:left">-->
+                  <!--<br>This (MADRS) chart includes a <span style="font-size: 15pt"><b>confidence band </b></span>based on the completeness of the Patients' entries.<br><br>-->
+                    <!--<span style="font-size: 45pt; font-family: 'Calibri'; color:white;text-align:center">-->
+                      <!--<b>31</b>-->
+                    <!--</span><br>-->
+                    <!--<span style="font-size: 10pt; font-family: 'Calibri'; color:white;text-align:justify">-->
+                      <!--Average over Date Range-->
+                    <!--</span>-->
+                <!--</span>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default" style="border-color: #080808;">
+      <div class="panel-heading" style="background-color: #fff">
+        <h3 style="color: #556870;" align="center"><b>Health Measures</b></h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-12">
+          <div id="patientMadrsDim" style="height: 400px; margin: 0 auto"></div>
+        </div>
+        <!--<div class="col-md-3" style="height: 325px; margin: 0 auto; background-color: grey; border-radius: 5px; border: 2px solid #262626">-->
+                <!--<span style="font-size: 12pt; font-family: 'Calibri'; color:white;text-align:justify">-->
+                      <!--<br>Tracking activities such as appetite, initiative, pessimism and zest can help you see how much of an impact these things have on your moods, and these Charts can help you recognize patterns.-->
+                      <!--They are also used to calculate your MADRS score.<br>-->
+                <!--</span>-->
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="panel panel-default" style="border-color: #080808;">
+      <div class="panel-heading" style="background-color: #fff">
+        <h3 style="color: #556870;" align="center"><b>Health Measures</b></h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-12">
+          <div id="patientMadrsAddDim" style="height: 400px; margin: 0 auto"></div>
+        </div>
+        <!--<div class="col-md-3" style="height: 325px; margin: 0 auto; background-color: grey; border-radius: 5px; border: 2px solid #262626">-->
+                    <!--<span style="font-size: 12pt; font-family: 'Calibri'; color:white;text-align:justify">-->
+                      <!--<br>Tracking activities such as appetite, initiative, pessimism and zest can help you see how much of an impact these things have on your moods, and these Charts can help you recognize patterns.-->
+                      <!--They are also used to calculate your MADRS score.<br>-->
+                <!--</span>-->
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+
+    <H4>Symptoms</H4>
+    <table id= "primary_symptoms" cellpadding="0" cellspacing="0" border="0" class="table table-bordered">
+      <thead>
+      <tr>
+        <th class="text-center">Suicidal Thoughts</th>
+        <th class="text-center">Nausea</th>
+        <th class="text-center">Restlessness</th>
+        <th class="text-center">Dry Mouth</th>
+        <th class="text-center">Nightmares</th>
+        <th class="text-center">Headache</th>
+      </tr>
+      </thead>
+      <tr style="background-color: white;">
+
+        <td id="patient_suicide_thought"></td>
+        <td id="patient_ae_nausea"></td>
+        <td id="patient_ae_restlessness"></td>
+        <td id="patient_ae_dry_mouth"></td>
+        <td id="patient_nightmare"></td>
+        <td id="patient_ae_headache"></td>
+    </table>
+    <br>
+  </div>
+  <br>
+</div>
+
+<!-- Adverse Events Column Chart -->
+<div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default" style="border-color: #080808;">
+        <div class="panel-heading" style="background-color: #fff">
+          <h3 style="color: #556870;" align="center"><b>Adverse Events</b></h3>
+        </div>
+        <div class="panel-body">
+          <div class="col-md-912">
+            <div id="patientSymptoms" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- END Adverse Events Column Chart -->
+
+
+
+<div class="row">
+  <p style="color: white">Test</p>
+</div>
+
+<!-- Journal Modal -->
+<div class="modal fade" id="viewJournalModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title" id="myModalLabel"><i class="fa fa-user fa-lg"></i>  <%= @member.user_id %> Journal</h2>
+      </div>
+      <div class="modal-body">
+        <% if @journal_entries.present? %>
+            <% @journal_entries.each do |entry| %>
+                <% if entry.journal.present? %>
+                    <p><%= entry.journal %></p>
+
+                    <div>
+                      <span class="badge"><%= "Posted #{entry.created_at.strftime("%A, %B %d, %Y")}" %></span>
+                    </div>
+                    <hr>
+                <% end %>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END Journal Modal -->
+
+<!-- Observer Notes Modal -->
+<div class="modal fade" id="observerNotesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-users fa-lg"></i> Observer Notes</h4>
+      </div>
+
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+          <%= render 'observer_entries/table', observer_entries: @observer_journal_entries %>
+             </div>
+            </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Observer Notes Modal -->
+
+<!-- Clinician Entries Modal -->
+<div class="modal fade" id="clinicianEntriesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-users fa-lg"></i> Clinician Notes for <%= @member.user_id %></h4>
+      </div>
+
+      <div class="modal-body">
+        <div class="row">
+
+          <div class="col-md-8 col-md-offset-2">
+
+            <div class="col-md-12">
+              <%= render 'clinician_entries/form', clinician_entry: ClinicianEntry.new, member_id: @member.id %>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Clinician Entries Modal Modal -->
+
+<!-- View Clinician Entries Table Modal -->
+<div class="modal fade" id="clinicianEntriesTableModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-users fa-lg"></i> Clinician Notes for <%= @member.user_id %></h4>
+      </div>
+
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <%= render 'clinician_entries/table', clinician_entries: @clinician_entries %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Clinician Entries Modal Modal -->
+
+<!-- KPI - Patient Hospitalizations Modal -->
+<div class="modal fade" id="kPIPatientHospitalizationCountModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+
+    <div class="row">
+      <div id="patientHospitalizationCountChart" style="min-width: 50%; height: 50%; "></div>
+    </div>
+  </div>
+</div>
+
+<!-- Patient Prescription History Modal -->
+<div class="modal fade" id="patientPrescriptionHistoryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-user fa-lg"></i>     <%= @member.user_id %> Prescriptions</h4>
+      </div>
+
+      <div class="modal-body">
+        <div class="row">
+
+          <div class="col-md-12">
+            <%= render 'prescriptions'%>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Sheehan Chart ZOOM Modal -->
+<div class="modal fade" id="patientSheehanZoomModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="row">
+      <div id= "patientSheehanZoomChart" style="min-width: 70%; height: 80%"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- SHEEHAN INFO Modal -->
+<div class="modal fade" id="patientSheehanInfoModal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Life Scale Rating</h4>
+      </div>
+      <div class="modal-body">
+        <p> This Life Scale Rating is based on the Sheehan Disability Scale which was designed to evaluate the impact of psychiatric symptoms in three areas.
+        </p>
+        <br>
+        <ul>
+          <li>Work Life / School Life</li>
+          <li>Social Life</li>
+          <li>Family Life</li>
+        </ul>
+        <br>
+        <p>
+          It is simple and quick to respond to, and can be used to evaluate severity of symptoms, effectiveness of treatment, and changes to Patient health over time.
+          The score from all 3 areas are added together to create a single Life Scale Score (maximum score is 30).
+        </p>
+        <br>
+        <hr>
+        <br>
+
+          <ul>
+            <li>0 - My condition is not impacting my life</li>
+            <li>1-3 - Mildly impacting</li>
+            <li>4-6 - Moderately impacting</li>
+            <li>7-9 - Highly impacting</li>
+            <li>10 - Extremely impacting</li>
+          </ul>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Patient Mood INFO Modal -->
+<div class="modal fade" id="patientMoodInfoModal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Patient Mood</h4>
+      </div>
+      <div class="modal-body">
+        <p> Trending a patients' mood is useful in recognizing positive or negative changes in well-being. <br>
+          Look for patterns and relationships with other charts.<br>
+          The red line represents the Patient Mood, the blue line is the "average" of all other Faro10 members, and the Yellow line represent the "Observed Mood" reported by the Patients observers. <br><br>
+          By using the sidebar filter, you can compare your Patients' mood with others who are taking certain medications, or have certain characteristics in common.
+
+        </p>
+        <br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- MOOD Chart ZOOM Modal -->
+<div class="modal fade" id="patientMoodZoomModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="row">
+      <div id= "patientMoodZoomChart" style="min-width: 70%; height: 80%"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MADRS CHART INFO Modal -->
+<div class="modal fade" id="madrsModal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">MADRS</h4>
+      </div>
+      <div class="modal-body">
+        <p> The Montgomery-Asberg Depression Rating Scale (MADRS) is a ten item diagnostic questionnaire which psychiatrists use to measure the severity of
+          depressive episodes in patients with mood disorders.
+        </p>
+        <br>
+        <ul>
+          <li>0-6: Normal</li>
+          <li>7-19: Mild Depression</li>
+          <li>20-34: Moderate Depression</li>
+          <li>+34: Severe Depression</li>
+        </ul>
+        <br>
+        <p>
+          The 10 criteria can be viewed in the surrounding charts.
+        </p>
+        <ul>
+          <li>Reported Mood</li>
+          <li>Observed Mood (this is input by the Patients' Observers and can only be viewed by a Clinician)</li>
+          <li>Appetite</li>
+          <li>Initiative</li>
+          <li>Pessimism</li>
+          <li>Zest</li>
+          <li>Anxiety</li>
+          <li>Sleep</li>
+          <li>Energy</li>
+          <li>Concentration</li>
+        </ul>
+        <br>
+        <p>
+          All of these entries are summed together to calculate the MADRS score.  As you can see, we have also included a "confidence band" in this chart.
+          This band demonstrates the completeness of the score.  If all 10 factors are entered, the band is narrow, if some factors are missing, the band is wider.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Patient Weight CHART INFO Modal -->
+<div class="modal fade" id="patientWeightModal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Weight</h4>
+      </div>
+      <div class="modal-body">
+        <p> Significant weight gain is a common side-effect of psychotropic medications.
+          It is important to closely monitor weight and the impact it has on a patients mood.
+        </p>
+        <br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

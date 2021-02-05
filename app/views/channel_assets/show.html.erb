@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Asset Name:</strong>
+  <%= @channel_asset.asset_name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @channel_asset.asset_type %>
+</p>
+
+<p>
+  <strong>Source:</strong>
+  <%= @channel_asset.source %>
+</p>
+
+<%= link_to 'Edit', edit_channel_channel_asset_path(@channel_asset) %> |
+<%= link_to 'Back', channel_channel_assets_path %>

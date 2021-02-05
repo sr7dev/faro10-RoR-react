@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-md-6">
+    <p><b>Beginning Range</b> - Number of entries in the beg range</p>
+    <%= scorecard.beginning_range_count(:mem, :feeling) %> <br>
+    <%= scorecard.member_creation %> + <%= scorecard.mem_day_range.range %>days
+    <hr>
+    <p><b>Beginning Range Sum</b> - Sum of entries in the beg range</p>
+    <%= scorecard.beginning_range_sum(:mem, :feeling) %>
+    <br>
+    <hr>
+    <p><b>Type Start (Average/entry)</b> - Takes the sum of the entries in beginning range and divides by the number of entries to get the average for beginning range.</p>
+    <%= scorecard.type_start(:mem, :feeling) %>
+  </div>
+  <div class="col-md-6">
+    <p><b>End Range</b> - Number of entries in the end range</p>
+    <%= scorecard.end_range_count(:mem, :feeling) %> <br>
+    <%= scorecard.now.strftime("%B %d, %Y") %> - <%= scorecard.mem_day_range.range %>days
+    <br>
+    <hr>
+    <p><b>End Range Sum</b>  - Sum of entries in the end range</p>
+    <%= scorecard.end_range_sum(:mem, :feeling) %>
+    <hr>
+    <p><b>Type End (Average/entry)</b> - Takes the sum of the entries in ending range and divides by the number of entries to get the average for ending range.</p>
+    <%= scorecard.type_end(:mem, :feeling) %>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-offset-3">
+    <p><b>Type Progress:</b>  ((Type End - Type Start) / Type End) * 100</p>
+  </div>
+</div>
+<div class="row">
+</div>

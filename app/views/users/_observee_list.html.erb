@@ -1,0 +1,46 @@
+
+  <!--<h3 style="margin-left: 40px;">Observees</h3>-->
+
+<% if @observations.present? %>
+  <div class="row">
+    <div class="col-md-12">
+        <table id= "observers" cellpadding="0" cellspacing="0" border="0" class="dataTable table-striped table-hover table-highlight table-bordered"  >
+          <thead>
+          <tr>
+            <th>Person I am Observing</th>
+            <th>Role</th>
+            <th>Last Entry</th>
+            <th>Total Entries</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+
+          <% if @observations.present? %>
+              <% @observations.each do |observation| %>
+                  <tr class="even gradeA">
+                    <td style="color: #CC246F"><i class="fa fa-user" style="margin-right: 7px; color: black"></i>  <%= observation.observee %></td>
+                    <td><%= observation.guardian ?  "Guardian" : "Standard" %></td>
+
+                    <td><%= observation.last_entry %></td>
+                    <td><%= observation.total_entries %></td>
+                    <td><%= observation.status %></td>
+                    <td>
+                      <div class="btn-group">
+                            <span style="margin: 3%">
+
+                              <%= link_to "/members/observers/#{observation.id}", class: "btn sweet_delete_observe btn-xs btn-danger", method: :delete do %>
+                               <i class="fa fa-times fa-fw" data-toggle="tooltip" data-placement="top" title="Remove Observer"></i>
+                              <% end %>
+
+                            </span>
+                      </div>
+                    </td>
+                  </tr>
+              <% end %>
+          <% end %>
+        </table>
+        <br>
+    </div>
+  </div>
+<% end %>

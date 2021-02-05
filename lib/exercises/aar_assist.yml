@@ -1,0 +1,58 @@
+category: national_guard
+longname: AAR Assist
+shortname: aarassist
+logo: ng_logo.png
+description: This AAR Assist is a self-reported measurement to evaluate the existence and severity of suicidal thoughts and ideation.
+sub_description: Please be honest and provide as much detail as possible.  
+questions:         
+  - position: 1
+    style: multiple_choice
+    text: 1. Do you think you will use this training?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 2
+    style: multiple_choice
+    text: 2. Is this directly related to suicide prevention?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 3
+    style: multiple_choice
+    text: 3. Are you satisfied with the information in this training? 
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 4
+    style: multiple_choice
+    text: 4. Would you be interested in a different more interactive training?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No. 
+  - position: 5
+    style: multiple_choice
+    text: 5. Would you be interested in knowing all available resources if not for you but also for a battle buddy?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 6
+    style: multiple_choice
+    text: 6. Would you go to your leadership for help with your own readiness?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 7
+    style: free_response
+    text: 7. Provide any commentary below.

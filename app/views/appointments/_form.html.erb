@@ -1,0 +1,44 @@
+<%= form_for(@appointment) do |f| %>
+  <% if @appointment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+
+      <ul>
+      <% @appointment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :created_by, value: current_user.id %>
+  <% if (@member || params[:member_id]) %>
+    <%= f.hidden_field :member_id, value: @member ? @member.id : params[:member_id] %>
+  <% else %>
+    <%= f.hidden_field :member_id, value: @observee ? @observee.id : params[:observee_id] %>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :title, "Appointment Name" %><br>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :start_time, "Choose Start Time" %><br>
+    <div class="date-picker">
+      <%= f.hidden_field :start_time, class: "form-control datetimepicker" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :duration, "Duration (Minutes)" %>
+    <%= f.number_field :duration, class: "form-control" %>
+  </div>
+  <!-- <div class="form-group">
+    <%= f.label :end_time, "Ends" %><br>
+    <div class="date-picker">
+      <%= f.hidden_field :end_time, class: "form-control datetimepicker" %>
+    </div>
+  </div> -->
+  <div class="form-actions">
+    <%= f.submit "Submit", class: "btn btn-faro10" %>
+  </div>
+<% end %>

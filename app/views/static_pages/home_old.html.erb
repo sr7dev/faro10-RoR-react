@@ -1,0 +1,624 @@
+<!--<div class="row" style="background-color:  #326867; margin-top: -30px ">-->
+<div class="container-fluid">
+  <div class="container-fluid">
+    <div class="row" style="background: url(<%= asset_path('pexels_photo_home.jpg', class: "img-responsive") %>);background-size: cover; margin-top: -30px ">
+      <div class="col-md-6 col-md-offset-1 col-xs-12" style="padding-top: 5%; padding-bottom: 4%">
+        <h1 style="color: #326867; text-align: left"><b>GET SUPPORT FROM OTHERS WHO'VE BEEN THERE.  ANYTIME.  ANYWHERE.
+        </b></h1>
+        <h2 style="color: #326867; font-size: x-large; text-align: left">Start, Find, or Join a Peer Support Group from your phone, tablet or computer.</h2>
+      </div>
+      <div class="col-md-3 col-md-offset-2 hidden-xs" align="center" >
+        <!--<button type="button"-->
+                <!--class="btn btn-primary"-->
+                <!--style="vertical-align: bottom; margin-top: 35%; padding: 20px; background-color: #F19A20; font-size: large; border-color: orange; border-radius: 0;"-->
+                <!--data-toggle="modal"-->
+                <!--data-target="#scheduleMeetingModal">-->
+          <!--<b>Get Started</b>-->
+        <!--</button>-->
+
+        <%= link_to "Get Started for free", new_member_registration_path, class: "btn btn-primary",
+                    style: "vertical-align: bottom; margin-top: 35%; padding: 20px; background-color: #F19A20; font-size: large; color:white; font-weight:bold; border-color: orange; border-radius: 0"%>
+
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="container-fluid">
+    <div class="row">
+      <h1 style="color: #326867">We Make Peer Support Safe and Convenient</h1>
+      <div class="col-md-10 col-md-offset-1 col-xs-12">
+        <p>
+          TelaPeer is a convenient and secure peer support platform to host Peer Support Groups.
+          It's an effective way to ensure that more members of the community can access peer support regardless of their location, access to transportation, financial status or schedules.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2 col-md-offset-5 col-xs-5 col-xs-offset-1">
+      <%= link_to(image_tag("download_ios.png" , class: "img-responsive"), "https://itunes.apple.com/us/app/faro10/id1080204499?mt=8", :target => "_blank") %>
+    </div>
+    <!--<div class="col-md-2 col-xs-5">-->
+      <!--<= link_to(image_tag("android-app.png", class: "img-responsive"), "https://play.google.com/store/apps/details?id=com.faro10", :target => "_blank") %>-->
+    <!--</div>-->
+  </div>
+  <br>
+
+  <div class="container-fluid">
+    <div class="row">
+      <h1 style="color: #326867">Features & Benefits</h1>
+      <div class="col-md-5 col-md-offset-1 col-xs-12">
+        <div class="col-md-5 col-xs-4">
+          <div class="image" style="margin-top: 20px">
+            <%= image_tag('phone_meet_join.png', class: "img-responsive" ) %>
+          </div>
+        </div>
+        <div class="col-md-7 col-xs-8">
+          <h3>Multi-Person Video Calls</h3>
+          <p>iPhone and Web platform dedicated to enabling on-demand or prescheduled video, audio or chat support groups
+          </p>
+        </div>
+      </div>
+      <div class="col-md-5 col-md-offset-1 col-xs-12">
+        <div class="col-md-5 col-xs-4">
+          <div class="image" style="margin-top: 20px">
+            <%= image_tag('phone_meet_anonym.png', class: "img-responsive" ) %>
+          </div>
+        </div>
+        <div class="col-md-7 col-xs-8">
+          <h3>Share What's Comfortable</h3>
+          <p>Participate anonymously or with full visibility to ensure everyone can share in a way that is best for them
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-5 col-md-offset-1 col-xs-12">
+        <div class="col-md-5 col-xs-4">
+          <div class="image" style="margin-top: 20px">
+            <%= image_tag('phone_meet.png', class: "img-responsive" ) %>
+          </div>
+        </div>
+        <div class="col-md-7 col-xs-8">
+          <h3>The Right Support, Anytime</h3>
+          <p>Flexible support options for PTSD, traumatic injury, depression and more allow for users to get the support they need
+          </p>
+        </div>
+      </div>
+      <div class="col-md-5 col-md-offset-1 col-xs-12">
+        <div class="col-md-5 col-xs-4">
+          <div class="image" style="margin-top: 20px">
+            <%= image_tag('phone_meet_join.png', class: "img-responsive" ) %>
+          </div>
+        </div>
+        <div class="col-md-7 col-xs-8">
+          <h3>Extend Peer Support Access</h3>
+          <p>TelaPeer provides flexible peer support access for those that have difficulty attending site-based support sessions
+          </p>
+        </div>
+      </div>
+      <div class="col-md-5 col-md-offset-1 col-xs-12">
+        <div class="col-md-5 col-xs-4">
+          <div class="image" style="margin-top: 20px">
+            <%= image_tag('phone_meet.png', class: "img-responsive" ) %>
+          </div>
+        </div>
+        <div class="col-md-7 col-xs-8">
+          <h3>Chat Safely</h3>
+          <p>Instantly chat with friends and new connections on our secure platform. We never share your data.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-5 col-md-offset-1 col-xs-12">
+        <div class="col-md-5 col-xs-4">
+          <div class="image" style="margin-top: 20px">
+            <%= image_tag('mobileapp.png', class: "img-responsive" ) %>
+          </div>
+        </div>
+        <div class="col-md-7 col-xs-8">
+          <h3>Measure Support Success</h3>
+          <p>Automated tools to track mood before and after calls to analyze wellness outcomes
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br><br>
+
+  <div class="row" style="margin-bottom: 3%">
+    <div class="col-md-12 text-center">
+      <h1>Start or Join a Peer Support Group Now</h1>
+      <%= link_to "Log In", new_user_session_path, class: "btn btn-primary", style: "border-radius: 0; border-color: #F19A20; background-color: #F19A20; color: white;
+                                                                                        width: 150px; padding: 15px;  margin-top: 5px "%>
+    </div>
+  </div>
+  <br>
+  <div class="container-fluid">
+    <div class="row">
+      <h3>Learn more about Peer Support  </h3>
+    <div class="col-md-4">
+      <div class="youtube" data-embed="bd797eF62k8">
+        <div class="play-button">
+        </div>
+      </div>
+      <p style="margin-top: -20px">Hearing Our Voices: Peer Support and Mental Illness | Stefanie Kaufman | TEDxBrownU</p>
+    </div>
+    <div class="col-md-4">
+      <div class="youtube" data-embed="xcLpcwMR8rU">
+        <div class="play-button">
+        </div>
+      </div>
+      <p style="margin-top: -20px"> Peer Support </p>
+    </div>
+    <div class="col-md-4">
+      <div class="youtube" data-embed="iUS4CYM_V2A">
+        <div class="play-button">
+        </div>
+      </div>
+      <p style="margin-top: -20px"> What is Peer Support?</p>
+    </div>
+    </div>
+  </div>
+
+
+
+
+
+
+</div>
+
+<!--Youtube styling and JS-->
+<script>
+    ( function() {
+
+        var youtube = document.querySelectorAll( ".youtube" );
+
+        for (var i = 0; i < youtube.length; i++) {
+
+            var source = "https://img.youtube.com/vi/"+ youtube[i].dataset.embed +"/sddefault.jpg";
+
+            var image = new Image();
+            image.src = source;
+            image.addEventListener( "load", function() {
+                youtube[ i ].appendChild( image );
+            }( i ) );
+
+            youtube[i].addEventListener( "click", function() {
+
+                var iframe = document.createElement( "iframe" );
+
+                iframe.setAttribute( "frameborder", "0" );
+                iframe.setAttribute( "allowfullscreen", "" );
+                iframe.setAttribute( "src", "https://www.youtube.com/embed/"+ this.dataset.embed +"?rel=0&showinfo=0&autoplay=1" );
+
+                this.innerHTML = "";
+                this.appendChild( iframe );
+            } );
+        };
+
+    } )();
+</script>
+<style>
+  .youtube {
+    background-color: #000;
+    margin-bottom: 30px;
+    position: relative;
+    padding-top: 56.25%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .youtube img {
+    width: 100%;
+    top: -16.84%;
+    left: 0;
+    opacity: 0.7;
+  }
+  .youtube .play-button {
+    width: 90px;
+    height: 60px;
+    background-color: #333;
+    box-shadow: 0 0 30px rgba( 0,0,0,0.6 );
+    z-index: 1;
+    opacity: 0.8;
+    border-radius: 6px;
+  }
+  .youtube .play-button:before {
+    content: "";
+    border-style: solid;
+    border-width: 15px 0 15px 26.0px;
+    border-color: transparent transparent transparent #fff;
+  }
+  .youtube img,
+  .youtube .play-button {
+    cursor: pointer;
+  }
+  .youtube img,
+  .youtube iframe,
+  .youtube .play-button,
+  .youtube .play-button:before {
+    position: absolute;
+  }
+  .youtube .play-button,
+  .youtube .play-button:before {
+    top: 50%;
+    left: 50%;
+    transform: translate3d( -50%, -50%, 0 );
+  }
+  .youtube iframe {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+  div#controls div#preview div#local-media div#local-media{
+    width: 640px;
+    height: 480px;
+    margin-left: 10px;
+  }
+
+  div#controls div#preview div#local-media video{
+    border-radius: 5px;
+    width: 640px;
+    height: 480px;
+    max-width: 640px;
+    max-height: 480px;
+    min-width:640px;
+  }
+
+
+  div#local-media-video{
+    border-radius: 5px;
+    width: 640px;
+    height: 480px;
+  //box-sizing: border-box;
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjgwcHgiIGhlaWdodD0iODBweCIgdmlld0JveD0iMCAwIDgwIDgwIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggMy4zLjEgKDEyMDAyKSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5GaWxsIDUxICsgRmlsbCA1MjwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJQYWdlLTEiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHNrZXRjaDp0eXBlPSJNU1BhZ2UiPgogICAgICAgIDxnIGlkPSJjdW1tYWNrIiBza2V0Y2g6dHlwZT0iTVNMYXllckdyb3VwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTU5LjAwMDAwMCwgLTE3NDYuMDAwMDAwKSIgZmlsbD0iI0ZGRkZGRiI+CiAgICAgICAgICAgIDxnIGlkPSJGaWxsLTUxLSstRmlsbC01MiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTU5LjAwMDAwMCwgMTc0Ni4wMDAwMDApIiBza2V0Y2g6dHlwZT0iTVNTaGFwZUdyb3VwIj4KICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0zOS42ODYsMC43MyBDMTcuODUsMC43MyAwLjA4NSwxOC41IDAuMDg1LDQwLjMzIEMwLjA4NSw2Mi4xNyAxNy44NSw3OS45MyAzOS42ODYsNzkuOTMgQzYxLjUyMiw3OS45MyA3OS4yODcsNjIuMTcgNzkuMjg3LDQwLjMzIEM3OS4yODcsMTguNSA2MS41MjIsMC43MyAzOS42ODYsMC43MyBMMzkuNjg2LDAuNzMgWiBNMzkuNjg2LDEuNzMgQzYxLjAwNSwxLjczIDc4LjI4NywxOS4wMiA3OC4yODcsNDAuMzMgQzc4LjI4Nyw2MS42NSA2MS4wMDUsNzguOTMgMzkuNjg2LDc4LjkzIEMxOC4zNjcsNzguOTMgMS4wODUsNjEuNjUgMS4wODUsNDAuMzMgQzEuMDg1LDE5LjAyIDE4LjM2NywxLjczIDM5LjY4NiwxLjczIEwzOS42ODYsMS43MyBaIiBpZD0iRmlsbC01MSI+PC9wYXRoPgogICAgICAgICAgICAgICAgPHBhdGggZD0iTTQ3Ljk2LDUzLjMzNSBMNDcuOTYsNTIuODM1IEwyMC4wOTMsNTIuODM1IEwyMC4wOTMsMjcuODI1IEw0Ny40NiwyNy44MjUgTDQ3LjQ2LDM4LjI1NSBMNTkuMjc5LDMwLjgwNSBMNTkuMjc5LDQ5Ljg1NSBMNDcuNDYsNDIuNDA1IEw0Ny40Niw1My4zMzUgTDQ3Ljk2LDUzLjMzNSBMNDcuOTYsNTIuODM1IEw0Ny45Niw1My4zMzUgTDQ4LjQ2LDUzLjMzNSBMNDguNDYsNDQuMjE1IEw2MC4yNzksNTEuNjY1IEw2MC4yNzksMjguOTk1IEw0OC40NiwzNi40NDUgTDQ4LjQ2LDI2LjgyNSBMMTkuMDkzLDI2LjgyNSBMMTkuMDkzLDUzLjgzNSBMNDguNDYsNTMuODM1IEw0OC40Niw1My4zMzUgTDQ3Ljk2LDUzLjMzNSIgaWQ9IkZpbGwtNTIiPjwvcGF0aD4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid darkgray;
+    margin: 30px;
+    display: inline-block;
+    background-color: darkgray;
+  }
+
+  div#local-media-text {
+    width: 640px;
+    height: 25px;
+    text-align: center;
+    max-width: 640px;
+    border: 0px solid #cececc;
+    overflow: hidden;
+    background-color: transparent;
+    color: #B4D336;
+    font-weight: bold;
+    font-size: x-large;
+    margin-top:450px;
+    position: absolute;
+  }
+  /*button {*/
+  /*background-color: #326867;*/
+  /*border: none;*/
+  /*border-radius: 2px;*/
+  /*-webkit-box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, .5);*/
+  /*-moz-box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, .5);*/
+  /*box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, .5);*/
+  /*color: white;*/
+  /*font-size: 0.8em;*/
+  /*height: 2.75em;*/
+  /*margin: 10px 5px 10px 5px;*/
+  /*padding: 0.5em 0.5em 0.5em 0.7em;*/
+  /*width: 6em;*/
+  /*}*/
+
+  /*button:active {*/
+  /*background-color: #3367D6;*/
+  /*}*/
+
+  /*button:hover {*/
+  /*background-color: #326867;*/
+  /*}*/
+
+  /*button:focus {*/
+  /*-webkit-box-shadow: 0 10px 15px 0 rgba(0, 0, 0, .5);*/
+  /*-moz-box-shadow: 0 10px 15px 0 rgba(0, 0, 0, .5);*/
+  /*box-shadow: 0 10px 15px 0 rgba(0, 0, 0, .5);*/
+  /*outline: none;*/
+  /*}*/
+  /*button:disabled,*/
+  /*button[disabled]{*/
+  /*background-color: #cccccc;*/
+  /*color: #666666;*/
+  /*}*/
+</style>
+
+
+
+<!--<div id="home-jumbotron" class="row valign hidden-xs" style="margin-top: -20px">-->
+  <!--<div class="col-md-6 ho">-->
+    <!--<p id="motto">Empowerment to Manage your Mental Health</p>-->
+    <!--&lt;!&ndash;<p class="lead">Our vision is to improve and save lives through an increased partnership between patients and their mental health professionals.</p>&ndash;&gt;-->
+    <!--<p class="lead">-->
+
+
+      <!--Too often, parents, family members, and friends involved in supporting those with mental health challenges are left on-the-sidelines,-->
+      <!--and feel uninformed, disconnected and helpless by the journey through our health care system. <br>-->
+
+
+    <!--</p>-->
+    <!--<div class="col-md-6" style="display: inline-block;height: 100%;vertical-align: middle;"><a href=""><%= image_tag('hipaa.png', size: "250x128", style:"align:left" ) %></a></div>-->
+    <!--<div class="col-md-6" style="display: inline-block;height: 100%;vertical-align: middle;"><br/><a href="http://afsp.org" target="_blank"><%= image_tag('afsp.png', size: "197x80", style:"align:right, hspace:100" ) %></a></div>-->
+  <!--</div>-->
+<!--</div>-->
+
+<!--<div class="container">
+  <div class="row">
+    <h1>Testimonials</h1>
+  </div>
+</div>-->
+<!--<div class="carousel-reviews broun-block">-->
+  <!--<div class="container">-->
+    <!--<div class="row">-->
+      <!--<div id="carousel-reviews" class="carousel slide" data-ride="carousel">-->
+
+        <!--<div class="carousel-inner">-->
+          <!--<div class="item active">-->
+            <!--<div class="col-md-4 col-sm-6">-->
+              <!--<div class="block-text rel zmin">-->
+                <!--&lt;!&ndash;<a title="" href="#">Hercules</a>&ndash;&gt;-->
+                <!--<p><br />Faro10 software is a brilliant approach to a challenging issue.  The ability to monitor patients between appointments, capture feedback from those around them, and coordinate care between all Providers within a simple interface is immensely useful.</p>-->
+                <!--<ins class="ab zmin sprite sprite-i-triangle block"></ins>-->
+              <!--</div>-->
+              <!--<div class="person-text rel">-->
+                <!--<br /><br />-->
+                <!--<i>Thava Mahadevan M.S. LCAS</i><br />-->
+                <!--<strong>Dir of Operations, UNC Center for Excellence in Community Mental Health</strong>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-4 col-sm-6 hidden-sm hidden-xs">-->
+              <!--<div class="block-text rel zmin">-->
+                <!--<p><br>Faro10 has made it extremely convenient for patients to stay connected and to allow for their loved ones to also share their insight into behaviors and emotions.  ... Charts and graphics are tremendously useful ... In my clinical opinion, my sessions have improved significantly with those patients that utilize Faro10 concisely.</p>-->
+                <!--<ins class="ab zmin sprite sprite-i-triangle block"></ins>-->
+              <!--</div>-->
+              <!--<div class="person-text rel">-->
+                <!--<br /><br />-->
+                <!--<i>Sharon L. Wilkening, LPC</i><br />-->
+                <!--<strong>LMHC</strong>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-4 col-sm-6 hidden-sm hidden-xs">-->
+              <!--<div class="block-text rel zmin">-->
+                <!--<p><br>FARO is a brilliant idea and has the opportunity to make a positive impact on the therapy world that has never been seen to date. Improvements for both clients and therapist who treat them will be greatly enhanced as FARO reaches its fullest potential.</p>-->
+                <!--<ins class="ab zmin sprite sprite-i-triangle block"></ins>-->
+              <!--</div>-->
+              <!--<div class="person-text rel">-->
+                <!--<br /><br />-->
+                <!--<i>Bob Smith</i><br />-->
+                <!--<strong>Director of Clinical Services, Strategic Behavioral Health</strong>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<a class="left carousel-control" href="#carousel-reviews" role="button" data-slide="prev">-->
+            <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
+          <!--</a>-->
+          <!--<a class="right carousel-control" href="#carousel-reviews" role="button" data-slide="next">-->
+            <!--<span class="glyphicon glyphicon-chevron-right"></span>-->
+          <!--</a>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<br><br>-->
+  <!--<div class="row">-->
+    <!--<h1 style="color: #4FA59F">Be Part of a Care Team</h1>-->
+    <!--<div class="col-md-10 col-md-offset-1">-->
+      <!--<p>-->
+        <!--Nearly 1 in 5 adults in the US had a diagnosable mental disorder in the past year.-->
+        <!--The challenge of living with a mental issue can be overwhelming and should not be done alone.-->
+        <!--At Faro10 we encourage a supportive approach by creating a <b>CARE TEAM of loved ones and Providers</b> who assist in monitoring symptoms,-->
+        <!--measuring progress, and providing support.-->
+      <!--</p>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="row" id="register-row">-->
+    <!--<div class="col-md-4" id="our-vision">-->
+      <!--<div class="center image">-->
+        <!--<%= image_tag('our_vision.png') %>-->
+      <!--</div>-->
+
+      <!--<h2 class="center">-->
+        <!--FAMILIES-->
+      <!--</h2>-->
+
+      <!--&lt;!&ndash;<p>&ndash;&gt;-->
+      <!--&lt;!&ndash;We strive to offer easier tracking of symptoms, better understanding of the impacts and effectiveness of medication, as well as between-session monitoring capability.  By introducing Measurement-based Care and Evidence-based Care into patient treatment, Clinicians can more effectively diagnose, monitor, and treat patients.&ndash;&gt;-->
+      <!--&lt;!&ndash;</p>&ndash;&gt;-->
+
+      <!--<p>-->
+        <!--We provide Care Givers, including parents, spouses, siblings, and others with more control and insight into treatment.-->
+        <!--Become an active participant by using Faro10 to measure progress and results.-->
+        <!--Observational feedback becomes available to Clinicians which maximizes effectiveness of treatment.-->
+      <!--</p>-->
+
+      <!--<br>-->
+      <!--<b><%= link_to "LEARN MORE  >", '/guardians' %> </b>-->
+
+    <!--</div>-->
+
+    <!--<div class="col-md-4">-->
+      <!--<div class="image center">-->
+        <!--<%= image_tag('global_benefits.png') %>-->
+      <!--</div>-->
+
+      <!--<h2 class="center">SELF</h2>-->
+      <!--<p>-->
+        <!--Easily track your symptoms and progress.  Have better conversations with your Clinicians.-->
+        <!--The journal allows you to jot down notes that can also be helpful reminders during conversation.-->
+        <!--Charts provide a quick visual to help you and your clinician target and measure specific areas for improvement.-->
+
+      <!--</p>-->
+
+    <!--</div>-->
+
+    <!--<div class="col-md-4">-->
+      <!--<div class="image center">-->
+        <!--<%= image_tag('managedcare.png', size: "140x140")  %>-->
+      <!--</div>-->
+
+      <!--<h2 class="center">PROVIDERS</h2>-->
+
+      <!--<p>-->
+      <!--There are far too many stories of people suffering for years before determining the proper medication and dosage.  It is during this period that so many tragedies occur! By introducing detailed analytics, medical professionals can have greater visibility into their patients' wellness than ever before.-->
+      <!--</p>-->
+      <!--<p>-->
+        <!--Easily review quality measurements and treatment progress.-->
+        <!--Create seamless transitions in care. Better informed and more engaged patients result in better outcomes.-->
+        <!--Satisfy patient engagement quality measures and provide timely, appropriate, coordinated care.-->
+
+      <!--</p>-->
+      <!--<b><%= link_to "LEARN MORE  >", '/solutions' %> </b>-->
+
+    <!--</div>-->
+
+    <!--<div class="col-md-4 center" id="try-me">-->
+      <!--<h1>Try Me!</h1>-->
+      <!--<p>Register as a<br>patient, observer, or clinician</p>-->
+
+      <!--<= link_to "Register", features_path, class: "btn btn-lg btn-block" %>-->
+
+      <!--<br><br>-->
+      <!--<p style="text-align: center ">To learn more about measurement-based treatment using Faro10,  <= link_to "contact us", contact_path %> for a demo.-->
+        <!--<br>    josh@faro10.com</p>-->
+    <!--</div>-->
+
+  <!--</div>-->
+  <!--<br><br><br><br>-->
+
+  <!--<div class="row">-->
+    <!--<div class="col-md-4 col-md-offset-2">-->
+      <!--<%= link_to(image_tag("android-app.png" , size: "260x80"), "https://play.google.com/store/apps/details?id=com.faro10", :target => "_blank") %>-->
+    <!--</div>-->
+    <!--<div class="col-md-4">-->
+      <!--<%= link_to(image_tag("download_ios.png" , size: "260x80"), "https://itunes.apple.com/us/app/faro10/id1080204499?mt=8", :target => "_blank") %>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<br><br><br><br>-->
+
+  <!--<div class="row">-->
+    <!--<div class="col-md-7">-->
+      <!--<%= image_tag('faro10_hero_image2.png', class: "img-responsive" ) %>-->
+    <!--</div>-->
+
+
+    <!--<div class="col-md-5">-->
+      <!--<br>-->
+      <!--<h1 style="color: #4FA59F">TOOLS BUILT FOR FAMILIES.  GET STARTED IN ONLY MINUTES.</h1>-->
+      <!--<h2 style="color: #326867">-->
+        <!--DON'T LET LOVED ONES FALL THROUGH THE CRACKS.   <br><br>-->
+        <!--&#45;&#45; Faro10 tools provide you and your family members with more control and insight into treatment.-->
+        <!--Use with Clinicians to maximize effectiveness of treatment.-->
+      <!--</h2>-->
+      <!--<p style="font-size: large">-->
+        <!--If you have found us, you are concerned about someone you care about, or are struggling yourself.-->
+        <!--It's important to know that help is available and actively working to improve the situation can make a big difference!-->
+        <!--Download our mobile app for FREE to get started.-->
+      <!--</p>-->
+      <!--<br>-->
+
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--Big green box with Evidence and Measurement based care listed-->
+  <!--<div class="row" id="x-based-row">-->
+    <!--<div class="col-md-6" >-->
+      <!--<h1>Evidence-based Care</h1>-->
+
+      <!--<div class="center">-->
+        <!--<= image_tag('evidence_based_care_icon.png') %>-->
+      <!--</div>-->
+
+      <!--<div class="info-box">-->
+        <!--<p>-->
+          <!--<strong>-->
+            <!--Outcome reporting to meet health-plan requirements based on real-time patient and observer feedback-->
+            <!--&lt;!&ndash;allows Clinician and client to know what is getting better from the perspective of the patient.&ndash;&gt;-->
+          <!--</strong>-->
+        <!--</p>-->
+
+        <!--<ul>-->
+          <!--<li>Monitor & compare patient symptoms, treatments and outcomes across-->
+            <!--multiple segmentation dimensions including, age, race, gender and more-->
+          <!--</li>-->
+          <!--<li>Increase precision in assessment, tracking, and treatment to achieve optimal outcomes</li>-->
+          <!--<li>Measure symptom severity and adherence to treatment while monitoring symptoms and adverse events, including real-time alerts</li>-->
+          <!--<li>Monitor outcome and impact across interpersonal, social, and behavioral measurement scales</li>-->
+          <!--<li>View dynamically aggregated patient, observer and clinician feedback for holistic view of patient</li>-->
+        <!--</ul>-->
+      <!--</div>-->
+    <!--</div>-->
+
+
+    <!--<div class="col-md-6">-->
+      <!--<h1>Measurement-based Care</h1>-->
+      <!--<div class="center">-->
+        <!--<= image_tag('measurement_based_care_icon.png') %>-->
+      <!--</div>-->
+
+      <!--<div class="info-box">-->
+        <!--<p>-->
+          <!--<strong>-->
+            <!--Behavioral health quality measures play a critical role in indicating the well-being of patients and the success of treatment<br>-->
+          <!--</strong>-->
+        <!--</p>-->
+        <!--<ul>-->
+          <!--<li>Specific data elements to track patient wellness and the success of treatment</li>-->
+          <!--<li>Key health metrics to quickly summarize patient progress</li>-->
+          <!--<li>Clinic quality metrics which track patient segmentation and outcomes</li>-->
+          <!--<li>Patient scorecard measuring symptom changes</li>-->
+          <!--<li>Medication success rate for patients by each diagnosis</li>-->
+        <!--</ul>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="row" id='map-row-title'>-->
+    <!--<div class="col-md-12">-->
+      <!--<p class='large'>Find Clinicians who want to be part of your team</p>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="row" id='map-row'>-->
+    <!--<div class="col-md-6">-->
+      <!--<= form_tag(search_clinicians_path, method: "get", class: "form-inline clinician-search js-clinician-search", remote: true) do %>-->
+          <!--<div class="form-group">-->
+            <!--<= text_field_tag(:zip_code, nil, class: "form-control") %>-->
+            <!--<= button_tag(type: 'submit', class: "btn btn-primary") do %>-->
+                <!--<span class='glyphicon glyphicon-search'></span>-->
+            <!--< end %>-->
+          <!--</div>-->
+
+          <!--<%# <%= submit_tag("<span class='glyphicon glyphicon-search'></span>", class: "btn btn-primary") %1> %>-->
+      <!--< end %>-->
+
+      <!--<ul class="locations-list">-->
+        <!--<= render 'locations', clinicians: @clinicians %>-->
+      <!--</ul>-->
+    <!--</div>-->
+
+    <!--<div class="col-md-6">-->
+      <!--<div class="google-map" id="map"></div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<script>-->
+      <!--< if @clinicians.present? %>-->
+      <!--var clinicians = <= raw(@clinicians.to_json) %>-->
+      <!--< else %>-->
+      <!--var clinicians = []-->
+      <!--< end %>-->
+  <!--</script>-->
+
+<!--</div>-->

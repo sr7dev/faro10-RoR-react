@@ -1,0 +1,70 @@
+<div id="observer-card" class="col-xs-6  col-md-1" style="min-width: 385px; min-height: 425px">
+  <div class="dashboard-card" style="background-color: #4FA59F">
+    <div class="card-header">
+      <h1 class="card-header-text">Prescription Review</h1>
+    </div>
+    <div class="card-menu">
+      <%= image_tag('video_temp.png') %>
+      <button type="button" class="card-video-button" data-toggle="modal" data-target="#observerPrescriptionHelpModal"><%= image_tag('help.png') %></button>
+    </div>
+    <div class="card-image">
+      <a href="/users/prescription_review"><%= image_tag('prescriptions.png')%></a>
+
+
+    </div>
+    <div class="card-notification">
+    </div>
+    <div id="PrescriptionReviewAlert" class="collapse card-message">
+    </div>
+    <div class="card-info">
+      <br/>
+      <!--Observees: <=@observer_observee_total %><br/>-->
+      <!--Last Observation: <= @last_observer_entry.present? ?  @last_observer_entry.observed_at.strftime("%m/%d/%Y") :"none made" %>-->
+    </div>
+    <div class="card-action-top">
+      <%=image_tag('spacer.png')%>
+      <div class="card-action-text">
+
+      </div>
+    </div>
+    <div class="card-action-middle">
+      <%=image_tag('spacer.png')%>
+      <div class="card-action-text">
+
+      </div>
+    </div>
+    <div class="card-action-bottom">
+      <a href="/users/prescription_review"><%=image_tag('reports.png')%>
+        <div class="card-action-text">
+          <BR/>REPORTS
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="observerPrescriptionHelpModal" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Observee Prescriptions</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          This prescription area allows guardians to track prescription consistency.  <br>
+          Instead of asking your observee "Have you taken your medication today?", you can look here first.  <br>
+          If they have not recorded that they took their medication, then you can remind them. <br>
+          This can be a reinforcer/reminder to take medications as well as track their mood.  <br><br>
+          NOTE: if your observee has not added their medication into Faro10, it will not be viewable.  <br>
+          NOTE: if you are not a Guardian observer, their medication will not be viewable.
+        </p>
+        <br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

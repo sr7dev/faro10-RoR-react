@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= full_title(yield(:title)) %></title>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <meta content='width=device-width,initial-scale=1,shrink-to-fit=no' name='viewport' />
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+    <%= render 'layouts/shim' %>
+    <%= favicon_link_tag asset_path('favicon.png'), :rel => 'icon', :type =>  'image/png' %>
+  </head>
+  <body class="<%= controller_name %> <%= action_name %>">
+    <% if user_signed_in? %>
+      <% if current_user.type == "Clinician" %>
+        <%= render 'layouts/clinician_header' %>
+      <% elsif current_user.type == "Group" %>
+          <%= render 'layouts/group_header' %>
+      <% elsif current_user.type == "Member" && current_user.primary_role == "Observer" %>
+          <%= render 'layouts/loggedin_observer_header' %>
+      <% else %>
+      <%= render 'layouts/loggedin_header' %>
+      <% end %>
+    <% else %>
+      <%= render 'layouts/header' %>
+  <% end %>
+    <% if logged_in? && current_user.type != "Member " %>
+      <%= render 'layouts/sidebar' %>
+    <% end %>
+
+    <% if logged_in? && current_user.type != "Member" %>
+      <div class="main col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2">
+    <% else %>
+        <div class="main">
+    <% end%>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+      <%= yield %>
+    </div>
+    <!--<= render "layouts/loggedin_footer" %>-->
+    <%= javascript_pack_tag 'application' %>
+      </div>
+  </body>
+</html>

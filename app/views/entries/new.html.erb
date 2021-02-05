@@ -1,0 +1,60 @@
+<%@view = params["view"]%>
+
+<%case @view%>
+  <%when "mood"%>
+    <div class="row">
+      <div class="col-md-4">
+        <%= render 'madrs_entries' %>
+      </div>
+
+      <div class="row">
+        <div class="col-md-5">
+          <%= render 'sheehan_entries' %>
+        </div>
+      </div>
+    </div>
+  <%when "meds"%>
+    <div class="row">
+      <div class="col-md-4">
+        <%= render 'med_entries' %>
+      </div>
+    </div>
+  <%when "physical"%>
+    <div class="col-md-4">
+      <h1>Symptoms</h1>
+      <h2>This is not a complete list of all possible symptoms you may be experiencing.  If you experience symptoms other than these few, add a custom symptom.</h2>
+      <div class="box">
+        <div class="icon">
+          <div class="image">
+            <span class="glyphicon glyphicon-warning-sign btn-custom-lg white"></span>
+          </div>
+          <div class="info">
+            <%= render "entries_symptoms_form" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <%when "journal"%>
+    <div class="col-md-4">
+      <h1>Journal</h1>
+      <div class="box">
+        <div class="icon">
+          <div class="image">
+            <span class="glyphicon glyphicon-warning-sign btn-custom-lg white"></span>
+          </div>
+          <div class="info">
+            <%= render "entries_journal_form" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <%when "symptoms"%>
+    <div class="row">
+      <div class="col-md-4">
+        <%= render 'side_effects' %>
+      </div>
+    </div>
+  <%else%>
+    <%= render 'form' %>
+<%end%>
+

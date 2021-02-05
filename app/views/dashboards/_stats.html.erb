@@ -1,0 +1,68 @@
+  <p>
+    <strong>Username:</strong>
+    <span style="font-size: 16pt; color: #4FA59F; margin-left: 8px">
+      <%= current_user.user_id %>
+    </span>
+  </p>
+
+  <p>
+    <strong>Last Entry:</strong>
+    <span style="color: #4FA59F; margin-left: 8px">
+      <%= @last_entry.present? ? @last_entry.created_at.to_date.strftime("%B %d, %A ") :"no updates made" %>
+    </span>
+  </p>
+  <p>
+    <strong>My Entries:</strong>
+    <span style="color: #4FA59F; margin-left: 8px"><%= @my_entry_total %></span>
+  </p>
+  <p>
+    <strong>Self-harm Entries:</strong>
+    <span style="color: #4FA59F; margin-left: 8px"><%= @my_self_harm_total %></span>
+  </p>
+
+  <p>
+    <strong>Attended Sessions:</strong>
+    <span style="color: #4FA59F; margin-left: 8px"><%= @my_attended_sessions_total %> </span>
+  </p>
+
+<br>
+
+<button type="button" class="btn btn-primary" style="background-color: #326867; width: 130px; border-radius: 0" data-toggle="modal" data-target="#myJournalModal" ><i class="fa fa-user fa-lg" style="margin-right: 5px;" ></i>
+  My Journal
+</button>
+
+<div class="modal fade" id="myJournalModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title" id="myModalLabel"><i class="fa fa-user fa-lg"></i>  <%= current_user.user_id %> Journal</h2>
+      </div>
+      <div class="modal-body">
+        <% if @my_journal.present? %>
+          <% @my_journal.each do |entry| %>
+            <% if entry.journal.present? %>
+              <p><%= entry.journal %></p>
+              <div>
+                <span class="badge">
+                  <!--<= "Posted #{entry.created_at.strftime("%A %l:%M %P, %B %d, %Y ")}" %>-->
+                  <%= "Posted #{time_zone_offset(entry.created_at, current_user.time_zone, "%A %l:%M %P, %B %d, %Y ")}" %>
+                </span>
+              </div>
+              <hr>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= link_to assigned_exercises_path(@current_user) do %>
+  <button type="button" class="btn btn-large btn-primary" style="background-color: #326867; width: 130px; border-radius: 0">
+    <i class="fa fa-file-image-o fa-lg" style="margin-right: 5px;" ></i>
+    Exercises
+  </button>
+<% end %>
+<br>
+<br>

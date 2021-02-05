@@ -1,0 +1,44 @@
+category: exercise
+longname: Challenging Anxious Thoughts
+shortname: cat
+logo: global_benefits.png
+description: Anxiety can be a healthy emotion; it forces us to focus on our problems, and work hard to solve them. But sometimes, anxiety grows out of control, and does just the opposite. It cripples our ability to solve problems. When this happens, irrational thoughts often play a role. In this exercise, we will practice catching our irrational thoughts, and replacing them with rational alternatives. With enough practice, this will become a natural process that can help you manage anxiety.
+questions: 
+  - position: 1
+    style: free_response
+    text: Describe a common situation that triggers your anxiety.
+  - position: 2
+    style: none
+    text: "Imagine you are faced with this anxiety-producing situation:"
+    comment: Anxiety distorts our thinking by causing us to overestimate the likelihood of something going wrong, and imagine the potential consequences as worse than they really are. Sometimes, just taking a moment to think about these facts can help us recognize our irrational thoughts.
+    answerable: false
+    children:
+    - position: 1
+      style: free_response
+      text: Describe the worst outcome.
+    - position: 2
+      style: free_response
+      text: Describe the best outcome.
+    - position: 3
+      style: free_response
+      text: Describe the likely outcome.
+  - position: 3
+    text: "Imagine the worst outcome comes true:"
+    answerable: false
+    style: none
+    children: 
+    - position: 1
+      style: free_response
+      text: Would it still matter one week from now?
+    - position: 2
+      style: free_response
+      text: One month from now?
+    - position: 3
+      style: free_response
+      text: One year from now?
+  - position: 4
+    style: free_response
+    text: Describe your irrational thought.
+  - position: 5
+    style: free_response
+    text: Describe your rational thought.

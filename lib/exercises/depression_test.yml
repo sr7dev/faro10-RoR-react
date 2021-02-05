@@ -1,0 +1,295 @@
+category: depression
+longname: Depression Test
+shortname: dt
+logo: depression_test_icon.png
+description: This scale is not designed to make a diagnosis of depression or take the place of a professional diagnosis. The 18 items below refer to how you have felt and behaved during the past week. For each item, indicate the extent to which it is true, by checking the appropriate box next to the item.
+sub_description: Use this short depression test to help determine if you have the symptoms of depression.  This depression test is the Goldberg Depression Questionnaire.
+questions:
+  - position: 1
+    style: multiple_choice
+    text: 1. I do things slowly.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 2
+    style: multiple_choice
+    text: 2. My future seems hopeless.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 3
+    style: multiple_choice
+    text: 3. It is hard for me to concentrate on reading.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 4
+    style: multiple_choice
+    text: 4. The pleasure and joy has gone out of my life.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 5
+    style: multiple_choice
+    text: 5. I have difficulty making decisions.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 6
+    style: multiple_choice
+    text: 6. I have lost interest in aspects of life that used to be important to me.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 7
+    style: multiple_choice
+    text: 7. I feel sad, blue, and unhappy.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 8
+    style: multiple_choice
+    text: 8. I am agitated and keep moving around.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 9
+    style: multiple_choice
+    text: 9. I feel fatigued.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 10
+    style: multiple_choice
+    text: 10. It takes great effort for me to do simple things.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 11
+    style: multiple_choice
+    text: 11. I feel that I am a guilty person who deserves to be punished.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 12
+    style: multiple_choice
+    text: 12. I feel like a failure.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 13
+    style: multiple_choice
+    text: 13. I feel lifeless -- more dead than alive.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 14
+    style: multiple_choice
+    text: 14. My sleep has been disturbed -- too little, too much, or broken sleep.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 15
+    style: multiple_choice
+    text: 15. I spend time thinking about HOW I might kill myself.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 16
+    style: multiple_choice
+    text: 16. I feel trapped or caught.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 17
+    style: multiple_choice
+    text: 17. I feel depressed even when good things happen to me.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much
+  - position: 18
+    style: multiple_choice
+    text: 18. Without trying to diet, I have lost, or gained, weight.
+    answer_choices:
+    - position: 1
+      text: Not at all
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Somewhat
+    - position: 4
+      text: Moderately
+    - position: 5
+      text: Quite a lot
+    - position: 6
+      text: Very Much

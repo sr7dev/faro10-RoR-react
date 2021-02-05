@@ -1,0 +1,63 @@
+category: sleep
+longname: Sleep Disorder Test
+shortname: sdt
+logo: sleep_disorder_test_icon.png
+description: This sleep disorders test can help answer the question, "Do I have a sleep disorder?".  If so, you're definitely not alone.  Some 18-20 million Americans have sleep disorders and they often accompany mental health disorders such as ADHD, anxiety, bipolar disorder and depression.  Sleep disorder symptoms not only affect how people sleep, but also how they function throughout the day.  As you take the sleep disorders test, keep in mind that a sleep disorder can only be diagnosed by a doctor.  You may have to undergo a sleep study as part of the evaluation process.
+sub_description: Scoring | Two or more "true" answers indicate that you may have a sleep disorder.  Remember, this is NOT a diagnosis.  Only a qualified doctor can make a diagnosis and provide sleep disorder treatment.
+questions:
+  - position: 1
+    style: multiple_choice
+    text: 1. Do you have difficulty falling or staying asleep?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 2
+    text: 2. Do you snore?
+    style: multiple_choice
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 3
+    style: multiple_choice
+    text: 3. Do you fall asleep while watching television or reading?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 4
+    style: multiple_choice
+    text: 4. Do you feel tired in the daytime, even if you slept 8-10 hours the night before?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 5
+    style: multiple_choice
+    text: 5. Do you have trouble functioning at work or in your daily tasks because of sleepiness?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 6
+    style: multiple_choice
+    text: 6. Do you have vivid, unpleasant dreams?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 7
+    style: multiple_choice
+    text: 7. Have you ever had a sudden attack of intense sleepiness?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.

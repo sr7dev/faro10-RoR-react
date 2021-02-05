@@ -1,0 +1,131 @@
+<div class="text-center text-uppercase">
+  <h3 style="color: #556870;"  align="right">
+    <b>Goal Center</b>
+    <span style="margin: 3%">
+      <button type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#goalCenterInfoModal">
+        <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="left" title="Info"></span>
+      </button>
+    </span>
+  </h3>
+</div>
+
+<div class="bar-chart">
+  <div class="legend">
+    <div class="item">
+      <h4>Newbie</h4>
+    </div>
+    <div class="item">
+      <h4>Decent</h4>
+    </div>
+    <div class="item text-right">
+      <h4>Good</h4>
+    </div>
+    <div class="item text-right">
+      <h4>Hero</h4>
+    </div>
+  </div>
+
+  <div class="chart clearfix">
+    <div class="item">
+      <div class="bar">
+        <span class="percent">
+          <%= @gc.entries_goal_progression %>% / <%= @gc.entries_target %>
+        </span>
+        <div class="item-progress" data-percent="<%= @gc.entries_goal_progression %>">
+          <span class="title">Entries</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="bar">
+        <span class="percent">
+          <%= @gc.exercise_goal_progression %>% /  <%= @gc.exercise_target %>
+        </span>
+        <div class="item-progress" data-percent="<%= @gc.exercise_goal_progression %>">
+          <span class="title">Exercise <%= @gc.total_exercise %>min</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="bar">
+        <span class="percent"><%= current_user.avg_med_consistency %>% / 100% </span>
+
+        <div class="item-progress" data-percent="<%= current_user.avg_med_consistency %>" style="max-width: 100%">
+          <span class="title">Medication Consistency</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="bar">
+        <span class="percent">
+          <%= @gc.attended_goal_progression %>% /  <%= @attended_gold_target %>
+        </span>
+
+        <div class="item-progress" data-percent="<%= @gc.attended_goal_progression %>">
+          <span class="title">SPONSORED GOAL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="goalCenterInfoModal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Goal Center</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          The Goal Center provides you with incremental targets that allow you to monitor your health efforts.
+          By working towards goals, you take an active role in your health.  As you progress through your goals, you can review your health charts to
+          assess the impact your activity is having on your health.
+        </p>
+        <br>
+        <p>
+          <b>Entries:</b><br>
+          Your first entries goal is 30.  After making 30 entries, you have built a great baseline for yourself within your dashboard.
+          Understanding where you started and the ability to recognize changes is an important first step towards being able to identify the success of treatments and medications.
+          <br>
+          After this initial goal, you will continue on through several other goals, each of which is awarded with new medals.
+        </p>
+        <br>
+        <p>
+          <b>Exercise:</b><br>
+          Exercise is an important component for everyone when trying to improve overall health.
+          Your first exercise goal is 200 minutes.  Some important benefits of exercise include:</p>
+        <ul>
+          <li>Improved sleep</li>
+          <li>Stress relief</li>
+          <li>Improvement in mood</li>
+          <li>Increased energy</li>
+          <li>Reduced tiredness that can increase mental alertness</li>
+          <li>Weight reduction</li>
+          <li>Reduced cholesterol</li>
+          <li>Improved cardiovascular fitness</li>
+        </ul>
+        <br>
+        <p>
+          <b>Medication Consistency:</b><br>
+          Consistently taking prescribed medication is essential in treating symptoms and effectively diagnosing illness.
+          By tracking your medication consistency, you allow yourself and your clinician to better understand the impact that prescribed medication is having.
+        </p>
+        <br>
+
+        <p>
+          <b>SPONSORED GOAL:</b><br>
+          This is a goal that has been submitted by one of our partners who believes that this goal is important to your health.<br>
+          This sponsor is offering a prize of xxxxxxxx to everyone that achieves this goal.
+        </p>
+        <br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

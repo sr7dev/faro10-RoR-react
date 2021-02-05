@@ -1,0 +1,19 @@
+var list = $(".locations-list");
+list.empty();
+deleteMarkers();
+
+<% if @clinicians.size > 0 %>
+  var locations = <%= raw(@clinicians.to_json) %>;
+
+  list.append("<%= j render(partial: 'static_pages/locations', locals: {clinicians: @clinicians}) %>");
+
+  addMarkers(locations);
+<% else %>
+  var coordinates = <%= Geocoder.coordinates(@zip) %>;
+  var latLng = new google.maps.LatLng(coordinates[0], coordinates[1]);
+
+  emptyMap(latLng);
+
+  list.html("<h4>No clinicians were found. Search a different location.</h4>");
+<% end %>
+

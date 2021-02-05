@@ -1,0 +1,43 @@
+@import "_variables";
+
+header#clinician-header {
+  color: #fff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  a {
+    color: #fff;
+  }
+
+  nav {
+    ul li {
+      width: 180px;
+      text-align: center; 
+
+      &.bordered {
+        border-right: 1px solid #fff;
+      }
+    }
+  }
+
+  .dropdown-menu {
+    li {
+      a {
+        color: #000;
+      }
+    }
+  }
+
+  #logo {
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.7em;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
+
+  #logo:hover {
+    text-decoration: none;
+  }
+}
+

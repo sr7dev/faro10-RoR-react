@@ -1,0 +1,81 @@
+<div class="panel panel-default" style="border-color: lightgrey; border-radius: 0">
+  <div class="panel-heading" style="background-color: #fff">
+    <h3 style="color: #556870;" align="center">
+      <b>Life Scale Rating</b>
+      <span style="margin: 3%">
+        <button type="button" class="btn btn-xs btn-danger audioButton1">
+          <%= audio_tag 'Sheehan.m4a', class: 'audio-play' %>
+          <span class="glyphicon glyphicon-play" data-toggle="tooltip" data-placement="left" title="Audio Description"></span>&nbsp;
+        </button>
+        <button type="button" class="btn btn-xs btn-success" data-toggle="modal" data-target="#memberSheehanZoomChartModal">
+          <span class="glyphicon glyphicon-zoom-in" data-toggle="tooltip" data-placement="left" title="Zoom"></span>
+        </button>
+        <button type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#sheehanInfoModal">
+          <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="left" title="Info"></span>
+        </button>
+      </span>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <div class="col-md-9">
+      <div id="memberSheehanChart" style="height: 200px; margin: 0 auto"></div>
+    </div>
+    <div class="col-md-3" style="height: 200px; margin: 0 auto; background-color: #8CD2CB; border-radius: 0; border: 0 solid #262626"><br>
+      <span style="font-size: 16pt; font-family: 'Calibri'; color:#193130;text-align:justify">
+        Life Scale Avg:
+      </span>
+      <br>
+      <span style="font-size: 45pt; font-family: 'Calibri'; color:white;text-align:center">
+        <b>0</b>
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="memberSheehanZoomChartModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="row">
+      <div id= "memberSheehanZoomChart" style="min-width: 70%; height: 80%"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="sheehanInfoModal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Life Scale Rating</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          The Life Scale Rating is designed to evaluate the impact of psychiatric symptoms in three areas.
+        </p>
+        <br>
+        <ul>
+          <li>Work Life / School Life</li>
+          <li>Social Life</li>
+          <li>Family Life</li>
+        </ul>
+        <br>
+        <p>
+          This rating is simple and quick to respond to, and is used by Clinicians to evaluate severity of symptoms, effectiveness of treatment, and changes to your health over time.<br>
+          You are encouraged to use the journal to record external triggers that may be impacting to these conditions.
+          <br>
+        </p>
+        <br>
+        <hr>
+        <ul>
+          <li>1 - No issues in this area</li>
+          <li>2-3 - Mildly impacting</li>
+          <li>4-6 - Moderately impacting</li>
+          <li>7-9 - Highly impacting</li>
+          <li>10 - Extremely impacting</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

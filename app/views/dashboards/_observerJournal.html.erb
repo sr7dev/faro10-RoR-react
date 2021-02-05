@@ -1,0 +1,127 @@
+<div id="journal-card" class="col-xs-6 col-md-1" style="min-width: 385px; min-height: 425px">
+  <div class="dashboard-card" style="background-color: #8CD2CB;">
+    <div class="card-header">
+      <h1 class="card-header-text">Observation Messaging</h1>
+    </div>
+    <div class="card-menu">
+      <%= image_tag('video_temp.png') %>
+      <button type="button" class="card-video-button" data-toggle="modal" data-target="#observerJournalHelpModal"><%= image_tag('help.png') %></button>
+    </div>
+    <div class="card-image">
+      <button type="button" class="card-action-button" data-toggle="modal" data-target="#journalEntryModal"><%= image_tag('journal.png')%></button>
+    </div>
+    <!--<div class="card-notification">-->
+      <!--<a href="#journalAlert" data-toggle="collapse">-->
+        <!--<if !@journalMessage.nil?%>-->
+            <!--<=image_tag('alert.png', :title => @journalMessage)%>-->
+        <!--<end%>-->
+      <!--</a>-->
+    <!--</div>-->
+    <!--<div id="journalAlert" class="collapse card-message">-->
+      <!--<=@journalMessage%>-->
+    <!--</div>-->
+    <div class="card-info">
+      <br/>
+      <!--Journal Entries: <= @observer_journal_entries_count  %><br/>-->
+
+    </div>
+    <div class="card-action-top">
+      <%=image_tag('spacer.png')%>
+      <div class="card-action-text">
+
+      </div>
+    </div>
+    <div class="card-action-middle">
+      <button type="button" class="card-action-button" data-toggle="modal" data-target="#journalEntryModal">
+        <%=image_tag('edit.png')%>
+        <div class="card-action-text">
+          MAKE<BR/>ENTRY
+        </div>
+      </button>
+    </div>
+    <div class="card-action-bottom">
+      <button type="button" class="card-action-button" data-toggle="modal" data-target="#myJournalModal"><%= image_tag('view journal.png') %>
+        <div class="card-action-text">
+          VIEW<BR/>JOURNAL
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!--Observer Journal Entry Modal-->
+<div class="modal fade" id="journalEntryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Make Observation</h4>
+      </div>
+      <div class="modal-body">
+        <%= render 'observer_entries/observer_journal_form', observer_entry: @observer_entry, observations: @observations  %>
+        <br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--View Observer Journal Modal-->
+<div class="modal fade" id="myJournalModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title" id="myModalLabel"><i class="fa fa-comments fa-lg"></i>  Observation History
+        </h2>
+      </div>
+      <div class="modal-body">
+        <div class="row" style="margin-left: 20px; margin-right: 20px">
+          <div class="col-md-12">
+            <%= render 'observer_entries/observer_journal_history', observer_entries: @observer_entries.sort_by(&:created_at).reverse %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--View Observer Journal HELP Modal-->
+<div class="modal fade" id="observerJournalHelpModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Making Observations</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          Your feedback can be invaluable to Clinicians when making Diagnosis, Medication and Treatment decisions.
+          Clinicians have limited visibility into patients life between appointments and how they are responding to treatments.
+          By providing feedback, you give them insight that they would not otherwise have, allowing them to be more effective.
+          <br>
+          <br>
+        </p>
+          You can record anything you think is relevant to treatment.
+          Here are a few of the things Clinicians find useful:<br/>
+        <ul>
+          <li>Relapses</li>
+          <li>New Symptoms</li>
+          <li>Bad days</li>
+          <li>Concerns</li>
+          <li>Accomplishments</li>
+          <li>Disappointments</li>
+          <li>Accounts of interactions with others</li>
+        </ul>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

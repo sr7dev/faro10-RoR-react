@@ -1,0 +1,85 @@
+<style>
+    #menu li,
+    a:link {
+        color: #326867;
+        text-decoration: none;
+    }
+    a:visited {
+        color: #326867;
+        text-decoration: none;
+    }
+    a:hover {
+        color: #CC246F;
+        text-decoration: none;
+    }
+    a:active {
+        color: #CC246F;
+        text-decoration: none;
+    }
+</style>
+<%= render partial: "patient_navbar", locals: {active: "collaboration"} %>
+<br>
+
+<div class="row">
+  <div class="col-md-12">
+    <h3>Collaborative Treatment</h3>
+    <p>
+      Multiple Clinicians can have access to patient treatment progress, symptom changes, prescription tracking, and observer reported information. <br>
+      Record and share relevant information that this patients Clinicians should be aware of.
+    </p>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+<div class="col-md-12">
+<%= render 'clinician_entries/table', clinician_entries: @clinician_entries %><br>
+    <button type="button" class="btn btn-sm btn-primary" style="background-color: #326867; width: 170px;  border-radius: 0" data-toggle="modal" data-target="#clinicianEntriesModal" ><i class="fa fa-plus fa-lg" style="margin-right: 5px;" ></i>
+      New Update
+    </button><br><br>
+  </div>
+</div>
+
+<hr>
+<div class="row">
+  <div class="col-md-6">
+    <%= render 'diagnoses/dsm_diagnosis_entry', dsm_diagnosis: Diagnosis.new, member_id: @member.id %><br>
+    <%= render 'diagnoses/dsm_diagnosis_table' %><br>
+    <!--<= render 'dsm_diagnoses/dsm_diagnosis_table', dsm_diagnoses: @dsm_diagnoses %><br>-->
+    <br><br>
+  </div>
+  <div class="col-md-6">
+    <%= render 'diagnoses/icd10_diagnosis_entry', icd_diagnosis: Diagnosis.new, member_id: @member.id %><br>
+    <%= render 'diagnoses/icd10_diagnosis_table' %><br>
+    <!--<= render 'dsm_diagnoses/icd10_diagnosis_table', dsm_diagnoses: @dsm_diagnoses %><br>-->
+    <br><br>
+  </div>
+</div>
+
+
+  <!-- Clinician Entries Modal -->
+<div class="modal fade" id="clinicianEntriesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-users fa-lg"></i> Clinician Notes for <%= @member.user_id %></h4>
+      </div>
+
+      <div class="modal-body">
+        <div class="row">
+
+          <div class="col-md-8 col-md-offset-2">
+
+            <div class="col-md-12">
+              <%= render 'clinician_entries/form', clinician_entry: ClinicianEntry.new, member_id: @member.id %>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Clinician Entries Modal Modal -->

@@ -1,0 +1,2 @@
+module ActivityLevelsHelper
+end

@@ -1,0 +1,50 @@
+<h3>Patient Demographics</h3><br>
+
+<div class="row">
+    <div class="col-md-2">
+      <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey" data-toggle="modal" data-target="#kPIPatientCountModal">
+        <div class="panel-update-heading">
+          <h1 id="members_count" style="color: #B4D336"></h1>
+        </div>
+        <div class="panel-body text-center">
+          <strong> # of Faro10 Patients </strong><i class="fa fa-external-link" style="margin-left: 7px"></i>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-6" >
+    <div id="clinicDiagnosisPie" style="min-width: 410px;  height: 400px; max-width: 600px; margin: 0 auto"></div>
+  </div>
+  <div class="col-md-6">
+    <div id="clinicPiebyAgeChart" style="min-width: 410px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+  </div>
+  </div>
+
+<br><br>
+<div class="row">
+    <div class="col-md-12">
+    <div id="clinicbyMedsColumn" style="min-width: 500px;   height: 400px;  margin: 0 auto"></div>
+  </div>
+  <!--<div class="col-md-6">-->
+    <!--<div id="clinicHospitalizationsBarChart" style="min-width: 500px;   height: 400px; margin: 0 auto"></div>-->
+  <!--</div>-->
+</div>
+
+
+<br><br><br>
+<div class="row">
+  <p style="color: white">&nbsp;</p>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="kPIPatientCountModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+
+    <div class="row">
+      <div id="patientCountChart" style="min-width: 50%; height: 50%; "></div>
+    </div>
+  </div>
+</div>

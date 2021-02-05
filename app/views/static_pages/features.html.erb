@@ -1,0 +1,52 @@
+<% provide(:title, "Register") %>
+
+<h1 style="color: #326867"> Account Types</h1>
+<div class="container">
+  <div class="row-fluid pricing-table pricing-three-column">
+    <div class="plan col-sm-4 col-lg-4">
+      <div class="plan-name-bronze">
+        <h3>PATIENTS & OBSERVERS</h3>
+      </div>
+      <ul>
+        <li class="plan-feature">Digitally track health and wellness</li>
+        <li class="plan-feature">Mobile app for easy tracking</li>
+        <li class="plan-feature">Measure success of treatment using analytics</li>
+        <li class="plan-feature">Observer entries for use in treatment</li>
+        <li class="plan-feature">Prescription tracking and reminders</li>
+        <li class="plan-feature">Manage observer and clinician access</li>
+        <li class="plan-feature">Message Center for quick messages from clinicians</li>
+        <li class="plan-feature">Goal Center</li>
+        <li class="plan-feature">Find clinicians using Faro10</li>
+
+        <li class="plan-feature">    
+          <%= link_to "Sign up now!", new_member_registration_path, class: "btn btn-lg btn-primary", style: "background-color: #326867; border-radius: 0" %>
+        </li>
+      </ul>
+
+    </div>
+
+
+    <div class="plan col-sm-4 col-lg-4">
+      <div class="plan-name-silver">
+        <h3>CLINICIAN </h3> <!-- <span class="badge badge-warning">*verified</span>-->
+      </div>
+
+      <ul>
+        <li class="plan-feature">Patient list with quick status of health in real-time</li>
+        <li class="plan-feature">Real-time charts and graphs of patient wellness</li>
+        <li class="plan-feature">Real-time status of patient symptoms and adverse events</li>
+        <li class="plan-feature">Observer journals and notes for each patient</li>
+        <li class="plan-feature">Track patient prescriptions and medication success</li>
+        <li class="plan-feature">Digitally share patient notes with other clinicians</li>
+        <li class="plan-feature">One-way message center for quick messages to patients</li>
+        <li class="plan-feature">Digitally signed consent and release forms</li>
+        <li class="plan-feature">Evidence-based clinic success metrics</li>
+
+        <li class="plan-feature">     
+          <%= link_to "Register as Clinician!", pricing_plans_path, class: "btn btn-lg btn-faro10" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+

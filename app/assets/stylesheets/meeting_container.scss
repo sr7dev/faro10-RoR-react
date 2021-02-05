@@ -1,0 +1,1015 @@
+@mixin for-less-700 {
+  @media (max-width: 700px) { @content; }
+}
+@mixin for-min-700 {
+  @media (min-width: 700px) { @content; }
+}
+@mixin for-min-900 {
+  @media (min-width: 900px) { @content; }
+}
+@mixin for-min-1100 {
+  @media (min-width: 1100px) { @content; }
+}
+@mixin for-min-1300 {
+  @media (min-width: 1300px) { @content; }
+}
+
+.text-align-right {
+	text-align: right;
+}
+
+.toggle-button {
+	background: none;
+	border: none;
+
+	.toggle-svg {
+		background: none;
+	}
+}
+
+.hidden {
+	display: none;
+}
+
+.toggle-button.right {
+	margin-left: 12px;
+	margin-top: 10px;
+}
+
+.toggle-button.left {
+	margin-left: 8px;
+}
+
+.welcome-container {
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+	background-color: white;
+	text-align: center;
+	overflow: hidden;
+
+	.welcome-meeting-name {
+		text-align: center;
+		font-size: 24px;
+		font-weight: 600;
+		margin-top: 25px;
+	}
+
+	.welcome-meeting-topic {
+		text-align: center;
+		font-size: 24px;
+		font-weight: 600;
+	}
+
+	.welcome-meeting-current-member {
+		text-align: center;
+		margin-top: 10px;
+		font-size: 16px;
+		font-weight: 500;
+	}
+
+	.display-name-section {
+		margin-top: 30px;
+
+		.checkbox-text {
+			margin-left: 10px;
+		}
+
+		.block {
+			display: inline-block;
+		}
+
+		input {
+			height: 40px;
+			width: 150px;
+			padding: 10px;
+			border: 1px solid #DDD;
+			border-radius: 5px;
+		}
+
+		input[type='checkbox'] {
+			width: 22px;
+			height: 15px;
+		}
+
+		label {
+			font-weight: 500;
+		}
+	}
+
+	.password-section {
+		margin-top: 30px;
+
+		.password-helper-text {
+			font-size: 12px;
+			width: 200px;
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 5px;
+		}
+
+		.incorrect-password-container {
+			font-size: 12px;
+			color: red;
+		}
+
+		input {
+			height: 40px;
+			width: 150px;
+			padding: 10px;
+			border: 1px solid #DDD;
+			border-radius: 5px;
+		}
+
+	}
+
+	.join-meeting-button {
+		background-color: #F19A20;
+		width: 160px;
+		height: 40px;
+		color: white;
+		border: none;
+		margin-top: 35px;
+		margin-bottom: 20px;
+		border-radius: 5px;
+	}
+
+	.welcome-button-container {
+		bottom: 20px;
+		right: 10px;
+		position: absolute;
+		z-index: 100;
+	}
+
+	.welcome-preview-container {
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;
+		background-image: url('user_icon.png');
+		background-repeat: no-repeat;
+		background-size: 50px 50px;
+		background-position: center; 
+		background-color: #DDD;
+		width: 400px;
+		height: 300px;
+		
+		border-bottom: 1px solid #BBB;
+
+		video {
+			width: 400px;
+			height: 300px;
+			margin-left: auto;
+			margin-right: auto;
+			-o-transform : scaleX(-1);
+		  	-moz-transform : scaleX(-1);
+		  	-webkit-transform : scaleX(-1);
+		  	-ms-transform: scaleX(-1);
+		  	transform : scaleX(-1);
+		}
+	}
+}
+
+.meeting-layout-container {
+	position: absolute;
+	top: 70px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+
+	background-color: #EEEEEE;
+	
+	.left-sidebar-container {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		bottom: 0px;
+		width: 275px;
+		background-color: #FFFFFF75;
+		/*border-right: 1px solid #F19A20;*/
+
+		-webkit-transition: width 0.5s; /* Safari */
+    	transition: width 0.5s;
+	}
+
+	.left-side-button-container {
+		text-align: center;
+
+		.closed-toggle-container {
+			background-color: white;
+			display: inline-block;
+			width: 60px;
+			height: 71px;
+			text-align: center;
+			padding-top: 23px;
+			border-bottom: 1px solid #C7CFD6;
+			margin-bottom: 20px;
+		}
+	}
+
+	.left-sidebar-container.closed {
+		width: 60px;
+	}
+
+	.right-sidebar-container {
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		bottom: 0px;
+		width: 275px;
+		background-color: #FFFFFF75;;
+		/*border-left: 1px solid #F19A20;*/
+
+		-webkit-transition: width 0.5s; /* Safari */
+    	transition: width 0.5s;
+
+    	.right-side-header-container {
+			background-color: white;
+			border-bottom: 1px solid #C7CFD6;
+			height: 71px;
+
+			.toggle-button-container {
+				display: inline-block;
+				margin-top: 15px;
+			}
+
+			.meeting-name-container {
+				display: inline-block;
+				text-align: center;
+				font-size: 20px;
+				color: #193130;
+				margin-left: 22px;
+				vertical-align: middle;
+
+				.styled-right {
+					position: absolute;
+				    right: 0;
+				    top: 0;
+				}
+			}
+		}
+
+		.open-button-container {
+			text-align: center;
+			margin-top: 15px;
+		}
+		
+		#local-media-ctr {
+			height: 160px;
+			width: 213px;
+			border-radius: 10px;
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 30px;
+			background-color: white;
+			background-image: url('user_circle.png');
+			background-repeat: no-repeat;
+			background-size: 40px 40px;
+			background-position: center; 
+			background-color: #DDD;
+
+			video {
+				-o-transform : scaleX(-1);
+				-moz-transform : scaleX(-1);
+				-webkit-transform : scaleX(-1);
+				-ms-transform: scaleX(-1);
+				transform : scaleX(-1);
+			}
+		}
+
+
+		#local-media-ctr video {
+			width: 213px;
+			border-radius: 10px;
+		}
+
+		.meeting-information {
+			margin-top: 20px;
+			background-color: white;
+
+			.info-row {
+				padding-top: 15px;
+				padding-bottom: 15px;
+				padding-left: 30px;
+				padding-right: 30px;
+				border-top: 1px solid #C7CFD6;
+
+				.title {
+					font-size: 13px;
+					font-weight: 600;
+					color: #4FA59F;
+					margin-bottom: -3px;
+				}
+
+				.value {
+					font-size: 18px;
+					color: #193130;
+				}
+			}
+
+			.info-row.last {
+				border-bottom: 1px solid #C7CFD6;
+			}
+		}
+		
+	}
+
+	.right-sidebar-container.closed {
+		width: 60px;
+	}
+
+	.center-container.left-side-closed.right-side-closed video {
+			
+		@include for-less-700 {
+    		width: 240px !important;
+    		height: 180px !important;
+  		}
+
+  		@include for-min-700 {
+    		width: 300px !important;
+    		height: 225px !important;
+  		}
+
+  		@include for-min-900 {
+    		width: 375px !important;
+    		height: 281px !important;
+  		}
+
+  		@include for-min-1100 {
+    		width: 450px !important;
+    		height: 338px !important;
+  		}
+
+		@include for-min-1300 {
+	    	width: 600px !important; 
+	    	height: 450px !important;
+	  	}
+		
+	}
+
+	.center-container.left-side-closed.right-side-closed .participant-container {
+			
+		@include for-less-700 {
+    		width: 240px !important;
+    		height: 180px !important;
+  		}
+
+  		@include for-min-700 {
+    		width: 300px !important;
+    		height: 225px !important;
+  		}
+
+  		@include for-min-900 {
+    		width: 375px !important;
+    		height: 281px !important;
+  		}
+
+  		@include for-min-1100 {
+    		width: 450px !important;
+    		height: 338px !important;
+  		}
+
+		@include for-min-1300 {
+	    	width: 600px !important; 
+	    	height: 450px !important;
+	  	}
+		
+	}
+
+	.center-container {
+		position: absolute;
+		top: 0px;
+		bottom: 0px;
+		right: 275px;
+		left: 275px;
+		background-color: #EEEEEE;
+
+    	-webkit-transition: right 0.5s, left 0.5s; /* Safari */
+    	transition: right 0.5s, left 0.5s;
+
+    	.remote-participants-container {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+
+		.participant-container {
+			width: 320px;
+			height: 240px;
+			background-color: #CCC;
+			position: relative;
+
+			.user-placeholder {
+				position: absolute;
+				top: 45%;
+				width: 100%;
+				text-align: center;
+			}
+
+			@include for-less-700 {
+	    		width: 100px;
+	    		height: 75px;
+	  		}
+
+	  		@include for-min-700 {
+	    		width: 150px;
+	    		height: 113px;
+	  		}
+
+	  		@include for-min-900 {
+	    		width: 180px;
+	    		height: 135px;
+	  		}
+
+	  		@include for-min-1100 {
+	    		width: 300px;
+	    		height: 225px;
+	  		}
+
+	  		@include for-min-1300 {
+	    		width: 420px;
+	    		height: 315px;
+	  		}
+
+	  		.participant-options-button {
+	  			position: absolute;
+	  			right: 10px;
+	  			bottom: 5px;
+	  			background: none;
+	  			border: none;
+	  		}
+
+	  		.video-container {
+	  			
+	  			.participant-options-container {
+
+	  				position: absolute;
+		  			bottom: 35px;
+		  			right: 0;
+		  			background-color: #FFFFFF50;
+		  			z-index: 100;
+
+	  				.participant-option-button {
+		  				width: 200px;
+		  				height: 40px;
+		  				display: block;
+		  			}	
+	  			}
+
+				.participant-options-container.hidden {
+					visibility: hidden;
+				}
+	  			
+	  		}
+
+			.video-container video {
+				width: 320px;
+				height: 240px;		
+				-o-transform : scaleX(-1);
+			    -moz-transform : scaleX(-1);
+			    -webkit-transform : scaleX(-1);
+			    -ms-transform: scaleX(-1);
+			    transform : scaleX(-1);
+
+				@include for-less-700 {
+		    		width: 100px;
+		    		height: 75px;
+		  		}
+
+		  		@include for-min-700 {
+		    		width: 150px;
+		    		height: 113px;
+		  		}
+
+		  		@include for-min-900 {
+		    		width: 180px;
+		    		height: 135px;
+		  		}
+
+		  		@include for-min-1100 {
+		    		width: 300px;
+		    		height: 225px;
+		  		}
+
+		  		@include for-min-1300 {
+		    		width: 420px;
+		    		height: 315px;
+		  		}
+			}
+
+			.video-container.hidden video {
+				visibility: hidden;
+			}
+
+			.placeholder-icon {
+				position: absolute;
+				top: 90px;
+				left: 130px;
+				z-index: -1;
+			}
+
+			.user-identity {
+				position: absolute;
+				bottom: 0px;
+				left: 0px;	
+				right: 0px;	
+				text-align: left;
+				background-color: rgba(255, 255, 255, 0.7);
+				height: 35px;
+				padding-top: 4px;
+				padding-left: 10px;
+
+				.user-identity-value {
+					font-size: 20px;
+				}
+			}
+		}
+	}
+
+	.center-container.left-side-closed {
+		left: 60px;
+	}
+
+	.center-container.right-side-closed {
+		right: 60px;
+	}
+}
+
+
+.meeting-view-container.container {
+	width: 100%;
+	background-color: #EEE;
+	height: calc(100vh - 70px);
+
+	.join-info-container {
+		width: 300px;
+		margin-top: 75px;
+		margin-left: auto;
+		margin-right: auto;
+		border: 0px solid grey;
+		padding: 20px;
+		background-color: white;
+		-webkit-box-shadow: 0px 0px 2px 1px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  		-moz-box-shadow:    0px 0px 2px 1px #ccc;  /* Firefox 3.5 - 3.6 */
+  		box-shadow:         0px 0px 2px 1px #ccc;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+		border-radius: 2px;
+
+		.meeting-title {
+			font-size: 20px;
+			font-weight: 600;
+			text-align: center;
+			margin-left: auto;
+			margin-right: auto;
+			margin-bottom: 20px;
+		}
+
+		.info-row {
+			margin-bottom: 20px;
+
+			.title {
+				font-size: 13px;
+				font-weight: 600;
+			}
+
+			.value {
+				font-size: 18px;
+			}
+		}
+
+		.join-button {
+			width: 200px;
+			height: 40px;
+			display:block;
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 40px;
+			background-color: #4FA59F;
+			color: white;
+			font-weight: 600;
+		}
+	}
+
+	.meeting-name-container {
+		background-color: #133046;
+		color: black;
+		text-align: center;
+		padding: 5px;
+
+		.meeting-name {
+			font-weight: 600;
+			font-size: 16px;
+			background-color: rgba(140, 210, 203, 0.7);
+			padding: 5px;
+			border-radius: 0px 0px 3px 3px;
+			border: 1px solid rgba(240, 240, 240, 0.5);
+		}
+	}
+
+	.full-height {
+		height: 100%;
+	}
+
+	.no-padding {
+		padding-left: 0px !important;
+		padding-right: 0px !important;
+	}
+
+	.remote-participants-container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	.participant-container {
+		width: 320px;
+		height: 240px;
+		background-color: #CCC;
+		position: relative;
+
+		.user-placeholder {
+			position: absolute;
+			top: calc(50% - 12px);
+			left: calc(50% - 12px);
+		}
+		
+		@include for-less-700 {
+    		width: 100px;
+    		height: 75px;
+  		}
+
+  		@include for-min-700 {
+    		width: 100px;
+    		height: 75px;
+  		}
+
+  		@include for-min-900 {
+    		width: 180px;
+    		height: 135px;
+  		}
+
+  		@include for-min-1100 {
+    		width: 300px;
+    		height: 225px;
+  		}
+
+  		@include for-min-1300 {
+    		width: 400px;
+    		height: 300px;
+  		}
+
+		.video-container {
+
+		}
+
+		.video-container video {
+			width: 320px;
+			height: 240px;	
+
+			@include for-less-700 {
+	    		width: 100px;
+	    		height: 75px;
+	  		}
+
+	  		@include for-min-700 {
+	    		width: 100px;
+	    		height: 75px;
+	  		}
+
+	  		@include for-min-900 {
+	    		width: 180px;
+	    		height: 135px;
+	  		}
+
+	  		@include for-min-1100 {
+	    		width: 300px;
+	    		height: 225px;
+	  		}
+
+	  		@include for-min-1300 {
+	    		width: 400px;
+	    		height: 300px;
+	  		}	
+		}
+
+		.placeholder-icon {
+			position: absolute;
+			top: 90px;
+			left: 130px;
+			z-index: -1;
+		}
+
+		.user-identity {
+			position: absolute;
+			bottom: 10px;
+			left: 10px;	
+			background-color: rgba(255, 255, 255, 0.7);;
+			padding: 5px;
+			border-radius: 5px;
+		}
+	}
+
+	.video-controls-container {
+		width: 100%;
+		background-color: #133046;
+		text-align: center;
+		padding-top: 20px;
+		padding-bottom: 20px;
+
+		#local-media-ctr video {
+			width: 213px;
+			width: 160px;
+			border-radius: 10px;
+			margin: 15px;
+		}
+	}
+
+	.meeting-sideview {
+		background-color: #133046;
+		padding: 0px !important;
+
+		.meeting-information-container {
+
+			height: 100px;
+			color: white;
+			text-align: center;
+			padding-top: 30px;
+			padding-bottom: 30px;
+
+			.title {
+
+			}
+
+			.name {
+				font-size: 20px;
+				font-weight: 600
+			}
+
+			.topic {
+				font-size: 16px;
+				font-weight: 600
+			}
+		}
+
+		.members-chat-toggle-container {
+
+			.segment {
+				height: 30px;
+				background-color: #133046;
+    			border: none;
+				text-align: center;
+				display: inline-block;
+				width: 50%;
+				color: #AAA;
+				font-size: 16px;
+				font-weight: 500;
+				border-bottom: 3px solid #133046;
+			}
+
+			.segment.selected {
+				border-bottom: 3px solid #15959F;
+				color: #15959F;
+			}
+
+		}
+
+		.user-side-section {
+			color: white;
+		}
+
+	}
+
+}
+
+		.chat-side-section {
+			color: #DDD;
+
+			.comment-icon {
+				margin-left: 15px;
+			}
+
+			.chat-section-title {
+				padding-right: 10px;
+				border-bottom: 1px solid #DDD;
+				background-color: white;
+				font-weight: 500;
+				font-size: 18px;
+				color: #193130;
+
+
+				.conversations-label {
+					font-size: 20px;
+					vertical-align: middle;
+					margin-left: 5px;
+				}
+
+				.icon {
+					margin-right: 5px;
+				}
+			}
+
+			.messages-container {
+				overflow-y: scroll;
+				height: 300px;
+				padding: 15px;
+				text-align: left;
+
+				.chat-message-row {
+					border-radius: 5px;
+					
+					.chat-message {
+						color: black;
+						padding: 8px;
+						display: inline-block;
+						border-radius: 5px;
+
+						.chat-name {
+							font-size: 11px;
+							color: #838383;
+							margin-bottom: 3px;
+						}
+
+						.chat-text {
+							background-color: #4FA59F;
+							padding: 10px;
+							border-radius: 5px;
+							color: white;
+						}
+					}
+
+				}
+			}
+
+			.authoring-container {
+				height: 60px;
+				margin-top: 10px;
+				padding-top: 5px;
+				display: grid;
+				grid-template-columns: auto 80px;
+				background-color: white;
+
+				.message-text-input-container {
+					padding-right: 10px;
+					padding-left: 10px;
+					border-radius: 5px;
+					padding-top: 5px;
+
+					.message-text-input {
+						height: 40px;
+						width: 100%;
+						border-radius: 15px;
+						color: black;
+						padding-left: 10px;
+						border: none;
+						background-color: #EEEEEE;
+					}	
+				}
+				
+
+				.submit-message-button {
+					height: 40px;
+					border: 1px solid #4FA59F;
+					background-color: white;
+					border-radius: 15px;
+					color: #15959F;
+					margin-right: 10px;
+					margin-top: 5px;
+				}
+			}
+
+		}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: auto 350px;
+	
+
+	.video-section-grid-item {
+
+	}
+
+	.video-section-grid-item-full {
+		grid-column-start: 1;
+  		grid-column-end: 2;
+  		grid-row-start: 1;
+  		grid-row-end: 1;
+	}
+
+	.video-section-grid-item-minus-right-side {
+		grid-column-start: 1;
+  		grid-column-end: 1;
+  		grid-row-start: 1;
+  		grid-row-end: 1;
+	}	
+
+	.chat-section-grid-item {
+		grid-column-start: 2;
+  		grid-column-end: 2;
+  		grid-row-start: 1;
+  		grid-row-end: 1;
+	}
+}	
+
+.member-list-section {
+	height: 200px;
+	border-top: 1px solid #C7CFD6;
+
+	.invite-container {
+
+		width: 100%;
+		height: 50px;
+
+		.invite-participants-button {
+			background-color: white;
+			color: black;
+			padding: 5px;
+			width: 100%;
+			height: 50px;
+			font-size: 16px;
+			border: none;
+
+			.icon {
+				margin-left: 5px;
+			}
+		}	
+	}
+
+	.participants-section-title {
+		height: 71px;
+		border-bottom: 1px solid #DDD;
+		background-color: white;
+		font-weight: 500;
+		font-size: 18px;
+		color: #193130;
+
+		.icon {
+			margin-right: 15px;
+			margin-left: 15px;
+		}
+
+		.participants-title {
+			font-size: 20px;
+			vertical-align: middle;
+			margin-right: 55px;
+		}
+	}
+
+	.member-list-container {
+		width: 100%;	
+
+		.member-row {
+			margin-top: 10px;
+			margin-bottom: 10px;
+			padding-left: 10px;
+			font-size: 16px;
+			font-weight: 500;
+			padding: 5px;
+
+			.avatar-container {
+				display: inline-block;
+				vertical-align: middle;
+				height: 30px;
+				width: 30px;
+				margin-right: 15px;
+				border-radius: 10px;
+				background-image: url('user_icon.png');
+				background-repeat: no-repeat;
+				background-size: 20px 20px;
+				background-position: center; 
+			}
+
+		}
+	}		
+}
+
+.Collapsible {
+	height: 30px;
+	background-color: #4FA59F;
+	padding: 10px;
+}
+
+.expand-indicator-container {
+	display: inline-block;
+	margin-left: 20px;
+}
+
+.display-none {
+	display: none !important;
+}
+
+.styled-title-indicator {
+	background-color: #4FA59F;
+	width: 10px;
+	height: 71px;
+	display: inline-block;
+	vertical-align: middle;
+	padding-top: 11px;
+
+	.dot {
+		width: 5px;
+		height: 2px;
+		background-color: white;
+		margin-top: 5px;
+		margin-left: 2px;
+	}
+}
+

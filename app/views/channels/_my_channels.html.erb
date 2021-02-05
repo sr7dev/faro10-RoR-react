@@ -1,0 +1,142 @@
+
+
+<div class="row">
+
+
+
+  <div class="col-md-6">
+    <div class="row" style="margin-left: 0">
+      <br><br>
+      <div class="col-md-11">
+        <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey; background-color: #326867 ">
+          <div class="panel-body text-center">
+            <p style="font-size: 28px; text-align: left; margin-bottom: 10px; margin-top: 10px; color: white ">
+              My Communities
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+      <table>
+      <thead>
+      <tr>
+        <th></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @channels.each do |channel| %>
+          <tr>
+            <td>
+              <div class="col-md-2">
+                <%= channel.avatar.present? ? image_tag(channel.avatar, class: "img-responsive") : image_tag("https://s3-us-west-2.amazonaws.com/mendalytics/YourLogoHere.jpg", class: "img-responsive") %>
+
+              </div>
+              <div class="col-md-10">
+                <span style="color: #CC246F; vertical-align: top; font-size: large ">
+                <%= link_to channel.channel_name, channel %> </span><br>
+                <%= channel.channel_focus %> <br>
+                <%= channel.owner_detail %>
+               <br>
+                <%= link_to 'Manage ', edit_channel_path(channel) %> |
+                <%= link_to 'Delete ', channel, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </div>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+      <button type="button" class="btn btn-primary" style="background-color: #F19A20; padding: 10px; margin-top: 15px; margin-bottom: 15px; font-size: large; border-color: orange; vertical-align: middle; border-radius: 0 " data-toggle="modal" data-target="#newChannelModal">
+      New Community
+    </button>
+
+
+    <br>
+
+    <!--<div class="col-md-2" style="margin-left: 10px">-->
+      <!--<= link_to "New Channel", new_channel_path, class:"btn btn-primary", style: "border-radius: 0; border-color: #F19A20; background-color: #F19A20; color: white  " %><br>-->
+    <!--</div>-->
+
+
+  </div>
+
+  <div class="col-md-6" style="background-color: #8cd2cb; height: 100%;  margin-top: -20px; color: white ">
+    <br>
+    <h1 style="text-align: center"><b>Why create a Community?</b></h1>
+    <br>
+    <div class="col-md-6">
+      <p style="text-align: center; font-size: x-large"><b>For Individuals</b></p>
+      <br>
+      <ul>
+        <li style="font-size: large">Give back to others by sharing your experiences</li><br>
+        <li style="font-size: large">Create relationships with others with similar experiences</li><br>
+      </ul>
+      
+    </div>
+    <div class="col-md-6" style="padding-bottom: 40%" >
+      <p style="text-align: center; font-size: x-large"><b>For Organizations</b></p>
+      <br>
+      <ul>
+        <li style="font-size: large">Broader distribution of your created content including, helpful videos, podcasts, educational and support articles and documents</li><br>
+        <li style="font-size: large">Increased visibility to your Support Meetings</li><br>
+        <li style="font-size: large">Grow your membership through engagement and exposure to new audiences</li><br>
+        <li style="font-size: large">Extend the proven benefits of Peer Support to individuals who previously could not access</li><br>
+
+      </ul>
+    </div>
+  </div>
+  
+  
+</div>
+
+<!--Modals-->
+<div class="modal fade" id="newChannelModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content" style="border-radius: 0">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h1 class="modal-title" id="myModalLabel">
+          Create a Community
+        </h1>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <br>
+
+            <%= render 'new_channel_form' %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="scheduleMeetingModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content" style="border-radius: 0">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h1 class="modal-title" id="myModalLabel">
+          Schedule a Meeting
+        </h1>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <%= render 'meetings/form' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

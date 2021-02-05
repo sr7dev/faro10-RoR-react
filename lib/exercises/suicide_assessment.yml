@@ -1,0 +1,48 @@
+category: suicide
+longname: Suicide Assessment
+shortname: sa
+logo: suicide_assessment_icon.png
+description: This suicide assessment is a self-reported measurement to evaluate the existence and severity of suicidal thoughts and ideation.  Call the suicide hotline (800-273-8255) if you currently feel suicidal.
+sub_description: Please be honest and provide as much detail as possible.  
+questions:         
+  - position: 1
+    style: multiple_choice
+    text: 1. Are you spending a lot of time contemplating suicide or hurting yourself? (during the last 48 hours)
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+  - position: 2
+    style: free_response  
+    text: 2. If yes, tell me more about the thoughts (be specific).   
+  - position: 3
+    style: multiple_choice
+    text: 3. If yes, have you planned HOW you would hurt yourself?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+    - position: 3
+      text: n/a.
+    children:
+    - position: 1
+      style: free_response
+      text: If yes, Tell me about the plan?
+    - position: 2
+      style: free_response
+      text: If yes, do you have access to components of your plan (weapons/medications/etc)?  Tell me about it.
+    - position: 3
+      style: free_response
+      text: Have you attempted to harm yourself in the past? Tell me about it.
+  - position: 4
+    style: multiple_choice
+    text: 4. Are the thoughts increasing in frequency and intensity?
+    answer_choices:
+    - position: 1
+      text: Yes.
+    - position: 2
+      text: No.
+    - position: 3
+      text: Uncertain.        

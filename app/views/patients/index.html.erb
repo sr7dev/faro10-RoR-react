@@ -1,0 +1,153 @@
+<% provide(:title, 'All Patients') %>
+
+<!--<h3>Getting Started</h3>-->
+<div class="row">
+  <%= render "patients/getting_started", memberships: @memberships %>
+</div>
+
+<h3>My Clients</h3>
+
+
+
+
+<!--<div class="table-wrapper">-->
+  <!--<= render "patients/table", memberships: @memberships %>-->
+<!--</div>-->
+
+  <div class="table-wrapper">
+    <div class="panel with-nav-tabs">
+      <div class="panel-heading">
+        <ul class="nav nav-tabs">
+          <% if @memberships.active.any? %>
+              <li>
+                <a href="#activeClients" data-toggle="tab">
+                  <strong>Current <span class="badge progress-bar-danger"><%= @memberships.active.count %></span></strong>
+                </a>
+              </li>
+          <% else %>
+              <li><a href="#activeClients" data-toggle="tab">Active <span class="badge"><%= @memberships.active.count %></span></a></li>
+          <% end %>
+          <li class="Complete"><a href="#inactiveClients" data-toggle="tab">Archive <span class="badge"><%= @memberships.inactive.count %></span></a></li>
+        </ul>
+      </div>
+      <div class="panel-body">
+        <div class="tab-content">
+          <div class="tab-pane fade in active" id="activeClients">
+            <%= render "patients/table", memberships: @memberships %>
+          </div>
+          <div class="tab-pane fade" id="inactiveClients">
+            <%= render "patients/table_archived", memberships: @memberships %>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!--<button type="button" class="btn btn-primary" style="background-color: #326867; width: 140px;  border-radius: 0" data-toggle="modal" data-target="#newPatientModal">-->
+  <!--<i class="fa fa-user fa-lg" style="margin-right: 6px" ></i>-->
+  <!--Add Client-->
+<!--</button>-->
+<button type="button" class="btn btn-primary" style="background-color: #326867; width: 140px;  border-radius: 0" data-toggle="modal" data-target="#newPatientInvitationModal">
+  <i class="fa fa-envelope fa-lg" style="margin-right: 6px" ></i>
+  Add Client
+</button>
+
+<div class="row">
+  <div class="col-md-4">
+    <h3>Resources</h3>
+  </div>
+  <div class="col-md-6">
+    <h3>Tutorials</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-md-10">
+        <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey">
+          <div class="panel-body text-center">
+            <p style="font-size: 20px; text-align: left; margin: 4px  "><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" style="margin-right: 17px"></i>  <%= link_to "Faro10 Whitepaper", asset_path("Faro10 Whitepaper_v3.pdf"), :target => "_blank" %> </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-10">
+        <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey">
+          <div class="panel-body text-center">
+            <p style="font-size: 20px; text-align: left; margin: 4px  "><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" style="margin-right: 17px"></i>  <%= link_to "Quick Start Guide for Clients", asset_path("client_quick_start_guide.pdf"), :target => "_blank" %> </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-10">
+        <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey">
+          <div class="panel-body text-center">
+            <p style="font-size: 20px; text-align: left; margin: 4px  "><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" style="margin-right: 17px"></i>  <%= link_to "Transformative Approach", asset_path("Faro10 Transformative Approach.pdf"), :target => "_blank" %> </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-7">
+        <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey">
+          <div class="panel-body text-center">
+            <p style="font-size: 20px; text-align: left; margin: 4px  "><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" style="margin-right: 17px"></i>  <%= link_to "Adding a Client", asset_path("add_client.pdf"), :target => "_blank" %> </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-7">
+        <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey">
+          <div class="panel-body text-center">
+            <p style="font-size: 20px; text-align: left; margin: 4px  "><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" style="margin-right: 17px"></i>  <%= link_to "Assigning an Exercise", asset_path("assign_exercise.pdf"), :target => "_blank" %> </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-7">
+        <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey">
+          <div class="panel-body text-center">
+            <p style="font-size: 20px; text-align: left; margin: 4px  "><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true" style="margin-right: 17px"></i>  <%= link_to "Client Introduction", asset_path("Patient Introduction.pdf"), :target => "_blank" %> </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <h3>Patient Dashboard</h3>
+    <p>As a Clinician, you have the ability to view all entries provided by your Patients.
+      These entries are visualized into charts, trends, Key Performance Indicators (KPI's) and graphs.
+      <br>By default, Patient Dashboard charts display entries for the <b>past 2 weeks</b>.  To adjust the timeframe, simply use the Datepicker in the upper left corner to select the desired date range.
+    </p>
+  </div>
+  <div class="col-md-4">
+    <h3>Observer Entries</h3>
+    <p>Members can authorize family and friends to add entries to their records.  These entry options include "Apparent Mood", "Social Interaction" and a "Journal".
+      As their Clinician, this provides you with visibility into their Mood as observed by others.
+      <br><b>The Patient is not able to see Observer Entries</b>.  This is so that Observers provide honest and open feedback without fear of upsetting the Patient.
+    </p>
+  </div>
+  <div class="col-md-4">
+    <h3>Collaborative Treatment</h3>
+    <p>Share important information that the patients' other Clinicians should be aware of.  This communication is easily done within Faro and removes the
+      coordination and documentation handoffs typically present with collaborative treatment.
+    </p>
+  </div>
+</div>
+
+<%= render "invite_modals" %>

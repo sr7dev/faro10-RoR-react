@@ -1,0 +1,71 @@
+
+
+
+
+<!--This is not the correct registration page for members.   It is in members/registrations/new-->
+
+
+<div class="row">
+  <div class="col-md-3 col-md-offset-3">
+
+    <%= form_for(@member) do |f| %>
+        <%= render 'shared/member_error_messages' %>
+
+        <%= f.label :user_id, "Nickname" %>
+        <%= f.text_field :user_id, class: 'form-control' %><br>
+
+        <%= f.label :email %>
+        <%= f.email_field :email, class: 'form-control' %><br>
+
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %><br>
+
+        <%= f.label :race %>
+        <%= f.select :race, options_for_select(["Caucasian","African American","Hispanic", "Asian", "Other"]), {}, class: "form-control"  %><br>
+
+        <%= f.label :gender, "Gender" %><br/>
+        <%= f.radio_button :gender, "Male", class: "col-md-1 control-label"  %> Male <br/>
+        <%= f.radio_button :gender, "Female", class: "col-md-1 control-label"  %> Female
+  </div>
+
+  <div class="col-md-3">
+
+        <%= f.label :clinic_street, "Street Address"  %>
+        <%= f.text_field :clinic_street, class: 'form-control' %><br>
+
+        <%= f.label :clinic_city, "City"  %>
+        <%= f.text_field :clinic_city, class: 'form-control' %><br>
+
+        <%= f.label :clinic_state, "State"  %>
+        <%= f.text_field :clinic_state, class: 'form-control' %><br>
+
+        <%= f.label :clinic_zip, "Zip"  %>
+        <%= f.number_field :clinic_zip, class: 'form-control' %><br>
+
+        <%= f.label :country %>
+        <%= f.country_select :country, { priority_countries: ["US"] }, { class: "form-control" }  %><br>
+
+  </div>
+
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+
+    <br/>
+
+        <div class="field">
+          <%= f.check_box :trial_interested, class: "col-md-1 control-label"  %>
+          <%= f.label :trial_interested, "Are you interested in being contacted about partic " %>  <%= link_to "Terms and Conditions", asset_path("576277_2_End_User_Terms.pdf") %>
+        </div>
+
+        <div class="field">
+          <%= f.check_box :is_clinician, class: "col-md-1 control-label"  %>
+          <%= f.label :is_clinician, "Please acknowledge that you have read our " %>  <%= link_to "Terms and Conditions", asset_path("576277_2_End_User_Terms.pdf") %>
+        </div>
+
+        <br/>
+        <%= f.submit "Create my account", class: "btn btn-primary", style: "background-color: #326867; border-radius: 0" %>
+
+    <% end %>
+    </div>
+  </div>
+</div>

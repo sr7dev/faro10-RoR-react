@@ -1,0 +1,111 @@
+
+<div class="row">
+  <div class="col-md-4">
+        <p>
+          <strong>Patient:</strong>
+          <%= @member.user_id %>
+        </p>
+        <p>
+          <strong>Diagnosis:</strong>
+          <%= @member.diagnosis %>
+        </p>
+        <p>
+          <strong>Birthday:</strong>
+          <%= @member.dob.present? ? @member.dob.strftime("%B %d, %Y ") : "not entered" %>(Age:<%= @member.age.present? ? @member.age : 0 %>)
+        </p>
+        <p>
+          <strong>Self-harm Entries:</strong>
+          <%= @patient_self_harm_total %>
+        </p>
+
+        <p>
+          <strong>Observer Notes:</strong>
+          <%= @patient_observer_entries %>
+        </p>
+
+        <p>
+          <strong>Last Entry:</strong>
+          <%= @last_entry.present? ? @last_entry.created_at.to_date.strftime("%A, %B %d ") :"no updates made" %>
+        </p>
+        <p>
+          <strong>Total Entries:</strong>
+          <%= @patient_entry_total %>
+        </p>
+  </div>
+  <!--<div class="col-md-8">-->
+    <!--<p>test</p>-->
+  <!--</div>-->
+</div>
+
+<div class="row">
+
+
+      <div class="col-md-4">
+        <h2>Patient Journal</h2>
+              <table id= "patient_journal_summary" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover table-highlight table-bordered">
+                <thead>
+                <tr>
+                  <th style="width: 80%">
+                    Patient Comments
+                  </th>
+                  <th style="width: 20%">
+                    Recorded At
+                  </th>
+                </tr>
+                </thead>
+                <tbody>
+                <% if @journal_entries.present? %>
+                    <% @journal_entries.each do |je| %>
+                        <% if je.journal.present? %>
+                        <tr>
+                          <td>
+                            <%= je.journal %>
+                          </td>
+                          <td>
+                            <%= je.created_at.strftime("%m/%d/%Y") %>
+                          </td>
+                        </tr>
+                        <% end %>
+                    <% end %>
+                <% end %>
+                </tbody>
+              </table>
+      </div>
+  <br>
+      <div class="col-md-4">
+        <h2>Observer Comments</h2>
+        <!--<= render 'observer_entries/summary_report_table', observer_entries: @observer_journal_entries %>-->
+
+        <table id= "patient_observer_entries_summary" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover table-highlight table-bordered">
+          <thead>
+          <tr>
+            <th style="width: 80%">
+              Observer Comments
+            </th>
+            <th style="width: 20%">
+              Observed At
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <% if @observer_journal_entries.present? %>
+              <% @observer_journal_entries.each do |oe| %>
+                  <tr>
+                    <td>
+                      <%= oe.journal %>
+                    </td>
+                    <td>
+                      <%= oe.observed_at.strftime("%m/%d/%Y") %>
+                    </td>
+                  </tr>
+              <% end %>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+  <br>
+      <div class="col-md-4">
+        <h2>Clinician Comments</h2>
+        <%= render 'clinician_entries/clinician_report_table', clinician_entries: @clinician_entries %>
+      </div>
+</div>

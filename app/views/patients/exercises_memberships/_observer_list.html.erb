@@ -1,0 +1,25 @@
+<table id="list_of_observers" cellpadding="0" cellspacing="0" border="0" class="dataTable table-striped table-hover table-highlight table-bordered">
+  <thead>
+  <tr>
+    <th>List of Observers</th>
+    <th>Relationship</th>
+    <th>Is Guardian?</th>
+  </tr>
+  </thead>
+
+  <tbody>
+    <% if @observations.present? %>
+      <% @observations.each do |observation| %>
+        <tr class="even gradeA">
+          <td><%= observation.observer.user_id %></td>
+          <td><%= observation.relationship %> </td>
+          <td><%= observation.guardian ? "Yes" : "No" %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr class="even gradeA">
+        <td colspan="3"> patient has no observers </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

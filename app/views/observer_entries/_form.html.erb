@@ -1,0 +1,182 @@
+<%= form_for(observer_entry) do |f| %>
+
+    <div class="row">
+
+        <div class="well well-lg" style="border-radius: 0" >
+        <% if observer_entry.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(observer_entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+
+              <ul>
+                <% observer_entry.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+    <div class="row">
+      <div class="col-md-5">
+        <div class="field">
+          <%= f.label :observation_id, 'Who are you observing?'  %><br>
+          <%= f.collection_select :observation_id, observations, :id, :observee, :autofocus => "autofocus", :class => "form-control"    %>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <div class="field">
+          <%= f.label :observed_at, 'When'  %><br>
+          <%= f.date_select :observed_at, :class => "form-control"    %>
+        </div>
+      </div>
+    </div>
+        <br>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="field">
+             <%= f.label :feeling, 'Mood'  %><br>
+          <div class="slider-group">
+            <span id="feeling-val">0</span>
+            <input type="range" id="observer-feeling-slider" name="observer_entry[feeling]" min="0" max="6" value="0" step="1" onChange="updateSliderVal('feeling', this.value)" />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="field">
+          <!--<i class="fa fa-info-circle" data-toggle="modal" data-target="#zestModal" style="color:green"></i>  -->
+          <%= f.label :zest, 'Hopelessness' %><br>
+          <div class="slider-group">
+            <span id="zest-val">0</span>
+            <input type="range" id="observer-zest-slider" name="observer_entry[zest]" min="0" max="6" value="0" step="1" onChange="updateSliderVal('zest', this.value)" />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="field">
+          <!--<i class="fa fa-info-circle" data-toggle="modal" data-target="#zestModal" style="color:green"></i>  -->
+          <%= f.label :delusional %><br>
+          <div class="slider-group">
+            <span id="delusional-val">0</span>
+            <input type="range" id="observer-delusional-slider" name="observer_entry[delusional]" min="0" max="6" value="0" step="1" onChange="updateSliderVal('delusional', this.value)" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="field">
+          <!--<i class="fa fa-info-circle" data-toggle="modal" data-target="#zestModal" style="color:green"></i>  -->
+          <%= f.label :hallucination, 'Hallucinations' %><br>
+          <div class="slider-group">
+            <span id="hallucination-val">0</span>
+            <input type="range" id="observer-hallucination-slider" name="observer_entry[hallucination]" min="0" max="6" value="0" step="1" onChange="updateSliderVal('hallucination', this.value)" />
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="field">
+          <!--<i class="fa fa-info-circle" data-toggle="modal" data-target="#zestModal" style="color:green"></i>  -->
+          <%= f.label :hyperactive %><br>
+          <div class="slider-group">
+            <span id="hyperactive-val">0</span>
+            <input type="range" id="observer-hyperactive-slider" name="observer_entry[hyperactive]" min="0" max="6" value="0" step="1" onChange="updateSliderVal('hyperactive', this.value)" />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="field">
+          <!--<i class="fa fa-info-circle" data-toggle="modal" data-target="#zestModal" style="color:green"></i>  -->
+          <%= f.label :energy %><br>
+          <div class="slider-group">
+            <span id="energy-val">0</span>
+            <input type="range" id="observer-energy-slider" name="observer_entry[energy]" min="0" max="6" value="0" step="1" onChange="updateSliderVal('energy', this.value)" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="field">
+          <!--<i class="fa fa-info-circle" data-toggle="modal" data-target="#zestModal" style="color:green"></i>  -->
+          <%= f.label :activity, 'Activity' %><br>
+          <div class="slider-group">
+            <span id="activity-val">0</span>
+            <input type="range" id="observer-activity-slider" name="observer_entry[activity]" min="0" max="6" value="0" step="1" onChange="updateSliderVal('activity', this.value)" />
+          </div>
+        </div>
+       </div>
+      <div class="col-md-4">
+        <div class="field">
+          <!--<i class="fa fa-info-circle" data-toggle="modal" data-target="#zestModal" style="color:green"></i>  -->
+          <%= f.label :substance_abuse, 'Substance Abuse' %><br>
+          <div class="slider-group">
+            <span id="substance_abuse-val">0</span>
+            <input type="range" id="observer-substance_abuse-slider" name="observer_entry[substance_abuse]" min="0" max="6" value="0" step="1" onChange="updateSliderVal('substance_abuse', this.value)" />
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="field">
+          <!--<i class="fa fa-info-circle" data-toggle="modal" data-target="#zestModal" style="color:green"></i>  -->
+          <%= f.label :dangerous_behavior, 'Dangerous/Unsafe Behavior' %><br>
+          <div class="slider-group">
+            <span id="dangerous_behavior-val">0</span>
+            <input type="range" id="observer-dangerous_behavior-slider" name="observer_entry[dangerous_behavior]" min="0" max="6" value="0" step="1" onChange="updateSliderVal('dangerous_behavior', this.value)" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+          <div class="field">
+            <!--<i class="fa fa-info-circle" data-toggle="modal" data-target="#zestModal" style="color:green"></i>  -->
+            <%= f.label :social_interaction, 'Social Life' %><br>
+            <div class="slider-group">
+              <span id="social_interaction-val">0</span>
+              <input type="range" id="observer-social_interaction-slider" name="observer_entry[social_interaction]" min="0" max="10" value="0" step="1" onChange="updateSliderVal('social_interaction', this.value)" />
+            </div>
+          </div>
+        </div>
+      <div class="col-md-4">
+        <div class="field">
+          <!--<i class="fa fa-info-circle" data-toggle="modal" data-target="#zestModal" style="color:green"></i>  -->
+          <%= f.label :work_life, 'Work/School' %><br>
+          <div class="slider-group">
+            <span id="work_life-val">0</span>
+            <input type="range" id="observer-work_life-slider" name="observer_entry[work_life]" min="0" max="10" value="0" step="1" onChange="updateSliderVal('work_life', this.value)" />
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="field">
+          <!--<i class="fa fa-info-circle" data-toggle="modal" data-target="#zestModal" style="color:green"></i>  -->
+          <%= f.label :family_life, 'Family Life' %><br>
+          <div class="slider-group">
+            <span id="family_life-val">0</span>
+            <input type="range" id="observer-family_life-slider" name="observer_entry[family_life]" min="0" max="10" value="0" step="1" onChange="updateSliderVal('family_life', this.value)" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+          <br>
+
+          <div class="field">
+          <%= f.label :journal %><br>
+          <%= f.text_area :journal, size: "30x15", :class => "form-control"   %>
+        </div>
+        <br>
+        <div class="actions">
+          <%= f.submit "Add New Observation", class: "btn btn-primary",  style: "background-color: #326867; border-radius: 0" %>
+        </div>
+      </div>
+
+<% end %>
+</div>

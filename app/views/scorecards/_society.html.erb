@@ -1,0 +1,29 @@
+<h3 style="color: #4FA59F">Society</h3>
+<p><i> The society category describes aspects of a patient's mental health problems that may impinge on a wider society,
+  both at the individual level of the burden of care, and the macro-level of costs (e.g. welfare benefits, reduced public safety)
+</i></p>
+<ul>
+
+  <li>
+    Member Reported: <%= render 'delta_words', value: @scorecard.outcome(:mem, :work_life), label: 'Work/School Life' %>
+  </li>
+
+
+  <li>
+    Member Reported: <%= render 'delta_words', value: @scorecard.outcome(:mem, :family_life), label: 'Family Life' %>
+  </li>
+
+  <li>
+    Observer Reported: <%= render 'delta_words', value: @scorecard.outcome(:obs, :work_life), label: 'Observed Work/School life' %>
+  </li>
+
+  <li>
+    Observer Reported: <%= render 'delta_words', value: @scorecard.outcome(:obs, :family_life), label: 'Observed Family Life' %>
+  </li>
+
+  <li>
+    Observer Reported:<%= render 'delta_words', value: @scorecard.outcome(:obs, :dangerous_behavior), label: 'Dangerous/threatening behavior' %>
+  </li>
+
+
+</ul>

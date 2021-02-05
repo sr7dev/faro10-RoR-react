@@ -1,0 +1,168 @@
+<h5 align="center">
+  Tracking your prescriptions allows you to evaluate effectiveness over time; even at different dosages. A medication may be slightly effective at a low dosage, and more effective at a higher dosage.
+</h5>
+
+<div class="row" style="margin-left: 20px; margin-right: 20px">
+  <div class="col-md-12">
+    <h3>Current Medications</h3>
+    <table id= "prescriptions" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover table-highlight table-bordered"  >
+      <thead>
+        <tr>
+          <th>Drug</th>
+          <th>Dosage (MG)</th>
+          <th>Started</th>
+          <th>Frequency (Hrs)</th>
+          <th>Duration</th>
+          <th>Times Taken</th>
+          <th>Med Consistency</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @unexpired.each do |prescription| %>
+          <tr>
+            <td><i class="fa fa-medkit" style="margin-right: 7px"></i> <%= prescription.drug.friendly_name %></td>
+            <td><%= prescription.dosage %></td>
+            <td><i class="fa fa-calendar"></i> <%= prescription.started.strftime("%A, %B %d, %Y") %></td>
+            <td><i class="fa fa-clock-o"></i> <%= prescription.as_needed.blank? ? prescription.reminder : "as needed" %></td>
+            <td><i class=""></i> <%= distance_of_time_in_words(prescription.started, Time.now)  %></td>
+            <td><%= prescription.total_times_taken %></td>
+
+            <td class="<%= prescription.as_needed.blank? ? my_med_consistency_tag(prescription.consistency) : prescription.consistency %>" >   <%= prescription.as_needed.blank? ? prescription.consistency.to_s + "%" : "as needed" %></td>
+
+
+
+            <td style="color: #CC246F"><i class="fa fa-ban" aria-hidden="true" style="margin-right: 5px"></i>
+              <%= link_to 'Stop Taking', edit_prescription_path(prescription) %>
+            </td>
+
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <button type="button" class="btn btn-primary" style="background-color: #326867; border-radius: 0" data-toggle="modal" data-target="#newPrescriptionModal"> <i class="fa fa-medkit fa-lg" style="margin-right: 7px"></i>
+      Add prescription
+    </button>
+  </div>
+</div>
+
+<br><br>
+
+<!--MEDICATION CONSISTENCY COLUMN CHART-->
+<div class="row" style="margin-left: 20px; margin-right: 20px">
+  <div class="col-md-12">
+    <div class="panel panel-default" style="border-color: #080808">
+      <div class="panel-heading" style="background-color: #fff">
+        <h3 style="color: #556870;"  align="center"><b>Prescription Consistency</b></h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-10">
+          <div id="prescriptionConsistencyChart" style="min-width: 310px; height: 250px; margin: 0 auto"></div>
+        </div>
+        <div class="col-md-2" style="height: auto; margin: 0 auto; background-color: grey; border-radius: 5px; border: 2px solid #262626">
+          <span style="font-size: 12pt; color:white;text-align:justify">
+            <br>
+              Here is the running log of all the times you have taken your medication
+            <br><br>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--END OF MEDICATION CONSISTENCY COLUMN CHART-->
+
+<div class="row" style="margin-left: 20px; margin-right: 20px">
+  <div class="col-md-12">
+    <h3>History</h3>
+    <table id= "prescriptions" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover table-highlight table-bordered"  >
+      <thead>
+        <tr>
+          <th>Drug</th>
+          <th>Dosage (MG)</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Duration</th>
+          <th>Med Consistency</th>
+          <th>Reason Ended</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @expired.each do |prescription| %>
+          <tr>
+            <td><i class="fa fa-medkit"></i> <%= prescription.drug.friendly_name %></td>
+            <td><%= prescription.dosage %></td>
+            <td><i class="fa fa-calendar"></i> <%= prescription.started.strftime("%A, %B %d, %Y") %></td>
+            <td><i class="fa fa-calendar"></i> <%= prescription.ended.strftime("%A, %B %d, %Y") %></td>
+            <td><i class=""></i> <%= distance_of_time_in_words(prescription.started, prescription.ended)  %></td>
+            <td> <%= prescription.as_needed.blank? ? prescription.consistency.to_s + "%" : "as needed" %></td>
+
+            <td><%= prescription.reason %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="newPrescriptionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_for(@prescription, url: "/prescriptions", method: :post) do |f| %>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">
+            <i class="fa fa-medkit fa-lg"></i> 
+            Add Prescription
+          </h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+
+              <div class="form-group">
+                <%= f.label :drug_id, "Drug Name" %><br />
+                <%= collection_select :prescription, :drug_id, @drugs, :id, :friendly_name, prompt: true, class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :dosage, "Dosage (MG)" %>
+                <%= f.text_field :dosage, class: 'form-control' %>
+              </div>
+
+              <div class="checkbox">
+                <label>
+                  <%= f.check_box :as_needed %>
+                  Taking As Needed
+                </label>
+              </div>
+              <br><br>
+
+              <div class="form-group" id="prescription_reminder_group">
+                <%= f.label :reminder, "Frequency" %><br />
+                <%= f.select :reminder, @reminders, class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :started, 'When did you Start taking this?' %><br>
+                <%= f.date_select :started, class: "form-control" %>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+          <p>
+            If your medication is not listed in the dropdown, email josh@faro10.com to have your medication added.
+            The new medication will be available for selection within a few hours.
+          </p>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= f.submit "Add Prescription", class: "btn btn-danger"  %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

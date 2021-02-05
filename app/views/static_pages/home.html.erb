@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        background-color: #F0F0F0F0;
+      }
+    </style>
+
+    <!-- Facebook Pixel Code -->
+    <script>
+
+        !function(f,b,e,v,n,t,s)
+
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+
+            n.queue=[];t=b.createElement(e);t.async=!0;
+
+            t.src=v;s=b.getElementsByTagName(e)[0];
+
+            s.parentNode.insertBefore(t,s)}(window,document,'script',
+
+            'https://connect.facebook.net/en_US/fbevents.js');
+
+
+        fbq('init', '1994953770803705');
+
+        fbq('track', 'PageView');
+
+    </script>
+
+    <noscript>
+
+      <img height="1" width="1"
+
+           src="https://www.facebook.com/tr?id=1994953770803705&ev=PageView
+
+  &noscript=1"/>
+
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+
+  </head>
+</html>
+<br>
+
+<style>
+  .main-bg-back-1{
+    background:linear-gradient(to left, transparent 0%, white 100%), url(<%= asset_path('banner_image_new.png' ) %>) no-repeat;
+    background-size:auto,cover;
+    background-position:0 0,50% 50%
+  }
+  .main-bg-back-3{
+    background-color: #34ADFF;
+    background-image: -webkit-linear-gradient(310deg, #4FA59F 92%, #8CD2CB 8%);
+  }
+</style>
+
+
+<div class="row">
+  <div class="main-bg-back-1" style="min-height: 320px">
+    <br>
+    <div class="col-md-12" style="margin-left: 2%; vertical-align: bottom  ">
+      <h3><b>Peer Support the way you want it, when you need it</b>
+      </h3>
+      <p>Register - Join a Conversation - Connect with others</p>
+
+    </div>
+    <div class="col-md-12">
+      <%= link_to "Register", new_member_registration_path, class: "btn btn-primary", style: "border-radius: 14; border-color: #4FA59F; background-color: #4FA59F; color: white; font-weight: bold;
+                                                                                          width: 150px; padding: 15px;  margin-top: 5px; margin-left: 2% "%>
+
+      <%= link_to "Log In", new_user_session_path, class: "btn btn-primary", style: "border-radius: 14; border-color: #4FA59F; background-color: white; color: #4FA59F;
+                                                                                          width: 150px; padding: 15px; font-weight: bold;  margin-top: 5px; margin-left: 15px;  "%>
+      <br>
+      <br><br>
+    </div>
+  </div>
+</div>
+<div class="row" style="background-color: #B4D336 ">
+  <div class="col-md-5 col-xs-5  ">
+    <h2 style="color: white; text-align: center; font-weight: bold ">1. Discover Peer Support Matches</h2>
+    <p style="color: white; font-size: 12px; margin-top: -20px; text-align: center ">Find conversations that fit your need</p>
+  </div>
+  <div class="col-md-3 col-xs-3">
+    <h2 style="color: white; text-align: left; font-weight: bold ">2. Join a Conversation</h2>
+    <p style="color: white; font-size: 12px; margin-top: -20px; text-align: left ">Easily join anonymously or openly</p>
+  </div>
+  <div class="col-md-3 col-xs-3 ">
+    <h2 style="color: white; font-weight: bold">3. Find Answers from Trusted Peers</h2>
+    <p style="color: white; font-size: 12px; margin-top: -20px; text-align: center ">Peer Support is proven and effective</p>
+  </div>
+</div>
+
+<br><br>
+<div class="row" style="background-color: white">
+  <div class="col-md-4 col-xs-4 main-bg-back-3" style="background-color: #4FA59F; min-height: 240px; ">
+    <h3 style="color: white; text-align: center">
+      <br>
+      "Both research and countless stories from individuals with lived experience show that peer support works."
+    </h3>
+    <p style="color: white; font-size: small"><i>
+      --Kelly Davis, Director of Peer Advocacy, Supports and Services at Mental Health America
+    </i></p>
+  </div>
+  <div class="col-md-8 col-xs-8" >
+    <h3 style="margin-left: 18px"><b>The most trusted Peer Support app</b></h3>
+    <p style="margin-left: 18px">
+<!--      TelaPeer is a convenient and secure video/chat Community for Peer Support Groups. <br>-->
+<!--      Join groups hosted by certified Peer Support Specialists.  Or start your own conversation.-->
+<!--      Every user can Browse, Join or Create a Peer Support conversation, anytime, anywhere, from any device.-->
+
+      We believe that seeking help should be simple, comfortable, and familiar.
+      TelaPeer is our way of making that belief a reality.
+      TelaPeer is a video chat app that allows people to join support conversations hosted by Peer Support Specialists, or start their own peer support groups.
+      Every user can Browse, Join or Create a Peer Support conversation, anytime, anywhere, from any device.
+
+      <i><%= link_to "Learn more about what makes us special", benefits_path %></i>
+
+    </p>
+    <div class="col-md-2" style="float: right; margin-right: 25px; ">
+      <%= link_to(image_tag("download_ios.png" , size: "118x40" ), "https://itunes.apple.com/us/app/faro10/id1080204499?mt=8", :target => "_blank") %>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+
+<div class="row">
+  <div class="col-md-4 col-xs-12" >
+    <div class="row">
+      <div class="col-md-12 col-xs-6" style=" height: 320px; background-color: #43425D ">
+        <div class="image">
+          <span style="display: block; margin: auto; width: 50%; margin-top: 18px">
+            <%= image_tag('register_image.png', class: "img-responsive", style: "width: 230px"   ) %>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-12 col-xs-6" style=" height: 120px; background-color: white ">
+        <h3 style="text-align: center">Register</h3>
+        <p style="text-align: center">Create a Free Account</p>
+        <div class="col-xs-12 hidden-md hidden-lg" style=" height: 225px; margin-left: -12px; background-color: white ">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 col-xs-12">
+    <div class="row">
+      <div class="col-md-1 hidden-xs" style="background-color: #F0F0F0F0">
+      </div>
+      <div class="col-md-11 col-xs-6" style="height: 320px; background-color: #43425D ">
+        <div class="image" style="alignment: center" >
+          <span style="display: block; margin: auto; width: 60%; margin-top: 18px  "  >
+            <%= image_tag('meeting_list.png', class: "img-responsive", style: "max-height: 300px"   )  %>
+          </span>
+        </div>
+
+      </div>
+      <div class="col-md-1 hidden-xs" style="background-color: #F0F0F0F0">
+      </div>
+      <div class="col-md-11  col-xs-6" style="height: 120px; background-color: white ">
+        <h3 style="text-align: center">Browse Conversations</h3>
+        <p style="text-align: center">Choose from a list of Peer Conversations</p>
+        <div class="col-xs-12 hidden-md hidden-lg" style=" height: 225px; margin-left: -12px; background-color: white ">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 col-xs-12">
+    <div class="row">
+      <div class="col-md-1 hidden-xs" style="background-color: #F0F0F0F0">
+      </div>
+      <div class="col-md-11 col-xs-6"  style="height: 320px; background-color: #43425D ">
+        <div class="image" >
+          <span style="display: block; margin: auto; width: 57%; margin-top: 18px  "  >
+            <%= image_tag('meeting_conference.png', class: "img-responsive", style: "max-height: 300px"  ) %>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-1 hidden-xs" style="background-color: #F0F0F0F0">
+      </div>
+      <div class="col-md-11 col-xs-6" style=" height: 120px; background-color: white ">
+        <h3 style="text-align: center">Join Peer Group</h3>
+        <p style="text-align: center">Set video sharing and privacy settings, then join a conversation with others</p>
+        <div class="col-xs-12 hidden-md hidden-lg" style=" height: 204px; margin-left: -12px; background-color: white ">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row" style="margin-top: 3px">
+</div>
+
+<%= render "layouts/footer" %>

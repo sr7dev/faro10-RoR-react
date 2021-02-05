@@ -1,0 +1,628 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1>Leadership Readiness Review</h1>
+  </div>
+</div>
+<!--<br />-->
+<!--<div class="row">-->
+  <!--<div class="col-md-12">-->
+    <!--<table class="table table-striped">-->
+      <!--<thead>-->
+        <!--<th>Name</th>-->
+        <!--<th># of Clinicians</th>-->
+        <!--<th class="text-right">Action</th>-->
+      <!--</thead>-->
+      <!--<tbody>-->
+        <!--< @groups.each do |group| %>-->
+          <!--<tr>-->
+            <!--<td><= group.name %></td>-->
+            <!--<td><= group.clinicians.count %></td>-->
+            <!--<td class="text-right"><= link_to "Show Group", group_path(group), class: "btn btn-default" %></td>-->
+          <!--</tr>-->
+        <!--< end %>-->
+      <!--</tbody>-->
+    <!--</table>-->
+  <!--</div>-->
+<!--</div>-->
+
+
+<div class="row">
+  <div class="col-md-12">
+
+    <h3>Brigades</h3>
+    <h5>Print Brigade Readiness Report</h5>
+
+    <br>
+    <div class="table-responsive">
+      <table class="dataTable table-striped table-hover table-highlight table-bordered">
+        <thead>
+        <tr>
+          <th class="col-md-2">Brigade Name</th>
+          <th class="col-md-1">Troops in Brigade</th>
+          <th class="col-md-2">Troop Readiness</th>
+          <th class="col-md-2">% of Troops Reviewed</th>
+          <th class="col-md-2">Troops at Risk</th>
+          <!--<th class="col-md-2">Last Login</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="col-md-2">139th Regiment</td>
+          <td class="col-md-1">530</td>
+          <td class="col-md-2">81</td>
+          <td class="col-md-2">91%</td>
+          <td class="col-md-2">12</td>
+          <!--<td class="col-md-2">4/6/2017</td>-->
+        </tr>
+        <tr>
+          <td class="col-md-2">130th Maneuver Enhancement</td>
+          <td class="col-md-1">261</td>
+          <td class="col-md-2">65</td>
+          <td class="col-md-2">88%</td>
+          <td class="col-md-2">16</td>
+          <!--<td class="col-md-2">4/6/2017</td>-->
+        </tr>
+        <tr>
+          <td class="col-md-2">449th Theater Aviation</td>
+          <td class="col-md-1">322</td>
+          <td class="col-md-2">41</td>
+          <td class="col-md-2">97%</td>
+          <td class="col-md-2">14</td>
+          <!--<td class="col-md-2">4/6/2017</td>-->
+        </tr>
+        <tr>
+          <td class="col-md-2">60th Troop Command</td>
+          <td class="col-md-1">748</td>
+          <td class="col-md-2">87</td>
+          <td class="col-md-2">93%</td>
+          <td class="col-md-2">15</td>
+          <!--<td class="col-md-2">4/6/2017</td>-->
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<br>
+
+<div class="row">
+  <div class="col-md-6">
+    <div id="RegimentTypePieChart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default" style="border-color: lightgrey; border-radius: 0">
+      <div class="panel-heading" style="background-color: #fff">
+        <h3 style="color: #556870;" align="center"><b>Troops at Risk</b></h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-12">
+          <div id="regimentqualityColumnChart" style="height: 400px; margin: 0 auto"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+  <h1 style="color: white">space</h1>
+  <h1 style="color: white">space</h1>
+  <h1 style="color: white">space</h1>
+  <h1 style="color: white">space</h1>
+  <h1 style="color: white">space</h1>
+  <h1 style="color: white">space</h1>
+  <h1 style="color: white">space</h1>
+</div>
+<!--<= link_to "New Group", new_group_path, class: "btn btn-default" %>-->
+
+<h2></h2>
+
+<ul style="list-style-type: none; margin: 0; padding: 0; overflow: hidden; background-color: #f9f9f9; border-top: 0 solid #000; border-bottom: 1px solid #000;" >
+  <li>
+  <span style="display: inline-block; color: #CC246F; text-align: center; padding: 10px 16px; text-decoration: none; float: left;  ">
+        Brigade Overview
+    </span>
+  </li>
+
+  <li>
+    <span style="display: inline-block; color: black; text-align: center; padding: 10px 1px; text-decoration: none; float: left;  ">
+      |
+    </span>
+  </li>
+  <li>
+    <span style="display: inline-block; color: black; text-align: center; padding: 10px 16px; text-decoration: none; float: left;  ">
+      <%= link_to "Research",   '/charts' %>
+
+
+    </span>
+  </li>
+
+</ul>
+<div class="row">
+  <div class="col-md-12">
+
+    <h3>Brigade</h3>
+    <h5>139th Regiment</h5>
+
+    <br>
+      <div class="table-responsive">
+        <table class="dataTable table-striped table-hover table-highlight table-bordered">
+          <thead>
+          <tr>
+            <th class="col-md-2">Troop Name</th>
+            <th class="col-md-1">Total Days Deployed</th>
+            <th class="col-md-2">Troop Satisfaction</th>
+            <th class="col-md-2">Training Completion</th>
+            <th class="col-md-2">Physical Fitness</th>
+            <th class="col-md-2">Mental Fitness</th>
+            <th class="col-md-2">Logistical Readiness</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td class="col-md-2">John Smith</td>
+            <td class="col-md-1">83</td>
+            <td class="col-md-2">3.1</td>
+            <td class="col-md-2">100%</td>
+            <td class="col-md-2">90%</td>
+            <td class="col-md-2">75%</td>
+            <td class="col-md-2">80%</td>
+          </tr>
+          <tr>
+            <td class="col-md-2">Jane Doe</td>
+            <td class="col-md-1">114</td>
+            <td class="col-md-2">4.3</td>
+            <td class="col-md-2">99%</td>
+            <td class="col-md-2">84%</td>
+            <td class="col-md-2">65%</td>
+            <td class="col-md-2">71%</td>
+          </tr>
+          <tr>
+            <td class="col-md-2">Ben Wilson</td>
+            <td class="col-md-1">103</td>
+            <td class="col-md-2">4.1</td>
+            <td class="col-md-2">95%</td>
+            <td class="col-md-2">89%</td>
+            <td class="col-md-2">88%</td>
+            <td class="col-md-2">92%</td>
+          </tr>
+          <tr>
+            <td class="col-md-2">Laura Balboa</td>
+            <td class="col-md-1">127</td>
+            <td class="col-md-2">4.8</td>
+            <td class="col-md-2">100%</td>
+            <td class="col-md-2">87%</td>
+            <td class="col-md-2">68%</td>
+            <td class="col-md-2">73%</td>
+          </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+<br>
+<!--<div class="row">-->
+  <!--<div class="col-md-12">-->
+    <!--<button type="button" class="btn btn-primary" style="background-color: #326867; width: 140px;  border-radius: 0" data-toggle="modal" data-target="#newPatientModal"><i class="fa fa-plus fa-lg" style="margin-right: 6px" ></i>-->
+      <!--Add Clinician-->
+    <!--</button>-->
+  <!--</div>-->
+<!--</div>-->
+
+
+<br>
+
+<div class="row">
+  <div class="col-md-6">
+    <div id="clinicianTypePieChart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default" style="border-color: lightgrey; border-radius: 0">
+      <div class="panel-heading" style="background-color: #fff">
+        <h3 style="color: #556870;" align="center"><b>Troops at Highest Risk</b></h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-12">
+          <div id="qualityColumnChart" style="height: 400px; margin: 0 auto"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<br>
+<div class="row">
+  <div class="col-md-6">
+    <div id="diagnosisTypePieChart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="panel panel-default" style="border-color: lightgrey; border-radius: 0">
+      <div class="panel-heading" style="background-color: #fff">
+        <h3 style="color: #556870;" align="center"><b>Top 10 Prescribed Medications</b></h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-12">
+          <div id="columnChart" style="height: 400px; margin: 0 auto"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+<script>
+
+    $(function() {
+        var chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'RegimentTypePieChart',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                borderRadius: 10,
+                backgroundColor: '#fdfcfc',
+                type: 'pie'
+            },
+            title: {
+                text: 'Risk by Region'
+            },
+            credits: {
+                enabled: false
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: [{
+                    name: 'East',
+                    y: 65.33
+                }, {
+                    name: 'West',
+                    y: 34.67,
+                    sliced: true,
+                    selected: true
+                }]
+            }]
+        });
+    });
+
+    $(function() {
+        var chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'regimentqualityColumnChart',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+
+            xAxis: {
+                type: 'category',
+                labels: {
+                    rotation: -45,
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Score'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                pointFormat: 'Quality Score: <b>{point.y:.1f} </b>'
+            },
+            series: [{
+                name: 'Population',
+                data: [
+                    ['30th Armor', 23.7],
+                    ['113th Sustainment', 16.1],
+                    ['130th Maneuver', 14.2],
+                    ['139th Regiment', 14.0],
+
+                ],
+                dataLabels: {
+                    enabled: true,
+                    rotation: -90,
+                    color: '#FFFFFF',
+                    align: 'right',
+                    format: '{point.y:.1f}', // one decimal
+                    y: 10, // 10 pixels down from the top
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+                }
+            }]
+        });
+    });
+
+
+
+
+    $(function() {
+        var chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'clinicianTypePieChart',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                borderRadius: 10,
+                backgroundColor: '#fdfcfc',
+                type: 'pie'
+            },
+            title: {
+                text: 'Troops by Specialty'
+            },
+            credits: {
+                enabled: false
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: [{
+                    name: 'Infantry',
+                    y: 52.33
+                }, {
+                    name: 'Combat Support',
+                    y: 28.03,
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: 'Communication',
+                    y: 10.38
+                }, {
+                    name: 'Mechanic',
+                    y: 4.77
+                }, {
+                    name: 'Intelligence',
+                    y: 0.91
+                }, {
+                    name: 'Incomplete',
+                    y: 0.2
+                }]
+            }]
+        });
+    });
+
+    $(function() {
+        var chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'qualityColumnChart',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+
+            xAxis: {
+                type: 'category',
+                labels: {
+                    rotation: -45,
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Score'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                pointFormat: 'Quality Score: <b>{point.y:.1f} </b>'
+            },
+            series: [{
+                name: 'Population',
+                data: [
+                    ['Jane Doe', 23.7],
+                    ['Ben Wilson', 16.1],
+                    ['John Smith', 14.2],
+                    ['Ed Lewis', 14.0],
+                    ['Ron Calhoun', 12.5],
+                    ['Stan Lee', 12.1],
+                    ['Johnny Walker', 11.8],
+                    ['Marvin Lewis', 11.7],
+                    ['Cary Hart', 11.1],
+                    ['Laura Balboa', 11.1]
+
+                ],
+                dataLabels: {
+                    enabled: true,
+                    rotation: -90,
+                    color: '#FFFFFF',
+                    align: 'right',
+                    format: '{point.y:.1f}', // one decimal
+                    y: 10, // 10 pixels down from the top
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+                }
+            }]
+        });
+    });
+
+    $(function() {
+        var chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'diagnosisTypePieChart',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                borderRadius: 10,
+                backgroundColor: '#fdfcfc',
+                type: 'pie'
+            },
+            title: {
+                text: 'Group Mental Diagnosis'
+            },
+            credits: {
+                enabled: false
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: [{
+                    name: 'No known issue',
+                    y: 56.33
+                }, {
+                    name: 'Depression',
+                    y: 24.03,
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: 'PTSD',
+                    y: 10.38
+                }, {
+                    name: 'Substance Abuse',
+                    y: 4.77
+                }, {
+                    name: 'Other',
+                    y: 0.91
+                }, {
+                    name: 'Unknown',
+                    y: 0.2
+                }]
+            }]
+        });
+    });
+
+    $(function() {
+        var chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'columnChart',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+
+            xAxis: {
+                type: 'category',
+                labels: {
+                    rotation: -45,
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Number of Patients'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                pointFormat: 'Prescribed to: <b>{point.y:.1f} people</b>'
+            },
+            series: [{
+                name: 'Population',
+                data: [
+                    ['Ambilify', 28],
+                    ['Lexipro', 19],
+                    ['Agomelatine', 17],
+                    ['Lithium', 14],
+                    ['Zoloft', 12],
+                    ['Rispertal', 12],
+                    ['Welbutrin', 10],
+                    ['Latuda', 9],
+                    ['Guangzhou', 7],
+                    ['Delhi', 5]
+
+                ],
+                dataLabels: {
+                    enabled: true,
+                    rotation: -90,
+                    color: '#FFFFFF',
+                    align: 'right',
+                    format: '{point.y:.0f}', // one decimal
+                    y: 10, // 10 pixels down from the top
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+                }
+            }]
+        });
+    });
+
+
+</script>

@@ -1,0 +1,128 @@
+<% member ||= consent.try :member %>
+<% clinician ||= consent.try :clinician %>
+
+<h1>Authorization for Release of Information</h1>
+<br />
+
+<p>Regarding User Name: <b><%= member.try :user_id %></b></p>
+<p>Email Address: <b><%= member.try :email || "" %></b></p>
+
+<p>
+  The following Clinician has my consent to view the indicated information within my FARO10 account. The following Clinician has my consent to exchange information regarding my healthcare within my FARO10 account.
+</p>
+<br />
+
+<!-- Clinicians Table ------------>
+<div class="row">
+    <div class="col-xs-12">
+      <div class="table-responsive">
+        <table id= "observers" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover table-highlight table-bordered"  >
+          <thead>
+          <tr>
+            <th>Clinician</th>
+            <th>Clinician Email</th>
+            <th>Clinic Name</th>
+            <th>Address</th>
+          </tr>
+          </thead>
+
+          <% if clinician.present? %>
+            <tr class="even gradeA">
+              <td><i class="fa fa-user-md"></i>  <%= clinician.user_id %></td>
+              <td><%= clinician.email %></td>
+              <td><%= clinician.clinic_name %></td>
+              <td>  <%= clinician.address %>             </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+</div>
+<br />
+
+<div class="row">
+  <div class="col-md-12">
+    <p>Account Information Including:</p>
+  </div>
+  <div class="col-xs-4">
+    <ul>
+      <li>Symptom Entries</li>
+      <li>Life Scale Entries</li>
+      <li>Side Effect Entries</li>
+    </ul>
+    <!-- <p>
+      <%= check_box_tag 'symptom_entries', 'yes', false %>
+      Symptom Entries
+    </p>
+    <p>
+      <%= check_box_tag 'life_scale', 'yes', false %>
+      Life Scale Entries
+    </p>
+    <p>
+      <%= check_box_tag 'side_effect', 'yes', false %>
+      Side Effect Entries
+    </p> -->
+  </div>
+  <div class="col-xs-4">
+    <ul>
+      <li>Therapy Notes</li>
+      <li>Treatment Plan</li>
+      <li>Behavioral Observations</li>
+    </ul>
+    <!-- <p>
+      <%= check_box_tag 'therapy_notes', 'yes', false %>
+      Therapy Notes
+    </p>
+    <p>
+      <%= check_box_tag 'treatment_plan', 'yes', false %>
+      Treatment Plan
+    </p>
+    <p>
+      <%= check_box_tag 'behavioral_observations', 'yes', false %>
+      Behavioral Observations
+    </p> -->
+  </div>
+  <div class="col-xs-4">
+    <ul>
+      <li>Journal</li>
+      <li>Prescription Information</li>
+    </ul>
+   <!--  <p>
+      <%= check_box_tag 'symptom_entries', 'yes', false %>
+      Journal
+    </p>
+    <p>
+      <%= check_box_tag 'symptom_entries', 'yes', false %>
+      Prescription Information
+    </p>
+    <p>
+      <%= check_box_tag 'all', 'yes', true %>
+      All of the above
+    </p> -->
+  </div>
+</div>
+<br />
+
+<div class="row">
+  <div class="col-md-12">
+    <p>This authorization shall remain in effect as long as Clinician exists within my Clinician List.  </p>
+  </div>
+</div>
+<br />
+
+<div class="row">
+  <div class="col-md-12">
+    <p>You have the right to revoke this authorization at any time by removing Clinician from this list.  Your revocation will be effective immediately and the revoked Clinician
+      will no longer have access to any of your Faro10 information, nor can they share any additional information to your profile.
+    </p>
+  </div>
+</div>
+<br />
+
+<div class="row">
+  <div class="col-md-12">
+    <p>I understand that information used or disclosed to this authorization may be subject to re-disclosure by the recipient and no longer protected by this privacy rule.
+    </p>
+  </div>
+</div>
+<br />

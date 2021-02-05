@@ -1,0 +1,15 @@
+<h3>DSM-5</h3>
+
+<%= form_for(@new_dsm_diagnosis, url: "/diagnoses", method: :post) do |f| %>
+  <div class="form-group">
+  <!--<= f.hidden_field :icd10_code, value: @dsm5s.pluck(:icd10_code) %>-->
+  <%= f.hidden_field :member_id, value: member_id %>
+  </div>
+  <%= f.select :medical_condition_id,
+    {},
+    {},
+    id: "dsm5-select"
+    %><br>
+
+    <%= f.submit "Add DSM Condition", class: "btn btn-info", style: "background-color: #326867; width: 170px;  border-radius: 0; border-color: white "  %>
+  <% end %>

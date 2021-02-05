@@ -1,0 +1,151 @@
+<div class="container-fluid">
+<div class="row" >
+  <div class="box">
+    <div class="icon">
+      <div class="info" style="margin-left: 25px; background-color: white; border: none">
+
+        <%= form_for(@entry) do |f| %>
+            <% if @entry.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+                  <ul>
+                    <% @entry.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+            <% end %>
+
+            <br>
+            <!--<div class="field">-->
+            <!--<= f.label :emotion %><br>-->
+            <!--<= f.number_field :emotion, :placeholder => " 1-20"  %>-->
+            <!--</div>-->
+
+            <div class="form-group">
+              <%= Time.use_zone(current_user.time_zone) do f.datetime_select(:created_at, :discard_year => true, ampm: true ) end %>
+            </div>
+            <br>
+
+
+
+            <div class="field form-group">
+              <div class="checkbox-inline" style="text-align: left; width:40%">
+                <%= f.check_box :nausea, class: "checkbox" %>
+                <span style="margin-left: 10px">  <%= f.label :nausea %></span> <br>
+              </div>
+            </div>
+
+            <div class="field form-group">
+              <div class="checkbox-inline" style="text-align: left; width:40%">
+                <%= f.check_box :headache, class: "checkbox" %>
+                <span style="margin-left: 10px">  <%= f.label :headache %></span><br>
+              </div>
+            </div>
+
+            <div class="field form-group">
+              <div class="checkbox-inline" style="text-align: left; width:40%">
+                <%= f.check_box :restlessness, class: "checkbox" %>
+                <span style="margin-left: 10px"> <%= f.label :restlessness %></span><br>
+              </div>
+            </div>
+
+            <!--<div class="field form-group">-->
+              <!--<div class="checkbox-inline" style="text-align: left; width:40%">-->
+                <!--<= f.check_box :nightmare, class: "checkbox" %>-->
+                <!--<span style="margin-left: 10px"> <= f.label :nightmare, 'Nightmare/Vivid Dream' %></span><br>-->
+              <!--</div>-->
+            <!--</div>-->
+
+            <div class="field form-group">
+              <div class="checkbox-inline" style="text-align: left; width:40%">
+                <%= f.check_box :suicide_thought, class: "checkbox" %>
+                <span style="margin-left: 10px"> <%= f.label :suicide_thought, 'Suicide Thought' %></span><br>
+              </div>
+            </div>
+
+            <div class="field form-group">
+              <div class="checkbox-inline" style="text-align: left; width:40%">
+                <%= f.check_box :panic_attack, class: "checkbox" %>
+                <span style="margin-left: 10px"> <%= f.label :panic_attack, 'Panic Attack' %></span><br>
+              </div>
+            </div>
+            <br>
+
+            <!--<div class="field">-->
+              <!--<= f.label :weight, 'Weight'%><br>-->
+              <!--<= f.number_field :weight %>-->
+            <!--</div>-->
+            <!--<br>-->
+
+            <div class="row">
+              <div class="field">
+                <div class="slider-image">
+
+                </div>
+                <div class="slider-group slider-content">
+                  <div class="slider-header">Sleep</div>
+                  <div class="slider-custom">
+                    <input type="range" id="hrs_slept-slider" class="faces" name="entry[hrs_slept]" min="-1" max="6" value="-1" step="1"
+                           onChange="updateSliderVal('sleep', this.value)" />
+                  </div>
+                  <div id="hrs_slept-val" class="slider-text" style="text-align: center"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="min-height:75px; width:90%">&nbsp;</div>
+
+            <div class="row">
+              <div class="field">
+                <div class="slider-image">
+
+                </div>
+                <div class="slider-group slider-content">
+                  <div class="slider-header">Appetite</div>
+                  <div class="slider-custom">
+                    <input type="range" id="appetite-slider" class="faces" name="entry[appetite]" min="-1" max="6" value="-1" step="1"
+                           onChange="updateSliderVal('appetite', this.value)" />
+                  </div>
+                  <div id="appetite-val" class="slider-text" style="text-align: center"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="min-height:75px; width:90%">&nbsp;</div>
+
+            <div class="row">
+              <div class="field">
+                <div class="slider-image">
+
+                </div>
+                <div class="slider-group slider-content">
+                  <div class="slider-header">Hopelessnes</div>
+                  <div class="slider-custom">
+                    <input type="range" id="zest-slider" class="faces" name="entry[zest]" min="-1" max="6" value="-1" step="1"
+                           onChange="updateSliderVal('zest', this.value)" />
+                  </div>
+                  <div id="zest-val" class="slider-text" style="text-align: center"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="min-height:75px; width:90%">&nbsp;</div>
+
+            <!--<div class="field">-->
+            <!--<= f.label :social_interaction %><br>-->
+            <!--<= f.number_field :social_interaction, :placeholder => "0-5"  %>-->
+            <!--</div>-->
+            <br>
+            <div class="actions">
+              <%= f.submit "Save", class: "btn btn-primary", style: "background-color: #326867; border-radius: 0" %>
+            </div>
+
+        <%end%>
+      </div>
+      <div class="space"></div>
+    </div>
+  </div>
+</div>
+
+</div>

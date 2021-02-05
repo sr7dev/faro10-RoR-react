@@ -1,0 +1,81 @@
+<%= form_for(clinician_entry) do |f| %>
+
+    <div class="row">
+
+      <div class="well well-lg">
+        <% if clinician_entry.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(clinician_entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+
+              <ul>
+                <% clinician_entry.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+
+        <!--<br>-->
+        <div class="field">
+          <%= f.label :observed_at, 'Reported Date'  %><br>
+          <%= f.date_select :observed_at, :class => "form-control"    %>
+        </div>
+        <br>
+
+
+        <div class="field"><br>
+          <%= f.label :feeling, 'Apparent Mood  (1-Mild --> 6-Severe)'  %><br>
+          <div class="slider-group" style="float: left">
+            <span id="feeling-val">0</span><br>
+            <input type="range" id="feeling-slider" name="clinician_entry[feeling]" min="0" max="6" value="0" step="1" onChange="updateSliderVal('feeling', this.value)" />
+          </div>
+        </div>
+        <br>        <br>
+
+        <div class="field"><br>
+          <%= f.label :social_interaction, 'Social Interaction  (1-Mild --> 6-Severe)'  %><br>
+          <div class="slider-group" style="float: left">
+            <span id="social_interaction-val">0</span>
+            <input type="range" id="social_interaction-slider" name="clinician_entry[social_interaction]" min="0" max="6" value="0" step="1" onChange="updateSliderVal('social_interaction', this.value)" />
+          </div>
+        </div>
+        <br>
+        <br>
+
+        <div class="field"><br>
+          <%= f.label :dangerous, 'Danger to Others  (1-Mild --> 6-Severe)'  %><br>
+          <div class="slider-group" style="float: left">
+            <span id="dangerous-val">0</span>
+            <input type="range" id="dangerous-slider" name="clinician_entry[dangerous]" min="0" max="6" value="0" step="1" onChange="updateSliderVal('dangerous', this.value)" />
+          </div>
+        </div>
+        <br>
+        <br>
+
+        <div class="field"><br>
+          <%= f.label :suicide_behavior, 'Suicidal Behavior  (1-Mild --> 6-Severe)'  %><br>
+          <div class="slider-group" style="float: left">
+            <span id="suicide_behavior-val">0</span>
+            <input type="range" id="suicide_behavior-slider" name="clinician_entry[suicide_behavior]" min="0" max="6" value="0" step="1" onChange="updateSliderVal('suicide_behavior', this.value)" />
+          </div>
+        </div>
+        <br>
+        <br>
+
+
+        <br>
+        <div class="field">
+          <%= f.label :Notes %><br>
+          <%= f.text_area :journal, size: "30x15", :class => "form-control"   %>
+        </div>
+        <br>
+        <%= f.hidden_field :member_id, value: member_id %>
+        <div class="actions">
+          <%= f.submit "Save Entry", class: "btn btn-primary", style: "background-color: #326867; width: 170px; border-radius: 0" %>
+        </div>
+      </div>
+
+    </div>
+
+<% end %>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        background-color: #F0F0F0F0;
+      }
+    </style>
+  </head>
+</html>
+<br>
+<br>
+
+<style>
+  .main-bg-back-1{
+    background:linear-gradient(to left, transparent 0%, white 100%), url(<%= asset_path('banner_image_new.png' ) %>) no-repeat;
+    background-size:auto,cover;
+    background-position:0 0,50% 50%
+  }
+</style>
+
+<!--<div class="row" style="background: url(<%#= asset_path('banner_image_new.png', class: "img-responsive" ) %>); min-height: 320px; linear-gradient(to left, transparent 0%, white 100%) ">-->
+<div class="row">
+  <div class="main-bg-back-1" style="min-height: 320px">
+    <br>
+    <div class="col-md-12" style="margin-left: 2%; vertical-align: bottom  ">
+      <h3><b>Make new connections, Share experiences, Get Support</b>
+      </h3>
+      <p>Better Peer Support is easy to find, attend, remain anonymous, and create new connections</p>
+
+    </div>
+    <div class="col-md-12">
+      <%= link_to "Register", new_member_registration_path, class: "btn btn-primary", style: "border-radius: 14; border-color: #4FA59F; background-color: #4FA59F; color: white; font-weight: bold;
+                                                                                          width: 150px; padding: 15px;  margin-top: 5px; margin-left: 2% "%>
+
+      <%= link_to "Log In", new_user_session_path, class: "btn btn-primary", style: "border-radius: 14; border-color: #4FA59F; background-color: white; color: #4FA59F;
+                                                                                          width: 150px; padding: 15px; font-weight: bold;  margin-top: 5px; margin-left: 15px;  "%>
+      <br>
+      <br><br>
+    </div>
+  </div>
+</div>
+
+
+
+<br><br>
+<div class="row" style="background-color: white">
+  <div class="col-md-4" style="background-color: #4FA59F; min-height: 220px; ">
+    <h3 style="color: white">
+      "Both research and countless stories from individuals with lived experience show that peer support works."
+    </h3>
+      <p style="color: white; font-size: small"><i>
+        --Kelly Davis, Director of Peer Advocacy, Supports and Services at Mental Health America
+      </i></p>
+  </div>
+  <div class="col-md-8" >
+    <h3 style="margin-left: 18px"><b>Virtual Ondemand Peer Support Groups</b></h3>
+    <p style="margin-left: 18px">TelaPeer is a convenient and secure video/chat Community for Peer Support Groups. <br>
+      Join groups hosted by certified Peer Support Specialists.  Or start your own conversation.
+      Every user can Browse, Join or Create a Peer Support conversation, anytime, anywhere, from any device.
+    </p>
+    <div class="col-md-2" style="float: right; margin-right: 25px; margin-top: 4%">
+      <%= link_to(image_tag("download_ios.png" , size: "118x40" ), "https://itunes.apple.com/us/app/faro10/id1080204499?mt=8", :target => "_blank") %>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+
+<div class="row">
+  <div class="col-md-4" >
+    <div class="row">
+      <div class="col-md-12" style=" height: 320px; background-color: #43425D ">
+        <div class="image">
+          <span style="display: block; margin: auto; width: 50%; margin-top: 18px">
+            <%= image_tag('register_image.png', class: "img-responsive" ) %>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-12" style=" height: 120px; background-color: white ">
+        <h3 style="text-align: center">Register</h3>
+        <p style="text-align: center">Create a Free Account</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-md-1 hidden-xs" style="background-color: #F0F0F0F0">
+      </div>
+      <div class="col-md-11" style="height: 320px; background-color: #43425D ">
+
+        <div class="image" style="alignment: center" >
+          <span style="display: block; margin: auto; width: 50%; margin-top: 18px  "  >
+            <%= image_tag('meeting_list.png', height: "300px",  )  %>
+          </span>
+        </div>
+
+      </div>
+      <div class="col-md-1" style="background-color: #F0F0F0F0">
+      </div>
+      <div class="col-md-11" style="height: 120px; background-color: white ">
+        <h3 style="text-align: center">Browse Conversations</h3>
+        <p style="text-align: center">Choose from a list of Peer Conversations</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-md-1 hidden-xs" style="background-color: #F0F0F0F0">
+      </div>
+      <div class="col-md-11"  style="height: 320px; background-color: #43425D ">
+        <div class="image" >
+          <span style="display: block; margin: auto; width: 57%; margin-top: 18px  "  >
+            <%= image_tag('meeting_conference.png', class: "img-responsive" ) %>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-1 hidden-xs" style="background-color: #F0F0F0F0">
+      </div>
+      <div class="col-md-11" style=" height: 120px; background-color: white ">
+        <h3 style="text-align: center">Join Peer Group</h3>
+        <p style="text-align: center">Set video sharing and privacy settings, then join a conversation with others</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<br>
+<br>
+<br>
+
+<div class="row" style="background-color: white">
+  <div class="col-md-12">
+    <h3><b>Upcoming Meetings</b></h3>
+    <br>
+    <%= render 'meetings/meeting_list' %>
+
+    <h3 style="text-align: center">Login to view and Join all Peer Support Conversations</h3>
+    <br>
+
+  </div>
+</div>
+<div class="row" style="margin-top: 15px">
+</div>
+<%= render "layouts/footer" %>

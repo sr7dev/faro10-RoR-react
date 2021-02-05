@@ -1,0 +1,56 @@
+<!--<div class="row">-->
+  <!--<div class="col-md-6">-->
+    <!--<= render 'assigned_exercises', assigned: @assigned.incomplete %>-->
+  <!--</div>-->
+
+  <!--<div class="col-md-6">-->
+    <!--<= render 'completed_exercises', completed: @assigned.complete %>-->
+  <!--</div>-->
+<!--</div>-->
+
+<div class="row" style="margin-left: 20px; margin-right: 20px">
+  <div class="col-md-12">
+    <div class="panel with-nav-tabs">
+      <div class="panel-heading">
+        <ul class="nav nav-tabs">
+          <% if @assigned.incomplete.any? %>
+              <li>
+                <a href="#activeExercises" data-toggle="tab">
+                  <strong>Assigned <span class="badge progress-bar-danger"><%= @assigned.incomplete.count %></span></strong>
+                </a>
+              </li>
+          <% else %>
+              <li><a href="#activeExercises" data-toggle="tab">Assigned <span class="badge"><%= @assigned.incomplete.count %></span></a></li>
+          <% end %>
+          <li class="Complete"><a href="#inactiveExercises" data-toggle="tab">Completed <span class="badge"><%= @assigned.complete.count %></span></a></li>
+        </ul>
+      </div>
+      <div class="panel-body">
+        <div class="tab-content">
+          <div class="tab-pane fade in active" id="activeExercises">
+            <%= render 'assigned_exercises', assigned: @assigned.incomplete %>
+          </div>
+          <div class="tab-pane fade" id="inactiveExercises">
+            <%= render 'completed_exercises', completed: @assigned.complete %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br><br>
+
+<div class="row" style="margin-left: 20px; margin-right: 20px">
+  <div class="col-md-12">
+    <h3>All Exercises</h3>
+    <h7>
+    Numerous cognitive behavioral therapy exercises have been created to intervene with different presenting concerns, from anxiety and depression, to assertiveness skills deficits. Below is a list of cognitive behavioral therapy exercises common to a number of different CBT treatments:
+    </h7>
+    <br>
+    <br>
+
+    <%= render 'exercises/all' %>
+  </div>
+</div>
+<p style="color: transparent">Test</p>

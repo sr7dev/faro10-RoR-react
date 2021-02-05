@@ -1,0 +1,115 @@
+<div id="observer-card" class="col-xs-6  col-md-1" style="min-width: 385px; min-height: 425px">
+  <div class="dashboard-card" style="background-color: #CC246F">
+    <div class="card-header">
+      <h1 class="card-header-text">Observe Mood</h1>
+    </div>
+    <div class="card-menu">
+      <%= image_tag('video_temp.png') %>
+      <button type="button" class="card-video-button" data-toggle="modal" data-target="#observerInfoModal"><%= image_tag('help.png') %></button>
+    </div>
+    <div class="card-image">
+      <button type="button" class="card-action-button" data-toggle="modal" data-target="#observedMoodEntryModal"><%= image_tag('observer.png')%></button>
+    </div>
+    <div class="card-notification">
+      <a href="#observerAlert" data-toggle="collapse">
+        <%if !@observerMessage.nil?%>
+            <%=image_tag('alert.png', :title => @observerMessage)%>
+        <%end%>
+      </a>
+    </div>
+    <div id="observerAlert" class="collapse card-message">
+      <%=@observerMessage%>
+    </div>
+    <div class="card-info">
+      <br/>
+      Observees: <%=@observer_observee_total %><br/>
+      Last Observation: <%= @last_observer_entry.present? ?  @last_observer_entry.observed_at.strftime("%m/%d/%Y") :"none made" %>
+    </div>
+    <div class="card-action-top">
+      <%=image_tag('spacer.png')%>
+      <div class="card-action-text">
+
+      </div>
+    </div>
+
+
+    <div class="card-action-middle">
+      <button type="button" class="card-action-button" data-toggle="modal" data-target="#observedMoodEntryModal">
+        <%=image_tag('edit.png')%>
+        <div class="card-action-text">
+          MAKE<BR/>OBSERVATION
+        </div>
+      </button>
+    </div>
+    <div class="card-action-bottom">
+      <button type="button" class="card-action-button" data-toggle="modal" data-target="#dashboardObserverMoodChartModal">
+        <%=image_tag('reports.png')%>
+        <div class="card-action-text">
+          <BR/>REPORTS
+        </div>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="modal fade" id="observedMoodEntryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Observed Mood Entry</h4>
+      </div>
+      <div class="modal-body">
+        <%= render 'observer_entries/observer_mood_entries', observer_entry: @observer_entry, observations: @observations %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="dashboardObserverMoodChartModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-lg modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="panel-group" id="accordion-cat-1">
+          <div class="panel panel-default panel-faq">
+            <a data-toggle="collapse" data-parent="#accordion-mood-1" href="#observed-mood-chart-1" style="text-decoration: none; color:black;">
+              <div class="panel-heading" style="background-color: #eee">
+                <h4 class="panel-title">
+                  Observed Mood Chart
+                  <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                </h4>
+              </div>
+            </a>
+            <div id="observed-mood-chart-1" class="panel-collapse collapse">
+              <div class="panel-body">
+                <div id="observeeMoodChartModal" style="margin-left: -10px; width: 860px; "></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default panel-faq">
+            <a data-toggle="collapse" data-parent="#accordion-mood-1" href="#observed-mood-chart-2" style="text-decoration: none; color:black;">
+              <div class="panel-heading" style="background-color: #eee">
+                <h4 class="panel-title">
+                  Observed Life Scale Chart
+                  <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
+                </h4>
+              </div>
+            </a>
+            <div id="observed-mood-chart-2" class="panel-collapse collapse">
+              <div class="panel-body">
+                <div id="observeeSheehanZoomChart" style="margin-left: -10px; width: 860px; "></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

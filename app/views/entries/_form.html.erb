@@ -1,0 +1,318 @@
+<div class="row">
+  <div class="col-md-4">
+    <%= render 'madrs_entries' %>
+  </div>
+
+  <div class="col-md-4">
+    <%= render 'side_effects' %>
+  </div>
+
+  <div class="col-md-4">
+    <h1>Symptoms</h1>
+    <h2>This is not a complete list of all possible symptoms you may be experiencing.  If you experience symptoms other than these few, add a custom symptom.</h2>
+    <div class="box">
+      <div class="icon">
+          <div class="image">
+            <span class="glyphicon glyphicon-warning-sign btn-custom-lg white"></span>
+          </div>
+        <div class="info">
+          <%= render "entries_symptoms_form" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <h1>Journal</h1>
+    <div class="box">
+      <div class="icon">
+        <div class="image">
+          <span class="glyphicon glyphicon-warning-sign btn-custom-lg white"></span>
+        </div>
+        <div class="info">
+          <%= render "entries_journal_form" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col-md-5">
+    <%= render 'sheehan_entries' %>
+  </div>
+  <div class="col-md-7">
+    <%= render 'med_entries' %>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="moodModal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Mood</h4>
+      </div>
+      <div class="modal-body">
+        Representing reports of depressed mood,
+        regardless of whether it is reflected in appearance or not. Includes low spirits,
+        despondency or the feeling of being beyond help and without hope. Rate
+        according to intensity, duration and the extent to which the mood is reported
+        to be influenced by events. <br><br>
+
+        <i class="fa fa-smile-o"></i> ---> <i class="fa fa-frown-o"></i><br><br>
+
+        0  - Occasional sadness in keeping with the circumstances<br><br>
+        1<br><br>
+        2  - Sad or low but brightens up without difficulty<br><br>
+        3<br><br>
+        4  - Pervasive feelings of sadness or gloominess. The mood is still influenced by external circumstances <br><br>
+        5<br><br>
+        6  - Continuous or unvarying sadness, misery or despondency<br><br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="modal fade" id="anxietyModal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Anxiety</h4>
+      </div>
+      <div class="modal-body">
+        Representing feelings of ill-defined discomfort,
+        edginess, inner turmoil, mental tension mounting to either panic, dread or
+        anguish. Rate according to intensity, frequency, duration and the extent of
+        reassurance called for.<br><br>
+        0 - Placid. Only fleeting inner tension<br><br>
+        1<br><br>
+        2 - Occasional feelings of edginess and ill-defined discomfort<br><br>
+        3<br><br>
+        4 - Continuous feelings of inner tension or intermittent panic which can be mastered with some difficulty<br><br>
+        5<br><br>
+        6 - Unrelenting dread or anguish. Overwhelming panic <br><br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="modal fade" id="sleepModal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Sleep</h4>
+      </div>
+      <div class="modal-body">
+        Representing the experience of reduced duration or
+        depth of sleep compared to your normal sleep patterns when well.
+        <br><br>
+        0 - Sleeps as usual<br><br>
+        1<br><br>
+        2 - Slight difficulty dropping off to sleep or slightly reduced, light, or fitful sleep<br><br>
+        3<br><br>
+        4 - Sleep reduced or broken by at least 2 hours<br><br>
+        5<br><br>
+        6 - Less than 2 or 3 hours sleep<br><br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="modal fade" id="appetiteModal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Appetite</h4>
+      </div>
+      <div class="modal-body">
+        Representing the feeling of a loss of appetite compared with when well. Rate by loss of desire for food or the need to force
+        oneself to eat. <br><br>
+        0 - Normal or increased appetite <br><br>
+        1 <br><br>
+        2 - Slightly reduced appetite <br><br>
+        3 <br><br>
+        4 - No appetite. Food is tasteless <br><br>
+        5 <br><br>
+        6 - Need persuasion to eat at all <br><br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="modal fade" id="concentrationModal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Concentration</h4>
+      </div>
+      <div class="modal-body">
+        Representing difficulties in collecting your thoughts leading to incapacitating lack of concentration. <br>
+        Rate according to intensity, frequency, and degree of incapacity produced. <br><br>
+        0 - No difficulties in concentration <br><br>
+        1 <br><br>
+        2 - Occasional difficulties in collecting your thoughts <br><br>
+        3 <br><br>
+        4 - Difficulties in concentrating and sustaining thought which reduces ability to read or hold a conversation <br><br>
+        5 <br><br>
+        6 - Unable to read or converse without great difficulty <br><br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="modal fade" id="initiativeModal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Initiative or Lassitude</h4>
+      </div>
+      <div class="modal-body">
+        Representing a difficulty getting started, or slowness initiating and performing everyday activities. <br><br>
+        0 - Hardly any difficulty in getting started. No sluggishness <br><br>
+        1 <br><br>
+        2 - Difficulties in starting activities <br><br>
+        3 <br><br>
+        4 - Difficulties in simple routine activities which should be carried out with effort <br><br>
+        5 <br><br>
+        6 - Complete lassitude. Unable to do anything without help <br><br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="modal fade" id="energyModal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Energy / Inability to Feel</h4>
+      </div>
+      <div class="modal-body">
+        Representing the subjective experience of reduced
+        interest in the surroundings, or activities that normally give pleasure. The
+        ability to react with adequate emotion to circumstances or people is reduced.
+        0 - Normal interest in the surroundings and in other people <br><br>
+        1 <br><br>
+        2 - Reduced ability to enjoy usual interests <br><br>
+        3 <br><br>
+        4 - Loss of interest in the surroundings. Loss of feelings for friends and
+        acquaintances <br><br>
+        5 <br><br>
+        6 - The experience of being emotionally paralysed, inability to feel anger, grief
+        or pleasure, and a complete or even painful failure to feel for close
+        relatives and friends <br><br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="modal fade" id="pessimismModal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Pessimism</h4>
+      </div>
+      <div class="modal-body">
+        Representing thoughts of guilt, inferiority, self-reproach, sinfulness, remorse and ruin. <br><br>
+        0 - No pessimistic thoughts <br><br>
+        1 <br><br>
+        2 - Fluctuating ideas of failure, self-reproach or self-depreciation <br><br>
+        3 <br><br>
+        4 - Persistent self-accusations, or definite but still rational ideas of guilt or sin. Increasingly pessimistic about the future <br><br>
+        5 <br><br>
+        6 - Delusions of ruin, remorse, or unredeemable sin. Self-accusations which are absurd and unshakeable <br><br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="modal fade" id="zestModal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Hopelessness</h4>
+      </div>
+      <div class="modal-body">
+        Representing the feeling that life is not worth
+        living, that a natural death would be welcome, suicidal thoughts, and
+        preparation for suicide. Suicidal attempts should not in themselves influence
+        this rating. <br><br>
+        0 - Enjoys life or takes it as it comes <br><br>
+        1 <br><br>
+        2 - Weary of life. Only fleeting suicidal thoughts <br><br>
+        3 <br><br>
+        4 - Probably better off dead. Suicidal thoughts are common, and suicide is
+        considered as a possible solution, but without specific plans or intention <br><br>
+        5 <br><br>
+        6 - Explicit plans for suicide when there is an opportunity. Active preparations
+        for suicide <br><br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,20 @@
+<h3 style="color: #4FA59F">Physical Health</h3>
+<p><i> Symptoms, other illnesses, sleep and rest, energy and vitality. </i> </p>
+<ul>
+  <!--<li>  The Patients reported weekly activity has <span style="color: red"> increased 9% </span> since beginning treatment and monitoring with Faro10  </li>-->
+  <!--<li>  The Patients observed weekly activity has <span style="color: red"> increased 9% </span> since beginning treatment and monitoring with Faro10  </li>-->
+
+
+
+  <li>
+    Member Reported: <%= render 'delta_words', value: @scorecard.outcome(:mem, :hrs_slept), label: 'Sleep' %>
+  </li>
+  <li>
+    Member Reported: <%= render 'delta_words', value: @scorecard.outcome(:mem, :appetite), label: 'Appetite' %>
+  </li>
+
+  <li>
+    Observer Reported: <%= render 'delta_words', value: @scorecard.outcome(:mem, :energy), label: 'Observed Energy' %>
+  </li>
+
+</ul>

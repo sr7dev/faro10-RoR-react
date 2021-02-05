@@ -1,0 +1,17 @@
+<%= form_for(@medical_condition) do |f| %>
+  <% if @medical_condition.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@medical_condition.errors.count, "error") %> prohibited this medical_condition from being saved:</h2>
+
+      <ul>
+      <% @medical_condition.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

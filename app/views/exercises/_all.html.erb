@@ -1,0 +1,16 @@
+<% Exercise.all.each do |ex| %>
+  <%= link_to exercise_path(ex) do %>
+    <div class="col-md-3">
+      <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey">
+        <div class="panel-update-heading">
+          <h1>
+            <%= image_tag("#{ex.logo}", height: '50', width: '70') %>
+          </h1>
+        </div>
+        <div class="panel-body text-center">
+          <strong> <%= link_to ex.longname, exercise_path(ex) %> </strong>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

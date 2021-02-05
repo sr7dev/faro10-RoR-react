@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @energy_level.user_id %>
+</p>
+
+<p>
+  <strong>Energy level:</strong>
+  <%= @energy_level.energy_level %>
+</p>
+
+<%= link_to 'Edit', edit_energy_level_path(@energy_level) %> |
+<%= link_to 'Back', energy_levels_path %>

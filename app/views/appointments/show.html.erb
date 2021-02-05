@@ -1,0 +1,35 @@
+<h1><%= @appointment.title %></h1>
+
+
+
+<p>
+  <strong>Scheduled for:</strong>
+  <%= @member.user_id %>
+</p>
+
+<p>
+  <strong>Created by:</strong>
+  <%= @creator.user_id %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @appointment.start_time.in_time_zone(current_user.time_zone).strftime("%A, %B %e, %Y") %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @appointment.start_time.in_time_zone(current_user.time_zone).strftime("%r") %>
+</p>
+
+<%= link_to schedule_path(@member), class: "btn btn-faro10" do %>
+  <i class="fa fa-arrow-left"></i>&nbsp;
+  Back
+<% end %>
+&nbsp;
+<%= link_to  @appointment, method: :delete, class: "btn btn-faro10" do %>
+  <i class="fa fa-ban"></i>&nbsp;
+  Delete Appointment
+<% end %>
+
+

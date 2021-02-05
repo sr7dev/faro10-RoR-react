@@ -1,0 +1,50 @@
+
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+    <%= form_for(@user) do |f| %>
+        <%= render 'shared/error_messages' %>
+
+        <%= f.label :user_id, "Profile Name" %>
+        <%= f.text_field :user_id, class: 'form-control' %>
+
+        <%= f.label :email %>
+        <%= f.email_field :email, class: 'form-control' %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+
+        <%= f.label :password_confirmation, "Confirmation" %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+        <%= f.label :clinic_name, "Clinic Name" %>
+        <%= f.text_field :clinic_name, class: 'form-control' %>
+
+        <%= f.label :clinic_phone, "Clinic Phone"  %>
+        <%= f.text_field :clinic_phone, class: 'form-control' %><br>
+
+        <%= f.label :clinic_city, "Clinic City" %>
+        <%= f.text_field :clinic_city, class: 'form-control' %>
+
+        <%= f.label :clinic_zip, "Clinic Zip" %>
+        <%= f.text_field :clinic_zip, class: 'form-control' %>
+
+        <%= f.label :type, "Type" %>
+        <%= f.text_field :type, class: 'form-control', :placeholder => "Clinician" %>
+
+
+        <br/>
+        <br/>
+        <div class="field">
+        <%= f.check_box :is_clinician, class: "col-md-1 control-label"  %>
+        <%= f.label :is_clinician, "Please confirm you are legally authorized to operate as a Clinician" %>
+        <br/>
+        </div>
+        <br/>
+
+        <%= f.submit "Create my account", class: "btn btn-primary" %>
+
+    <% end %>
+  </div>
+</div>

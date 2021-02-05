@@ -1,0 +1,15 @@
+<h1>Subscription Plans</h1>
+
+<% if @pricing_plans.any? %>
+  <div class="row">
+    <div class="col-xs-12 col-md-4">
+      <%= render partial: "plan_card", locals: {plan: @pricing_plans.first } %>
+    </div>
+    <div class="col-xs-12 col-md-4">
+      <%= render partial: "plan_card", locals: {plan: @pricing_plans.second, klass: "info"} %>
+    </div>
+    <div class="col-xs-12 col-md-4">
+      <%= render partial: "plan_card", locals: {plan: @pricing_plans.third } %>
+    </div>
+  </div>
+<% end %> 

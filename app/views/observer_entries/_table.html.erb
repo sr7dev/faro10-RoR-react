@@ -1,0 +1,53 @@
+<table id="observer_entries_td" cellpadding="0" cellspacing="0" border="0" class="dataTable table-striped table-hover table-highlight table-bordered">
+  <thead>
+    <tr>
+      <th>Observer</th>
+      <th>Mood</th>
+      <th>Social Interaction</th>
+      <th>Journal</th>
+      <th>Clinician Response</th>
+      <th>Observed At</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% observer_entries.each do |oe| %>
+      <tr>
+        <td><%= oe.observer %></td>
+        <td><%= oe.feeling  %></td>
+        <td><%= oe.social_interaction %></td>
+        <td><%= oe.journal %></td>
+        <td><%= oe.clinician_response %></td>
+        <td><%= oe.observed_at.strftime("%A, %B %d, %Y") %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<!-- Update Observer Notes Modal -->
+<div class="modal fade" id="observerFeedbackModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-users fa-lg"></i> Feedback to Observers</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+
+
+            <%= render 'observer_entries/edit'%>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Observer Notes Modal -->

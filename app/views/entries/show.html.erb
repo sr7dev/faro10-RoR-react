@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @entry.user_id %>
+</p>
+
+<p>
+  <strong>Feeling:</strong>
+  <%= @entry.feeling %>
+</p>
+
+<p>
+  <strong>Emotion:</strong>
+  <%= @entry.emotion %>
+</p>
+
+<p>
+  <strong>Energy:</strong>
+  <%= @entry.energy %>
+</p>
+
+<p>
+  <strong>Activity:</strong>
+  <%= @entry.activity %>
+</p>
+
+<p>
+  <strong>Anxiety:</strong>
+  <%= @entry.anxiety %>
+</p>
+
+<p>
+  <strong>Headache:</strong>
+  <%= @entry.headache %>
+</p>
+
+<p>
+  <strong>Journal:</strong>
+  <%= @entry.journal %>
+</p>
+
+<%= link_to 'Edit', edit_entry_path(@entry) %> |
+<%= link_to 'Back', entries_path %>

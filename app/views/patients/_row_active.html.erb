@@ -1,0 +1,40 @@
+<% member = membership.member %>
+<% entries = member.recent_entries %>
+<tr class="even gradeA">
+  <td><%= link_to(member.user_id, patient_path(member.id)) %></td>
+  <td><%= membership.status %></td>
+  <td class="<%= depression_tag(entries.average(:feeling)) %>"><%= entries.average(:feeling).present? ? entries.average(:feeling).round(2) : 0 %></td>
+  <!--<td class="<%= hospital_tag(entries.sum(:hospitalization)) %>"><%= entries.sum(:hospitalization) %></td>-->
+  <td class="<%= depression_tag(entries.sum(:panic_attack)) %>"><%= entries.sum(:panic_attack) %></td>
+  <td class="<%= suicide_thought_tag(entries.sum(:suicide_thought)) %>"><%= entries.sum(:suicide_thought) %></td>
+  <td class="patient-reports">
+    <div class="btn-group pull-right">
+      <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" style="background-color: #326867; border-radius: 0" >
+        Select
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <% if membership.consents.any? %>
+            <%= link_to "Consent Form", consent_path(membership.consents.last, format: :pdf), target: "_blank" %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to 'Patient Summary', patient_summary_patient_path(member.id, format: :pdf), target: "_blank" %>
+        </li>
+      </ul>
+    </div>
+  </td>
+  <td>
+        <div class="btn-group">
+
+          <button type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#messages-modal" data-member-id="<%= member.id %>" data-member-name="<%= member.user_id %>">
+            <i class="fa fa-envelope-o fa-fw"></i>
+          </button>
+
+          <!--<= link_to membership_path(membership, membership_action: 'cancel'), class: "btn btn-xs btn-danger", method: :put do  %>-->
+              <!--<i class="fa fa-times fa-fw" data-toggle="tooltip" data-placement="top" title="Cancel Membership"></i>-->
+          <!--< end %>-->
+    </div>
+  </td>
+</tr>

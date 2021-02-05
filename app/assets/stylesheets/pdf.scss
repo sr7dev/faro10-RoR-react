@@ -1,0 +1,15 @@
+/* ==========================================================================
+ * PDF Styles
+ * ========================================================================== */
+
+/* Vendor */
+
+@import "normalize-rails";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.pdf {
+  .signature-image {
+    max-width: 75%;
+  }
+}

@@ -1,0 +1,2 @@
+module EnergyLevelsHelper
+end

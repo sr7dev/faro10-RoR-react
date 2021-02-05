@@ -1,0 +1,95 @@
+$(function() {
+  if ($(".google-map").length > 0) {
+    markers = [];
+    api_key = '<%= ENV.fetch("GOOGLE_MAPS_KEY") %>';
+    $.getScript('https://maps.googleapis.com/maps/api/js?key='+api_key+'&libraries=places&callback=initMap');
+  }
+});
+
+function initMap() {
+  // Create a map object and specify the DOM element for display.
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 35.782054, lng: -78.804224},
+    scrollwheel: false,
+    zoom: 10
+  });
+  addMarkers(clinicians);
+}
+
+function addMarker(loc) {
+  var info = "<b><i class='fa fa-medkit'></i> " + loc.clinic_name +
+    "</b><br />" +
+    loc.clinic_street + ", " +
+    loc.clinic_state + ", " +
+    loc.clinic_zip
+
+  var position = new google.maps.LatLng(loc["latitude"], loc["longitude"]);
+
+  var infoWindow = new google.maps.InfoWindow({
+    content: info
+  })
+
+  var marker = new google.maps.Marker({
+    position: position,
+    map: map
+  });
+
+  marker.addListener('click', function(){
+    infoWindow.open(map, marker);
+  });
+
+  markers.push(marker);
+
+  return marker;
+}
+
+function addMarkers(locations){
+  var bounds = new google.maps.LatLngBounds();
+
+  $.each(locations, function(i, loc){
+    var marker = addMarker(loc);
+
+    bounds.extend(marker.position);
+    bounds.extend(marker.position);
+  });
+
+  focusMap(bounds);
+}
+
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers() {
+  clearMarkers();
+  markers = [];
+}
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers() {
+  setMapOnAll(null);
+}
+
+function setMapOnAll(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+
+function emptyMap(coordinates) {
+  var bounds = new google.maps.LatLngBounds();
+  bounds.extend(coordinates);
+
+  focusMap(bounds);
+}
+
+function focusMap(bounds) {
+  map.fitBounds(bounds);
+
+  var listener = google.maps.event.addListener(map, "bounds_changed", function () {
+    map.setZoom(10);
+    google.maps.event.removeListener(listener);
+  });
+}
+
+// Shows any markers currently in the array.
+//function showMarkers() {
+//    setMapOnAll(map);
+//}

@@ -1,0 +1,56 @@
+<!--<h3 style="color: #4FA59F">Symptomatology </h3><br>-->
+
+<div class="row">
+  <div class="col-md-6">
+    <p><b>Patient Reported</b></p>
+
+    <div class="row">
+      <div class="col-md-12">
+        <ul>
+          <li>
+            Member Reported Headache: <span style="color: #CC246F">  <%=  @scorecard.symptom_outcome(:mem, :headache) %></span>
+          </li>
+          <li>
+            Member Reported Dry Mouth: <span style="color: #CC246F"> <%= @scorecard.symptom_outcome(:mem, :dry_mouth) %></span>
+          </li>
+          <li>
+            Member Reported Nausea: <span style="color: #CC246F"> <%=  @scorecard.symptom_outcome(:mem, :nausea) %></span>
+          </li>
+          <li>
+            Member Reported Restlessness: <span style="color: #CC246F"> <%=  @scorecard.symptom_outcome(:mem, :restlessness) %></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <p><b>Patient Reported</b></p>
+    <div class="row">
+      <div class="col-md-12">
+        <ul>
+          <li>
+            Member Reported Nightmare/Vivid Dreams: <span style="color: #CC246F"> <%= @scorecard.symptom_outcome(:mem, :nightmare) %></span>
+          </li>
+          <li>
+            Member Reported Panic Attacks: <span style="color: #CC246F"> <%= @scorecard.symptom_outcome(:mem, :panic_attack) %></span>
+          </li>
+          <li>
+            Member Reported Suicidal Thoughts: <span style="color: #CC246F"> <%= @scorecard.symptom_outcome(:mem, :suicide_thought) %></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<ul>
+
+
+
+
+
+
+</ul>

@@ -1,0 +1,28 @@
+<%= form_for(@meeting) do |f| %>
+    <% if @meeting.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
+          <ul>
+            <% @meeting.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+    <div class="hidden">
+      <%= f.text_field :status, value: 'complete' %>
+    </div>
+
+    <br>
+    <hr>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="actions" style="float: right">
+          <%= f.submit 'End Meeting', class:"btn btn-primary", style: "border-radius: 0; border-color: #F19A20; background-color: #F19A20; color: white  " %>
+        </div>
+<% end %>
+</div>
+</div>
+

@@ -1,0 +1,36 @@
+<footer class="footer row valign" id="footer">
+  <div class="col-md-2" id="logo">
+    <h1>Faro10</h1>
+  </div>
+
+  <div class="col-md-10">
+    <div class="row">
+      <ul>
+        <li class="bordered"><%= link_to "Home",   home_path %></li>
+        <li class="bordered"><%= link_to "About",   about_path %></li>
+        <li class="bordered"><%= link_to "Benefits",   benefits_path %></li>
+
+        <!--        <li class="bordered"><%#= link_to "FAQ",   '/faq' %></li>-->
+        <li class="bordered"><%= link_to "Contact", contact_path %></li>
+        <li><%= link_to "Privacy Policy", privacy_path %></li>
+      </ul>
+    </div>
+
+    <div class="row">
+      <ul id="social">
+        <li><a href="https://www.facebook.com/Faro10App/" target="_blank"><%= image_tag('facebook_icon_white.png') %></a></li>
+        <li><a href="https://twitter.com/Faro10analytics" target="_blank"><%= image_tag('twitter_icon_white.png') %></a></li>
+        <!--<li><%= image_tag('rss_icon.png') %></li>-->
+        <li><a href="https://www.linkedin.com/company/faro10/" target="_blank"><%= image_tag('linkedin_icon_white.png') %></a></li>
+
+      </ul>
+    </div>
+
+    <div class="row" id="fine-print">
+      &copy;Copyright 2018 |
+
+        Cloud-based Behavioral Health Management Platform
+
+    </div>
+  </div>
+</footer>

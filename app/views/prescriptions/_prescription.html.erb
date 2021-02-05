@@ -1,0 +1,8 @@
+
+
+<li id="prescription-<%= prescription.id %>">
+  <%= link_to gravatar_for(prescription.user, size: 50), prescription.user %>
+  <span class="user"><%= link_to prescription.user.name, prescription.user %></span>
+  <span class="content"><%= prescription.content %></span>
+
+</li>

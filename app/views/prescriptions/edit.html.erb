@@ -1,0 +1,40 @@
+<h1>Editing Prescription</h1>
+
+<%= form_for(@prescription) do |f| %>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-1">
+        <% if @prescription.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@prescription.errors.count, "error") %> prohibited this prescription from being saved:</h2>
+              <ul>
+                <% @prescription.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+
+        <!--<div class="field">-->
+          <!--<= f.label :drug_id %><br>-->
+          <!--<= f.text_field :drug_id %><br><br>-->
+        <!--</div>-->
+
+        <div class="field">
+          <%= f.label :ended, 'When did you Stop taking this?'  %><br>
+          <%= f.date_select :ended, :class => "form-control"    %><br><br>
+        </div>
+
+        <div class="field">
+          <%= f.label :ended, 'Why did you Stop taking this?'  %><br>
+          <%= f.text_area :reason, :class => "form-control"    %><br><br>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Update Prescription", class: "btn btn-primary", style: "background-color: #326867; border-radius: 0" %>
+        </div>
+
+        <% end %>
+
+        </div>  </div>
+

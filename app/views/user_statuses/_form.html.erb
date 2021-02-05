@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+<%= form_for(@user_status) do |f| %>
+  <% if @user_status.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user_status.errors.count, "error") %> prohibited this user_status from being saved:</h2>
+
+      <ul>
+      <% @user_status.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <div class="field">
+    <%= f.label :journal_entry %><br>
+    <%= f.text_area :journal_entry, :size => "50x10" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :anx_attack, "Anxiety Attack"  %>
+    <%= f.check_box :anx_attack, class: "col-md-1 control-label"  %>
+
+
+  </div>
+
+  <div class="field">
+    <%= f.check_box :have_headache, class: "col-md-1 control-label"  %>
+    <%= f.label :have_headache, "Have Headache" %>
+  </div>
+
+    <br/>
+    <br/>
+
+  <div class="actions">
+    <%= f.submit "Add New Status", class: "btn btn-primary" %>
+  </div>
+
+<% end %>
+
+  </div>
+</div>

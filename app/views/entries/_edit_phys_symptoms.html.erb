@@ -1,0 +1,79 @@
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $('.js-multiselect').multiselect({
+            right: '#js_multiselect_to_1',
+            rightAll: '#js_right_All_1',
+            rightSelected: '#js_right_Selected_1',
+            leftSelected: '#js_left_Selected_1',
+            leftAll: '#js_left_All_1'
+        });
+    });
+</script>
+
+<div class="row" style="overflow:auto; height:500px; width:100%">
+  <div class="box">
+    <div class="icon">
+      <div class="info" style="margin-left: 25px; background-color: white; border: none">
+
+
+        <div class="modal-body" style="padding-left: 15px; padding-right: 15px">
+          <div class="row" style="text-align: center; margin-left: 30px;">
+            <div class="row" style="width:90%">
+              <%= form_for :tracked_symptom, url: tracked_symptoms_path do |f| %>
+                  <div class="form-group">
+                    <%= f.label :symptom_id, "Select which symptoms you'd like to track on the Physical Symptoms Entry screen" %>
+                    <br />
+                  </div>
+
+                  <div class="row">
+                    <div class="col-xs-5">
+                      <select name="available_symptoms[]" class="js-multiselect form-control" size="8" multiple="multiple">
+                        <% @available_symptoms.each_with_index do |symptom, index| %>
+                            <option value="<%=symptom.id%>"><%=symptom.name%></option>
+                        <% end %>
+                      </select>
+                    </div>
+
+                    <div class="col-xs-2">
+                      <button type="button" id="js_right_All_1" class="btn btn-block"><i class="glyphicon glyphicon-forward"></i></button>
+                      <button type="button" id="js_right_Selected_1" class="btn btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
+                      <button type="button" id="js_left_Selected_1" class="btn btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
+                      <button type="button" id="js_left_All_1" class="btn btn-block"><i class="glyphicon glyphicon-backward"></i></button>
+                    </div>
+
+                    <div class="col-xs-5">
+                      <select name="selected_symptoms[]" id="js_multiselect_to_1" class="form-control" size="8" multiple="multiple">
+                        <% @tracked_symptoms.each_with_index do |symptom, index| %>
+                            <option value="<%=symptom.id%>"><%=symptom.name%></option>
+                        <% end %>
+                      </select>
+                    </div>
+                  </div>
+                  <br/>
+
+                  <div class="form-actions">
+                    <%= f.submit "Save", class: "btn btn-primary", style: "background-color: #326867; border-radius: 0" %>
+                  </div>
+              <% end %>
+            </div>
+            <br/>
+            <hr/>
+            <br/>
+            <div class="row" style="width:90%">
+              <%= form_for :symptom, url: symptoms_path do |f| %>
+                  <div class="form-group">
+                    <%= f.label :name, "Enter a custom symptom name to track" %>
+                    <%= f.text_field :name, class: "form-control" %>
+                    <%= f.hidden_field :patient_id, value: current_user.id %>
+                  </div>
+                  <div class="form-actions">
+                    <%= f.submit "Add Custom Symptom", class: "btn btn-primary", style: "background-color: #326867; border-radius: 0" %>
+                  </div>
+              <%  end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+</div>

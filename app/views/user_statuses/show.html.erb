@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<p>
+  <strong>Journal entry:</strong>
+  <%= @user_status.journal_entry %>
+</p>
+
+<p>
+  <strong>Anx attack:</strong>
+  <%= @user_status.anx_attack %>
+</p>
+
+<p>
+  <strong>Have headache:</strong>
+  <%= @user_status.have_headache %>
+</p>
+
+<%= link_to 'Edit', edit_user_status_path(@user_status) %> |
+<%= link_to 'Back', user_statuses_path %>

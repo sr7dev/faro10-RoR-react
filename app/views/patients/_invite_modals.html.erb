@@ -1,0 +1,70 @@
+<div class="modal fade" id="newPatientModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_for @membership, url: memberships_path do |f| %>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">Add Client</h4>
+          <p>
+            Insert your Client's email address
+            <b>if they already have a Faro10 account</b>.
+            <br>
+            If your client is not yet registered, send them an invitation instead.
+          </p>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+              <%= f.label :email, "Email Address" %>
+              <%= f.text_field :email, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= f.submit "Add Patient", class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- INVITE Client by EMAIL Modal -->
+<div class="modal fade" id="newPatientInvitationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= form_tag("/users/invite_member", method: :get) do |f| %>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">
+            <i class="fa fa-user fa-lg"></i> Invite a Client
+          </h4>
+
+        </div>
+        <div class="modal-body">
+          <div class="row">
+
+            <ul>
+              <li>Insert email address of the Client you would like to add. </li>
+              <li>Clients should register with Faro10 using this same email.  </li>
+              <li>Once they are registered, they must provide consent by approving your request and they will become "active" as a client.</li>
+            </ul>
+            <br>
+            <div class="col-md-6 col-md-offset-3">
+              <%= label_tag "Invite by Email Address" %>
+              <%= text_field :invitation, :email, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= submit_tag "Send MeetingInvitation", class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<!-- END Client by EMAIL Modal -->

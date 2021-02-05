@@ -1,0 +1,62 @@
+
+
+
+
+
+
+<!--The Create Channel Assets form is now in channels/_channel_assets_fields.html.erb-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%= form_for(@channel_assets) do |f| %>
+  <% if @channel_asset.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@channel_asset.errors.count, "error") %> prohibited this channel_asset from being saved:</h2>
+
+      <ul>
+      <% @channel_asset.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :asset_type %><br>
+    <%= f.text_field :asset_type %>
+  </div>
+  <div class="field">
+    <%= f.label :asset_name %><br>
+    <%= f.text_field :asset_name %>
+  </div>
+  <div class="field">
+    <%= f.label :source %><br>
+    <%= f.text_field :source %>
+  </div>
+
+    <div class="hidden">
+      <%= f.number_field :channel_id, value: @channel.id %>
+      <%= f.number_field :user_id, value: current_user.id %>
+    </div>
+
+    <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

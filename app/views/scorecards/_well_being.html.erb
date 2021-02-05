@@ -1,0 +1,20 @@
+<h3 style="color: #4FA59F">Well Being</h3><br>
+<ul>
+  <li>
+    Member Reported:  <%= render 'delta_words', value: @scorecard.outcome(:mem, :zest), label: 'Hopelessness' %>
+  </li>
+
+  <li>
+    Member Reported:<%= render 'delta_words', value: @scorecard.outcome(:mem, :pessimism), label: 'Pessimism' %>
+  </li>
+
+  <li>
+    Member Reported: <%= render 'delta_words', value: @scorecard.outcome(:mem, :feeling), label: 'Mood' %>
+  </li>
+  <li>
+    Observer Reported: <%= render 'delta_words', value: @scorecard.outcome(:mem, :feeling), label: 'Observed Mood' %>
+  </li>
+</ul>
+
+
+

@@ -1,0 +1,351 @@
+
+
+<div class="col-md-12">
+  <div class="col-md-3 col-xs-4" >
+    <br>
+    <%= @channel.avatar.present? ? image_tag(@channel.avatar, class: "img-responsive") : image_tag("https://s3-us-west-2.amazonaws.com/mendalytics/YourLogoHere.jpg", class: "img-responsive") %>
+
+  </div>
+  <div class="col-md-9 col-xs-8" style="margin-top: -10px">
+    <h3>
+      <span style="margin-right: 2px">
+        <button type="button" class="btn btn-xs" data-toggle="modal" data-target="#aboutCommunityModal">
+          <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="left" title="About this Community"></span>
+        </button>
+      </span>
+      <%= @channel.channel_name %><br>
+    </h3>
+      <% if @channel.user_id == current_user.id %>
+          <p style="text-align: center" data-toggle="modal" data-target="#editaboutCommunityModal">
+            <span class="glyphicon glyphicon-plus" data-toggle="tooltip" data-placement="left" title="Edit Community Info"></span>
+            Edit
+          </p>
+      <% else %>
+      <% end %>
+
+
+    <%= @channel.channel_focus %> <br>
+    <%= @channel.owner_detail %>
+    <p> <%= @channel_followers.count %> Followers</p>           <!--<= @meeting_users.active.count %>-->
+  </div>
+  <div class="col-md-3" style="margin-left: 25%; padding-bottom: 25px" >
+
+
+    <!--This is intended to allow users to follow a Channel.  The meeting_users table can be used to track all channel followers.-->
+    <!--When a user presses the "follow" button, it should add them to the meeting_users table.-->
+
+
+    <% if @following.any? %>
+        <%= link_to unfollow_channel_path(@meeting), method: :post do %>
+            <%= image_tag('following_icon.png', size: '145x43') %>
+        <% end %>
+    <% else %>
+        <%= link_to follow_channel_path(@meeting), method: :post do %>
+            <%= image_tag('follow_icon.jpg', size: '145x43') %>
+        <% end %>
+    <% end %>
+
+
+  </div>
+  <br>
+  <br class="hidden-xs">
+
+  <!--<h3>Upcoming Meetings</h3>-->
+  <div class="row" style="margin-left: 0">
+    <div class="col-md-11  col-xs-12">
+      <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey; background-color: #326867 ">
+        <div class="panel-body text-center">
+          <p style="font-size: 14px; font-weight: bold; text-align: center; margin: 4px; color: white ">
+            Upcoming Meetings
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%# if @channel.user_id == current_user.id %>
+<!--      <p style="text-align: center" data-toggle="modal" data-target="#scheduleCommunityMeetingModal">-->
+<!--        <span class="glyphicon glyphicon-plus" data-toggle="tooltip" data-placement="left" title="Edit Community Info"></span>-->
+<!--        Schedule Meeting-->
+<!--      </p>  <%# else %>-->
+  <%# end %>
+  <div class="col-md-11">
+    <table id= "channelMeetings" cellpadding="0" cellspacing="0" border="0" class="table table-hover table-highlight "  >
+      <tbody>
+      <% if @community_meetings.any? %>
+          <% @community_meetings.each do |meeting| %>
+              <tr>
+                <td width="80%">
+                  <%= meeting.name %><br>
+                  <%= meeting.topic %><br>
+                  <!--<= meeting.start_time.strftime("%A, %B %d, %I:%M %p")  %>-->
+                  <%= meeting.start_time.present? ? time_zone_offset(meeting.start_time, current_user.time_zone,  "%A, %B %d, %I:%M %p") : 0 %>
+
+                </td>
+                <td width="20%" title="Add to Calendar" style="vertical-align: middle">
+                  <%= link_to invite_meeting_path(meeting, protocol: :webcal, format: :ics) do %>
+                      <%= image_tag("calendar.png" , size: "36x36")%>
+                  <% end %>
+                </td>
+              </tr>
+          <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <!--<h3>Channel Documents</h3>-->
+  <div class="row" style="margin-left: 0">
+    <br><br>
+    <div class="col-md-11">
+      <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey; background-color: #326867 ">
+        <div class="panel-body text-center">
+          <p style="font-size: 14px; font-weight: bold; text-align: center; margin: 4px; color: white ">
+            Information
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% if @channel.user_id == current_user.id %>
+      <p style="text-align: center" data-toggle="modal" data-target="#editCommunityDocumentsModal">
+        <span class="glyphicon glyphicon-plus" data-toggle="tooltip" data-placement="left" title="Edit Community Info"></span>
+        Edit
+      </p>
+  <% else %>
+  <% end %>
+  <div class="col-md-11">
+    <table id= "channelMeetings" cellpadding="0" cellspacing="0" border="0" class="table table-hover table-highlight "  >
+      <tbody>
+      <% if @channel_assets.any? %>
+          <% @channel_assets.is_document?.each do |channel_asset| %>
+              <tr>
+                <td width="80%">
+                  <b><%= channel_asset.asset_name %></b><br>
+                  <%= channel_asset.description %><br>
+                </td>
+                <td width="20%" style="vertical-align: middle">
+                  <%= link_to 'Go', channel_asset.source, :target => "_blank", :class => "btn btn-info", style: "border-radius: 0; border-color: #F19A20; background-color: #F19A20; color: white  " %>
+                </td>
+              </tr>
+          <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- EDIT About Community INFO Modal -->
+  <div class="modal fade" id="editaboutCommunityModal" role="dialog">
+    <div class="modal-dialog modal-lg" >
+      <div class="modal-content" style="border-radius: 0">
+        <div class="modal-body">
+          <div class="row">
+            <%= form_for(@channel) do |f| %>
+                <% if @channel.errors.any? %>
+                    <div id="error_explanation">
+                      <h2><%= pluralize(@channel.errors.count, "error") %> prohibited this Community from being saved:</h2>
+                      <ul>
+                        <% @channel.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                <% end %>
+
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <%= f.hidden_field :date, value: @meeting.start_time.strftime("%A, %B %d") %>
+                <%= f.hidden_field :time, value: @meeting.start_time.strftime("%I:%M %p") %>
+                <%= f.hidden_field :start_time, value: @meeting.start_time %>
+                <div class="col-md-12">
+                  <div class="row" style="margin-left: -20px">
+                    <div class="col-md-12">
+                      <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey; background-color: #326867 ">
+                        <div class="panel-body text-center">
+                          <p style="font-size: 28px; text-align: left; margin: 4px; margin-bottom: 10px; margin-top: 10px; color: white ">
+                            Edit Community Profile:
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <%= f.label :focus %><br>
+                    <%= f.select :channel_focus, options_for_select(["Veteran Support","Substance Abuse", "Easting Disorder", "Suicide Loss", "Depression", "Care Giver Support", "Pregnacy Loss", "Other"], @channel.channel_focus), class: "form-control" %><br>
+                  </div>
+                  <br>
+                  <div class="field">
+                    <%= f.label :community_name %><br>
+                    <%= f.text_field :channel_name, class: "form-control"  %>
+                  </div>
+                  <br>
+                  <div class="field">
+                    <%= f.label :admin_display_name %><br>
+                    <%= f.text_field :owner_detail, class: "form-control"  %>
+                  </div>
+                  <br>
+                  <div class="field">
+                    <%= f.label :about_this_community, "About this Community" %><br>
+                    <%= f.text_area :about, class: "form-control"  %>
+                  </div>
+                  <br>
+                  <!--<div class="field">-->
+                  <!--<= f.label :is_partner %><br>-->
+                  <!--<= f.check_box :is_partner %>-->
+                  <!--</div>-->
+                  <div class="field">
+                    <%= f.label :logo %><br>
+                    <%= f.text_field :avatar, placeholder: "Paste Image Link 1024x1024", class: "form-control"  %>
+                  </div>
+                  <div class="col-md-3" >
+                    <br>
+                    <%= @channel.avatar.present? ? image_tag(@channel.avatar, class: "img-responsive") : image_tag("https://s3-us-west-2.amazonaws.com/mendalytics/YourLogoHere.jpg", class: "img-responsive") %>
+                  </div>
+                  <br><br><br><br><br><br>
+                </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="actions">
+            <%= f.submit "Update", class:"btn btn-primary", style: "border-radius: 0; border-color: #F19A20; background-color: #F19A20; color: white"  %>
+            <% end %>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- EDIT Documents Modal -->
+<div class="modal fade" id="editCommunityDocumentsModal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content" style="border-radius: 0">
+      <div class="modal-body">
+        <div class="row">
+          <%= form_for(@channel) do |f| %>
+              <% if @channel.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@channel.errors.count, "error") %> prohibited this Community from being saved:</h2>
+                    <ul>
+                      <% @channel.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+              <% end %>
+
+              <%= f.hidden_field :user_id, value: current_user.id %>
+
+              <div class="col-md-12">
+                <div class="row" style="margin-left: -20px">
+                  <div class="col-md-12">
+                    <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey; background-color: #326867 ">
+                      <div class="panel-body text-center">
+                        <p style="font-size: 28px; text-align: left; margin: 4px; margin-bottom: 10px; margin-top: 10px; color: white ">
+                          Edit Content:
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <div>
+                    <div id="channel_assets">
+                      <%= f.fields_for :channel_assets do |ca| %>
+
+                          <div class="field">
+                            <%= ca.label :asset_type %><br>
+                            <%= ca.select :asset_type, options_for_select(["Video", "Document", "Image", "Other"], ca.object.asset_type) %>
+                          </div>
+                          <br>
+                          <div class="field">
+                            <%= ca.label :source %><br>
+                            <%=  ca.text_field :source, placeholder: "Paste Link", class: "form-control"  %>
+                          </div>
+                          <br>
+                          <div class="field">
+                            <%= ca.label :asset_name %><br>
+                            <%= ca.text_field :asset_name, class: "form-control"  %>
+                          </div>
+                          <br>
+                          <div class="field">
+                            <%= ca.label :description %><br>
+                            <%= ca.text_area :description, class: "form-control"  %>
+                          </div>
+
+                          <div class="field">
+                            <%= ca.label :_destroy, "Delete? &nbsp;".html_safe %>
+                            <%= ca.check_box :_destroy %>
+                          </div>
+
+                          <% if ca.object.new_record? %>
+                              <%= link_to_remove_association "remove content", f, style: "color: red; font-size: large " %>
+                          <% end %>
+
+                          <hr />
+                          <% end %>
+
+                        <div class="links">
+                          <%= link_to_add_association 'add content', f, :channel_assets, style: "color: #F19A20; font-size: large " %>
+                          <br><br>
+
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <br><br><br><br><br><br>
+                </div>
+                </div>
+                </div>
+                <div class="modal-footer">
+                  <div class="actions">
+                    <%= f.submit "Update", class:"btn btn-primary", style: "border-radius: 0; border-color: #F19A20; background-color: #F19A20; color: white"  %>
+                <% end %>
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+  </div>
+</div>
+
+<!-- EDIT Documents Modal -->
+<div class="modal fade" id="scheduleCommunityMeetingModal" role="dialog">
+    <div class="modal-dialog modal-lg" >
+      <div class="modal-content" style="border-radius: 0">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row" style="margin-left: -20px">
+                <div class="col-md-12">
+                  <div class="panel" style="border: 1px solid; border-radius: 0; border-color: lightgrey; background-color: #326867 ">
+                    <div class="panel-body text-center">
+                      <p style="font-size: 28px; text-align: left; margin: 4px; margin-bottom: 10px; margin-top: 10px; color: white ">
+                        Schedule Meeting:
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+
+
+                <!--<= render 'meetings/form' %>-->
+
+              </div>
+            </div>
+               <br><br><br><br>
+          </div>
+        </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+<!-- <= link_to 'Edit', edit_channel_path(@channel) %> |

@@ -1,0 +1,113 @@
+
+<h2>Use this form to record your physical symptoms</h2>
+<%= link_to "Edit symptoms list", "#addcustomsymptomModal", :class => "btn", "data-toggle" => "modal" %>
+
+
+<%= form_for @entry, url: entries_path do |f| %>
+    <% if @entry.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@entry.errors.count, "error") %> prohibited this symptom from being saved:</h2>
+          <ul>
+            <% @entry.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.datetime_select :updated_at, class: "form-control", :discard_minute => true, :discard_year => true, ampm: true, default: Time.now %>
+    </div>
+
+    <div class="field form-group">
+      <%= f.check_box :suicide_thought, class: "control-label" %>
+      <%= f.label :suicide_thought %>
+    </div>
+
+    <div class="form-group">
+      <!--<= f.label :entries_symptoms_attributes, "Tracked Symptoms" %><br />-->
+      <% if current_user.tracked_symptoms.empty? %>
+          <p>Please add a symptom to track above.</p>
+      <% end %>
+      <% current_user.tracked_symptom_symptoms.each_with_index do |symptom, index| %>
+
+
+      <%= check_box_tag "entry[entries_symptoms_attributes][#{index}][symptom_id]", symptom.id, @entry.entries_symptoms.include?(symptom), symptom_id: symptom.id %>
+      <%= symptom.name %>
+      <%= link_to remove_tracked_symptom_path(symptom), style: "text-decoration: none;", method: :put do %>
+
+              <i class="fa fa-times" data-toggle="tooltip" data-placement="top" title="Remove Tracked Symptom" style="color:red;"></i>
+          <% end %>
+
+          <br />
+      <% end %>
+    </div>
+
+<br />
+    <hr>
+
+
+  <div class="form-group">
+    <%= f.label :attended_session %><br />
+    <%= f.select :attended_session, options_for_select(["","Support Group","Professional Consultant","Counselling", "Cognitive Behavior Therapy (CBT)", "Computerized CBT", "Psychotherapy", "Dialectical Behavior Therapy (DBT)"]), class: "form-control" %>
+  </div>
+
+  <div class="form-group"> 
+    <%= f.label :self_harm %><br />
+    <%= f.select :self_harm, options_for_select(["","Cutting","Scratching","Burning", "Banging Head", "Banging Other", "Hair Pulling", "Skin Picking", "Self-Poisoning", "Other"]), class: "form-control" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "Add New Status", class: "btn btn-primary", style: "background-color: #326867; border-radius: 0" %>
+  </div>
+
+<% end %>
+
+<br>
+<!--------------------------------------------------------------------->
+
+
+<div class="modal fade" id="addcustomsymptomModal" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Customize Symptom Tracking List</h4>
+      </div>
+
+
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <%= form_for :tracked_symptom, url: tracked_symptoms_path do |f| %>
+                <div class="form-group">
+                  <%= f.label :symptom_id, "Select which symptoms you'd like to track" %>
+                  <br />
+                  <%= f.collection_select :symptom_id, Symptom.available_to_patient(current_user), :id, :name,  {prompt: true}, {class: "form-control"} %>
+                </div>
+
+                <div class="form-actions">
+                  <%= f.submit "Track Symptom", class: "btn btn-primary", style: "background-color: #326867; border-radius: 0" %>
+                </div>
+            <% end %>
+          </div>
+          <div class="col-md-6">
+            <%= form_for :symptom, url: symptoms_path do |f| %>
+              <div class="form-group">
+                <%= f.label :name, "Add a custom symptom" %>
+                <%= f.text_field :name, class: "form-control" %>
+                <%= f.hidden_field :patient_id, value: current_user.id %>
+              </div>
+              <div class="form-actions">
+                <%= f.submit "Add Custom Symptom", class: "btn btn-primary", style: "background-color: #326867; border-radius: 0" %>
+              </div>
+            <%  end %>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

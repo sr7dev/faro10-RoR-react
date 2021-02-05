@@ -1,0 +1,5 @@
+<div class="pdf">
+  <% consent ||= @consent %>
+  <%= render partial: "consents/release", locals: {consent: consent} %>
+  <%= render partial: "consents/release_footer", locals: {consent: consent} %>
+</div>

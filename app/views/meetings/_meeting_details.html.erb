@@ -1,0 +1,68 @@
+<div class="hidden">
+
+  <% if meeting.user_id.present? %>
+    <%= host = User.find(meeting.user_id) %>
+  <% else %>
+    <%= host = (meeting.user_id == 1) %>
+  <% end %>
+
+</div>
+
+<div class="row">
+  <div class="col-md-5">
+    <b  style="font-size: large"><%= meeting.meeting_type %></b><br>
+    <%= time_zone_offset(meeting.start_time, current_user.time_zone,  "%A, %B %d, %I:%M %p") %><br><br>
+
+    <p style="font-size: large"><b>Conversation Name: </b><br>
+      <%= meeting.name %>
+    </p>
+
+    <p style="font-size: large"><b>Topic:</b> <br>
+      <%= meeting.topic %>
+    </p>
+
+    <p style="font-size: large"><b>Focus:</b><br>
+      <%= meeting.special_focus %>
+    </p>
+
+  </div>
+
+  <div class="col-md-7">
+    <p>Host: <b><%= meeting.host %></b> <br>
+    Qualification: <b><%= host.qualification %></b> </p>
+
+    <p>A little bit about me: <br>
+      <%= host.about %>
+    </p>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <% if current_user.id == 1 %>
+      <p><b>Meeting Users:</b></p>
+      <table id="mu_details">
+        <thead>
+          <tr id="">
+            <th>User ID</th>
+            <th>Display Name</th>
+            <th>Joined At</th>
+            <th>Left At</th>
+            <th>User Left?</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% meeting.meeting_users.each do |mu| %>
+          <td><%= mu.user_id  %></td>
+          <td><%= mu.display_name  %></td>
+          <td><%= mu.created_at  %></td>
+          <td><%= mu.updated_at  %></td>
+          <td><%= mu.departed  %></td>
+          </tbody>
+        <% end %>
+        </table>
+    <% else %>
+    <% end %>
+  </div>
+</div>

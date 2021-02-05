@@ -1,0 +1,11 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "JKNZTTR8UY.com.faro10",
+                "paths": [ "/users/sign_in"]
+            }
+        ]
+    }
+}

@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-md-12">
+    <h4><b>Consent History</b></h4>
+    <table id="consent_history" cellpadding="0" cellspacing="0" border="0" class="dataTable table-striped table-hover table-highlight table-bordered">
+      <thead>
+        <tr>
+          <th>Start</th>
+          <th>End</th>
+          <th>Canceled</th>
+          <th>Form</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% if consents.any? %>
+        <% consents.order(created_at: :desc).each do |consent| %>
+          <tr>
+            <td><%= consent.created_at.strftime("%A, %B %d, %Y") %></td>
+            <td><%= consent.ended_at.strftime("%A, %B %d, %Y") %></td>
+            <td>
+              <%= consent.canceled_at ? consent.canceled_at.strftime("%A, %B %d, %Y") : "N/A" %>
+            </td>
+            <td>
+              <i class="fa fa-file-text"></i> <%= link_to "Show Consent", consent_path(consent.id,  format: :pdf), target: "_blank" %>
+            </td>
+            <td>
+              <div class="btn-group">
+                <%= link_to membership_path(consent.membership, membership_action: 'request'), class: "btn btn-xs btn-info", method: :put do  %>
+                  <i class="fa fa-repeat fa-fw" data-toggle="tooltip" data-placement="top" title="Request Consent"></i>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

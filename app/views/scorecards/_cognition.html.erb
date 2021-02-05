@@ -1,0 +1,19 @@
+<h3 style="color: #4FA59F">Cognition/Emotion</h3><br>
+<ul>
+
+  <li>
+    Member Reported: <%= render 'delta_words', value: @scorecard.outcome(:mem, :concentration), label: 'Concentration' %>
+  </li>
+  <li>
+    Member Reported: <%= render 'delta_words', value: @scorecard.outcome(:mem, :initiative), label: 'Initiative' %>
+  </li>
+
+  <li>
+    Observer Reported:  <%= render 'delta_words', value: @scorecard.outcome(:obs, :delusional), label: 'Delusions' %>
+  </li>
+
+  <li>
+    Member Reported:  <%= render 'delta_words', value: @scorecard.outcome(:mem, :anxiety), label: 'Anxiety' %>
+  </li>
+
+</ul>

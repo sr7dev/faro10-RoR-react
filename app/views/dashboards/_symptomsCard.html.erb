@@ -1,0 +1,71 @@
+<div id="symptoms-card" class="col-xs-6 col-md-1" style="min-width: 385px; min-height: 425px">
+  <div class="dashboard-card" style="background-color: #F19A20;">
+    <div class="card-header">
+      <h1 class="card-header-text">Physical Symptoms</h1>
+    </div>
+    <div class="card-menu">
+      <%= image_tag('video_temp.png') %>
+      <button type="button" class="card-video-button" data-toggle="modal" data-target="#physicalSymptomsModal"><%= image_tag('help.png') %></button>
+    </div>
+    <div class="card-image">
+      <button type="button" class="card-action-button" data-toggle="modal" data-target="#physEntryModal"><%= image_tag('physical_symptoms.png')%></button>
+    </div>
+    <div class="card-notification">
+    </div>
+    <div class="card-info">
+      <br/>
+      <br/>
+      Last Update: <%= @last_symptom_entry.present? ? @last_symptom_entry.created_at.to_date.strftime("%m/%d/%Y") :"no updates made" %>
+    </div>
+    <div class="card-action-top">
+      <%=image_tag('spacer.png')%>
+      <div class="card-action-text">
+
+      </div>
+    </div>
+    <div class="card-action-middle">
+      <button type="button" class="card-action-button" data-toggle="modal" data-target="#physEntryModal">
+        <%=image_tag('edit.png')%>
+        <div class="card-action-text">
+          MAKE<BR/>ENTRY
+        </div>
+      </button>
+    </div>
+    <div class="card-action-bottom">
+      <button type="button" class="card-action-button" data-toggle="modal" data-target="#physEditModal">
+        <%=image_tag('manage.png')%>
+        <div class="card-action-text">
+          MANAGE<BR/>SYMPTOMS
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="physEntryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Physical Symptoms Entry</h4>
+      </div>
+      <div class="modal-body">
+        <%= render 'entries/phys_symptoms' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="physEditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Manage Physical Symptoms</h4>
+      </div>
+      <div class="modal-body">
+        <%= render 'entries/edit_phys_symptoms' %>
+      </div>
+    </div>
+  </div>
+</div>

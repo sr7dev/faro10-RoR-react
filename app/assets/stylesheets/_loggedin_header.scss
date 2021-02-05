@@ -1,0 +1,52 @@
+@import "_variables";
+
+header#logged-in-header {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+
+  // right-hand links
+  .nav.navbar-right {
+    li {
+      border-right: 1px solid #d3d3d3;
+      width: 140px;
+      text-align: center; 
+
+      a {
+        color: $text;
+      }
+
+      .no-border {
+        border: none;
+      }
+    }
+
+    #login-button {
+      background: $main-branding;
+
+      a {
+        color: white;
+      }
+    }
+  }
+}
+
+/* header */
+#logo {
+  color: $main-branding;
+  margin-right: 10px;
+  float: left;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.7em;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  padding-top: 9px;
+
+  #ten {
+    color: $palette3;
+  }
+}
+
+#logo:hover {
+  text-decoration: none;
+}

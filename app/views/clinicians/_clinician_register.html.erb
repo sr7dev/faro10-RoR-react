@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="col-md-3 col-md-offset-3">
+
+    <%= form_for(@clinician) do |f| %>
+        <%= render 'shared/clinician_error_messages' %>
+
+        <%= f.label :user_id, "Username"  %>
+        <%= f.text_field :user_id, class: 'form-control' %><br>
+
+        <%= f.label :email, "Email Address"  %>
+        <%= f.email_field :email, class: 'form-control' %><br>
+
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %><br>
+
+        <%= f.label :clinician_type, "Clinician Type"  %>
+        <%= f.text_field :clinician_type, class: 'form-control' %><br>
+    </div>
+        <div class="col-md-3">
+          <%= f.label :clinic_name, "Clinic Name"  %>
+          <%= f.text_field :clinic_name, class: 'form-control' %><br>
+
+          <%= f.label :clinic_phone, "Clinic Phone"  %>
+          <%= f.text_field :clinic_phone, class: 'form-control' %><br>
+
+          <%= f.label :clinic_street, "Street Address"  %>
+          <%= f.text_field :clinic_street, class: 'form-control' %><br>
+
+          <%= f.label :clinic_city, "City"  %>
+          <%= f.text_field :clinic_city, class: 'form-control' %><br>
+
+          <%= f.label :clinic_state, "State"  %>
+          <%= f.text_field :clinic_state, class: 'form-control' %><br>
+
+          <%= f.label :clinic_zip, "Zip"  %>
+          <%= f.number_field :clinic_zip, class: 'form-control' %><br>
+
+          <%= f.label :country %>
+          <%= f.country_select :country, { priority_countries: ["US"] }, { class: "form-control" }  %><br>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <br/>
+            <br/>
+            <div class="field">
+              <%= f.check_box :is_clinician, class: "col-md-1 control-label"  %>
+              <%= f.label :is_clinician, "Confirm you are legally authorized to operate as a Clinician and have read our" %><%= link_to "Terms and Conditions", asset_path("terms_and_conditions.pdf") %>
+            </div>
+            <br/>
+            <%= f.submit "Create my account", class: "btn btn-primary", style: "background-color: #326867; border-radius: 0" %>
+            <% end %>
+          </div>
+        </div>
+</div>
+
+
+
+
+
+

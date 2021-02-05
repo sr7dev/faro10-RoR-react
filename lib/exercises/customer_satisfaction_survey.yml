@@ -1,0 +1,76 @@
+category: exercise
+longname: Client Satisfaction Survey
+shortname: css
+logo: customer_satisfaction_assessment_icon.png
+description: Please evaluate your experience and help us improve our service to you by completing this short survey.  Thank you for your time and thoughts!
+questions:
+  - position: 1
+    style: multiple_choice
+    text: 1. Rate your experience with our staff.
+    answer_choices:
+    - position: 1
+      text: Not at all Satisfied
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Moderately
+    - position: 4
+      text: Satisfied
+    - position: 5
+      text: Very Satisfied
+  - position: 2
+    style: multiple_choice
+    text: 2. Are you satisfied with your appointment times?
+    answer_choices:
+    - position: 1
+      text: Not at all Satisfied
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Moderately
+    - position: 4
+      text: Satisfied
+    - position: 5
+      text: Very Satisfied
+  - position: 3
+    style: multiple_choice
+    text: 3. Rate your satisfaction with your healthcare provider interaction.
+    answer_choices:
+    - position: 1
+      text: Not at all Satisfied
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Moderately
+    - position: 4
+      text: Satisfied
+    - position: 5
+      text: Very Satisfied
+  - position: 4
+    style: multiple_choice
+    text: 4. Rate the effectiveness of your treatment.
+    answer_choices:
+    - position: 1
+      text: Not at all Satisfied
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Moderately
+    - position: 4
+      text: Satisfied
+    - position: 5
+      text: Very Satisfied
+  - position: 5
+    style: multiple_choice
+    text: 5. Rate your overall satisfaction with this practice.
+    answer_choices:
+    - position: 1
+      text: Not at all Satisfied
+    - position: 2
+      text: Just a little
+    - position: 3
+      text: Moderately
+    - position: 4
+      text: Satisfied
+    - position: 5
+      text: Very Satisfied

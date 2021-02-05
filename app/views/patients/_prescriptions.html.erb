@@ -1,0 +1,82 @@
+<br>
+<div class="row">
+  <div class="col-md-12">
+    <h4><b>Current Medications</b></h4>
+    <table id="current_prescriptions" cellpadding="0" cellspacing="0" border="0" class="dataTable table-striped table-hover table-highlight table-bordered">
+      <thead>
+        <tr>
+          <th>Drug</th>
+          <th>Dosage (MG)</th>
+          <th>Started</th>
+          <th>Consistency</th>
+          <th>Duration</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @unexpired.each do |prescription| %>
+          <tr>
+            <td><i class="fa fa-medkit"></i> <%= prescription.drug.friendly_name %></td>
+            <td><%= prescription.dosage %></td>
+            <td><i class="fa fa-calendar"></i> <%= prescription.started.strftime("%A, %B %d, %Y") %></td>
+            <td class="<%= prescription.as_needed.blank? ? my_med_consistency_tag(prescription.consistency) : prescription.consistency %>" >   <%= prescription.as_needed.blank? ? prescription.consistency.to_s + "%" : "as needed" %></td>
+
+
+            <td> <%= distance_of_time_in_words(prescription.started, Time.now) %>  </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<br>
+
+<!--MEDICATION CONSISTENCY COLUMN CHART-->
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default" style="border-color: #080808">
+      <div class="panel-heading" style="background-color: #fff">
+        <h3 style="color: #556870;"  align="center"><b>Prescription Consistency</b></h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-12">
+            <div id="patientPrescriptionConsistencyChart" style="height: 200px" onload="patientPrescriptionConsistencyChart.reflow();"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--END OF MEDICATION CONSISTENCY COLUMN CHART-->
+
+<br>
+
+<div class="row">
+  <div class="col-md-12">
+    <h4><b>History</b></h4>
+    <table id="prescription_history" cellpadding="0" cellspacing="0" border="0" class="dataTable table-striped table-hover table-highlight table-bordered">
+      <thead>
+        <tr>
+          <th>Drug</th>
+          <th>Dosage (MG)</th>
+          <th>Consistency</th>
+          <th>Duration</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @expired.each do |prescription| %>
+          <tr>
+            <td><i class="fa fa-medkit"></i> <%= prescription.drug.friendly_name %></td>
+            <td><%= prescription.dosage %></td>
+            <td> <%= prescription.as_needed.blank? ? prescription.consistency.to_s + "%" : "as needed" %></td>
+            <td> <%= distance_of_time_in_words(prescription.started, prescription.ended)  %> </td>
+            <td><i class="fa fa-calendar"></i> <%= prescription.started.strftime("%B %d, %Y") %></td>
+            <td><i class="fa fa-calendar"></i> <%= prescription.ended.strftime("%B %d, %Y") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
